@@ -6,20 +6,27 @@ public class PlayerBehaviour : MonoBehaviour
 {
     public PlayerSettings settings;
     private Rigidbody2D rb;
+    //public FieldOfView fovObject;
     private Vector2 moveDirection;
     private bool isMoving = false;
     private float smoothRot;
     float yInput;
     float xInput;
-
+    public DynamicLight lightSource;
+    //public Vector3 lightOffset;
+    //public float lightRoationOffset;
     public Camera activeCamera;
-    private void Awake()
+    public void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
      
     }
-    private void Update()
+    public void Update()
     {
+
+        lightSource.SetAimDirection(transform.up);
+        lightSource.SetOrigin(transform.position);
+        //fovObject.SetOrigin(transform.position);
         //Get input
         yInput = Input.GetAxisRaw("Vertical");
         xInput = Input.GetAxisRaw("Horizontal");
@@ -36,7 +43,7 @@ public class PlayerBehaviour : MonoBehaviour
         PlayerFacePointer();
     }
 
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
         //Movement loopUpdate
         if (isMoving)
@@ -57,6 +64,7 @@ public class PlayerBehaviour : MonoBehaviour
         //if (targetAngle < 0) targetAngle += 360f;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.z, targetAngle, ref smoothRot, settings.rotationSpeed);//rotate player smoothly to target angle
         transform.rotation = Quaternion.Euler(0f, 0f, angle);//update angle
+        //fovObject.SetAimDirection((-1)*fovObject.GetVectorFromAngle(angle));
     }
 
     public Vector2 GetVectorToPointer()

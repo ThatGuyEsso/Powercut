@@ -13,11 +13,11 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Collision
+  - Player
+  - Mask
+  - BehindMask
+  - Black
   - 
   - 
   - 
@@ -44,9 +44,18 @@ TagManager:
   - name: Background
     uniqueID: 2867150259
     locked: 0
+  - name: Collisions
+    uniqueID: 1813424529
+    locked: 0
   - name: Foreground
     uniqueID: 902507461
     locked: 0
-  - name: New Layer
-    uniqueID: 1813424529
+  - name: Player
+    uniqueID: 2737098991
+    locked: 0
+  - name: VFX
+    uniqueID: 2363489897
+    locked: 0
+  - name: Details
+    uniqueID: 1104743243
     locked: 0
