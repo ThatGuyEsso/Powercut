@@ -10,6 +10,10 @@ public class LightSettings : ScriptableObject
     public LayerMask lightBlockingLayers;
     public float maxCharge;
     public float dischargeRate;
+    public float chargeRate;
+    public float rechargeAmount;
+    public float disChargeAmount;
+    public float maxIntensity;
 
 
 }

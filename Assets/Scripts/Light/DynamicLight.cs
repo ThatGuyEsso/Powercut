@@ -18,14 +18,17 @@ public class DynamicLight : MonoBehaviour
     float startingAngle;
     Vector3[] lightPathPoints;
     public float offset;
-    private float currentCharge;
+
+    private bool lightIsOn;
     public LightSettings settings;
+    public LightManager manager;
     public void Awake()
     {
 
         lightCone = gameObject.GetComponent<Light2D>();
         origin = Vector3.zero;
         lightPathPoints= new Vector3[lightCone.shapePath.Length];//get number of points on shape
+        manager = gameObject.GetComponent<LightManager>();
         SetUpLight();
     }
     // Start is called before the first frame update
@@ -35,18 +38,14 @@ public class DynamicLight : MonoBehaviour
     public void Update()
     {
 
-      
+
         //origin = Vector3.zero;// transform.parent.position;
-        SetShapeOfLight();
+        if (lightIsOn)
+        {
+            SetShapeOfLight();
+        }
 
 
-    }
-    //Converts angle into vector
-    public Vector3 GetVectorFromAngle(float angle)
-    {
-        //angle -> 360
-        float angleRad = angle * (Mathf.PI / 180f);
-        return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
     }
 
     //Updates the origin of light source
@@ -58,24 +57,12 @@ public class DynamicLight : MonoBehaviour
     //Sets the starting angle to direction of given vector
     public void SetAimDirection(Vector3 aimDir)
     {
-        startingAngle = (GetAngleFromVector(aimDir) - fovAngle / 2) ;
+        startingAngle = (EssoUtility.GetAngleFromVector(aimDir) - fovAngle / 2) ;
     }
 
-    //returns angle from vector direction
-    public float GetAngleFromVector(Vector3 vector)
-    {
-        vector = vector.normalized;
-        float n = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
-        if (n < 0) n += 360f;
-        return n;
-    }
 
-    //Update position to follow player
-    private void FollowPlayer()
-    {
-        transform.position = playerTrans.position;
-    }
 
+  
 
     //Update light shape
     private void SetShapeOfLight()
@@ -90,7 +77,7 @@ public class DynamicLight : MonoBehaviour
 
             if (i > 0)
             {
-                RaycastHit2D hitInfo = Physics2D.Raycast(origin, GetVectorFromAngle(currentAngle), viewDistance, ViewBlockingLayers);
+                RaycastHit2D hitInfo = Physics2D.Raycast(origin, EssoUtility.GetVectorFromAngle(currentAngle), viewDistance, ViewBlockingLayers);
                 if (hitInfo)
                 {
                     lightPathPoints[i] = hitInfo.point;
@@ -98,8 +85,8 @@ public class DynamicLight : MonoBehaviour
                 }
                 else
                 {
-                    lightPathPoints[i] = origin + GetVectorFromAngle(currentAngle) * viewDistance;
-                    Debug.DrawRay(lightPathPoints[0], lightPathPoints[0] + GetVectorFromAngle(currentAngle) * viewDistance);
+                    lightPathPoints[i] = origin + EssoUtility.GetVectorFromAngle(currentAngle) * viewDistance;
+                    Debug.DrawRay(lightPathPoints[0], lightPathPoints[0] + EssoUtility.GetVectorFromAngle(currentAngle) * viewDistance);
                 }
 
 
@@ -123,7 +110,27 @@ public class DynamicLight : MonoBehaviour
         fovAngle = settings.lightAngle;
         ViewBlockingLayers = settings.lightBlockingLayers;
         viewDistance = settings.lightRadius;
-        currentCharge = settings.maxCharge;
+        lightIsOn = true;
         offset = settings.lightAngle;
+    }
+
+
+    public void ToggleLight(bool isOn)
+    {
+        lightIsOn = isOn;
+        if (lightIsOn)
+        {
+            lightCone.intensity = settings.maxIntensity;
+        }
+        else
+        {
+            lightCone.intensity = 0f;
+        }
+    }
+
+
+    public bool GetLightIsOn()
+    {
+        return lightIsOn;
     }
 }

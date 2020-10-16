@@ -18,4 +18,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   maxCharge: 100
-  dischargeRate: 0.2
+  dischargeRate: 0.06
+  chargeRate: 0.05
+  rechargeAmount: 0.5
+  disChargeAmount: 0.2
+  maxIntensity: 1

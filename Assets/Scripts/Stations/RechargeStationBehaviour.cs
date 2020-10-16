@@ -4,15 +4,67 @@ using UnityEngine;
 
 public class RechargeStationBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Transform playerTrans;
+    private LightManager lightManger;
+    private ChargingCable chargeCable;
+
+    private void Awake()
     {
-        
+        chargeCable = gameObject.GetComponentInChildren<ChargingCable>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnTriggerEnter2D(Collider2D other)
     {
-        
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            playerTrans = other.transform;
+            lightManger = other.gameObject.GetComponent<PlayerBehaviour>().lightSource.GetComponent<DynamicLight>().manager;
+
+            lightManger.SetChargeState(ChargeStates.Charging);
+            chargeCable.StartDrawingRope(playerTrans);
+
+
+        }
     }
+
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (lightManger != null)
+            {
+                if (lightManger.GetIsFullyCharged())
+                {
+                    chargeCable.ChangeColour(Color.green);
+                    lightManger.SetChargeState(ChargeStates.StandBy);
+                }
+            }
+        }
+
+    }
+
+    public void OnTriggerExit2D(Collider2D other)
+    {
+
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (lightManger != null)
+            {
+                lightManger.SetChargeState(ChargeStates.Discharging);
+
+            }
+
+            lightManger = null;
+            playerTrans = null;
+
+           chargeCable.StopDrawingRope();
+        }
+
+    }
+
+
+
+
 }

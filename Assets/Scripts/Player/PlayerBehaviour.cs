@@ -19,10 +19,19 @@ public class PlayerBehaviour : MonoBehaviour
     public void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+
      
+    }
+    private void Start()
+    {
+        WeaponManager.instance.SetActiveWeapon(GunTypes.Shotgun);
     }
     public void Update()
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            WeaponManager.instance.ShootActiveWeapon();
+        }
 
         lightSource.SetAimDirection(transform.up);
         lightSource.SetOrigin(transform.position);
