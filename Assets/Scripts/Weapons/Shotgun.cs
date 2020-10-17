@@ -61,7 +61,7 @@ public class Shotgun : BaseGun
            float startingAngle = (EssoUtility.GetAngleFromVector(firePoint.up) - sprayRange / 2);
            float randOffset = Random.Range(-spray, spray);
 
-            shotDir[i] = EssoUtility.GetVectorFromAngle(randOffset+ startingAngle);
+            shotDir[i] = EssoUtility.GetVectorFromAngle(randOffset+ startingAngle+sprayRange);
         }
 
         return shotDir;

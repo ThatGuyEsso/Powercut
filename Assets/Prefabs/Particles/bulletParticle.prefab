@@ -4956,4 +4956,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4a2d15b738153d4ca07b874e1d054c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToDim: 0.5
+  timeToDim: 0.01

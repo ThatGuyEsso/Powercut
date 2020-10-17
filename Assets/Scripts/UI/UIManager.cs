@@ -6,6 +6,7 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
     public ProgressBar batteryDisplay;
+    public AmmoDisplay ammoDisplay; 
     private void Awake()
     {
         instance = this;

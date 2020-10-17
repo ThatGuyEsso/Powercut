@@ -16,11 +16,12 @@ public abstract class BaseGun : MonoBehaviour
     protected float currentReloadTime, currentTimeBetweenShots;
 
     protected bool canShoot;
+    protected bool isReloading;
 
     [Header("Gun Shooting Settings")]
     public GameObject bulletPrefab;
     public float shotForce;
-    [Range(0f,20f)]
+    [Range(0f,90f)]
     public float sprayRange;
     public float spray;
     [Header("Gun Components")]
@@ -33,6 +34,8 @@ public abstract class BaseGun : MonoBehaviour
     {
         //Initialise variables
         canShoot = true;
+        isReloading = false;
+    
         currentClip = maxClip;
         currentAmmo = maxAmmo;
     }
@@ -63,11 +66,47 @@ public abstract class BaseGun : MonoBehaviour
                 //bullet can't get shot so just destroy
                 Destroy(bulletRB);
             }
+            StartCoroutine(ShotDelay());
         }
     }
 
     virtual public void Reload()
     {
+        if(currentAmmo > 0 && !isReloading && currentClip <maxClip)
+        {
+
+            if (currentClip <= 0)
+            {
+                if (currentAmmo >= maxClip)
+                {
+                    isReloading = true;
+                    StartCoroutine(ReloadRoutine(maxClip));
+                }
+                else
+                {
+                    isReloading = true;
+                    int difference = maxClip - currentAmmo;
+                    StartCoroutine(ReloadRoutine(difference));
+                }
+
+            }
+            else
+            {
+                int clipSlotsleft = maxClip - currentClip;
+
+                if(currentAmmo>= currentClip)
+                {
+                    isReloading = true;
+                    StartCoroutine(ReloadRoutine(clipSlotsleft));
+                }
+                else
+                {
+                    isReloading = true;
+                    int difference = clipSlotsleft - currentAmmo;
+                    StartCoroutine(ReloadRoutine(difference));
+                }
+            }
+        }
         //ReloadBehaviour
     }
 
@@ -81,10 +120,27 @@ public abstract class BaseGun : MonoBehaviour
     {
         return currentClip;
     }
-
+    public bool GetIsReloading()
+    {
+        return isReloading;
+    }
     protected IEnumerator ShotDelay()
     {
         yield return new WaitForSeconds(maxTimeBetweenShots);
         canShoot = true;
+
+
     }
+
+    protected IEnumerator ReloadRoutine(int newClip)
+    {
+     
+        yield return new WaitForSeconds(reloadTime);
+        isReloading = false;
+        currentAmmo -= newClip;
+        currentClip += newClip;
+        UIManager.instance.ammoDisplay.SetAmmoCount(currentAmmo);
+        UIManager.instance.ammoDisplay.SetClipCount(currentClip);
+    }
+
 }

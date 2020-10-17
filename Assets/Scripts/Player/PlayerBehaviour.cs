@@ -16,11 +16,15 @@ public class PlayerBehaviour : MonoBehaviour
     //public Vector3 lightOffset;
     //public float lightRoationOffset;
     public Camera activeCamera;
+    private GunTypes[] gunsCarried = new GunTypes[2];
+    private GunTypes equippedGun;
     public void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
 
-     
+        gunsCarried[0] = GunTypes.Pistol;
+        gunsCarried[1] = GunTypes.Shotgun;
+        equippedGun = GunTypes.Shotgun;
     }
     private void Start()
     {
@@ -32,7 +36,25 @@ public class PlayerBehaviour : MonoBehaviour
         {
             WeaponManager.instance.ShootActiveWeapon();
         }
+        if (Input.GetMouseButtonDown(1))
+        {
+            WeaponManager.instance.ReloadActiveWeapon();
+        }
 
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            if(equippedGun == GunTypes.Shotgun)
+            {
+                equippedGun = GunTypes.Pistol;
+                WeaponManager.instance.SetActiveWeapon(equippedGun);
+            }else if (equippedGun == GunTypes.Pistol)
+            {
+                equippedGun = GunTypes.Shotgun;
+                WeaponManager.instance.SetActiveWeapon(equippedGun);
+
+            }
+        }
+  
         lightSource.SetAimDirection(transform.up);
         lightSource.SetOrigin(transform.position);
         //fovObject.SetOrigin(transform.position);
