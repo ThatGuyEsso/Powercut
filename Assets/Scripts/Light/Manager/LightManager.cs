@@ -17,7 +17,7 @@ public class LightManager : MonoBehaviour
     private float chargeRate;
     //Component cache ref
     private ProgressBar batterySlider;
-    private DynamicLight lightCone;
+    private FieldOfView fieldViewCone;
     //Settings
     public LightSettings settings;
     private ChargeStates chargeState;
@@ -33,7 +33,8 @@ public class LightManager : MonoBehaviour
         //initial variables
         currentCharge = settings.maxCharge;
         dischargeRate = settings.dischargeRate;
-        lightCone = gameObject.GetComponent<DynamicLight>();
+        fieldViewCone = gameObject.GetComponent<FieldOfView>();
+
     }
 
     private void Start()
@@ -75,9 +76,9 @@ public class LightManager : MonoBehaviour
         }
 
         //If there is no charge turn off light if it is on
-        if (currentCharge <= 0 && lightCone.GetLightIsOn())
+        if (currentCharge <= 0 && fieldViewCone.GetLightIsOn())
         {
-            lightCone.ToggleLight(false);
+            fieldViewCone.ToggleLight(false);
             SetChargeState(ChargeStates.StandBy);
         }
     }
@@ -101,9 +102,9 @@ public class LightManager : MonoBehaviour
             batterySlider.UpdateSlider(currentCharge);
         }
         //If there is some charge turn on light if it is off
-        if (currentCharge>0 && !lightCone.GetLightIsOn())
+        if (currentCharge>0 && !fieldViewCone.GetLightIsOn())
         {
-            lightCone.ToggleLight(true);
+            fieldViewCone.ToggleLight(true);
           
 
 

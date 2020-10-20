@@ -57,6 +57,7 @@ public class ChargingCable : MonoBehaviour
     {
         if (isDrawing)
         {
+
             DrawRope();
         }
 

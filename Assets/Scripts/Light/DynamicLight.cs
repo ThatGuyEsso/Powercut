@@ -11,7 +11,7 @@ public class DynamicLight : MonoBehaviour
     [HideInInspector]
     public float currentAngle;
     public float viewDistance;
-    public Transform playerTrans;
+
     private LayerMask ViewBlockingLayers;
     private Light2D lightCone;
     Vector3 origin;

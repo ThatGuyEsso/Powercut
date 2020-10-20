@@ -5,6 +5,7 @@ using UnityEngine;
 public class LightSettings : ScriptableObject
 {
     public float lightRadius;
+    public int rayCount;
     [Range(0, 360)]
     public float lightAngle = 90f;
     public LayerMask lightBlockingLayers;

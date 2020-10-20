@@ -13,24 +13,39 @@ public class FieldOfView : MonoBehaviour
 
     public LayerMask ViewBlockingLayers;
     private Mesh mesh;
+    private MeshRenderer meshRenderer;
     Vector3 origin;
+    private float offset;
     float startingAngle;
+
+    private bool lightIsOn;
+    public LightSettings settings;
+    public LightManager manager;
     private void Awake()
     {
         mesh = new Mesh();
+        meshRenderer = gameObject.GetComponent<MeshRenderer>();
         GetComponent<MeshFilter>().mesh = mesh;
+        manager = gameObject.GetComponent<LightManager>();
         origin = Vector3.zero;
+        SetUpLight();
     }
     // Start is called before the first frame update
     void Update()
     {
-     
-      
-        Vector3[] vertices = new Vector3[rayCount +1+1];//orgin ray + ray 0
-        Vector2[] uv = new Vector2[vertices.Length];
-        int[] triangles = new int[rayCount*3];//for every ray there should  be triangle and as the triagle has three vertices
 
-        currentAngle = startingAngle;
+
+        DrawVisionConeShape();
+
+    }
+
+    public void DrawVisionConeShape()
+    {
+        Vector3[] vertices = new Vector3[rayCount + 1 + 1];//orgin ray + ray 0
+        Vector2[] uv = new Vector2[vertices.Length];
+        int[] triangles = new int[rayCount * 3];//for every ray there should  be triangle and as the triagle has three vertices
+
+        currentAngle = startingAngle +offset;
         float angleIncrease = fovAngle / rayCount;
 
         vertices[0] = origin;
@@ -40,14 +55,14 @@ public class FieldOfView : MonoBehaviour
         for (int i = 0; i < rayCount; i++)
         {
             Vector3 vertex;
-            RaycastHit2D hitInfo = Physics2D.Raycast(origin, GetVectorFromAngle(currentAngle), viewDistance, ViewBlockingLayers);
+            RaycastHit2D hitInfo = Physics2D.Raycast(origin, EssoUtility.GetVectorFromAngle(currentAngle), viewDistance, ViewBlockingLayers);
             if (hitInfo)
             {
                 vertex = hitInfo.point;
             }
             else
             {
-                vertex = origin + GetVectorFromAngle(currentAngle) * viewDistance;
+                vertex = origin + EssoUtility.GetVectorFromAngle(currentAngle) * viewDistance;
             }
             vertices[vertexIndex] = vertex;
             if (i > 0)
@@ -55,25 +70,18 @@ public class FieldOfView : MonoBehaviour
                 triangles[triangleIndex + 0] = 0;
                 triangles[triangleIndex + 1] = vertexIndex - 1;
                 triangles[triangleIndex + 2] = vertexIndex;
-                triangleIndex += 3; 
+                triangleIndex += 3;
 
             }
 
             vertexIndex++;
             currentAngle -= angleIncrease;
         }
-  
+
         mesh.vertices = vertices;
         mesh.uv = uv;
         mesh.triangles = triangles;
-
-    }
-
-    public Vector3 GetVectorFromAngle(float angle)
-    {
-        //angle -> 360
-        float angleRad = angle * (Mathf.PI / 180f);
-        return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
+        mesh.bounds = new Bounds(origin, Vector3.one * 1000f);
     }
 
     public void SetOrigin(Vector3 origin)
@@ -83,15 +91,40 @@ public class FieldOfView : MonoBehaviour
 
     public void SetAimDirection(Vector3 aimDir)
     {
-        startingAngle = GetAngleFromVector(aimDir) - fovAngle / 2;
+        startingAngle = EssoUtility.GetAngleFromVector(aimDir) - fovAngle / 2;
     }
 
-    public float GetAngleFromVector(Vector3 vector)
+
+
+
+    private void SetUpLight()
     {
-        vector = vector.normalized;
-        float n = Mathf.Atan2(vector.y, vector.x) * Mathf.Rad2Deg;
-        if (n < 0) n += 360f;
-        return n;
+        fovAngle = settings.lightAngle;
+        ViewBlockingLayers = settings.lightBlockingLayers;
+        viewDistance = settings.lightRadius;
+        lightIsOn = true;
+        offset = settings.lightAngle;
+        rayCount = settings.rayCount;
     }
- 
+
+
+    public void ToggleLight(bool isOn)
+    {
+        lightIsOn = isOn;
+        if (lightIsOn)
+        {
+            meshRenderer.enabled = true;
+        }
+        else
+        {
+            meshRenderer.enabled = false;
+        }
+    }
+
+
+    public bool GetLightIsOn()
+    {
+        return lightIsOn;
+    }
+
 }

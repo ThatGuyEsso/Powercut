@@ -12,7 +12,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float smoothRot;
     float yInput;
     float xInput;
-    public DynamicLight lightSource;
+    public FieldOfView fieldOfView;
     //public Vector3 lightOffset;
     //public float lightRoationOffset;
     public Camera activeCamera;
@@ -54,9 +54,9 @@ public class PlayerBehaviour : MonoBehaviour
 
             }
         }
-  
-        lightSource.SetAimDirection(transform.up);
-        lightSource.SetOrigin(transform.position);
+
+        fieldOfView.SetAimDirection(transform.up);
+        fieldOfView.SetOrigin(transform.position);
         //fovObject.SetOrigin(transform.position);
         //Get input
         yInput = Input.GetAxisRaw("Vertical");
