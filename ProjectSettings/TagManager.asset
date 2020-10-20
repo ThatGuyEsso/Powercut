@@ -18,7 +18,7 @@ TagManager:
   - Mask
   - BehindMask
   - Black
-  - 
+  - Background
   - 
   - 
   - 
@@ -67,4 +67,7 @@ TagManager:
     locked: 0
   - name: Bullet
     uniqueID: 177537861
+    locked: 0
+  - name: Black
+    uniqueID: 1900244667
     locked: 0

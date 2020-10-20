@@ -22,11 +22,11 @@ public class KillBulletFlashVFX : MonoBehaviour
         }
         if (isDead)
         {
-            flash.intensity = Mathf.Lerp(flash.intensity, 0f, timeToDim);
-            if (flash.intensity <= 0f)
-            {
+            //flash.intensity = Mathf.Lerp(flash.intensity, 0f, timeToDim);
+            //if (flash.intensity <= 0f)
+            //{
                 Destroy(gameObject);
-            }
+            //}
         }
     }
 

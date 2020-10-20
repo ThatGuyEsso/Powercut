@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BaseLight Settings
   m_EditorClassIdentifier: 
   lightRadius: 10
-  rayCount: 50
+  rayCount: 75
   lightAngle: 72
   lightBlockingLayers:
     serializedVersion: 2
