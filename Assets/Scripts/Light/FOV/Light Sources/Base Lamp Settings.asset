@@ -9,17 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a887470a0693fb047b19a31b0fdec0b5, type: 3}
-  m_Name: Standard Light
+  m_Script: {fileID: 11500000, guid: dc1d672720e5e9f46b53005fac33b460, type: 3}
+  m_Name: Base Lamp Settings
   m_EditorClassIdentifier: 
-  lightRadius: 5
-  lightAngle: 360
+  lightRadius: 8
+  rayCount: 200
+  lightAngle: 370
   lightBlockingLayers:
     serializedVersion: 2
     m_Bits: 256
-  maxCharge: 0
-  dischargeRate: 0
-  chargeRate: 0
-  rechargeAmount: 0
-  disChargeAmount: 0
-  maxIntensity: 1
+  maxLightHealth: 100

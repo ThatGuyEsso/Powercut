@@ -19,7 +19,7 @@ public class RechargeStationBehaviour : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             playerTrans = other.transform;
-            lightManger = other.gameObject.GetComponent<PlayerBehaviour>().fieldOfView.GetComponent<FieldOfView>().manager;
+            lightManger = other.gameObject.GetComponent<PlayerBehaviour>().fieldOfView.GetComponent<FieldOfView>().GetLightManager();
 
             lightManger.SetChargeState(ChargeStates.Charging);
             chargeCable.StartDrawingRope(playerTrans);

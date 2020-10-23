@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a887470a0693fb047b19a31b0fdec0b5, type: 3}
   m_Name: BaseLight Settings
   m_EditorClassIdentifier: 
-  lightRadius: 10
-  rayCount: 75
-  lightAngle: 72
+  lightRadius: 5
+  rayCount: 100
+  lightAngle: 50
   lightBlockingLayers:
     serializedVersion: 2
     m_Bits: 256
