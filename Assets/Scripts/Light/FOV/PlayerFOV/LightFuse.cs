@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightFuse : MonoBehaviour
+public class LightFuse : MonoBehaviour, IBreakable
 {
     private Lamp parentLamp;
     public FuseSettings fuseSettings;
@@ -107,5 +107,19 @@ public class LightFuse : MonoBehaviour
             fixingCable.StopDrawingRope();
             targetTrans = null;
         }
+    }
+
+    void IBreakable.Damage(float damage,BaseEnemy interfacingEnemy)
+    {
+        parentLamp.DamageLamp(damage);
+        if (!parentLamp.GetIsLampWorking())
+        {
+            interfacingEnemy.GetComponent<IBreakable>().ObjectIsBroken();
+        }
+    }
+
+    void IBreakable.ObjectIsBroken()
+    {
+
     }
 }

@@ -1226,7 +1226,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1051843793}
   - component: {fileID: 1051843794}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ShadowGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1716,7 +1716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1378425556
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -13208,7 +13208,7 @@ GameObject:
   - component: {fileID: 2058927025}
   - component: {fileID: 2058927026}
   - component: {fileID: 2058927027}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Shadow Crawler
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13228,7 +13228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: dbd4bdee9ed65c04aa776f0498877ce7, type: 2}
-  target: {fileID: 1308450177}
+  target: {fileID: 2066853549}
   maxScaleMultiplier: 1.5
 --- !u!4 &2058927024
 Transform:
@@ -13238,7 +13238,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2058927022}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -11.29, y: 1.63, z: 0}
   m_LocalScale: {x: 0.4, y: 0.4, z: 0.4}
   m_Children:
   - {fileID: 1051843793}
@@ -13310,6 +13310,11 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!4 &2066853549 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1369539625071119399, guid: 3522048e80f9e2c4c8a483d910b84ce1, type: 3}
+  m_PrefabInstance: {fileID: 1489685225968336057}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1489685225968336057
 PrefabInstance:
   m_ObjectHideFlags: 0

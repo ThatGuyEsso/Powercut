@@ -42,8 +42,8 @@ public class ShadowCrawler : BaseEnemy
             case EnemyStates.Attack:
                 //Attack player
                 ChargePlayer();
-              
-                FaceMovementDirection();
+
+                FaceTarget();
                 if (!IsPlayerInAttackRange())
                 {
                     SetEnemyState(EnemyStates.Chase);
@@ -51,7 +51,10 @@ public class ShadowCrawler : BaseEnemy
                 break;
 
             case EnemyStates.Destroy:
-              //Destroy mechanics
+                //Destroy mechanics
+                BreakAppliance();
+                FaceTarget();
+                SmoothDecelerate(0f, settings.timeMaxToZero);
                 break;
 
             case EnemyStates.Chase:
@@ -76,7 +79,7 @@ public class ShadowCrawler : BaseEnemy
 
     protected override void DrawPathToTarget()
     {
-        float distance = Vector3.Distance(transform.position, target.transform.position);
+        float distance = Vector3.Distance(transform.position, target.transform.localPosition);
 
         if (path == null)
         {
@@ -120,7 +123,7 @@ public class ShadowCrawler : BaseEnemy
        
         //scale base stats by mutation
         maxSpeed *= (1-(mutationMultipler-1));
-        Debug.Log(maxSpeed);
+
         maxDamge *= mutationMultipler;
         minDamage *= mutationMultipler;
 
@@ -136,5 +139,20 @@ public class ShadowCrawler : BaseEnemy
 
         return Vector2.Distance(transform.position, target.position) <= settings.attackRange;
     }
-    
+
+
+    override protected void BreakAppliance()
+    {
+        if (canDestroy)
+        {
+            canDestroy = false;
+            float dmg = Random.Range(minDamage,maxDamge);
+            LightFuse fuse = target.GetComponent<LightFuse>();
+            if (fuse != null)
+            {
+                fuse.GetComponent<IBreakable>().Damage(dmg,this);
+            }
+        }
+    }
+
 }

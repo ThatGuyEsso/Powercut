@@ -12,12 +12,17 @@ public enum EnemyStates
     Idle
 };
 [RequireComponent(typeof(Rigidbody2D))]
-public abstract class BaseEnemy : MonoBehaviour
+public abstract class BaseEnemy : MonoBehaviour, IBreakable
 {
     //States
     protected EnemyStates currentState;
     protected bool isHurt;
     protected bool isTargetHuman;
+    protected bool canDestroy;
+
+    //Timers
+    protected float currTimeToDestroy;
+    protected float currTimeToAttack;
 
     //Settings
     public EnemySettings settings;
@@ -95,6 +100,19 @@ public abstract class BaseEnemy : MonoBehaviour
         //fovObject.SetAimDirection((-1)*fovObject.GetVectorFromAngle(angle));
     }
 
+    virtual protected void FaceTarget()
+    {
+        if (target != null)
+        {
+            float targetAngle = EssoUtility.GetAngleFromVector((target.position-transform.position).normalized);
+            /* targetAngle += 90f;*/// turn offset -Due to converting between forward vector and up vector
+                                    //if (targetAngle < 0) targetAngle += 360f;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.z, targetAngle, ref smoothRot, settings.rotationSpeed);//rotate player smoothly to target angle
+            transform.rotation = Quaternion.Euler(0f, 0f, angle);//update angle
+            //fovObject.SetAimDirection((-1)*fovObject.GetVectorFromAngle(angle));
+
+        }
+    }
     //#End MovementFunction FUNCTIONS#
 
 
@@ -119,6 +137,23 @@ public abstract class BaseEnemy : MonoBehaviour
         }
 
     }
+
+    virtual protected void Update()
+    {
+        if (!canDestroy)
+        {
+            if(currTimeToDestroy <= 0)
+            {
+                canDestroy = true;
+                currTimeToDestroy = settings.destroyRate;
+            }
+            else
+            {
+                currTimeToDestroy -= Time.deltaTime;
+            }
+        }
+    }
+
 
 
     virtual protected void DrawPathToTarget()
@@ -175,5 +210,30 @@ public abstract class BaseEnemy : MonoBehaviour
             }
 
         }
+    }
+    
+    void IBreakable.Damage(float damage, BaseEnemy interfacingEnemy)
+    {
+        //Does not matter to enemies just allows them to interface with lamps
+    }
+
+    virtual protected void BreakAppliance()
+    {
+        if (canDestroy)
+        {
+            canDestroy = false;
+            float dmg = Random.Range(settings.minDamage, settings.maxDamage);
+            LightFuse fuse = target.GetComponent<LightFuse>();
+            if (fuse != null)
+            {
+                fuse.GetComponent<IBreakable>().Damage(dmg,this);
+            }
+        }
+    }
+
+    void IBreakable.ObjectIsBroken()
+    {
+        target = FindObjectOfType<PlayerBehaviour>().transform;
+        SetEnemyState(EnemyStates.Chase);
     }
 }
