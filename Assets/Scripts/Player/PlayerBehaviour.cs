@@ -90,7 +90,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     public void PlayerFacePointer()
     {
-        float targetAngle = Mathf.Atan2( GetVectorToPointer().y, GetVectorToPointer().x) * Mathf.Rad2Deg;//get angle to rotate
+        float targetAngle = Mathf.Atan2(EssoUtility.GetVectorToPointer(activeCamera,transform.position).y, EssoUtility.GetVectorToPointer(activeCamera, transform.position).x) * Mathf.Rad2Deg;//get angle to rotate
         targetAngle -= 90f;// turn offset -Due to converting between forward vector and up vector
         //if (targetAngle < 0) targetAngle += 360f;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.z, targetAngle, ref smoothRot, settings.rotationSpeed);//rotate player smoothly to target angle
@@ -98,13 +98,5 @@ public class PlayerBehaviour : MonoBehaviour
         //fovObject.SetAimDirection((-1)*fovObject.GetVectorFromAngle(angle));
     }
 
-    public Vector2 GetVectorToPointer()
-    {
-        //Get mouse position in world space
-        Vector3 pointerPos = activeCamera.ScreenToWorldPoint(Input.mousePosition);
 
-        Vector3 playerToMouse = pointerPos - transform.position;//calculate vector direction between player and cursor
-
-        return playerToMouse.normalized;//Return normalised direction
-    }
 }

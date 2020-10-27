@@ -22,4 +22,14 @@ public class EssoUtility : MonoBehaviour
         float angleRad = angle * (Mathf.PI / 180f);
         return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad));
     }
+
+    public static Vector2 GetVectorToPointer(Camera camRef, Vector3 orign)
+    {
+        //Get mouse position in world space
+        Vector3 pointerPos = camRef.ScreenToWorldPoint(Input.mousePosition);
+
+        Vector3 orignToMouse = pointerPos - orign;//calculate vector direction between player and cursor
+
+        return orignToMouse.normalized;//Return normalised direction
+    }
 }

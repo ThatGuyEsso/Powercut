@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fuseSettings: {fileID: 11400000, guid: 0f1bea56218fa454c981679e8627d555, type: 2}
+  currentTimeToFix: 0
 --- !u!120 &7434350382917992640
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -264,7 +265,7 @@ GameObject:
   - component: {fileID: 1489685226284682032}
   m_Layer: 0
   m_Name: Lamp
-  m_TagString: Untagged
+  m_TagString: Electrical
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

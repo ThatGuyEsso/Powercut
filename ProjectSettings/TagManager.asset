@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Electrical
   layers:
   - Default
   - TransparentFX
@@ -55,6 +56,9 @@ TagManager:
     locked: 0
   - name: Objects
     uniqueID: 4203023601
+    locked: 0
+  - name: Enemies
+    uniqueID: 1501814397
     locked: 0
   - name: Player
     uniqueID: 2737098991
