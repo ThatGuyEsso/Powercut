@@ -9,7 +9,15 @@ public class LevelLampsManager : MonoBehaviour
     public GameObject lampLightPrefab;
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
     }
 
     private void Start()
@@ -26,7 +34,7 @@ public class LevelLampsManager : MonoBehaviour
         for(int i = 0;i < lamps.Length; i++)
         {
             levelLamps.Add(lamps[i]);
-            Debug.Log("Level Lamp #" + i + " Has been added");
+            //Debug.Log("Level Lamp #" + i + " Has been added");
         }
     }
 

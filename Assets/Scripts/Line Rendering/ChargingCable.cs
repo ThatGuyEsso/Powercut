@@ -46,8 +46,12 @@ public class ChargingCable : MonoBehaviour
     public void StopDrawingRope()
     {
         isDrawing = false;
-        lastTargetPosistion = targetTransform.position;
-        targetTransform = null;
+        if (targetTransform != null)
+        {
+            lastTargetPosistion = targetTransform.position;
+            targetTransform = null;
+
+        }
 
         currentPoint = lastTargetPosistion;
         lerpSpeed = maxLerpSpeed;

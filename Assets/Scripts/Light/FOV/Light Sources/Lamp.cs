@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Lamp : MonoBehaviour
+public class Lamp : MonoBehaviour, IEnemySpawnable
 {
     //Light it should reference
     private BaseLampLight lightRef;
@@ -11,11 +11,53 @@ public class Lamp : MonoBehaviour
     public float lightDistanceModifier = 0;//Increases or decreases light distance to allow differenct sized light sources.
     private float currentHealth;
     public bool isLampWorking;
+    private IEnemySpawnable enemySpawner; 
 
     private void Awake()
     {
-        fuseRef = transform.GetComponentInChildren<LightFuse>();
+        fuseRef = gameObject.GetComponentInChildren<LightFuse>();
+        enemySpawner= gameObject.GetComponentInChildren<EnemySpawner>();
     }
+
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //if lamp is broken and player enters stop spawning/due to player light
+        if (other.gameObject.CompareTag("Player")){
+            if (!isLampWorking)
+            {
+                enemySpawner.LampInLight();
+            }
+        }
+
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        //if lamp is broken and player enters stop spawning/due to player light
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (!isLampWorking)
+            {
+                enemySpawner.LampInLight();
+            }
+        }
+
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        //if lamp is broken and player leaves start spawning/due to player leaving with light
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (!isLampWorking)
+            {
+                enemySpawner.LampInDarkness();
+            }
+        }
+
+    }
+
 
     public void InitialiseLamp(BaseLampLight newLightRef)
     {
@@ -32,6 +74,11 @@ public class Lamp : MonoBehaviour
         if (!isLampWorking)
         {
             currentHealth = 0f;
+            enemySpawner.LampInDarkness();
+        }
+        else
+        {
+            enemySpawner.LampInLight();
         }
     }
 
@@ -50,6 +97,7 @@ public class Lamp : MonoBehaviour
       
                 isLampWorking = false;
                 currentHealth = 0;
+                enemySpawner.LampInDarkness();
 
             }
             lightRef.ToggleLight(isLampWorking);
@@ -69,6 +117,8 @@ public class Lamp : MonoBehaviour
                 //if so activate lamp and set it to the max health
                 isLampWorking = true;
                 currentHealth = lightRef.lampSettings.maxLightHealth;
+                enemySpawner.LampInLight();
+
             }
 
             lightRef.ToggleLight(isLampWorking);
@@ -98,5 +148,15 @@ public class Lamp : MonoBehaviour
         return fuseRef;
     }
 
+
+    void IEnemySpawnable.LampInDarkness()
+    {
+        
+    }
+
+    void IEnemySpawnable.LampInLight()
+    {
+
+    }
     // # End of Getters#
 }

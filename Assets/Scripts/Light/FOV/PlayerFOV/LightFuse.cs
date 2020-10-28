@@ -20,7 +20,7 @@ public class LightFuse : MonoBehaviour, IBreakable
 
     private void Update()
     {
-        Debug.Log("press E");
+        //Debug.Log("press E");
         if (canFix)
         {
             if (Input.GetKeyDown(KeyCode.E))
@@ -101,11 +101,15 @@ public class LightFuse : MonoBehaviour, IBreakable
     {
         if (other.gameObject.CompareTag("Player"))
         {
+
             canFix = !parentLamp.GetIsLampWorking();
             isFixing = false;
             InGamePrompt.instance.HidePrompt();
-            fixingCable.StopDrawingRope();
-            targetTrans = null;
+            if(targetTrans != null){
+
+                fixingCable.StopDrawingRope();
+                targetTrans = null;
+            }
         }
     }
 

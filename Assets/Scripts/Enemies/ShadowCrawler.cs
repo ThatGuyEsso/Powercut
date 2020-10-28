@@ -147,10 +147,10 @@ public class ShadowCrawler : BaseEnemy
         {
             canDestroy = false;
             float dmg = Random.Range(minDamage,maxDamge);
-            LightFuse fuse = target.GetComponent<LightFuse>();
-            if (fuse != null)
+            IBreakable appliance = target.GetComponent<IBreakable>();
+            if (appliance != null)
             {
-                fuse.GetComponent<IBreakable>().Damage(dmg,this);
+                appliance.Damage(dmg,this);
             }
         }
     }

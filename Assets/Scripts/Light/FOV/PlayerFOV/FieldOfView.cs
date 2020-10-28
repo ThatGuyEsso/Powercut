@@ -141,6 +141,7 @@ public class FieldOfView : MonoBehaviour
         lightIsOn = isOn;
         if (lightIsOn)
         {
+            
             meshRenderer.enabled = true;
         }
         else
