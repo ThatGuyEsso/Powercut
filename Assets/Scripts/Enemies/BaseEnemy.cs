@@ -233,7 +233,15 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable
 
     void IBreakable.ObjectIsBroken()
     {
-        target = FindObjectOfType<PlayerBehaviour>().transform;
+        Transform newTarget = LevelLampsManager.instance.GetNearestFuseLightFuse(transform);
+        if (newTarget != null)
+        {
+            SetTarget(newTarget);
+        }
+        else
+        {
+            target = FindObjectOfType<PlayerBehaviour>().transform;
+        }
         SetEnemyState(EnemyStates.Chase);
     }
 }

@@ -38,4 +38,55 @@ public class LevelLampsManager : MonoBehaviour
             lamp.InitialiseLamp(lampLight);
         }
     }
+
+    public Transform GetNearestFuseLightFuse(Transform targetObject)
+    {
+        Transform nearestFuseTransform;
+
+        //Set initial shortest distance (potentially make it random for polish)
+        float currShortestDistance = Vector2.Distance(targetObject.position,levelLamps[0].GetLightFuse().transform.position);
+
+        //If the initial lamp is working
+        if (levelLamps[0].GetIsLampWorking())
+        {
+            //the nearest transfrom is its fuse
+            nearestFuseTransform = levelLamps[0].GetLightFuse().transform;
+        }
+        else
+        {
+            //Else the transform is null
+            nearestFuseTransform = null;
+
+        }
+        for (int i=0; i < levelLamps.Count; i++)
+        {
+            //If the current lamp is working, compare distance
+            if (levelLamps[i].GetIsLampWorking())
+            {
+                float distance;
+                //If nearest transform equal null we can assume this is the first working light, Hence return this and make this the nearest
+                if (nearestFuseTransform == null)
+                {
+                    currShortestDistance = Vector3.Distance(targetObject.position, levelLamps[i].GetLightFuse().transform.position);
+                    nearestFuseTransform = levelLamps[i].GetLightFuse().transform;
+                }
+                else
+                {
+                    distance = Vector2.Distance(targetObject.position, levelLamps[i].GetLightFuse().transform.position);
+                    if (distance < currShortestDistance)
+                    {
+                        currShortestDistance = distance;
+                        nearestFuseTransform = levelLamps[i].GetLightFuse().transform;
+                    }
+                }
+
+            }
+        
+
+        }
+
+        return nearestFuseTransform;
+    }
+
+    
 }

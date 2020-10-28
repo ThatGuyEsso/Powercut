@@ -7,9 +7,15 @@ public class Lamp : MonoBehaviour
 {
     //Light it should reference
     private BaseLampLight lightRef;
+    private LightFuse fuseRef;
     public float lightDistanceModifier = 0;//Increases or decreases light distance to allow differenct sized light sources.
     private float currentHealth;
     public bool isLampWorking;
+
+    private void Awake()
+    {
+        fuseRef = transform.GetComponentInChildren<LightFuse>();
+    }
 
     public void InitialiseLamp(BaseLampLight newLightRef)
     {
@@ -87,6 +93,10 @@ public class Lamp : MonoBehaviour
         return currentHealth >= lightRef.lampSettings.maxLightHealth;
     }
 
+    public LightFuse GetLightFuse()
+    {
+        return fuseRef;
+    }
 
     // # End of Getters#
 }

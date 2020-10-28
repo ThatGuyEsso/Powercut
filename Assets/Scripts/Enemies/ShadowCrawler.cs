@@ -79,7 +79,7 @@ public class ShadowCrawler : BaseEnemy
 
     protected override void DrawPathToTarget()
     {
-        float distance = Vector3.Distance(transform.position, target.transform.localPosition);
+        float distance = Vector3.Distance(transform.position, target.transform.position);
 
         if (path == null)
         {
@@ -91,7 +91,6 @@ public class ShadowCrawler : BaseEnemy
             return; // current waypoint is out of range of total way point. Hence path end has been reached return
         }
 
-        distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
         if (isTargetHuman)
         {
             if (distance <= settings.attackRange)
@@ -106,6 +105,7 @@ public class ShadowCrawler : BaseEnemy
                 SetEnemyState(EnemyStates.Destroy);
             }
         }
+        distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
     
         if (distance < nextWaypointDistance) // if the distance to the next waypoint is shorter than the current one, go to it
         {
@@ -126,7 +126,7 @@ public class ShadowCrawler : BaseEnemy
 
         maxDamge *= mutationMultipler;
         minDamage *= mutationMultipler;
-
+        Debug.Log(maxSpeed);
     }
 
     public void ChargePlayer()

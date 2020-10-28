@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6abb1b7d78d3b1429e23334a66afcc9, type: 3}
   m_Name: ShadowCrawler Settings
   m_EditorClassIdentifier: 
-  maxSpeed: 6000
+  maxSpeed: 8000
   timeZeroToMax: 0.5
   timeMaxToZero: 0.25
   rotationSpeed: 0.01
@@ -22,6 +22,6 @@ MonoBehaviour:
   aiTickrate: 0.25
   nextWaypointDistance: 3
   attackRange: 1
-  destroyRange: 0.1
-  destroyRate: 0.2
+  destroyRange: 1
+  destroyRate: 0.5
   attackRate: 0
