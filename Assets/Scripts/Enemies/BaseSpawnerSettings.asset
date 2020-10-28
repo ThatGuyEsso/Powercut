@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyTypes:
   - {fileID: 8721458964809571201, guid: 7ba5b5c5caa72374e853483ee4ed3176, type: 3}
   maxTimeBeforeSpawn: 15
-  minTimeBeforeSpawn: 10
-  maxNumberSpawned: 0
-  minNumberSpawned: 0
-  spawnRadius: 0
+  minTimeBeforeSpawn: 8
+  maxNumberSpawned: 3
+  minNumberSpawned: 1
+  spawnRadius: 1.5
