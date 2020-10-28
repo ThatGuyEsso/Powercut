@@ -49,4 +49,14 @@ MonoBehaviour:
   maxTimeBetweenShots: 0.4
   bulletPrefab: {fileID: 5927806012387839767, guid: 935114ad378a131468db129ec7cee3b7, type: 3}
   shotForce: 100
-  firePosition: {fileID: 0}
+  knockBack: 10
+  minDamage: 45
+  maxDamage: 55
+  sprayRange: 0
+  spray: 0
+  firePoint: {fileID: 0}
+  time: 0
+  magnitude: 0
+  smoothIn: 0
+  smoothOut: 0
+  bulletsPerShot: 0

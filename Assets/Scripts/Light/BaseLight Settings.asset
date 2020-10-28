@@ -18,6 +18,9 @@ MonoBehaviour:
   lightBlockingLayers:
     serializedVersion: 2
     m_Bits: 256
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 2048
   maxCharge: 100
   dischargeRate: 0.06
   chargeRate: 0.05

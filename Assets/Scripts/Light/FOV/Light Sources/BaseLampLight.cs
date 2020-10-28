@@ -14,6 +14,7 @@ public class BaseLampLight : FieldOfView
     override protected void Update()
     {
         base.Update();
+       
     }
 
     override protected void SetUpLight()
@@ -25,6 +26,7 @@ public class BaseLampLight : FieldOfView
         lightIsOn = true;
         offset = lampSettings.lightAngle;
         rayCount = lampSettings.rayCount;
+        enemyLayer = settings.enemyLayer;
     }
 
 

@@ -15,7 +15,9 @@ public class EnemySettings : ScriptableObject
     public float maxHealth;
     public float maxDamage;
     public float minDamage;
-
+    [Header("Timer Settings")]
+    public float hurtTime;
+    public float timeBeforeInvulnerable;
 
     [Header("AI Settings")]
     public float aiTickrate;

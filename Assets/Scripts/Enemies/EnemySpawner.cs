@@ -11,6 +11,7 @@ public class EnemySpawner : MonoBehaviour,IEnemySpawnable
     private void Awake()
     {
         ResetSpawnTimer();
+        
     }
     private void FixedUpdate()
     {

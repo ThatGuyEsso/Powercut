@@ -49,6 +49,9 @@ MonoBehaviour:
   maxTimeBetweenShots: 0.1
   bulletPrefab: {fileID: 5927806012387839767, guid: 935114ad378a131468db129ec7cee3b7, type: 3}
   shotForce: 15
+  knockBack: 5
+  minDamage: 20
+  maxDamage: 30
   sprayRange: 10
   spray: 4
   firePoint: {fileID: 0}

@@ -6,10 +6,6 @@ public class Shotgun : BaseGun
 {
     public int bulletsPerShot;
 
-
-
-
-
     public override void Shoot()
     {
  
@@ -18,10 +14,12 @@ public class Shotgun : BaseGun
             CamShake.instance.DoScreenShake(time, magnitude, smoothIn, smoothOut);
             GameObject[] bullets = new GameObject[bulletsPerShot];
             Rigidbody2D[] bulletRB = new Rigidbody2D[bulletsPerShot];
+            IShootable[] shot = new IShootable[bulletsPerShot];
             for (int i = 0; i<bulletsPerShot; i++)
             {
                 bullets[i] = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
                 bulletRB[i] = bullets[i].GetComponent<Rigidbody2D>();
+                shot[i] = bullets[i].GetComponent<IShootable>();
             }
 
             Vector3[] shotDirs;
@@ -31,10 +29,10 @@ public class Shotgun : BaseGun
 
                 if(bulletRB[i] != null)
                 {
-                  
-                 
-                    bullets[i].transform.up = shotDirs[i];
 
+                    float dmg = Random.Range(minDamage, maxDamage);
+                    bullets[i].transform.up = shotDirs[i];
+                    shot[i].SetUpBullet(knockBack, dmg);
                     bulletRB[i].AddForce(shotDirs[i] * shotForce, ForceMode2D.Impulse);
                  
                

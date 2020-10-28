@@ -12,23 +12,26 @@ public enum EnemyStates
     Idle
 };
 [RequireComponent(typeof(Rigidbody2D))]
-public abstract class BaseEnemy : MonoBehaviour, IBreakable
+public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWeakness
 {
     //States
     protected EnemyStates currentState;
     protected bool isHurt;
     protected bool isTargetHuman;
     protected bool canDestroy;
-
+    protected bool canBeHurt;
+    protected bool inLight;
     //Timers
     protected float currTimeToDestroy;
     protected float currTimeToAttack;
-
+    protected float currHurtTime;
+    protected float currTimeBeforeInvulnerable;
     //Settings
     public EnemySettings settings;
     protected float smoothRot;
     //Component refs
     protected Rigidbody2D rb;
+    protected HurtFlash hurtVFX;
 
     //Pathfinding
     protected int currentWaypoint = 0;
@@ -37,7 +40,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable
     protected Seeker seeker;
     protected Vector3 moveDirection;
     protected float nextWaypointDistance = 3f;
-    //stas
+    //stats
     protected float currentHealth;
     private float smoothAX;
     private float smoothAY;
@@ -50,6 +53,9 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable
         rb = gameObject.GetComponent<Rigidbody2D>();
         currentHealth = settings.maxHealth;
         seeker = gameObject.GetComponent<Seeker>();
+        hurtVFX = gameObject.GetComponentInChildren<HurtFlash>();
+        currHurtTime = settings.hurtTime;
+        currTimeBeforeInvulnerable = settings.timeBeforeInvulnerable;
        // InvokeRepeating("ProcessAI", 0f, settings.aiTickrate);
     }
 
@@ -140,6 +146,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable
 
     virtual protected void Update()
     {
+        
         if (!canDestroy)
         {
             if(currTimeToDestroy <= 0)
@@ -150,6 +157,48 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable
             else
             {
                 currTimeToDestroy -= Time.deltaTime;
+            }
+        }
+
+        if (inLight)
+        {
+            if (!canBeHurt)
+            {
+                if (currHurtTime <= 0)
+                {
+                    canBeHurt = true;
+                    currHurtTime = settings.hurtTime;
+                }
+                else
+                {
+                    currHurtTime -= Time.deltaTime;
+                }
+            }
+            if (currTimeBeforeInvulnerable <= 0)
+            {
+                inLight = false;
+                currTimeBeforeInvulnerable = settings.timeBeforeInvulnerable;
+                Debug.Log("inlight " + inLight);
+            }
+            else
+            {
+                currTimeBeforeInvulnerable -= Time.deltaTime;
+            }
+        }
+        
+
+        if (isHurt)
+        {
+            if (currHurtTime <= 0)
+            {
+                currHurtTime = settings.hurtTime;
+                isHurt = false;
+                hurtVFX.EndFlash();
+
+            }
+            else
+            {
+                currHurtTime -= Time.deltaTime;
             }
         }
     }
@@ -243,5 +292,45 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable
             target = FindObjectOfType<PlayerBehaviour>().transform;
         }
         SetEnemyState(EnemyStates.Chase);
+    }
+
+    void IHurtable.Damage(float damage, Vector3 knockBackDir, float knockBack)
+    {
+        Damage(damage, knockBackDir, knockBack);
+        SetTarget(FindObjectOfType<PlayerBehaviour>().transform);
+        SetEnemyState(EnemyStates.Chase);
+    }
+
+    void ILightWeakness.MakeVulnerable()
+    {
+        inLight = true;
+        Debug.Log("vulnerable");
+    }
+
+    protected void Damage(float damage,Vector3 knockBackDir, float knockBack)
+    {
+        if (!isHurt)
+        {
+
+            if (canBeHurt)
+            {
+                canBeHurt = false;
+                isHurt = true;
+                hurtVFX.BeginFlash();
+                currentHealth -= damage;
+                rb.AddForce(knockBackDir * knockBack, ForceMode2D.Impulse);
+                if(currentHealth <= 0)
+                {
+                    KillEnemy();
+                }
+               
+               
+
+            }
+        }
+    }
+    protected void KillEnemy()
+    {
+        Destroy(gameObject);
     }
 }

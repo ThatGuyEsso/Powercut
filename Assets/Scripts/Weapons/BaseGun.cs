@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseGun : MonoBehaviour
+public abstract class BaseGun : MonoBehaviour, IShootable
 {
     protected GunTypes gunType;
     [Header("Gun Settings")]
@@ -21,6 +21,9 @@ public abstract class BaseGun : MonoBehaviour
     [Header("Gun Shooting Settings")]
     public GameObject bulletPrefab;
     public float shotForce;
+    public float knockBack;
+    public float minDamage;
+    public float maxDamage;
     [Range(0f,90f)]
     public float sprayRange;
     public float spray;
@@ -50,14 +53,16 @@ public abstract class BaseGun : MonoBehaviour
             CamShake.instance.DoScreenShake(time, magnitude, smoothIn, smoothOut);
             //Instatiate a bullet
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-
+            IShootable shot = bullet.GetComponent<IShootable>();
             Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();//Get RB component
 
             
             if (bulletRB != null)
             {
                 //Adds force to shoot bullet
+                float dmg = Random.Range(minDamage, maxDamage);
                 bulletRB.AddForce(firePoint.up * shotForce,ForceMode2D.Impulse);
+                shot.SetUpBullet(knockBack, dmg);
                 currentClip--;
                 canShoot = false;
             }
@@ -143,4 +148,8 @@ public abstract class BaseGun : MonoBehaviour
         UIManager.instance.ammoDisplay.SetClipCount(currentClip);
     }
 
+    void IShootable.SetUpBullet(float knockBack, float damage)
+    {
+
+    }
 }

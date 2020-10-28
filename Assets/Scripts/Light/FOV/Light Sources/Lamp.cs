@@ -31,7 +31,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
         }
 
     }
-
+  
     private void OnTriggerStay2D(Collider2D other)
     {
         //if lamp is broken and player enters stop spawning/due to player light

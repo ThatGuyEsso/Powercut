@@ -19,6 +19,8 @@ MonoBehaviour:
   maxHealth: 50
   maxDamage: 5
   minDamage: 2
+  hurtTime: 0.5
+  timeBeforeInvulnerable: 0.5
   aiTickrate: 0.25
   nextWaypointDistance: 3
   attackRange: 1

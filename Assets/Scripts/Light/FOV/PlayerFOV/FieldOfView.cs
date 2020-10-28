@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FieldOfView : MonoBehaviour
+public class FieldOfView : MonoBehaviour, ILightWeakness
 {
     //Light Shape settings
     [Range(0,360)]
@@ -12,6 +12,7 @@ public class FieldOfView : MonoBehaviour
     protected float currentAngle;
     protected float viewDistance;
     protected LayerMask ViewBlockingLayers;
+    protected LayerMask enemyLayer;
 
     //Mesh Settings
     [Header("Mesh Settings ")]
@@ -51,7 +52,7 @@ public class FieldOfView : MonoBehaviour
         if (lightIsOn)
         {
             DrawVisionConeShape();
-
+            WeakenEnemy();
         }
     }
 
@@ -129,6 +130,7 @@ public class FieldOfView : MonoBehaviour
         origin = Vector3.zero;
         fovAngle = settings.lightAngle;
         ViewBlockingLayers = settings.lightBlockingLayers;
+        enemyLayer = settings.enemyLayer;
         viewDistance = settings.lightRadius;
         lightIsOn = true;
         offset = settings.lightAngle;
@@ -160,5 +162,36 @@ public class FieldOfView : MonoBehaviour
     virtual public LightManager GetLightManager()
     {
         return manager;
+    }
+
+    void ILightWeakness.MakeVulnerable()
+    {
+        //Blank just to allow it to interface with enemies
+    }
+
+
+    protected void WeakenEnemy()
+    {
+        currentAngle = startingAngle + offset;//Adds offset to angle player straight on
+        float angleIncrease = fovAngle / rayCount;//The incremenent for each angle
+
+        for (int i = 0; i < rayCount; i++)
+        {
+            RaycastHit2D hitInfo = Physics2D.Raycast(origin, EssoUtility.GetVectorFromAngle(currentAngle), viewDistance, enemyLayer);
+
+            if (hitInfo)
+            {
+                if(hitInfo.transform.GetComponent<ILightWeakness>() != null)
+                {
+                    hitInfo.transform.GetComponent<ILightWeakness>().MakeVulnerable();
+                }
+                Debug.DrawRay(origin, hitInfo.point);
+            }
+            else
+            {
+                Debug.DrawRay(origin, EssoUtility.GetVectorFromAngle(currentAngle) * viewDistance);
+            }
+            currentAngle -= angleIncrease;
+        }
     }
 }

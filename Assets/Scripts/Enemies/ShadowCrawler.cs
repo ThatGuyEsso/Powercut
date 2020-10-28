@@ -74,6 +74,7 @@ public class ShadowCrawler : BaseEnemy
 
     protected void FixedUpdate()
     {
+      
         ProcessAI();
     }
 

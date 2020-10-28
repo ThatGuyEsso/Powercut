@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8721458963802471678}
   - component: {fileID: 8721458963802471677}
+  - component: {fileID: 4410778045513070779}
   m_Layer: 11
   m_Name: ShadowGFX
   m_TagString: Untagged
@@ -82,6 +83,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4410778045513070779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8721458963802471679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f60a6f7c6b0eb94e96af1e68409b822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hurtMaterial: {fileID: 2100000, guid: 550c7980de308f144b105f6ce9b6a8fb, type: 2}
+  timeBeforeFlashShift: 0.15
 --- !u!1 &8721458964809571201
 GameObject:
   m_ObjectHideFlags: 0
@@ -97,7 +112,7 @@ GameObject:
   - component: {fileID: 8721458964809571228}
   m_Layer: 11
   m_Name: Shadow Crawler
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
