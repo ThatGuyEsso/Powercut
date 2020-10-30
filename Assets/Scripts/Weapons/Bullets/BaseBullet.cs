@@ -7,6 +7,7 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable
     public LayerMask collisionLayers;
 
     public GameObject sparkPrefab;
+    public GameObject triggerEnemyPrefab;
     private float damage;
     private float knockBack;
     private Rigidbody2D rb;
@@ -25,6 +26,7 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable
         {
             other.GetComponent<IHurtable>().Damage(damage, rb.velocity.normalized, knockBack);
             Instantiate(sparkPrefab, transform.position, transform.rotation);
+            Instantiate(triggerEnemyPrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

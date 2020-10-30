@@ -1,35 +1,61 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerBehaviour : MonoBehaviour,IHurtable
+public enum MovementStates
 {
+    Walking,
+    Idle
+};
+
+public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControlsActions
+{
+   
+
+    //Settings
     public PlayerSettings settings;
-    private Rigidbody2D rb;
-    //public FieldOfView fovObject;
-    private Vector2 moveDirection;
-    private bool isMoving = false;
     private float smoothRot;
-    float yInput;
-    float xInput;
-    public FieldOfView fieldOfView;
-    //public Vector3 lightOffset;
-    //public float lightRoationOffset;
+    private Vector2 knockBack;
+    public float knockBackFallOff = 0.1f;
+    //Object Components
     public Camera activeCamera;
+    public FieldOfView fieldOfView;
+    private Rigidbody2D rb;
+
+    //Weapons
     private GunTypes[] gunsCarried = new GunTypes[2];
     private GunTypes equippedGun;
+
+    //Timers
     private float currHealth;
     private float currHurtTime;
+
+    //States
     private bool canBeHurt;
+    private MovementStates currMoveState;
+
+    //Input
+    private Vector2 moveDir;
+    private Controls input;
     public void Awake()
     {
+        //Cache
         rb = gameObject.GetComponent<Rigidbody2D>();
 
+        //Set initial variables
         gunsCarried[0] = GunTypes.Pistol;
         gunsCarried[1] = GunTypes.Shotgun;
         equippedGun = GunTypes.Shotgun;
         currHealth = settings.maxHealth;
         currHurtTime = settings.maxHurtTime;
+
+        //Set input
+        input = new Controls();
+        input.PlayerControls.SetCallbacks(this);
+        input.Enable();
+
+        input.PlayerControls.Movement.canceled += _ => EndMovement();
     }
     private void Start()
     {
@@ -38,52 +64,16 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable
     }
     public void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            WeaponManager.instance.ShootActiveWeapon();
-           
-        }
-        if (Input.GetMouseButtonDown(1))
-        {
-            WeaponManager.instance.ReloadActiveWeapon();
-        }
 
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            if(equippedGun == GunTypes.Shotgun)
-            {
-                equippedGun = GunTypes.Pistol;
-                WeaponManager.instance.SetActiveWeapon(equippedGun);
-            }else if (equippedGun == GunTypes.Pistol)
-            {
-                equippedGun = GunTypes.Shotgun;
-                WeaponManager.instance.SetActiveWeapon(equippedGun);
 
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            HurtPlayer(10f, Vector2.up, 1000f);
-        }
 
-            fieldOfView.SetAimDirection(transform.up);
+        fieldOfView.SetAimDirection(transform.up);
         fieldOfView.SetOrigin(transform.position);
-        //fovObject.SetOrigin(transform.position);
-        //Get input
-        yInput = Input.GetAxisRaw("Vertical");
-        xInput = Input.GetAxisRaw("Horizontal");
-        if (xInput != 0f || yInput != 0f)
-        {
-            isMoving = true;
-        }
-        else
-        {
-            isMoving = false;
-        }
-
+   
         //Update player rotation
         PlayerFacePointer();
 
+        //isHurt
         if (!canBeHurt)
         {
             if(currHurtTime <= 0)
@@ -103,11 +93,87 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable
     {
         //Movement loopUpdate
 
-        rb.velocity = new Vector2(xInput, yInput).normalized * settings.maxSpeed;
- 
+        switch (currMoveState)
+        {
+            case MovementStates.Idle:
+                if (knockBack.magnitude>0)
+                {
+                    rb.velocity = knockBack;
+                    knockBack = Vector2.Lerp(knockBack, Vector2.zero, knockBackFallOff);
+                    if (knockBack.magnitude < 0.5f)
+                    {
+                        knockBack = Vector2.zero;
+                    }
+                }
+                else{
+                    rb.velocity = Vector2.zero;
+
+                }
+                break;
+
+            case MovementStates.Walking:
+
+                if (knockBack.magnitude > 0)
+                {
+                    //rb.velocity = knockBack;
+                    knockBack = Vector2.Lerp(knockBack, Vector2.zero, knockBackFallOff);
+                    if (knockBack.magnitude < 0.5f)
+                    {
+                        knockBack = Vector2.zero;
+                    }
+                }
+                Walk();
+               
+          
+                break;
+
+        }
+
     }
 
+    public void OnMovement(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            moveDir = context.ReadValue<Vector2>();
+            SetMovementState(MovementStates.Walking);
+        }
+    }
 
+    public void OnShoot(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            WeaponManager.instance.ShootActiveWeapon();
+        }
+    }
+
+    public void OnReload(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            WeaponManager.instance.ReloadActiveWeapon();
+        }
+    }
+
+    public void OnSwitchWeapon(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+        
+            if (equippedGun == GunTypes.Shotgun)
+            {
+                equippedGun = GunTypes.Pistol;
+                WeaponManager.instance.SetActiveWeapon(equippedGun);
+            }
+            else if (equippedGun == GunTypes.Pistol)
+            {
+                equippedGun = GunTypes.Shotgun;
+                WeaponManager.instance.SetActiveWeapon(equippedGun);
+
+            }
+        }
+    }
     public void PlayerFacePointer()
     {
         float targetAngle = Mathf.Atan2(EssoUtility.GetVectorToPointer(activeCamera,transform.position).y, EssoUtility.GetVectorToPointer(activeCamera, transform.position).x) * Mathf.Rad2Deg;//get angle to rotate
@@ -142,7 +208,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable
         
     }
 
-    public void HurtPlayer(float damage,Vector3 knockBackDir,float knockBack)
+    public void HurtPlayer(float damage,Vector2 knockBackDir,float knockBack)
     {
         if (canBeHurt)
         {
@@ -151,12 +217,37 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable
             if (currHealth > 0)
             {
                 Debug.Log("launch player");
-                rb.AddForce(knockBack * knockBackDir,ForceMode2D.Impulse);
+
+                this.knockBack = knockBackDir* knockBack;
             }
 
             UIManager.instance.healthBarDisplay.UpdateSlider(currHealth);
         }
     }
+    public void Walk()
+    {
+        rb.velocity =  (moveDir.normalized * settings.maxSpeed * Time.deltaTime)+knockBack;
+    }
 
+    public void Stop()
+    {
+        rb.velocity = (moveDir.normalized * settings.maxSpeed * Time.deltaTime)+ knockBack;
+    }
 
+    public void SetMovementState(MovementStates newState)
+    {
+        currMoveState = newState;
+    }
+
+    private void EndMovement()
+    {
+        SetMovementState(MovementStates.Idle);
+        rb.velocity = Vector2.zero;
+    }
+
+    private void OnDestroy()
+    {
+        input.Disable();
+
+    }
 }

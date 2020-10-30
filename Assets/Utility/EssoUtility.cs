@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class EssoUtility : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class EssoUtility : MonoBehaviour
     public static Vector2 GetVectorToPointer(Camera camRef, Vector3 orign)
     {
         //Get mouse position in world space
-        Vector3 pointerPos = camRef.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 pointerPos = camRef.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
         Vector3 orignToMouse = pointerPos - orign;//calculate vector direction between player and cursor
 

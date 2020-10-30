@@ -15,6 +15,10 @@ public class EnemySettings : ScriptableObject
     public float maxHealth;
     public float maxDamage;
     public float minDamage;
+    public float minKnockBack;
+    public float maxKnockBack;
+
+    public float knockBackFallOff = 0.1f;
     [Header("Timer Settings")]
     public float hurtTime;
     public float timeBeforeInvulnerable;

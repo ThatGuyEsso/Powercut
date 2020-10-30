@@ -29,6 +29,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     //Settings
     public EnemySettings settings;
     protected float smoothRot;
+    protected Vector2 knockBack;
     //Component refs
     protected Rigidbody2D rb;
     protected HurtFlash hurtVFX;
@@ -69,12 +70,13 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     //#MovementFunction FUNCTIONS#
     virtual protected void SmoothAccelerate(Vector3 direction, float maxSpeed, float rate)
     {
-        Vector3 targetVelocity = Vector2.zero;
+        Vector2 targetVelocity = Vector2.zero;
 
         targetVelocity.x = Mathf.SmoothDamp(rb.velocity.x, maxSpeed * direction.x, ref smoothAX, rate);
         targetVelocity.y = Mathf.SmoothDamp(rb.velocity.y, maxSpeed * direction.y, ref smoothAY, rate);
-      
-        rb.velocity = targetVelocity*Time.deltaTime;
+
+        CalculateKnockBack();
+        rb.velocity = targetVelocity*Time.deltaTime+ knockBack;
     }
 
     virtual protected void SmoothDecelerate(float minSpeed, float rate)
@@ -93,7 +95,8 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
             targetVelocity.x = Mathf.SmoothDamp(rb.velocity.x, minSpeed, ref smoothDX, rate);
             targetVelocity.y = Mathf.SmoothDamp(rb.velocity.y, minSpeed, ref smoothDY, rate);
         }
-        rb.velocity = targetVelocity;
+        CalculateKnockBack();
+        rb.velocity = targetVelocity + knockBack;
     }
 
     virtual protected void FaceMovementDirection()
@@ -106,6 +109,32 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         //fovObject.SetAimDirection((-1)*fovObject.GetVectorFromAngle(angle));
     }
 
+    protected void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (currentState == EnemyStates.Attack)
+            {
+                float dmg = Random.Range(settings.minDamage, settings.maxDamage);
+                float knockBack = Random.Range(settings.minKnockBack, settings.maxKnockBack);
+                other.gameObject.GetComponent<IHurtable>().Damage(dmg, rb.velocity.normalized, knockBack);
+
+            }
+        }
+    }
+    protected void OnCollisionStay2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (currentState == EnemyStates.Attack)
+            {
+                float dmg = Random.Range(settings.minDamage, settings.maxDamage);
+                float knockBack = Random.Range(settings.minKnockBack, settings.maxKnockBack);
+                other.gameObject.GetComponent<IHurtable>().Damage(dmg, rb.velocity.normalized, knockBack);
+            }
+
+        }
+    }
     virtual protected void FaceTarget()
     {
         if (target != null)
@@ -307,7 +336,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         Debug.Log("vulnerable");
     }
 
-    protected void Damage(float damage,Vector3 knockBackDir, float knockBack)
+    protected void Damage(float damage,Vector2 knockBackDir, float knockBack)
     {
         if (!isHurt)
         {
@@ -318,7 +347,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
                 isHurt = true;
                 hurtVFX.BeginFlash();
                 currentHealth -= damage;
-                rb.AddForce(knockBackDir * knockBack, ForceMode2D.Impulse);
+                this.knockBack = knockBack * knockBackDir;
                 if(currentHealth <= 0)
                 {
                     KillEnemy();
@@ -332,5 +361,18 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     protected void KillEnemy()
     {
         Destroy(gameObject);
+    }
+
+    public void CalculateKnockBack()
+    {
+        if (knockBack.magnitude > 0)
+        {
+            //rb.velocity = knockBack;
+            knockBack = Vector2.Lerp(knockBack, Vector2.zero, settings.knockBackFallOff);
+            if (knockBack.magnitude < 0.5f)
+            {
+                knockBack = Vector2.zero;
+            }
+        }
     }
 }

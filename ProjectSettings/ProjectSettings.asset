@@ -651,7 +651,7 @@ PlayerSettings:
   projectName: Power-Cut (4)
   organizationId: mrdress-shirt
   cloudEnabled: 0
-  enableNativePlatformBackendsForNewInputSystem: 0
-  disableOldInputManagerSupport: 0
+  enableNativePlatformBackendsForNewInputSystem: 1
+  disableOldInputManagerSupport: 1
   legacyClampBlendShapeWeights: 0
   virtualTexturingSupportEnabled: 0
