@@ -178,7 +178,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
             {
                 inLight = false;
                 currTimeBeforeInvulnerable = settings.timeBeforeInvulnerable;
-                Debug.Log("inlight " + inLight);
+
             }
             else
             {

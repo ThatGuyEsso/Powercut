@@ -11,4 +11,8 @@ public class PlayerSettings : ScriptableObject
     //public float timeMaxToZero; //How fast player decellerate
     public float rotationSpeed; // how fast player rotates about it's axis
     public float walkSensitivity;
+
+    [Header("health Settings")]
+    public float maxHealth;
+    public float maxHurtTime;
 }

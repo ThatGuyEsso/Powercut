@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBehaviour : MonoBehaviour
+public class PlayerBehaviour : MonoBehaviour,IHurtable
 {
     public PlayerSettings settings;
     private Rigidbody2D rb;
@@ -18,6 +18,9 @@ public class PlayerBehaviour : MonoBehaviour
     public Camera activeCamera;
     private GunTypes[] gunsCarried = new GunTypes[2];
     private GunTypes equippedGun;
+    private float currHealth;
+    private float currHurtTime;
+    private bool canBeHurt;
     public void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -25,16 +28,20 @@ public class PlayerBehaviour : MonoBehaviour
         gunsCarried[0] = GunTypes.Pistol;
         gunsCarried[1] = GunTypes.Shotgun;
         equippedGun = GunTypes.Shotgun;
+        currHealth = settings.maxHealth;
+        currHurtTime = settings.maxHurtTime;
     }
     private void Start()
     {
         WeaponManager.instance.SetActiveWeapon(GunTypes.Shotgun);
+        SetUpHealth();
     }
     public void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
             WeaponManager.instance.ShootActiveWeapon();
+           
         }
         if (Input.GetMouseButtonDown(1))
         {
@@ -54,8 +61,12 @@ public class PlayerBehaviour : MonoBehaviour
 
             }
         }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            HurtPlayer(10f, Vector2.up, 1000f);
+        }
 
-        fieldOfView.SetAimDirection(transform.up);
+            fieldOfView.SetAimDirection(transform.up);
         fieldOfView.SetOrigin(transform.position);
         //fovObject.SetOrigin(transform.position);
         //Get input
@@ -72,19 +83,28 @@ public class PlayerBehaviour : MonoBehaviour
 
         //Update player rotation
         PlayerFacePointer();
+
+        if (!canBeHurt)
+        {
+            if(currHurtTime <= 0)
+            {
+                canBeHurt =true;
+                currHurtTime = settings.maxHurtTime;
+            }
+            else
+            {
+                currHurtTime -= Time.deltaTime;
+            }
+        }
     }
+
 
     public void FixedUpdate()
     {
         //Movement loopUpdate
-        if (isMoving)
-        {
-            rb.velocity = new Vector2(xInput, yInput).normalized * settings.maxSpeed;
-        }
-        else
-        {
-            rb.velocity = Vector2.zero;
-        }
+
+        rb.velocity = new Vector2(xInput, yInput).normalized * settings.maxSpeed;
+ 
     }
 
 
@@ -96,6 +116,46 @@ public class PlayerBehaviour : MonoBehaviour
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.z, targetAngle, ref smoothRot, settings.rotationSpeed);//rotate player smoothly to target angle
         transform.rotation = Quaternion.Euler(0f, 0f, angle);//update angle
         //fovObject.SetAimDirection((-1)*fovObject.GetVectorFromAngle(angle));
+    }
+
+
+    public void SetUpHealth()
+    {
+        UIManager.instance.healthBarDisplay.InitSlider(settings.maxHealth);
+        UIManager.instance.healthBarDisplay.UpdateSlider(currHealth);
+    }
+
+    void IHurtable.Damage(float damage, Vector3 knockBackDir, float knockBack)
+    {
+        HurtPlayer(damage, knockBackDir, knockBack);
+    }
+    public bool GetIsAlive()
+    {
+        if (currHealth > 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+        
+    }
+
+    public void HurtPlayer(float damage,Vector3 knockBackDir,float knockBack)
+    {
+        if (canBeHurt)
+        {
+            canBeHurt = false;
+            currHealth -= damage;
+            if (currHealth > 0)
+            {
+                Debug.Log("launch player");
+                rb.AddForce(knockBack * knockBackDir,ForceMode2D.Impulse);
+            }
+
+            UIManager.instance.healthBarDisplay.UpdateSlider(currHealth);
+        }
     }
 
 
