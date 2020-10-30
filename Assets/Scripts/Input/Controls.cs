@@ -147,7 +147,7 @@ public class @Controls : IInputActionCollection, IDisposable
             ""id"": ""86fa1be1-ad67-4011-8197-bec17840cedc"",
             ""actions"": [
                 {
-                    ""name"": ""New action"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""fbd06f2b-9dab-41e9-9dd8-8d135a3f37c3"",
                     ""expectedControlType"": ""Button"",
@@ -159,11 +159,11 @@ public class @Controls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""914bbeff-a56d-4574-9237-7ae65476fb9d"",
-                    ""path"": ""<Keyboard>/enter"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""New action"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -180,7 +180,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_PlayerControls_SwitchWeapon = m_PlayerControls.FindAction("SwitchWeapon", throwIfNotFound: true);
         // Interactions
         m_Interactions = asset.FindActionMap("Interactions", throwIfNotFound: true);
-        m_Interactions_Newaction = m_Interactions.FindAction("New action", throwIfNotFound: true);
+        m_Interactions_Interact = m_Interactions.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -287,12 +287,12 @@ public class @Controls : IInputActionCollection, IDisposable
     // Interactions
     private readonly InputActionMap m_Interactions;
     private IInteractionsActions m_InteractionsActionsCallbackInterface;
-    private readonly InputAction m_Interactions_Newaction;
+    private readonly InputAction m_Interactions_Interact;
     public struct InteractionsActions
     {
         private @Controls m_Wrapper;
         public InteractionsActions(@Controls wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Newaction => m_Wrapper.m_Interactions_Newaction;
+        public InputAction @Interact => m_Wrapper.m_Interactions_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Interactions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -302,16 +302,16 @@ public class @Controls : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_InteractionsActionsCallbackInterface != null)
             {
-                @Newaction.started -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnNewaction;
-                @Newaction.performed -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnNewaction;
-                @Newaction.canceled -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnNewaction;
+                @Interact.started -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_InteractionsActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_InteractionsActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -325,6 +325,6 @@ public class @Controls : IInputActionCollection, IDisposable
     }
     public interface IInteractionsActions
     {
-        void OnNewaction(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

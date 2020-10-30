@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f37173f3ec1c1ae499414d0277ff1c54, type: 3}
   m_Name: BaseFuseSettings
   m_EditorClassIdentifier: 
-  repairRate: 0.1
+  repairRate: 0.25
   destroyRate: 0.5

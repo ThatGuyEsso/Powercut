@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class LightFuse : MonoBehaviour, IBreakable
+using UnityEngine.InputSystem;
+public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsActions
 {
     private Lamp parentLamp;
     public FuseSettings fuseSettings;
@@ -11,31 +11,21 @@ public class LightFuse : MonoBehaviour, IBreakable
     private ChargingCable fixingCable;
     private Transform targetTrans;
     public float currentTimeToFix;
+    private Controls input;
 
     private void Awake()
     {
         parentLamp = transform.parent.GetComponent<Lamp>();
         fixingCable = gameObject.GetComponent<ChargingCable>();
+
+        //Inputs
+        input = new Controls();
+        input.Interactions.SetCallbacks(this);
+        input.Enable();
     }
 
     private void Update()
     {
-        //Debug.Log("press E");
-        if (canFix)
-        {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                isFixing = true;
-                InGamePrompt.instance.HidePrompt();
-                if (targetTrans != null)
-                {
-                  fixingCable.StartDrawingRope(targetTrans);
-
-                }
-            }
-
-        }
-
 
         if (isFixing)
         {
@@ -113,6 +103,19 @@ public class LightFuse : MonoBehaviour, IBreakable
         }
     }
 
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        if(context.performed&& canFix)
+        {
+            isFixing = true;
+            InGamePrompt.instance.HidePrompt();
+            if (targetTrans != null)
+            {
+                fixingCable.StartDrawingRope(targetTrans);
+
+            }
+        }
+    }
     void IBreakable.Damage(float damage,BaseEnemy interfacingEnemy)
     {
         parentLamp.DamageLamp(damage);
@@ -125,5 +128,10 @@ public class LightFuse : MonoBehaviour, IBreakable
     void IBreakable.ObjectIsBroken()
     {
 
+    }
+
+    void OnDestroy()
+    {
+        input.Disable();
     }
 }
