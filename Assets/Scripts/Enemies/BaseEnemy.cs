@@ -48,6 +48,9 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     private float smoothDX;
     private float smoothDY;
 
+    //VFx
+    public GameObject deathVFX;
+
     virtual protected void Awake()
     {
         //cache component references
@@ -360,6 +363,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     }
     protected void KillEnemy()
     {
+        Instantiate(deathVFX, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 

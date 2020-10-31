@@ -146,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: dbd4bdee9ed65c04aa776f0498877ce7, type: 2}
   target: {fileID: 0}
+  deathVFX: {fileID: 7808037342350693099, guid: f43db82d1dae9a64bad3eaa90777b1c5, type: 3}
   maxScaleMultiplier: 1.5
 --- !u!58 &8721458964809571230
 CircleCollider2D:
