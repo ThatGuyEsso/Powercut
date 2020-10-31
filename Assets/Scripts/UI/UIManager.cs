@@ -8,18 +8,20 @@ public class UIManager : MonoBehaviour
     public ProgressBar batteryDisplay;
     public AmmoDisplay ammoDisplay;
     public ProgressBar healthBarDisplay;
+    public ActiveGunDisplay gunDisplay;
     private void Awake()
     {
         instance = this;
-        InitProgressBars();
+        GetChildReferences();
     }
 
 
 
-    public void InitProgressBars()
+    public void GetChildReferences()
     {
         batteryDisplay = transform.Find("Battery").GetComponent<ProgressBar>();
         healthBarDisplay = transform.Find("HealthBar").GetComponent<ProgressBar>();
+        gunDisplay = transform.Find("ActiveGunDisplay").GetComponent<ActiveGunDisplay>();
     }
 }
 

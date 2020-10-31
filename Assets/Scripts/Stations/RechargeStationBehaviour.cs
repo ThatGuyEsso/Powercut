@@ -28,7 +28,6 @@ public class RechargeStationBehaviour : MonoBehaviour
         }
     }
 
-
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TriggerEnemies : MonoBehaviour, IHurtable
+public class TriggerEnemies : MonoBehaviour
 {
     private void Awake()
     {
@@ -13,12 +13,8 @@ public class TriggerEnemies : MonoBehaviour, IHurtable
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            other.GetComponent<IHurtable>().Damage(0, Vector3.zero, 0f);
+            other.GetComponent<BaseEnemy>().SetTarget(FindObjectOfType<PlayerBehaviour>().transform);
         }
     }
 
-    void IHurtable.Damage(float damage, Vector3 knockBackDir, float knockBack)
-    {
-
-    }
 }

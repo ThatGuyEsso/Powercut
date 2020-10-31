@@ -22,6 +22,7 @@ public class WeaponManager : MonoBehaviour
         instance = this;
         shotgun = FindObjectOfType<Shotgun>();
         pistol = FindObjectOfType<Pistol>();
+        UIManager.instance.gunDisplay.DisplayPrimaryGun(); 
     }
 
     private void Start()
@@ -35,6 +36,19 @@ public class WeaponManager : MonoBehaviour
 
             activeGun = newGun;
             SetGunAmmoDisplay();
+            switch (activeGun)
+            {
+                case GunTypes.Shotgun:
+
+                    UIManager.instance.gunDisplay.DisplayPrimaryGun();
+
+                    break;
+
+                case GunTypes.Pistol:
+                    UIManager.instance.gunDisplay.DisplaySecondaryGun();
+
+                    break;
+            }
         }
     }
     
@@ -45,11 +59,13 @@ public class WeaponManager : MonoBehaviour
             case GunTypes.Shotgun:
                 shotgun.Shoot();
                 UIManager.instance.ammoDisplay.SetClipCount(shotgun.GetCurrentClip());
+             
                 break;
 
             case GunTypes.Pistol:
                 pistol.Shoot();
                 UIManager.instance.ammoDisplay.SetClipCount(pistol.GetCurrentClip());
+
                 break;
         }
    }

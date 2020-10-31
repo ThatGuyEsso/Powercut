@@ -44,7 +44,16 @@ public class EnemySpawner : MonoBehaviour,IEnemySpawnable
             spawnAmount = Random.Range(settings.minNumberSpawned, settings.maxNumberSpawned);
             for(int i =0; i < spawnAmount; i++)
             {
-                int rand = Random.Range(0, settings.enemyTypes.Count - 1);
+                int rand;
+                if (settings.enemyTypes.Count > 1)
+                {
+                 rand = Random.Range(0, settings.enemyTypes.Count - 1);
+
+                }
+                else
+                {
+                    rand = 0;
+                }
 
                 BaseEnemy currEnemy = Instantiate(settings.enemyTypes[rand],(Random.insideUnitCircle*settings.spawnRadius+(Vector2)transform.position),Quaternion.identity).GetComponent<BaseEnemy>();
                 currEnemy.SetTarget(target);
