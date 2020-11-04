@@ -7,6 +7,16 @@ public class LevelLampsManager : MonoBehaviour
     public static LevelLampsManager instance;//Sets up for singleton class (one per level)
     private List<Lamp> levelLamps = new List<Lamp>();
     public GameObject lampLightPrefab;
+
+    //Disable lights mechanism (should be moved into a scriptable object to allow for difficulty easy difficulty scaling)
+
+    public float targetLightWorkingPercent; //How many lights that can be broken before we stop breaking light.
+    private bool shouldBreakLights;
+    public float maxTimeBeforeLightBreak;
+    public float minTimeBeforeLightBreak;
+    private float currentTimeBeforeLightBreak;
+
+
     private void Awake()
     {
         if (instance == false)
@@ -26,12 +36,32 @@ public class LevelLampsManager : MonoBehaviour
         SetUpSceneLamps();
     }
 
+    private void Update()
+    {
+        switch (GameStateManager.instance.GetCurrentGameState())
+        {
+            case GameStates.MainPowerOff:
+            if (shouldBreakLights)
+            {
+                if(currentTimeBeforeLightBreak <= 0)
+                {
+                    BreakRandomLamp();
+                    currentTimeBeforeLightBreak = Random.Range(minTimeBeforeLightBreak, maxTimeBeforeLightBreak);
+
+                }
+            }
+            break;
+           
+
+        }
+    }
+    //Gets all lamps in scene and stores then in list
     private void GetAllSceneLamps()
     {
-       Lamp[] lamps  = FindObjectsOfType<Lamp>();//Get all scene lamos
+        Lamp[] lamps = FindObjectsOfType<Lamp>();//Get all scene lamos
 
         //Assign each lamp in scene to levelLamps list
-        for(int i = 0;i < lamps.Length; i++)
+        for (int i = 0; i < lamps.Length; i++)
         {
             levelLamps.Add(lamps[i]);
             //Debug.Log("Level Lamp #" + i + " Has been added");
@@ -40,19 +70,21 @@ public class LevelLampsManager : MonoBehaviour
 
     private void SetUpSceneLamps()
     {
-        foreach(Lamp lamp in levelLamps)
+        //Spawns in a light source for each scene lamp. (Should be updated to object pooling)
+        foreach (Lamp lamp in levelLamps)
         {
             BaseLampLight lampLight = Instantiate(lampLightPrefab, Vector3.zero, Quaternion.identity).GetComponent<BaseLampLight>();
             lamp.InitialiseLamp(lampLight);
         }
     }
 
+    //Gets the next nearest fuse
     public Transform GetNearestFuseLightFuse(Transform targetObject)
     {
         Transform nearestFuseTransform;
 
         //Set initial shortest distance (potentially make it random for polish)
-        float currShortestDistance = Vector2.Distance(targetObject.position,levelLamps[0].GetLightFuse().transform.position);
+        float currShortestDistance = Vector2.Distance(targetObject.position, levelLamps[0].GetLightFuse().transform.position);
 
         //If the initial lamp is working
         if (levelLamps[0].GetIsLampWorking())
@@ -66,14 +98,14 @@ public class LevelLampsManager : MonoBehaviour
             nearestFuseTransform = null;
 
         }
-        for (int i=0; i < levelLamps.Count; i++)
+        for (int i = 0; i < levelLamps.Count; i++)
         {
             //If the current lamp is working, compare distance
             if (levelLamps[i].GetIsLampWorking())
             {
                 float distance;
                 //If nearest transform equal null we can assume this is the first working light, Hence return this and make this the nearest
-                if (nearestFuseTransform == null)
+                if (nearestFuseTransform == false)
                 {
                     currShortestDistance = Vector3.Distance(targetObject.position, levelLamps[i].GetLightFuse().transform.position);
                     nearestFuseTransform = levelLamps[i].GetLightFuse().transform;
@@ -89,12 +121,51 @@ public class LevelLampsManager : MonoBehaviour
                 }
 
             }
-        
+
 
         }
 
         return nearestFuseTransform;
     }
 
-    
+    //Gets a random working lamp and breaks it
+    private void BreakRandomLamp()
+    {
+        List<Lamp> workingLamps = new List<Lamp>();//new list to store all working lamps
+
+        for(int i = 0; i<levelLamps.Count; i++)
+        {
+            if (levelLamps[i].GetIsLampWorking()) workingLamps.Add(levelLamps[i]); 
+        }
+
+        int rand = Random.Range(0, workingLamps.Count);
+
+        workingLamps[rand].InstantBreakLamp();
+    }
+
+    //Get percent of lamps working in level
+    private float CalculatePercentageWorkingLamps()
+    {
+        int nWorking = 0;
+
+        for(int i = 0; i < levelLamps.Count; i++)
+        {
+            if (levelLamps[i].GetIsLampWorking()) nWorking++;//for every working lamp the count is added
+        }
+
+        return nWorking / levelLamps.Count;//if 1, 100 percent works 0 none works
+    }
+
+    //compares number of working lamps to total lamps to determine if more lamps should be broken
+    public void DetermineShouldBreakLight()
+    {
+        if(CalculatePercentageWorkingLamps() >= targetLightWorkingPercent)
+        {
+            shouldBreakLights = true;
+        }
+        else
+        {
+            shouldBreakLights = false;
+        }
+    }
 }

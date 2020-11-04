@@ -103,6 +103,15 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
             lightRef.ToggleLight(isLampWorking);
         }
     }
+    public void InstantBreakLamp()
+    {
+        if (isLampWorking)
+        {
+            lightRef.ToggleLight(false);
+            isLampWorking = false;
+            currentHealth = 0;
+        }
+    }
     //Light fixing 
     public void FixLamp(float heal)
     {
