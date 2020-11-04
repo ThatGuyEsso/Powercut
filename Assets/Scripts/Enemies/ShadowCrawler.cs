@@ -127,7 +127,7 @@ public class ShadowCrawler : BaseEnemy
 
         maxDamge *= mutationMultipler;
         minDamage *= mutationMultipler;
-        Debug.Log(maxSpeed);
+        //Debug.Log(maxSpeed);
     }
 
     public void ChargePlayer()

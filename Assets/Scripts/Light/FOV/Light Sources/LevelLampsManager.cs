@@ -9,7 +9,7 @@ public class LevelLampsManager : MonoBehaviour
     public GameObject lampLightPrefab;
     private void Awake()
     {
-        if (instance == null)
+        if (instance == false)
         {
             instance = this;
         }

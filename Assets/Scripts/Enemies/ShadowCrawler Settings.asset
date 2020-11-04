@@ -17,10 +17,11 @@ MonoBehaviour:
   timeMaxToZero: 0.25
   rotationSpeed: 0.01
   maxHealth: 50
-  maxDamage: 5
-  minDamage: 2
+  maxDamage: 12
+  minDamage: 10
   minKnockBack: 10
   maxKnockBack: 20
+  knockBackFallOff: 0.1
   hurtTime: 0.5
   timeBeforeInvulnerable: 0.5
   aiTickrate: 0.25

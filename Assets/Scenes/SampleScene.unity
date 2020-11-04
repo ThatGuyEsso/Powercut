@@ -14558,6 +14558,10 @@ PrefabInstance:
       propertyPath: bulletsPerShot
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5706933381680484332, guid: ef759053b7ab126499db6923b978376d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5706933382301188992, guid: ef759053b7ab126499db6923b978376d, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0.265
