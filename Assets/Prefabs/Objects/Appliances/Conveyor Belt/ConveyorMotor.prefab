@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4477824900034591446}
   - component: {fileID: 7416528002572163980}
   - component: {fileID: 2195761185384274688}
+  - component: {fileID: 1074179764}
   m_Layer: 15
   m_Name: ConveyorMotor
   m_TagString: Untagged
@@ -69,7 +70,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.27413952, y: -2}
@@ -85,6 +86,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.451721, y: 5}
   m_EdgeRadius: 0
+--- !u!114 &1074179764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4477824900034591440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 091a33c6c1ac64e45b953763ad5530f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  fixTickRate: 0.5
+  fixAmountPerTick: 10
+  taskName: Fix Conveyor Belt Motor
+  brokenColour: {r: 0.9339623, g: 0.3912068, b: 0.3912068, a: 1}
+  fixedColour: {r: 0.12641507, g: 1, b: 0.4406904, a: 1}
+  fixVFX: {fileID: 0}
 --- !u!1 &4477824901512771651
 GameObject:
   m_ObjectHideFlags: 0

@@ -179,6 +179,11 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
         UpdateDamageDisplay();
         return isFixed;
     }
+
+    public string GetTaskName()
+    {
+        return taskName;
+    }
     void OnDestroy()
     {
         input.Disable();
