@@ -28,6 +28,7 @@ public class LevelLampsManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        GetNewBreakLampTime();
     }
 
     private void Start()
@@ -46,8 +47,8 @@ public class LevelLampsManager : MonoBehaviour
                 if(currentTimeBeforeLightBreak <= 0)
                 {
                     BreakRandomLamp();
-                    currentTimeBeforeLightBreak = Random.Range(minTimeBeforeLightBreak, maxTimeBeforeLightBreak);
 
+                    GetNewBreakLampTime();
                 }
             }
             break;
@@ -167,5 +168,10 @@ public class LevelLampsManager : MonoBehaviour
         {
             shouldBreakLights = false;
         }
+    }
+
+    private void GetNewBreakLampTime()
+    {
+        currentTimeBeforeLightBreak = Random.Range(minTimeBeforeLightBreak, maxTimeBeforeLightBreak);
     }
 }

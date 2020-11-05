@@ -7,6 +7,7 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
     private Controls input;
     private bool inRange;
     private bool hasActivated;
+    
     private void Awake()
     {
         //Inputs

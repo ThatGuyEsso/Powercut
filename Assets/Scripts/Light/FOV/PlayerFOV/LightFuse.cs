@@ -64,8 +64,12 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
                 {
                     fixingCable.ChangeColour(Color.yellow);
                 }
-                InGamePrompt.instance.ChangePrompt("[E] To Fix Light");
-                InGamePrompt.instance.ShowPrompt();
+                if (canFix)
+                {
+                    InGamePrompt.instance.ChangePrompt("[E] To Fix Light");
+                    InGamePrompt.instance.ShowPrompt();
+
+                }
 
 
             }
