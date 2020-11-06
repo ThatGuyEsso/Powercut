@@ -8,7 +8,8 @@ public enum GameStates
 {
     MainPowerOn,
     MainPowerOff,
-    TasksCompleted
+    TasksCompleted,
+    LevelClear
 };
 public class GameStateManager : MonoBehaviour
 {
@@ -35,16 +36,33 @@ public class GameStateManager : MonoBehaviour
     {
         currentGameState = GameStates.MainPowerOff;
         Debug.Log("Power is off");
+        Debug.Log(currentGameState.ToString());
+    }
+    public void TasksCompleted()
+    {
+        currentGameState = GameStates.TasksCompleted;
+        Debug.Log("Power is off but tasks completed");
+        Debug.Log(currentGameState.ToString());
     }
 
+    public void LevelCleared()
+    {
+        currentGameState = GameStates.LevelClear;
+        Debug.Log("level cleared");
+        Debug.Log(currentGameState.ToString());
+    }
     public void SwitchPowerOn()
     {
         currentGameState = GameStates.MainPowerOn;
-        Debug.Log("Power is off");
+        Debug.Log("Power is On");
+        Debug.Log(currentGameState.ToString());
     }
 
     public GameStates GetCurrentGameState()
     {
         return currentGameState;
     }
+
+   
+
 }

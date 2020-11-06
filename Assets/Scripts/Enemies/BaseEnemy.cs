@@ -314,10 +314,27 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
 
     void IBreakable.ObjectIsBroken()
     {
-        Transform newTarget = LevelLampsManager.instance.GetNearestFuseLightFuse(transform);
-        if (newTarget != null)
+        Transform lightTarget = LevelLampsManager.instance.GetNearestFuseLightFuse(transform);
+        Transform taskTarget = TaskManager.instance.GetNearestTask(transform);
+
+        //if(Vector2.Distance(transform.position,taskTarget.position) < Vector2.Distance(transform.position, taskTarget.position))
+        if (lightTarget != false && taskTarget!=false)
         {
-            SetTarget(newTarget);
+            if (Vector2.Distance(transform.position, taskTarget.position) <= Vector2.Distance(transform.position, taskTarget.position))
+            {
+                SetTarget(taskTarget);
+            }
+            else
+            {
+                SetTarget(lightTarget);
+            }
+               
+        }else if(lightTarget != false && taskTarget == false)
+        {
+            SetTarget(lightTarget);
+        }else if(lightTarget == false && taskTarget != false)
+        {
+            SetTarget(taskTarget);
         }
         else
         {

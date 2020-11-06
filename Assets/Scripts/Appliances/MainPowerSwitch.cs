@@ -48,7 +48,7 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (context.performed && inRange)
+        if (context.started && inRange)
         {
             //Get current state
             switch (GameStateManager.instance.GetCurrentGameState())
@@ -57,13 +57,21 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
                 case GameStates.MainPowerOn:
 
                     //Switch it off
-                    GameStateManager.instance.SwitchPowerOff();
-                    hasActivated = true;
+                    if (hasActivated == false)
+                    {
+                        GameStateManager.instance.SwitchPowerOff();
+                        hasActivated = true;
+
+                    }
                     break;
 
                 case GameStates.TasksCompleted:
                     //When all task completed player should be able to switch mains on again
-                    GameStateManager.instance.SwitchPowerOn();
+                    if (LevelLampsManager.instance.GetAllSceneLampsWork())
+                    {
+                         GameStateManager.instance.LevelCleared();
+
+                    }
                     break;
 
             }

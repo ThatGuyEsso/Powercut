@@ -47,7 +47,7 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
         {
             if (!GetIsFixed())
             {
-
+                gfx.color =  Color.yellow;
                 if (currFixTime <= 0)
                 {
                     currHealth += fixAmountPerTick;
@@ -59,6 +59,7 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
                     currFixTime -= Time.deltaTime;
                 }
             }
+           
         }
     }
 
@@ -145,7 +146,7 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
 
                 isFixed = false;
                 currHealth = 0;
-
+                TaskManager.instance.RecordFailedTask(taskName);
 
             }
 
@@ -170,7 +171,7 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
         if (currHealth >= maxHealth)
         {
             isFixed = true;
-
+            TaskManager.instance.RecordCompletedTask(taskName);
         }
         else
         {

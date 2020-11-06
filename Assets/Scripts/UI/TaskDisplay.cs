@@ -91,6 +91,30 @@ public class TaskDisplay : MonoBehaviour
         }
     }
 
+    public void UpdateCompletedTasks(bool isCompleted,string taskName)
+    {
+        if (isCompleted)
+        {
+            foreach(TaskTemplate task in tasks)
+            {
+                if(task.GetTaskName() == taskName)
+                {
+                    task.IncrementCompletedTasks();
+                }
+            }
+        }
+        else
+        {
+            foreach (TaskTemplate task in tasks)
+            {
+                if (task.GetTaskName() == taskName)
+                {
+                    task.DecrementCompletedTasks();
+                }
+            }
+        }
+    }
+
 
   
 }

@@ -50,6 +50,10 @@ public class LevelLampsManager : MonoBehaviour
 
                     GetNewBreakLampTime();
                 }
+                else
+                {
+                    currentTimeBeforeLightBreak -= Time.deltaTime;
+                }
             }
             break;
            
@@ -79,6 +83,16 @@ public class LevelLampsManager : MonoBehaviour
         }
     }
 
+    public bool GetAllSceneLampsWork()
+    {
+        //if any lamp is broken return false
+        foreach(Lamp lamp in levelLamps)
+        {
+            if (!lamp.GetIsLampWorking()) return false;
+        }
+        //if no one is return true
+        return true;
+    }
     //Gets the next nearest fuse
     public Transform GetNearestFuseLightFuse(Transform targetObject)
     {

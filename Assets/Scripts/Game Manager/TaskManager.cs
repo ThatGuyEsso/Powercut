@@ -30,7 +30,46 @@ public class TaskManager : MonoBehaviour
         GetTasksInLevel();
     }
 
-  
+
+    public void RecordCompletedTask(string taskName)
+    {
+        if(totalNumberOfCompletedTask < allTasks.Count)
+        {
+            totalNumberOfCompletedTask++;
+        }
+        else
+        {
+            //all tasks already completed so return
+            return;
+        }
+      
+        UIManager.instance.taskDisplay.UpdateCompletedTasks(true, taskName);
+        if (totalNumberOfCompletedTask >= allTasks.Count)
+        {
+            //All task Completed so tell game state manager 
+            GameStateManager.instance.TasksCompleted();
+        }
+    }
+    public void RecordFailedTask(string taskName)
+    {
+        if (totalNumberOfCompletedTask >0)
+        {
+            totalNumberOfCompletedTask--;
+        }
+        else
+        {
+            //no tasks have been completed yet so return
+            return;
+        }
+
+        UIManager.instance.taskDisplay.UpdateCompletedTasks(false, taskName);
+        if (totalNumberOfCompletedTask <= allTasks.Count)
+        {
+            //Not all tasks are completed so power is off and all lights should continue breaking
+            GameStateManager.instance.SwitchPowerOff();
+        }
+    }
+
 
     private void GetTasksInLevel()
     {
@@ -56,11 +95,61 @@ public class TaskManager : MonoBehaviour
 
             allTasks.Add(tasks[i]);
         }
-
+        Debug.Log("Number of tasks " + allTasks.Count);
 
         //Update UI
         UIManager.instance.taskDisplay.SetUpTasks(taskNames);
         UIManager.instance.taskDisplay.PopulateTasks(taskNames.Count, allTasks);
         Debug.Log("Tasks: " +taskNames.Count);
+    }
+
+
+    public Transform GetNearestTask(Transform targetObject)
+    {
+        Transform nearestTaskT;
+
+        //Set initial shortest distance (potentially make it random for polish)
+        float currShortestDistance = Vector2.Distance(targetObject.position, allTasks[0].transform.position);
+
+        //If the initial task is working
+        if (allTasks[0].GetIsFixed())
+        {
+            //the nearest transfrom is its fuse
+            nearestTaskT = allTasks[0].transform;
+        }
+        else
+        {
+            //Else the transform is null
+            nearestTaskT = null;
+
+        }
+        for (int i = 0; i < allTasks.Count; i++)
+        {
+            //If the current tasks is working, compare distance
+            if (allTasks[i].GetIsFixed())
+            {
+                float distance;
+                //If nearest transform equal null we can assume this is the first working task, Hence return this and make this the nearest
+                if (nearestTaskT == false)
+                {
+                    currShortestDistance = Vector3.Distance(targetObject.position, allTasks[i].transform.position);
+                    nearestTaskT = allTasks[i].transform;
+                }
+                else
+                {
+                    distance = Vector2.Distance(targetObject.position, allTasks[i].transform.position);
+                    if (distance < currShortestDistance)
+                    {
+                        currShortestDistance = distance;
+                        nearestTaskT = allTasks[i].transform;
+                    }
+                }
+
+            }
+
+
+        }
+
+        return nearestTaskT;
     }
 }
