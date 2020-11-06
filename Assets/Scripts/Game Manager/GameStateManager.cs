@@ -48,6 +48,7 @@ public class GameStateManager : MonoBehaviour
     public void LevelCleared()
     {
         currentGameState = GameStates.LevelClear;
+        LevelLampsManager.instance.FixAllSceneLamps();
         Debug.Log("level cleared");
         Debug.Log(currentGameState.ToString());
     }

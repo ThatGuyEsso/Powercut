@@ -61,7 +61,7 @@ public class LevelLampsManager : MonoBehaviour
         }
     }
     //Gets all lamps in scene and stores then in list
-    private void GetAllSceneLamps()
+    public void GetAllSceneLamps()
     {
         Lamp[] lamps = FindObjectsOfType<Lamp>();//Get all scene lamos
 
@@ -73,6 +73,13 @@ public class LevelLampsManager : MonoBehaviour
         }
     }
 
+    public void FixAllSceneLamps() {
+        //if any lamp is broken return false
+        foreach (Lamp lamp in levelLamps)
+        {
+            lamp.InstantFixLamp();
+        }
+    }
     private void SetUpSceneLamps()
     {
         //Spawns in a light source for each scene lamp. (Should be updated to object pooling)
