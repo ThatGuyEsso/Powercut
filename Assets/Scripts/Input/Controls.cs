@@ -49,6 +49,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""UsePrimaryGadget"",
+                    ""type"": ""Button"",
+                    ""id"": ""21fd7376-ba1a-45f4-a9fc-dc3d116c2bd8"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -139,6 +147,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""SwitchWeapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c90461ef-2311-4954-b3c8-e1b6bad0b2cd"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""UsePrimaryGadget"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -178,6 +197,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_PlayerControls_Shoot = m_PlayerControls.FindAction("Shoot", throwIfNotFound: true);
         m_PlayerControls_Reload = m_PlayerControls.FindAction("Reload", throwIfNotFound: true);
         m_PlayerControls_SwitchWeapon = m_PlayerControls.FindAction("SwitchWeapon", throwIfNotFound: true);
+        m_PlayerControls_UsePrimaryGadget = m_PlayerControls.FindAction("UsePrimaryGadget", throwIfNotFound: true);
         // Interactions
         m_Interactions = asset.FindActionMap("Interactions", throwIfNotFound: true);
         m_Interactions_Interact = m_Interactions.FindAction("Interact", throwIfNotFound: true);
@@ -234,6 +254,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerControls_Shoot;
     private readonly InputAction m_PlayerControls_Reload;
     private readonly InputAction m_PlayerControls_SwitchWeapon;
+    private readonly InputAction m_PlayerControls_UsePrimaryGadget;
     public struct PlayerControlsActions
     {
         private @Controls m_Wrapper;
@@ -242,6 +263,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Shoot => m_Wrapper.m_PlayerControls_Shoot;
         public InputAction @Reload => m_Wrapper.m_PlayerControls_Reload;
         public InputAction @SwitchWeapon => m_Wrapper.m_PlayerControls_SwitchWeapon;
+        public InputAction @UsePrimaryGadget => m_Wrapper.m_PlayerControls_UsePrimaryGadget;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -263,6 +285,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @SwitchWeapon.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSwitchWeapon;
                 @SwitchWeapon.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSwitchWeapon;
                 @SwitchWeapon.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnSwitchWeapon;
+                @UsePrimaryGadget.started -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnUsePrimaryGadget;
+                @UsePrimaryGadget.performed -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnUsePrimaryGadget;
+                @UsePrimaryGadget.canceled -= m_Wrapper.m_PlayerControlsActionsCallbackInterface.OnUsePrimaryGadget;
             }
             m_Wrapper.m_PlayerControlsActionsCallbackInterface = instance;
             if (instance != null)
@@ -279,6 +304,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @SwitchWeapon.started += instance.OnSwitchWeapon;
                 @SwitchWeapon.performed += instance.OnSwitchWeapon;
                 @SwitchWeapon.canceled += instance.OnSwitchWeapon;
+                @UsePrimaryGadget.started += instance.OnUsePrimaryGadget;
+                @UsePrimaryGadget.performed += instance.OnUsePrimaryGadget;
+                @UsePrimaryGadget.canceled += instance.OnUsePrimaryGadget;
             }
         }
     }
@@ -322,6 +350,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
         void OnSwitchWeapon(InputAction.CallbackContext context);
+        void OnUsePrimaryGadget(InputAction.CallbackContext context);
     }
     public interface IInteractionsActions
     {

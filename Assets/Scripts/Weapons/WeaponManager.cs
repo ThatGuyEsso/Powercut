@@ -7,7 +7,12 @@ public enum GunTypes
     Pistol,
     Shotgun,
     AutoRifle
-}
+};
+
+public enum GadgetTypes
+{
+    FlashBang
+};
 public class WeaponManager : MonoBehaviour
 {
 
@@ -15,7 +20,11 @@ public class WeaponManager : MonoBehaviour
     public Shotgun shotgun;
     public Pistol pistol;
     private GunTypes activeGun;
-
+    private GadgetTypes primaryGadget;
+    private GadgetTypes secondaryGadget;
+    public GameObject flashBangPrefab;
+    public float throwForce;
+ 
     private void Awake()
     {
         //Create static instance of this class
@@ -146,6 +155,53 @@ public class WeaponManager : MonoBehaviour
                 return false;
 
         }
+    }
+
+    public void SetUpGadget(GadgetTypes[] gadgets,int primaryAmount, int secondaryAmount)
+    {
+        //if there is a secondary and primary gadget
+        if (gadgets.Length > 1 && gadgets.Length < 3)
+        {
+            primaryGadget = gadgets[0];
+            secondaryGadget= gadgets[1];
+            UIManager.instance.gadgetDisplay.GenerateNewGadgetTemplate(primaryGadget, primaryAmount);
+            //UIManager.instance.gadgetDisplay.GenerateNewGadgetTemplate(secondaryGadget, secondaryAmount);
+        }
+
+        else
+        {
+            primaryGadget = gadgets[0];
+            UIManager.instance.gadgetDisplay.GenerateNewGadgetTemplate(primaryGadget, primaryAmount);
+            Debug.Log("Spawn gadgets");
+        }
+    }
+
+
+    public void UsePrimaryGadget(int newAmount, Vector2 dir,Vector3 origin)
+    {
+        switch (primaryGadget)
+        {
+            case GadgetTypes.FlashBang:
+                FlashBang flashBang = Instantiate(flashBangPrefab, origin, Quaternion.identity).GetComponent<FlashBang>();
+                flashBang.LaunchFlashBang(dir, throwForce);
+                UIManager.instance.gadgetDisplay.DecreaseRespectiveGadgetCounter(primaryGadget);
+                break;
+        }
+    }
+
+    public void GainPrimaryGadget()
+    {
+
+    }
+
+
+    public void UseSecondaryGadget()
+    {
+
+    }
+    public void GainSecondaryGadget()
+    {
+
     }
 
 }

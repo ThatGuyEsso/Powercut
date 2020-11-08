@@ -28,6 +28,9 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     //Weapons
     private GunTypes[] gunsCarried = new GunTypes[2];
     private GunTypes equippedGun;
+    private GadgetTypes[] gadgetCarried = new GadgetTypes[1];
+    private int numberOfPrimaryGadget;
+    private int numberOfSecondaryGadget;
 
     //Timers
     private float currHealth;
@@ -41,6 +44,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     //Input
     private Vector2 moveDir;
     private Controls input;
+    private int equippedIndex;
     public void Awake()
     {
         //Cache
@@ -49,10 +53,11 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         //Set initial variables
         gunsCarried[0] = GunTypes.Pistol;
         gunsCarried[1] = GunTypes.Shotgun;
-        equippedGun = GunTypes.Shotgun;
+        gadgetCarried[0] = GadgetTypes.FlashBang;
         currHealth = settings.maxHealth;
         currHurtTime = settings.maxHurtTime;
-
+        numberOfPrimaryGadget = 3;
+        numberOfSecondaryGadget = 2;
         //Set input
         input = new Controls();
         input.PlayerControls.SetCallbacks(this);
@@ -62,8 +67,9 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     }
     private void Start()
     {
-        WeaponManager.instance.SetActiveWeapon(GunTypes.Shotgun);
+        CycleBetweenGuns();
         SetUpHealth();
+        WeaponManager.instance.SetUpGadget(gadgetCarried, numberOfPrimaryGadget, numberOfSecondaryGadget);
     }
     public void Update()
     {
@@ -180,18 +186,23 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         //Needs to be refactured 
         if (context.performed)
         {
-        
-            if (equippedGun == GunTypes.Shotgun)
-            {
-                equippedGun = GunTypes.Pistol;
-                WeaponManager.instance.SetActiveWeapon(equippedGun);
-            }
-            else if (equippedGun == GunTypes.Pistol)
-            {
-                equippedGun = GunTypes.Shotgun;
-                WeaponManager.instance.SetActiveWeapon(equippedGun);
 
+            CycleBetweenGuns();
+        }
+    }
+
+    public void OnUsePrimaryGadget(InputAction.CallbackContext context)
+    {
+        //Needs to be refactured 
+        if (context.performed)
+        {
+            if (numberOfPrimaryGadget > 0)
+            {
+                numberOfPrimaryGadget--;
+                WeaponManager.instance.UsePrimaryGadget(numberOfPrimaryGadget,transform.up,transform.position);
+                
             }
+           
         }
     }
     public void PlayerFacePointer()
@@ -203,6 +214,9 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         transform.rotation = Quaternion.Euler(0f, 0f, angle);//update angle
         //fovObject.SetAimDirection((-1)*fovObject.GetVectorFromAngle(angle));
     }
+
+
+
 
 
 
@@ -296,5 +310,22 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     {
         input.Disable();
         input.PlayerControls.Movement.canceled -= _ => EndMovement();
+    }
+
+    private void CycleBetweenGuns()
+    {
+        //Increment index
+        equippedIndex++;
+        //If index reaches end of array
+        if (equippedIndex >= gunsCarried.Length)
+        {
+            equippedIndex = 0;//loop back round
+        }
+
+        //equipped gun is the respective gun
+        equippedGun = gunsCarried[equippedIndex];
+        
+        //Update weapon manager
+        WeaponManager.instance.SetActiveWeapon(equippedGun);
     }
 }

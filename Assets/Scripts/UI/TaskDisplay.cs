@@ -37,7 +37,7 @@ public class TaskDisplay : MonoBehaviour
     private void GenerateNewTaskDisplay(int indexPosition)
     {
         TaskTemplate newTemplate = Instantiate(taskTemplatePrefab, transform.position,Quaternion.identity).GetComponent<TaskTemplate>();
-        newTemplate.transform.parent = transform;
+        newTemplate.transform.SetParent(transform);
         RectTransform templateRect = newTemplate.gameObject.GetComponent<RectTransform>();
         
         if (templateRect == true)

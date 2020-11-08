@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public ProgressBar healthBarDisplay;
     public ActiveGunDisplay gunDisplay;
     public TaskDisplay taskDisplay;
+    public GadgetDisplay gadgetDisplay;
     private void Awake()
     {
         instance = this;
@@ -24,6 +25,7 @@ public class UIManager : MonoBehaviour
         healthBarDisplay = transform.Find("HealthBar").GetComponent<ProgressBar>();
         gunDisplay = transform.Find("ActiveGunDisplay").GetComponent<ActiveGunDisplay>();
         taskDisplay = transform.Find("TaskDisplay").GetComponent<TaskDisplay>();
+        gadgetDisplay = transform.Find("GadgetDisplay").GetComponent<GadgetDisplay>();
     }
 }
 

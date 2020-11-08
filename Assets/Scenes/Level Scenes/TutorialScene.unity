@@ -24359,29 +24359,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1303148296, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.449332
-      objectReference: {fileID: 0}
-    - target: {fileID: 1303148296, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.449332
-      objectReference: {fileID: 0}
-    - target: {fileID: 1303148296, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1.449332
-      objectReference: {fileID: 0}
-    - target: {fileID: 1303148297, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
-      propertyPath: nTypesOfTasks
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1303148297, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
+    - target: {fileID: 1284289482261150940, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
       propertyPath: taskYOffset
-      value: -75
-      objectReference: {fileID: 0}
-    - target: {fileID: 1303148297, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
-      propertyPath: panelPadding
-      value: -55
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4445555425298562104, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
       propertyPath: m_LocalPosition.x
