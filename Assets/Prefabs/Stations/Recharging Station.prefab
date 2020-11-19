@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1753397796343497293}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children: []
   m_Father: {fileID: 1753397796571687986}
   m_RootOrder: 0
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_SortingLayerID: -91943695
   m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: -4135081008792001123, guid: 64670ccded9f77043aaf75080da11565, type: 3}
-  m_Color: {r: 1, g: 0.9242503, b: 0.32452828, a: 1}
+  m_Sprite: {fileID: 7635285909952806010, guid: 377a2550b9118aa46a41d1300c8544cb, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 1753397796571687986}
   - component: {fileID: 1753397796571687987}
   - component: {fileID: 1753397796571687984}
-  - component: {fileID: 1753397796571687985}
+  - component: {fileID: 3071078350378001782}
   m_Layer: 0
   m_Name: Recharging Station
   m_TagString: Untagged
@@ -132,7 +132,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -2.9341598}
+  m_Offset: {x: -0.09111214, y: -1.795253}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -143,7 +143,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 9, y: 6.8683195}
+  m_Size: {x: 5.674391, y: 4.590506}
   m_EdgeRadius: 0
 --- !u!114 &1753397796571687984
 MonoBehaviour:
@@ -157,8 +157,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3bd323caf39c942bc62affff4ba739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &1753397796571687985
-BoxCollider2D:
+--- !u!58 &3071078350378001782
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -171,18 +171,8 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
+  m_Radius: 0.5
 --- !u!1 &1753397797373455086
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +286,7 @@ Transform:
   m_GameObject: {fileID: 1753397797637305831}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1753397796571687986}
   m_RootOrder: 3
