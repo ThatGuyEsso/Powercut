@@ -1,97 +1,40 @@
 fileFormatVersion: 2
-guid: db86b85f5ee883946a406e14804c18eb
+guid: f81816d3afd366f4bac71ab68c553e06
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1264473713932577880
-    second: Ground TileSet_0
+      213: 8469257943685415520
+    second: FenceTileMap_0
   - first:
-      213: 7928914478390607176
-    second: Ground TileSet_0
+      213: -6420670618163797599
+    second: FenceTileMap_1
   - first:
-      213: -4267528228090362371
-    second: Ground TileSet_1
+      213: 8409469778590807275
+    second: FenceTileMap_2
   - first:
-      213: -3500997301606860928
-    second: Ground TileSet_2
+      213: -294138891637779527
+    second: FenceTileMap_3
   - first:
-      213: 6951617636419837739
-    second: Ground TileSet_3
+      213: -7250793392775256548
+    second: FenceTileMap_4
   - first:
-      213: 2615228623427667500
-    second: Ground TileSet_4
+      213: 8612558765535198619
+    second: FenceTileMap_5
   - first:
-      213: 8098388007462128876
-    second: Ground TileSet_5
+      213: -2634914281847260948
+    second: FenceTileMap_6
   - first:
-      213: -7963363520689041680
-    second: Ground TileSet_6
+      213: -1146040133759731558
+    second: FenceTileMap_7
   - first:
-      213: 6814880134220268068
-    second: Ground TileSet_7
+      213: 5380814729168701002
+    second: FenceTileMap_8
   - first:
-      213: 8442721069035840616
-    second: Ground TileSet_8
+      213: -8132170974131881244
+    second: FenceTileMap_9
   - first:
-      213: -8053198122990316894
-    second: Ground TileSet_9
-  - first:
-      213: -1428552125202954226
-    second: Ground TileSet_1
-  - first:
-      213: -260974712849971773
-    second: Ground TileSet_2
-  - first:
-      213: 3220032189578562349
-    second: Ground TileSet_3
-  - first:
-      213: -7539978431827504859
-    second: Ground TileSet_4
-  - first:
-      213: -3315341005235668393
-    second: Ground TileSet_5
-  - first:
-      213: 2116227216149330865
-    second: Ground TileSet_6
-  - first:
-      213: 7826993628780184952
-    second: Ground TileSet_7
-  - first:
-      213: -935966599163001492
-    second: Ground TileSet_8
-  - first:
-      213: 7898676608655209321
-    second: Ground TileSet_9
-  - first:
-      213: 8531941747589872890
-    second: Ground TileSet_10
-  - first:
-      213: -5095141854302371787
-    second: Ground TileSet_11
-  - first:
-      213: -5013749811302538645
-    second: Ground TileSet_12
-  - first:
-      213: -8703211477632157843
-    second: Ground TileSet_13
-  - first:
-      213: 4326970300456729160
-    second: Ground TileSet_14
-  - first:
-      213: -5047571106854046475
-    second: Ground TileSet_15
-  - first:
-      213: 8708588683673994264
-    second: Ground TileSet_16
-  - first:
-      213: -7719031112481641249
-    second: Ground TileSet_17
-  - first:
-      213: -281477148229608303
-    second: Ground TileSet_18
-  - first:
-      213: 3967239878356361116
-    second: Ground TileSet_19
+      213: 155298362407646256
+    second: FenceTileMap_10
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -227,7 +170,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Ground TileSet_0
+      name: FenceTileMap_0
       rect:
         serializedVersion: 2
         x: 0
@@ -241,14 +184,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 84d7cea75b9290e60800000000000000
-      internalID: 7928914478390607176
+      spriteID: 062468c4a39d88570800000000000000
+      internalID: 8469257943685415520
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground TileSet_1
+      name: FenceTileMap_1
       rect:
         serializedVersion: 2
         x: 32
@@ -262,14 +205,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0806223963cc2ce0800000000000000
-      internalID: -1428552125202954226
+      spriteID: 1a12f88471235e6a0800000000000000
+      internalID: -6420670618163797599
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground TileSet_2
+      name: FenceTileMap_2
       rect:
         serializedVersion: 2
         x: 64
@@ -283,14 +226,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c5c731a1e4d06cf0800000000000000
-      internalID: -260974712849971773
+      spriteID: be4b946553074b470800000000000000
+      internalID: 8409469778590807275
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground TileSet_3
+      name: FenceTileMap_3
       rect:
         serializedVersion: 2
         x: 96
@@ -304,14 +247,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d2b4729473adfac20800000000000000
-      internalID: 3220032189578562349
+      spriteID: 9b39d498c320bebf0800000000000000
+      internalID: -294138891637779527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground TileSet_4
+      name: FenceTileMap_4
       rect:
         serializedVersion: 2
         x: 128
@@ -325,14 +268,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 52190d4909d9c5790800000000000000
-      internalID: -7539978431827504859
+      spriteID: c16a1eb53d1006b90800000000000000
+      internalID: -7250793392775256548
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground TileSet_5
+      name: FenceTileMap_5
       rect:
         serializedVersion: 2
         x: 160
@@ -346,59 +289,17 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75a34a1dbea8df1d0800000000000000
-      internalID: -3315341005235668393
+      spriteID: b9df6e2e094f58770800000000000000
+      internalID: 8612558765535198619
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground TileSet_6
+      name: FenceTileMap_6
       rect:
         serializedVersion: 2
-        x: 192
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1bb389ad0795e5d10800000000000000
-      internalID: 2116227216149330865
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground TileSet_7
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 96
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 87540b67c311f9c60800000000000000
-      internalID: 7826993628780184952
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground TileSet_8
-      rect:
-        serializedVersion: 2
-        x: 128
+        x: 96
         y: 64
         width: 32
         height: 32
@@ -409,14 +310,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6542474657c203f0800000000000000
-      internalID: -935966599163001492
+      spriteID: ce8f3e8cb67ee6bd0800000000000000
+      internalID: -2634914281847260948
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground TileSet_9
+      name: FenceTileMap_7
       rect:
         serializedVersion: 2
         x: 160
@@ -430,18 +331,18 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 963b49ec68cbd9d60800000000000000
-      internalID: 7898676608655209321
+      spriteID: a98f8e002927810f0800000000000000
+      internalID: -1146040133759731558
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground TileSet_10
+      name: FenceTileMap_8
       rect:
         serializedVersion: 2
-        x: 192
-        y: 64
+        x: 96
+        y: 32
         width: 32
         height: 32
       alignment: 0
@@ -451,35 +352,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afc7b65b0db876670800000000000000
-      internalID: 8531941747589872890
+      spriteID: a464a46cc7e7caa40800000000000000
+      internalID: 5380814729168701002
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground TileSet_11
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 64
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 530051e8a7b6a49b0800000000000000
-      internalID: -5095141854302371787
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground TileSet_12
+      name: FenceTileMap_9
       rect:
         serializedVersion: 2
         x: 128
@@ -493,14 +373,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6261a05c159b6ab0800000000000000
-      internalID: -5013749811302538645
+      spriteID: 4ea702ac599b42f80800000000000000
+      internalID: -8132170974131881244
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Ground TileSet_13
+      name: FenceTileMap_10
       rect:
         serializedVersion: 2
         x: 160
@@ -514,134 +394,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d67f1aec54bf73780800000000000000
-      internalID: -8703211477632157843
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground TileSet_14
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 84a7360209c7c0c30800000000000000
-      internalID: 4326970300456729160
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground TileSet_15
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5f4707d42dc63f9b0800000000000000
-      internalID: -5047571106854046475
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground TileSet_16
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 32
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8140069844f1bd870800000000000000
-      internalID: 8708588683673994264
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground TileSet_17
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fdce752b91e70e490800000000000000
-      internalID: -7719031112481641249
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground TileSet_18
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 19c5267660ef71cf0800000000000000
-      internalID: -281477148229608303
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Ground TileSet_19
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c9fd13866a77e0730800000000000000
-      internalID: 3967239878356361116
+      spriteID: 034f18da90bb72200800000000000000
+      internalID: 155298362407646256
       vertices: []
       indices: 
       edges: []
