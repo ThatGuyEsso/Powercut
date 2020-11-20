@@ -13,8 +13,7 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
     private float currFixTime;
     public string taskName;//Task Settings
 
-    public Color brokenColour;
-    public Color fixedColour;
+    public Sprite[] stateSprites;//0 should be fixed max should be max broken
     public GameObject fixVFX;
 
     //input
@@ -39,6 +38,7 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
         currHealth = 0f;
         isFixed = false;
         gfx = gameObject.GetComponentInChildren<SpriteRenderer>();
+        UpdateDamageDisplay();
     }
 
     protected void FixedUpdate()
@@ -47,7 +47,7 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
         {
             if (!GetIsFixed())
             {
-                gfx.color =  Color.yellow;
+        
                 if (currFixTime <= 0)
                 {
                     currHealth += fixAmountPerTick;
@@ -156,13 +156,31 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
 
     protected void UpdateDamageDisplay()
     {
-        if (isFixed)
+        if (isFixed && currHealth >= maxHealth)
         {
-            gfx.color = fixedColour;
+            gfx.sprite = stateSprites[0];
         }
         else
         {
-            gfx.color = brokenColour;
+            EvaluateSpriteDisplay();
+        }
+        
+    }
+
+    protected void EvaluateSpriteDisplay()
+    {
+        float percentageHealth = currHealth / maxHealth;
+
+        if(percentageHealth <= 0.25f)
+        {
+            gfx.sprite = stateSprites[stateSprites.Length - 1];
+        }else if(percentageHealth > 0.25f && percentageHealth <= 0.5f)
+        {
+            gfx.sprite = stateSprites[stateSprites.Length - 2];
+        }
+        else if(percentageHealth > 0.5f && percentageHealth <= 0.75f)
+        {
+            gfx.sprite = stateSprites[stateSprites.Length - 3];
         }
     }
 
