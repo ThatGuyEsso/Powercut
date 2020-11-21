@@ -18,6 +18,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     //Settings
     public PlayerSettings settings;
     private float smoothRot;
+    private PlayerAnimController animControl;
     private Vector2 knockBack;
     public float knockBackFallOff = 0.1f;
     //Object Components
@@ -49,6 +50,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     {
         //Cache
         rb = gameObject.GetComponent<Rigidbody2D>();
+        animControl = gameObject.GetComponent<PlayerAnimController>();
 
         //Set initial variables
         gunsCarried[0] = GunTypes.Pistol;
@@ -69,6 +71,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     {
         CycleBetweenGuns();
         SetUpHealth();
+        animControl.UpdatePlayergun();
         WeaponManager.instance.SetUpGadget(gadgetCarried, numberOfPrimaryGadget, numberOfSecondaryGadget);
     }
     public void Update()
@@ -159,30 +162,39 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         {
             moveDir = context.ReadValue<Vector2>(); // gets direction of movement
             SetMovementState(MovementStates.Walking);
+            animControl.PlayWalkAnim();
         }
     }
 
     //on shoot input action
     public void OnShoot(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (GameStateManager.instance.GetCurrentGameState() != GameStates.MainPowerOn)
         {
-            WeaponManager.instance.ShootActiveWeapon();//Trigger Weapon manager to reload
+
+            if (context.performed)
+            {
+                WeaponManager.instance.ShootActiveWeapon();//Trigger Weapon manager to reload
+            }
         }
     }
     //on reload input action
     public void OnReload(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (GameStateManager.instance.GetCurrentGameState() != GameStates.MainPowerOn)
         {
-            //tell weapon manager to reload active weapon
-            WeaponManager.instance.ReloadActiveWeapon();
+            if (context.performed)
+            {
+                //tell weapon manager to reload active weapon
+                WeaponManager.instance.ReloadActiveWeapon();
+            }
         }
     }
 
     //on Switch Weapon input action
     public void OnSwitchWeapon(InputAction.CallbackContext context)
     {
+        animControl.UpdatePlayergun();
         //Needs to be refactured 
         if (context.performed)
         {
@@ -288,6 +300,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     {
         SetMovementState(MovementStates.Idle);
         rb.velocity = Vector2.zero;
+        animControl.StopWalkAnim();
     }
 
     private void PlayerDie()
@@ -328,4 +341,6 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         //Update weapon manager
         WeaponManager.instance.SetActiveWeapon(equippedGun);
     }
+
+  
 }

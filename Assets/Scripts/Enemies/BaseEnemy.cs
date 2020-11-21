@@ -353,7 +353,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     void ILightWeakness.MakeVulnerable()
     {
         inLight = true;
-        Debug.Log("vulnerable");
+        //Debug.Log("vulnerable");
     }
 
     protected void Damage(float damage,Vector2 knockBackDir, float knockBack)

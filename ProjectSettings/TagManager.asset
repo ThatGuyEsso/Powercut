@@ -24,7 +24,7 @@ TagManager:
   - PostProcessing
   - ObjectLayer
   - Projectiles
-  - 
+  - Weapons
   - 
   - 
   - 
@@ -61,6 +61,9 @@ TagManager:
   - name: Enemies
     uniqueID: 1501814397
     locked: 0
+  - name: Bullet
+    uniqueID: 177537861
+    locked: 0
   - name: Player
     uniqueID: 2737098991
     locked: 0
@@ -69,9 +72,6 @@ TagManager:
     locked: 0
   - name: Details
     uniqueID: 1104743243
-    locked: 0
-  - name: Bullet
-    uniqueID: 177537861
     locked: 0
   - name: Black
     uniqueID: 1900244667

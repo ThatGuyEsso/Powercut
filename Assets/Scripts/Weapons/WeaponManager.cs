@@ -189,6 +189,11 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    public GunTypes GetActiveGun()
+    {
+        return activeGun;
+    }
+
     public void GainPrimaryGadget()
     {
 

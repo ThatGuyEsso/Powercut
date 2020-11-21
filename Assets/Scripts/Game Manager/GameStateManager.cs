@@ -37,6 +37,7 @@ public class GameStateManager : MonoBehaviour
         currentGameState = GameStates.MainPowerOff;
         Debug.Log("Power is off");
         Debug.Log(currentGameState.ToString());
+        FindObjectOfType<PlayerAnimController>().UpdatePlayergun();
     }
     public void TasksCompleted()
     {
@@ -57,6 +58,7 @@ public class GameStateManager : MonoBehaviour
         currentGameState = GameStates.MainPowerOn;
         Debug.Log("Power is On");
         Debug.Log(currentGameState.ToString());
+        FindObjectOfType<PlayerAnimController>().UpdatePlayergun();
     }
 
     public GameStates GetCurrentGameState()
