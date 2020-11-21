@@ -32,7 +32,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     protected Vector2 knockBack;
     //Component refs
     protected Rigidbody2D rb;
-    protected HurtFlash hurtVFX;
+    protected MultiSpriteHurtFlash hurtVFX;
 
     //Pathfinding
     protected int currentWaypoint = 0;
@@ -57,7 +57,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         rb = gameObject.GetComponent<Rigidbody2D>();
         currentHealth = settings.maxHealth;
         seeker = gameObject.GetComponent<Seeker>();
-        hurtVFX = gameObject.GetComponentInChildren<HurtFlash>();
+        hurtVFX = gameObject.GetComponentInChildren<MultiSpriteHurtFlash>();
         currHurtTime = settings.hurtTime;
         currTimeBeforeInvulnerable = settings.timeBeforeInvulnerable;
        // InvokeRepeating("ProcessAI", 0f, settings.aiTickrate);
