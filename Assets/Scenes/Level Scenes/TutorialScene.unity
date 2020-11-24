@@ -123,17 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &24187245 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4445555426883054871, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
-  m_PrefabInstance: {fileID: 1548202131}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &52975494
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15061,17 +15050,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7d69aa0ebd14d44d9452399b03ee7a3, type: 3}
---- !u!114 &1501281283 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4445555425505694027, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
-  m_PrefabInstance: {fileID: 1548202131}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1505596158
 GameObject:
   m_ObjectHideFlags: 0
@@ -58413,25 +58391,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD
       objectReference: {fileID: 0}
-    - target: {fileID: 4445555425505694029, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
-      propertyPath: m_Name
-      value: activeGunPortrait
-      objectReference: {fileID: 0}
-    - target: {fileID: 4445555425611274873, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
-      propertyPath: activeGun
-      value: 
-      objectReference: {fileID: 1501281283}
-    - target: {fileID: 4445555425611274873, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
-      propertyPath: holsteredGun
-      value: 
-      objectReference: {fileID: 24187245}
-    - target: {fileID: 4445555425993189679, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 4445555425993189679, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
       propertyPath: m_VerticalAlignment
       value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445555425993189679, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4445555426225045070, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
       propertyPath: m_AnchorMax.x
@@ -58442,16 +58408,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4445555426762388329, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
-      propertyPath: m_HorizontalAlignment
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4445555426762388329, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
       propertyPath: m_VerticalAlignment
       value: 512
       objectReference: {fileID: 0}
-    - target: {fileID: 4445555426883054857, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
-      propertyPath: m_Name
-      value: holsteredGunPortrait
+    - target: {fileID: 4445555426762388329, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7156489659001070182, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
       propertyPath: m_AnchorMax.x
