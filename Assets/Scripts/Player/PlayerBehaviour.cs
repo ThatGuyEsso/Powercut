@@ -198,7 +198,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         //Needs to be refactured 
         if (context.performed)
         {
-
+            UIManager.instance.eventDisplay.CreateEvent("Test Event", Color.white);
             CycleBetweenGuns();
         }
     }

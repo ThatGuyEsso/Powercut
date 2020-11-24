@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public ActiveGunDisplay gunDisplay;
     public TaskDisplay taskDisplay;
     public GadgetDisplay gadgetDisplay;
+    public EventDisplay eventDisplay;
     private void Awake()
     {
         instance = this;
@@ -26,6 +27,7 @@ public class UIManager : MonoBehaviour
         gunDisplay = transform.Find("ActiveGunDisplay").GetComponent<ActiveGunDisplay>();
         taskDisplay = transform.Find("TaskDisplay").GetComponent<TaskDisplay>();
         gadgetDisplay = transform.Find("GadgetDisplay").GetComponent<GadgetDisplay>();
+        eventDisplay = transform.Find("EventDisplay").GetComponent<EventDisplay>();
     }
 }
 
