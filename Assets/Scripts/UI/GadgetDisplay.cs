@@ -63,7 +63,7 @@ public class GadgetDisplay : MonoBehaviour
     {
         foreach(GadgetTemplate gadget in gadgets)
         {
-            if (gadget.type == type) gadget.DecrementCounter();
+            if (gadget.type == type) gadget.counter.DecrementCounter();
         }
     }
 }

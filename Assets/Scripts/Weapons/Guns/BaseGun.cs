@@ -8,6 +8,7 @@ public abstract class BaseGun : MonoBehaviour, IShootable
     [Header("Gun Settings")]
     //Ammo max values
     public int maxAmmo, maxClip;
+    public Sprite gunPortrait;
     //Ammo current
     protected int currentAmmo, currentClip;
     //Reload and shot interval max value

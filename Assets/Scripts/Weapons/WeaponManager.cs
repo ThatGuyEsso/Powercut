@@ -31,7 +31,7 @@ public class WeaponManager : MonoBehaviour
         instance = this;
         shotgun = FindObjectOfType<Shotgun>();
         pistol = FindObjectOfType<Pistol>();
-        UIManager.instance.gunDisplay.DisplayPrimaryGun(); 
+        UIManager.instance.gunDisplay.UpdateActiveGun(shotgun.gunPortrait, pistol.gunPortrait);
     }
 
     private void Start()
@@ -49,12 +49,12 @@ public class WeaponManager : MonoBehaviour
             {
                 case GunTypes.Shotgun:
 
-                    UIManager.instance.gunDisplay.DisplayPrimaryGun();
+                    UIManager.instance.gunDisplay.UpdateActiveGun(shotgun.gunPortrait,pistol.gunPortrait);
 
                     break;
 
                 case GunTypes.Pistol:
-                    UIManager.instance.gunDisplay.DisplaySecondaryGun();
+                    UIManager.instance.gunDisplay.UpdateActiveGun(pistol.gunPortrait, shotgun.gunPortrait);
 
                     break;
             }

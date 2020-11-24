@@ -4,21 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ActiveGunDisplay : MonoBehaviour
 {
-    public Image primaryGun;
-    public Image secondaryGun;
+    public Image activeGun;
+    public Image holsteredGun;
 
-    public float inactiveOppacity;
-    public void DisplayPrimaryGun()
+
+    public void UpdateActiveGun(Sprite newActiveGun, Sprite newHolsteredGun)
     {
-        primaryGun.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-        secondaryGun.color = new Color(1.0f, 1.0f, 1.0f, inactiveOppacity);
+        activeGun.sprite = newActiveGun;
+        UpdateHolsteredGun(newHolsteredGun);
 
     }
 
-    public void DisplaySecondaryGun()
+    public void UpdateHolsteredGun(Sprite newHolsteredGun)
     {
-        secondaryGun.color = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-        primaryGun.color = new Color(1.0f, 1.0f, 1.0f, inactiveOppacity);
+        holsteredGun.sprite = newHolsteredGun;
 
     }
 

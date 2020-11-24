@@ -7,7 +7,7 @@ public class AmmoDisplay : MonoBehaviour
 {
     private TextMeshProUGUI clipDisplay;
     private TextMeshProUGUI ammoDisplay;
-    private TextMeshProUGUI separator;
+
 
     public Color noAmmoColor;
     public Color ammoAvailColor;
@@ -15,7 +15,7 @@ public class AmmoDisplay : MonoBehaviour
     {
         clipDisplay = transform.Find("clipDisplay").GetComponent<TextMeshProUGUI>();
         ammoDisplay = transform.Find("AmmoDisplay").GetComponent<TextMeshProUGUI>();
-        separator = transform.Find("Separator").GetComponent<TextMeshProUGUI>();
+
     }
 
 
@@ -53,13 +53,13 @@ public class AmmoDisplay : MonoBehaviour
         {
             clipDisplay.color = ammoAvailColor;
             ammoDisplay.color = ammoAvailColor;
-            separator.color = ammoAvailColor;
+       
         }
         else
         {
             clipDisplay.color = noAmmoColor;
             ammoDisplay.color = noAmmoColor;
-            separator.color = noAmmoColor;
+          
         }
     }
 }

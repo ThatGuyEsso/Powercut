@@ -6,8 +6,8 @@ using TMPro;
 public class GadgetTemplate : MonoBehaviour
 {
     private Image gadgetIcon;
-    private TextMeshProUGUI counter;
-    private int currCounter;
+    public GadgetCounter counter;
+
     public GadgetTypes type;
     private void Awake()
     {
@@ -18,33 +18,18 @@ public class GadgetTemplate : MonoBehaviour
     private void GetChildReferences()
     {
         gadgetIcon = transform.Find("GadgetImage").GetComponent<Image>();
-        counter = transform.Find("GadgetAmount").GetComponent<TextMeshProUGUI>();
+        counter = gameObject.GetComponentInChildren<GadgetCounter>();
     }
 
 
 
     public void SetUpTemplate(Sprite icon, int amount,GadgetTypes typeOfGadget)
     {
-        currCounter = amount;
+        counter.SetUpCounter(amount);
         type = typeOfGadget;
         gadgetIcon.sprite = icon;
-        counter.text = currCounter.ToString();
-    }
-
-    public void IncrementCounter()
-    {
-        currCounter++;
-        counter.text = currCounter.ToString();
 
     }
-    public void DecrementCounter()
-    {
-        currCounter--;
-        if (currCounter < 0)
-        {
-            currCounter = 0;
-        }
-        counter.text = currCounter.ToString();
 
-    }
+
 }
