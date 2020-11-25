@@ -35,9 +35,10 @@ public class GameStateManager : MonoBehaviour
     public void SwitchPowerOff()
     {
         currentGameState = GameStates.MainPowerOff;
-        Debug.Log("Power is off");
+
         Debug.Log(currentGameState.ToString());
         FindObjectOfType<PlayerAnimController>().UpdatePlayergun();
+        UIManager.instance.eventDisplay.CreateEvent("Main Power Switched off", Color.yellow);
     }
     public void TasksCompleted()
     {
@@ -52,6 +53,8 @@ public class GameStateManager : MonoBehaviour
         LevelLampsManager.instance.FixAllSceneLamps();
         Debug.Log("level cleared");
         Debug.Log(currentGameState.ToString());
+        UIManager.instance.eventDisplay.CreateEvent("Main Power Switched On", Color.green);
+        UIManager.instance.eventDisplay.CreateEvent("Level Cleared", Color.green);
     }
     public void SwitchPowerOn()
     {
@@ -59,6 +62,7 @@ public class GameStateManager : MonoBehaviour
         Debug.Log("Power is On");
         Debug.Log(currentGameState.ToString());
         FindObjectOfType<PlayerAnimController>().UpdatePlayergun();
+        UIManager.instance.eventDisplay.CreateEvent("Main Power Switched On", Color.green);
     }
 
     public GameStates GetCurrentGameState()

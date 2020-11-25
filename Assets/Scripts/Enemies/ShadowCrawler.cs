@@ -9,6 +9,7 @@ public class ShadowCrawler : BaseEnemy
     private float maxSpeed;
 
     public float maxScaleMultiplier;
+    private BaseEnemyAnimController animController;
    
     protected override void Awake()
     {
@@ -19,6 +20,9 @@ public class ShadowCrawler : BaseEnemy
         maxSpeed = settings.maxSpeed;
         //Initiate mutation of base character
         RandomStatMutation();
+        animController = gameObject.GetComponent<BaseEnemyAnimController>();
+        animController.Init();
+        InvokeRepeating("ProcessAI",0f, settings.aiTickrate);
     }
 
     private void Start()
@@ -35,15 +39,13 @@ public class ShadowCrawler : BaseEnemy
         {
             case EnemyStates.Idle:
                 //Do nohing basically
-
+                animController.PlayAnim("Idle");
                 SmoothDecelerate(0f, settings.timeMaxToZero);
                 break;
 
             case EnemyStates.Attack:
-                //Attack player
-                ChargePlayer();
 
-                FaceTarget();
+                animController.PlayAnim("Walk");
                 if (!IsPlayerInAttackRange())
                 {
                     SetEnemyState(EnemyStates.Chase);
@@ -52,18 +54,16 @@ public class ShadowCrawler : BaseEnemy
 
             case EnemyStates.Destroy:
                 //Destroy mechanics
+                animController.PlayAnim("Break");
                 BreakAppliance();
-                FaceTarget();
-                SmoothDecelerate(0f, settings.timeMaxToZero);
+           
                 break;
 
             case EnemyStates.Chase:
                 //Move to target position
                 ResolveTargetType();
-                UpdatePath();
-                DrawPathToTarget();
-                SmoothAccelerate(moveDirection, maxSpeed, settings.timeZeroToMax);
-                FaceMovementDirection();
+                animController.PlayAnim("Walk");
+
                 break;
 
             case EnemyStates.Wander:
@@ -75,7 +75,37 @@ public class ShadowCrawler : BaseEnemy
     protected void FixedUpdate()
     {
       
-        ProcessAI();
+   
+        switch (currentState)
+        {
+            case EnemyStates.Idle:
+                //Do nohing basically
+
+                SmoothDecelerate(0f, settings.timeMaxToZero);
+                break;
+            case EnemyStates.Attack:
+                //Attack player
+                ChargePlayer();
+
+                FaceTarget();
+         
+                break;
+            case EnemyStates.Destroy:
+                FaceTarget();
+                SmoothDecelerate(0f, settings.timeMaxToZero);
+                break;
+
+            case EnemyStates.Chase:
+                //Move to target position
+
+
+                UpdatePath();
+                DrawPathToTarget();
+                SmoothAccelerate(moveDirection, maxSpeed, settings.timeZeroToMax);
+                FaceMovementDirection();
+                break;
+
+        }
     }
 
     protected override void DrawPathToTarget()

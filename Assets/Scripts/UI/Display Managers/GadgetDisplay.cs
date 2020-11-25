@@ -27,7 +27,7 @@ public class GadgetDisplay : MonoBehaviour
     {
         GadgetTemplate newTemplate = Instantiate(gadgetTemplatePrefab, transform.position, Quaternion.identity).GetComponent<GadgetTemplate>();
         Debug.Log(newTemplate);
-        newTemplate.transform.parent = rt.transform;
+        newTemplate.transform.SetParent(rt.transform);
         RectTransform templateRect = newTemplate.gameObject.GetComponent<RectTransform>();
         int positionOffset = gadgets.Count - 1;
         if (templateRect == true)

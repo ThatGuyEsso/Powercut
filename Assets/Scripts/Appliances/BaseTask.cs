@@ -12,6 +12,7 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
     public float fixAmountPerTick;
     private float currFixTime;
     public string taskName;//Task Settings
+    public string taskDescription;
 
     public Sprite[] stateSprites;//0 should be fixed max should be max broken
     public GameObject fixVFX;
@@ -52,12 +53,18 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
                 {
                     currHealth += fixAmountPerTick;
                     currFixTime = fixTickRate;
-
+                    if(currFixTime>= maxHealth)
+                    {
+                        
+                    }
                 }
                 else
                 {
                     currFixTime -= Time.deltaTime;
                 }
+            }
+            else{
+                UIManager.instance.eventDisplay.CreateEvent(taskDescription + " Fixed", Color.green);
             }
            
         }
@@ -147,7 +154,7 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
                 isFixed = false;
                 currHealth = 0;
                 TaskManager.instance.RecordFailedTask(taskName);
-
+                UIManager.instance.eventDisplay.CreateEvent(taskDescription + " broken",Color.red);
             }
 
         }

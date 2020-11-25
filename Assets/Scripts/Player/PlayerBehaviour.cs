@@ -25,7 +25,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     public Camera activeCamera;
     public FieldOfView fieldOfView;
     private Rigidbody2D rb;
-
+    public Transform throwingPoint;
     //Weapons
     private GunTypes[] gunsCarried = new GunTypes[2];
     private GunTypes equippedGun;
@@ -211,7 +211,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
             if (numberOfPrimaryGadget > 0)
             {
                 numberOfPrimaryGadget--;
-                WeaponManager.instance.UsePrimaryGadget(numberOfPrimaryGadget,transform.up,transform.position);
+                WeaponManager.instance.UsePrimaryGadget(numberOfPrimaryGadget,transform.up,throwingPoint.position);
                 
             }
            

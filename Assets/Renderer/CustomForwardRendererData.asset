@@ -39,7 +39,7 @@ MonoBehaviour:
       restoreCamera: 1
       offset: {x: 0, y: 0, z: 0, w: 0}
       cameraFieldOfView: 60
---- !u!114 &-5290235196848673463
+--- !u!114 &-2769350397195218120
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -49,14 +49,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: PostProcess
+  m_Name: Post Processing
   m_EditorClassIdentifier: 
   m_Active: 1
   settings:
-    passTag: PostProcess
-    Event: 550
+    passTag: Post Processing
+    Event: 600
     filterSettings:
-      RenderQueueType: 1
+      RenderQueueType: 0
       LayerMask:
         serializedVersion: 2
         m_Bits: 16384
@@ -173,8 +173,8 @@ MonoBehaviour:
   - {fileID: -5511164817171058723}
   - {fileID: -1017403235579785266}
   - {fileID: 4948006244106820381}
-  - {fileID: -5290235196848673463}
-  m_RendererFeatureMap: db00f352255f16e7dd6fe355cc6884b3ce0fefcd2575e1f11ddb669e76d9aa4449ed90091e4f95b6
+  - {fileID: -2769350397195218120}
+  m_RendererFeatureMap: db00f352255f16e7dd6fe355cc6884b3ce0fefcd2575e1f11ddb669e76d9aa44389397847c4a91d9
   postProcessData: {fileID: 11400000, guid: 41439944d30ece34e96484bdb6645b55, type: 2}
   shaders:
     blitPS: {fileID: 4800000, guid: c17132b1f77d20942aa75f8429c0f8bc, type: 3}

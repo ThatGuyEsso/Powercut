@@ -9,6 +9,7 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
     private bool canFix;
     private bool isFixing =false;
     private ChargingCable fixingCable;
+    public Color fixingCableColour;
     private Transform targetTrans;
     public float currentTimeToFix;
     private Controls input;
@@ -31,6 +32,7 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
         {
             if (!parentLamp.GetIsFixed())
             {
+                fixingCable.ChangeColour(fixingCableColour);
                 if (currentTimeToFix <= 0)
                 {
                     parentLamp.FixLamp(10f);
@@ -60,15 +62,14 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
                 targetTrans = other.gameObject.transform;
                 Debug.Log(targetTrans);
                 canFix = !parentLamp.GetIsLampWorking();
-                if (canFix)
-                {
-                    fixingCable.ChangeColour(Color.yellow);
-                }
+           
                 if (canFix)
                 {
                     InGamePrompt.instance.ChangePrompt("[E] To Fix Light");
                     InGamePrompt.instance.ShowPrompt();
-
+           
+                    fixingCable.ChangeColour(fixingCableColour);
+       
                 }
 
 

@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChargingCable : MonoBehaviour
 {
     public LineRenderer cable;//Line renderer reference
+    public Transform origin;
     public RopeAnim ropeAnim;
     private Vector3 currentPoint;
     private  Transform targetTransform;
@@ -29,13 +30,13 @@ public class ChargingCable : MonoBehaviour
         //Set up initial variables
         cable.positionCount = 0;
 
-        currentPoint = transform.position;
+        currentPoint = origin.position;
         ropeAnim = new RopeAnim();
     }
 
     public void StartDrawingRope( Transform targetTrans)
     {
-        currentPoint = transform.position;
+        currentPoint = origin.position;
         ChangeColour(Color.yellow);
         targetTransform = targetTrans;
         isDrawing = true;
@@ -85,7 +86,7 @@ public class ChargingCable : MonoBehaviour
         ropeAnim.SetStrength(strength);
         ropeAnim.Update(Time.deltaTime);
 
-        var right = Quaternion.LookRotation((targetTransform.position - transform.position).normalized) * Vector2.up;// get relative right direction
+        var right = Quaternion.LookRotation((targetTransform.position - origin.position).normalized) * Vector2.up;// get relative right direction
         currentPoint = Vector3.Lerp(currentPoint, targetTransform.position, Time.deltaTime * lerpSpeed);// animate rope shooting
 
 
@@ -93,7 +94,7 @@ public class ChargingCable : MonoBehaviour
         {
             var delta = i / (float)lineQuality;
             var offset = right * waveHeight * Mathf.Sin(delta * waveCount * Mathf.PI * ropeAnim.Value * effectCurve.Evaluate(delta));
-            cable.SetPosition(i, Vector3.Lerp(transform.position, currentPoint, delta) + offset);
+            cable.SetPosition(i, Vector3.Lerp(origin.position, currentPoint, delta) + offset);
         }
     }
 
@@ -124,17 +125,17 @@ public class ChargingCable : MonoBehaviour
         ropeAnim.SetStrength(strength);
         ropeAnim.Update(Time.deltaTime);
 
-        var right = Quaternion.LookRotation((currentPoint - transform.position).normalized) * Vector2.up;// get relative right direction
-        currentPoint = Vector3.Lerp(currentPoint, transform.position, Time.deltaTime * lerpSpeed);// animate rope shooting
+        var right = Quaternion.LookRotation((currentPoint - origin.position).normalized) * Vector2.up;// get relative right direction
+        currentPoint = Vector3.Lerp(currentPoint, origin.position, Time.deltaTime * lerpSpeed);// animate rope shooting
 
 
         for (int i = 0; i < lineQuality + 1; i++)
         {
             var delta = i / (float)lineQuality;
             var offset = right * waveHeight * Mathf.Sin(delta * waveCount * Mathf.PI * ropeAnim.Value * effectCurve.Evaluate(delta));
-            cable.SetPosition(i, Vector3.Lerp(transform.position, currentPoint, delta) + offset);
+            cable.SetPosition(i, Vector3.Lerp(origin.position, currentPoint, delta) + offset);
         }
-        if (currentPoint == transform.position)
+        if (currentPoint == origin.position)
         {
             Debug.Log("Reeled back");
             isReeledIn = true;

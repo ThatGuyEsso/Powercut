@@ -7,7 +7,7 @@ public class RechargeStationBehaviour : MonoBehaviour
     private Transform playerTrans;
     private LightManager lightManger;
     private ChargingCable chargeCable;
-
+    public Color ChargingColour;
     private void Awake()
     {
         chargeCable = gameObject.GetComponentInChildren<ChargingCable>();
@@ -23,7 +23,7 @@ public class RechargeStationBehaviour : MonoBehaviour
 
             lightManger.SetChargeState(ChargeStates.Charging);
             chargeCable.StartDrawingRope(playerTrans);
-
+            chargeCable.ChangeColour(ChargingColour);
 
         }
     }
