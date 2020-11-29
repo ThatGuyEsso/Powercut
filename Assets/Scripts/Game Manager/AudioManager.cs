@@ -114,4 +114,14 @@ public class AudioManager : MonoBehaviour
             //Debug.Log("Sound of name:" + name + " was not found");
         }
     }
+
+    public Sound GetSound(string name)
+    {
+        Sound currentSound = Array.Find(sounds, sound => sound.name == name);
+        return currentSound;
+    }
+    public float GetRandomPitchOfSound(Sound sound)
+    {
+        return UnityEngine.Random.Range(sound.pitch - pitchChange, sound.pitch + pitchChange);
+    }
 }

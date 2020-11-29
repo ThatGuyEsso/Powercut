@@ -23,7 +23,7 @@ MonoBehaviour:
     m_Bits: 2048
   maxCharge: 100
   dischargeRate: 0.06
-  chargeRate: 0.05
+  chargeRate: 0.01
   rechargeAmount: 0.5
   disChargeAmount: 0.2
   maxIntensity: 1

@@ -1,0 +1,99 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8508617408298378890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8508617408298378888}
+  - component: {fileID: 8508617408298378891}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8508617408298378888
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8508617408298378890}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8508617408298378891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8508617408298378890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86d84cb58e8df4047898c38745dc26d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: BulletCollisionSFX
+    clip: {fileID: 8300000, guid: 31a4728b3c690e542b33db40d48d7007, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: PistolSFX
+    clip: {fileID: 8300000, guid: 6c5fd125a21095942bf2126920428368, type: 3}
+    volume: 0.3
+    pitch: 0.59
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: ShotgunSFX
+    clip: {fileID: 8300000, guid: 9e25c97b3b83a3a4eabc16d5e44f3333, type: 3}
+    volume: 0.5
+    pitch: 1.2
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: ClickSFX
+    clip: {fileID: 8300000, guid: aac1f515210835c49b99e242dcdccee5, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 3525846a8c6c0554ca016fe884c13243, type: 2}
+  soundGroups:
+  - name: CharacterStepsSFX
+    clips:
+    - {fileID: 8300000, guid: 5707b776539767b4a9681c773b905608, type: 3}
+    - {fileID: 8300000, guid: 40621f37c1e79684d854295a2507a18c, type: 3}
+    - {fileID: 8300000, guid: efacad8509a9124468ca47ba00f5ffdd, type: 3}
+    - {fileID: 8300000, guid: ee003c0d629923d418b293de4364bf7c, type: 3}
+    - {fileID: 8300000, guid: 40b306025c6772c41baf32303a6893de, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: CharacterHurtSFX
+    clips:
+    - {fileID: 8300000, guid: ece979bf68e92804096fa6ffb9c2e732, type: 3}
+    - {fileID: 8300000, guid: fab18dd9b2b616a448dd08fd7a40f37c, type: 3}
+    - {fileID: 8300000, guid: df8f7286848ed2849b9ba6911eebac6b, type: 3}
+    - {fileID: 8300000, guid: 0dc37443ca947ac479fdd706ec856680, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  pitchChange: 0.5

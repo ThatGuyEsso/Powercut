@@ -11321,14 +11321,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1517682262, guid: fe79016bc02d06846a020ba5b99aa157, type: 3}
-      propertyPath: throwForce
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 1517682262, guid: fe79016bc02d06846a020ba5b99aa157, type: 3}
-      propertyPath: flashBangPrefab
-      value: 
-      objectReference: {fileID: 4157752393891043654, guid: 9552d8ff0b9caf14b9db641f5efec501, type: 3}
     - target: {fileID: 7829125490333272824, guid: fe79016bc02d06846a020ba5b99aa157, type: 3}
       propertyPath: m_LocalPosition.x
       value: 735.9138
@@ -11630,6 +11622,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 566597568345642696, guid: ef759053b7ab126499db6923b978376d, type: 3}
+      propertyPath: flashDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5706933381846199863, guid: ef759053b7ab126499db6923b978376d, type: 3}
+      propertyPath: flashDuration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 5706933382755762389, guid: ef759053b7ab126499db6923b978376d, type: 3}
       propertyPath: activeCamera
       value: 
@@ -11638,10 +11638,6 @@ PrefabInstance:
       propertyPath: fieldOfView
       value: 
       objectReference: {fileID: 804821504}
-    - target: {fileID: 5706933382755762389, guid: ef759053b7ab126499db6923b978376d, type: 3}
-      propertyPath: maxTimeBtwnSteps
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 5706933382755762390, guid: ef759053b7ab126499db6923b978376d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11

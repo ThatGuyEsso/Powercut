@@ -45,3 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotgun: {fileID: 0}
   pistol: {fileID: 0}
+  flashBangPrefab: {fileID: 4157752393891043654, guid: 9552d8ff0b9caf14b9db641f5efec501, type: 3}
+  throwForce: 16

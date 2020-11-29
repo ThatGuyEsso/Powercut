@@ -13,13 +13,11 @@ public class MultiSpriteHurtFlash : MonoBehaviour
 
     private float currentFlashTime;
     private bool isFlashing;
-    private SpriteRenderer[] spriteRenderers;
+    public List<SpriteRenderer> spriteRenderers = new List<SpriteRenderer>();
 
     private void Awake()
     {
-        spriteRenderers = gameObject.GetComponents<SpriteRenderer>();
-        currentFlashTime = timeBeforeFlashShift;
-
+        Init();
     }
     private void Update()
     {
@@ -45,8 +43,10 @@ public class MultiSpriteHurtFlash : MonoBehaviour
     }
     public void SetSpriteMaterials(Material material)
     {
+
         foreach(SpriteRenderer renderer in spriteRenderers)
         {
+
             renderer.material = material;
             currMat = material;
         }
@@ -63,5 +63,14 @@ public class MultiSpriteHurtFlash : MonoBehaviour
         SetSpriteMaterials(defaultMaterial);
     }
 
+    public void Init()
+    {
+        currentFlashTime = timeBeforeFlashShift;
+        SpriteRenderer[] renderers = gameObject.GetComponentsInChildren<SpriteRenderer>();
+        foreach(SpriteRenderer sr in renderers)
+        {
+            spriteRenderers.Add(sr);
+        }
+    }
 
 }

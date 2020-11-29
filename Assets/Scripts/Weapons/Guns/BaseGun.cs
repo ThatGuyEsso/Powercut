@@ -13,6 +13,11 @@ public abstract class BaseGun : MonoBehaviour, IShootable
     protected string shootSFX;
     [SerializeField]
     protected string reloadSFX;
+    [SerializeField]
+    protected GameObject muzzleFlashSFX;
+    protected MuzzleFlash muzzleFlash;
+    [SerializeField]
+    protected float flashDuration =0.2f;
     //Ammo current
     protected int currentAmmo, currentClip;
     //Reload and shot interval max value
@@ -64,6 +69,7 @@ public abstract class BaseGun : MonoBehaviour, IShootable
             
             if (bulletRB != null)
             {
+                BeginMuzzleVFX();
                 AudioManager.instance.PlayAtRandomPitch(shootSFX);
                 //Adds force to shoot bullet
                 float dmg = Random.Range(minDamage, maxDamage);
@@ -154,6 +160,17 @@ public abstract class BaseGun : MonoBehaviour, IShootable
         UIManager.instance.ammoDisplay.SetClipCount(currentClip);
     }
 
+    protected void BeginMuzzleVFX()
+    {
+        if(muzzleFlash == false)
+        {
+            muzzleFlash = Instantiate(muzzleFlashSFX, firePoint.position, firePoint.rotation).GetComponent<MuzzleFlash>();
+            muzzleFlash.transform.SetParent(firePoint);
+            muzzleFlash.Init();
+        }
+
+        muzzleFlash.BeginMuzzleFash(flashDuration, firePoint);
+    }
     void IShootable.SetUpBullet(float knockBack, float damage)
     {
 

@@ -203,7 +203,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3436611844256869463}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.863, z: 0}
+  m_LocalPosition: {x: 0, y: 0.9348, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5706933382755762390}
@@ -389,7 +389,7 @@ SpriteRenderer:
   m_SortingLayerID: -1557868305
   m_SortingLayer: 8
   m_SortingOrder: 1
-  m_Sprite: {fileID: 2875085100902136086, guid: 2f6f3d60918fa644caaf4be7d599951f, type: 3}
+  m_Sprite: {fileID: -4408823422335329455, guid: 2f6f3d60918fa644caaf4be7d599951f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -424,7 +424,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5706933382301188993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.036, z: 0}
+  m_LocalPosition: {x: -0.006, y: 1.036, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5706933382755762390}
@@ -492,6 +492,7 @@ MonoBehaviour:
   activeCamera: {fileID: 0}
   fieldOfView: {fileID: 0}
   throwingPoint: {fileID: 5190417104141410156}
+  maxTimeBtwnSteps: 0.5
 --- !u!50 &5706933382755762388
 Rigidbody2D:
   serializedVersion: 4
@@ -581,6 +582,10 @@ PrefabInstance:
       propertyPath: magnitude
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 7603566798095995842, guid: 4e348cea64a457548988be0e642f5c32, type: 3}
+      propertyPath: muzzleFlashSFX
+      value: 
+      objectReference: {fileID: 199393515811984992, guid: 729e01a3d56a17246aad605e214386f4, type: 3}
     - target: {fileID: 7603566798095995900, guid: 4e348cea64a457548988be0e642f5c32, type: 3}
       propertyPath: m_Name
       value: Pistol
@@ -711,6 +716,10 @@ PrefabInstance:
       propertyPath: shootSFX
       value: ShotgunSFX
       objectReference: {fileID: 0}
+    - target: {fileID: 5950481766548817422, guid: 5607ba026a4353e41a1cc03fcd1015c7, type: 3}
+      propertyPath: muzzleFlashSFX
+      value: 
+      objectReference: {fileID: 199393515811984992, guid: 729e01a3d56a17246aad605e214386f4, type: 3}
     - target: {fileID: 8848792124790799599, guid: 5607ba026a4353e41a1cc03fcd1015c7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

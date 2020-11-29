@@ -11,15 +11,18 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable
     private float damage;
     private float knockBack;
     private Rigidbody2D rb;
+    private AudioSource source;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        source = gameObject.GetComponent<AudioSource>();
     }
     public void OnTriggerEnter2D(Collider2D other)
     {
         if(((1 << other.gameObject.layer) & collisionLayers) != 0)
         {
             Instantiate(sparkPrefab, transform.position, transform.rotation);
+            SetupAndPlayBulletSound("BulletCollisionSFX");
             Destroy(gameObject);
         }
         if (other.gameObject.CompareTag("Enemy"))
@@ -40,5 +43,21 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable
     void IHurtable.Damage(float damage, Vector3 knockBackDir, float knockBack)
     {
         //blank just needs to interface with enemy
+    }
+
+    public void SetupAndPlayBulletSound(string clipName)
+    {
+       Sound bulletSound = AudioManager.instance.GetSound(clipName);
+        //Create audio source or respective sound
+
+        source.clip = bulletSound.clip;
+        source.volume = bulletSound.volume;
+        source.pitch = AudioManager.instance.GetRandomPitchOfSound(bulletSound);
+        source.loop = bulletSound.loop;
+        source.outputAudioMixerGroup = bulletSound.mixerGroup;
+
+        source.Play();
+
+        
     }
 }
