@@ -25,7 +25,7 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
 
             if(hasActivated == false)
             {
-                InGamePrompt.instance.ChangePrompt("[E]  Switch of Mains");
+                InGamePrompt.instance.ChangePrompt("[E] Switch off Mains");
                 InGamePrompt.instance.ShowPrompt();
             }
            
