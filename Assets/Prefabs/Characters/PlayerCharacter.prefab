@@ -72,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: -1557868305
   m_SortingLayer: 8
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9013065481967928925, guid: 7b444bc5e2ccf724a803f08630645d2b, type: 3}
+  m_Sprite: {fileID: 7703059499286355077, guid: 7b444bc5e2ccf724a803f08630645d2b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 1
@@ -343,7 +343,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5706933382260863961}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.202, z: 0}
+  m_LocalPosition: {x: 0, y: 0.055, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5706933382755762390}
@@ -389,7 +389,7 @@ SpriteRenderer:
   m_SortingLayerID: -1557868305
   m_SortingLayer: 8
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7042711184821883898, guid: 57f9ead6698e22649b5971e291a62ce9, type: 3}
+  m_Sprite: {fileID: 2875085100902136086, guid: 2f6f3d60918fa644caaf4be7d599951f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -487,6 +487,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 987b7516e08aea440bf25a7233fe9d30, type: 2}
   knockBackFallOff: 0.1
+  hurtSFX: CharacterHurtSFX
+  stepSFX: 
   activeCamera: {fileID: 0}
   fieldOfView: {fileID: 0}
   throwingPoint: {fileID: 5190417104141410156}
@@ -524,7 +526,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.03}
+  m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.81292963, y: 0.442604}
   m_Direction: 1
 --- !u!114 &6256678402078335902
@@ -543,11 +545,12 @@ MonoBehaviour:
   pistolSprite: {fileID: 3201355777643194067, guid: 57f9ead6698e22649b5971e291a62ce9, type: 3}
   unarmedSprite: {fileID: 3859143051302553448, guid: 57f9ead6698e22649b5971e291a62ce9, type: 3}
   shotgunSpritePos: {x: 0, y: 0.202, z: 0}
-  pistolSpritePos: {x: 0, y: 0.065, z: 0}
+  pistolSpritePos: {x: 0, y: 0.055, z: 0}
+  unarmedSpritePos: {x: 0, y: 0.055, z: 0}
   unarmedCollisionOffset: {x: 0, y: 0}
-  pistolCollisionOffset: {x: 0, y: 0.74}
+  pistolCollisionOffset: {x: 0, y: 0}
   shotgunCollisionOffset: {x: 0, y: 0.03}
-  pistolWeaponColliderOffset: {x: 0, y: 0}
+  pistolWeaponColliderOffset: {x: 0, y: 0.93}
   shotgunWeaponColliderOffset: {x: 0, y: 0.93}
   playerCollider: {fileID: 661345056043839003}
   weaponCollider: {fileID: 6269266639214496758}
@@ -570,6 +573,14 @@ PrefabInstance:
       propertyPath: gunPortrait
       value: 
       objectReference: {fileID: 21300000, guid: 36db37cf68607fe458a813850afc9e03, type: 3}
+    - target: {fileID: 7603566798095995842, guid: 4e348cea64a457548988be0e642f5c32, type: 3}
+      propertyPath: shotForce
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603566798095995842, guid: 4e348cea64a457548988be0e642f5c32, type: 3}
+      propertyPath: magnitude
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7603566798095995900, guid: 4e348cea64a457548988be0e642f5c32, type: 3}
       propertyPath: m_Name
       value: Pistol
@@ -646,7 +657,7 @@ PrefabInstance:
       objectReference: {fileID: 5706933382301188992}
     - target: {fileID: 5950481766548817422, guid: 5607ba026a4353e41a1cc03fcd1015c7, type: 3}
       propertyPath: shotForce
-      value: 29
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 5950481766548817422, guid: 5607ba026a4353e41a1cc03fcd1015c7, type: 3}
       propertyPath: bulletsPerShot
@@ -662,11 +673,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5950481766548817422, guid: 5607ba026a4353e41a1cc03fcd1015c7, type: 3}
       propertyPath: time
-      value: 0.5
+      value: 0.15
       objectReference: {fileID: 0}
     - target: {fileID: 5950481766548817422, guid: 5607ba026a4353e41a1cc03fcd1015c7, type: 3}
       propertyPath: magnitude
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5950481766548817422, guid: 5607ba026a4353e41a1cc03fcd1015c7, type: 3}
       propertyPath: smoothIn
@@ -696,6 +707,10 @@ PrefabInstance:
       propertyPath: gunPortrait
       value: 
       objectReference: {fileID: 21300000, guid: d3b6ab95f7b07b049933e937100fffa5, type: 3}
+    - target: {fileID: 5950481766548817422, guid: 5607ba026a4353e41a1cc03fcd1015c7, type: 3}
+      propertyPath: shootSFX
+      value: ShotgunSFX
+      objectReference: {fileID: 0}
     - target: {fileID: 8848792124790799599, guid: 5607ba026a4353e41a1cc03fcd1015c7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -9,6 +9,10 @@ public abstract class BaseGun : MonoBehaviour, IShootable
     //Ammo max values
     public int maxAmmo, maxClip;
     public Sprite gunPortrait;
+    [SerializeField]
+    protected string shootSFX;
+    [SerializeField]
+    protected string reloadSFX;
     //Ammo current
     protected int currentAmmo, currentClip;
     //Reload and shot interval max value
@@ -60,6 +64,7 @@ public abstract class BaseGun : MonoBehaviour, IShootable
             
             if (bulletRB != null)
             {
+                AudioManager.instance.PlayAtRandomPitch(shootSFX);
                 //Adds force to shoot bullet
                 float dmg = Random.Range(minDamage, maxDamage);
                 bulletRB.AddForce(firePoint.up * shotForce,ForceMode2D.Impulse);

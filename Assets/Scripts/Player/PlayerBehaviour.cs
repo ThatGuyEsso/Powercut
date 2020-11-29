@@ -21,6 +21,10 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     private PlayerAnimController animControl;
     private Vector2 knockBack;
     public float knockBackFallOff = 0.1f;
+    [SerializeField]
+    private string hurtSFX;
+    [SerializeField]
+    private string stepSFX;
     //Object Components
     public Camera activeCamera;
     public FieldOfView fieldOfView;
@@ -36,7 +40,9 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     //Timers
     private float currHealth;
     private float currHurtTime;
-
+    [SerializeField]
+    private float maxTimeBtwnSteps;
+    private float currTimeBetwenSteps;
     //States
     private bool canBeHurt;
     private MovementStates currMoveState;
@@ -73,6 +79,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         SetUpHealth();
         animControl.UpdatePlayergun();
         WeaponManager.instance.SetUpGadget(gadgetCarried, numberOfPrimaryGadget, numberOfSecondaryGadget);
+        currMoveState = MovementStates.Idle;
     }
     public void Update()
     {
@@ -163,6 +170,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
             moveDir = context.ReadValue<Vector2>(); // gets direction of movement
             SetMovementState(MovementStates.Walking);
             animControl.PlayWalkAnim();
+            //currTimeBetwenSteps = maxTimeBtwnSteps;
         }
     }
 
@@ -198,7 +206,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         //Needs to be refactured 
         if (context.performed)
         {
-            UIManager.instance.eventDisplay.CreateEvent("Test Event", Color.white);
+   
             CycleBetweenGuns();
         }
     }
@@ -272,6 +280,9 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         //Only hurt player if player can be hurt
         if (canBeHurt)
         {
+            AudioManager.instance.PlayRandFromGroup("CharacterHurtSFX");
+            CamShake.instance.DoScreenShake(settings.duration, settings.magnitude, settings.smoothIn, settings.smoothOut);
+
             canBeHurt = false;//just been hurt so shouldn't hurt player again until timer has finished
             currHealth -= damage;
             Debug.Log("launch player");
@@ -288,6 +299,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     public void Walk()
     {
         rb.velocity =  (moveDir.normalized * settings.maxSpeed * Time.deltaTime)+knockBack;
+        PlayStepSFX();
     }
 
 
@@ -343,4 +355,16 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     }
 
   
+    public void PlayStepSFX()
+    {
+        if (currTimeBetwenSteps <= 0f)
+        {
+            AudioManager.instance.PlayRandFromGroup("CharacterStepsSFX");
+            currTimeBetwenSteps = maxTimeBtwnSteps;
+        }
+        else
+        {
+            currTimeBetwenSteps -= Time.deltaTime;
+        }
+    }
 }

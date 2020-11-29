@@ -31,18 +31,37 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            s.source.outputAudioMixerGroup = s.mixerGroup;
         }
-        foreach (SoundGroup sG in soundGroups)
+        for(int i=0;i<soundGroups.Length;i++)
         {
-            ////Create audio source or respective sound
-            //s.source = gameObject.AddComponent<AudioSource>();
-            //s.source.clip = s.clip;
-            //s.source.volume = s.volume;
-            //s.source.pitch = s.pitch;
-            //s.source.loop = s.loop;
+            ////Create audio source for each sound group
+            soundGroups[i].source = gameObject.AddComponent<AudioSource>();
+            soundGroups[i].source.volume = soundGroups[i].volume;
+            soundGroups[i].source.pitch = soundGroups[i].pitch;
+            soundGroups[i].source.loop = soundGroups[i].loop;
+            soundGroups[i].source.outputAudioMixerGroup = soundGroups[i].mixerGroup;
         }
     }
 
+    public void PlayRandFromGroup(string groupName)
+    {
+        //Find Sound Group
+        SoundGroup soundGroup = Array.Find(soundGroups, group => group.name == groupName);
+
+        //load new clip into source
+        soundGroup.source.clip = soundGroup.GetRandClip();
+
+        if(soundGroup != null)
+        {
+            //Play new sound if it exists
+            soundGroup.source.Play();
+        }
+        else
+        {
+            Debug.Log("Group of name:" + groupName + " was not found");
+        }
+    }
 
     //Play sound from sound name
     public void Play(string name)
@@ -57,7 +76,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            //Debug.Log("Sound of name:" + name + " was not found");
+            Debug.Log("Sound of name:" + name + " was not found");
         }
     }
 

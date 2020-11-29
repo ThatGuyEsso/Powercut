@@ -9,7 +9,7 @@ public class PlayerAnimController : MonoBehaviour
     private PlayerBehaviour playerRef;
     private Animator lowerBodyAnim;
     public Sprite shotgunSprite,pistolSprite,unarmedSprite;
-    public Vector3 shotgunSpritePos, pistolSpritePos;
+    public Vector3 shotgunSpritePos, pistolSpritePos, unarmedSpritePos;
     public Vector2 unarmedCollisionOffset, pistolCollisionOffset, shotgunCollisionOffset;
     public Vector2  pistolWeaponColliderOffset, shotgunWeaponColliderOffset;
     private SpriteRenderer upperBodySprite;
@@ -49,7 +49,7 @@ public class PlayerAnimController : MonoBehaviour
             playerCollider.offset = unarmedCollisionOffset;
             weaponCollider.enabled = false;
             upperBodySprite.sprite = unarmedSprite;
-            upperBodySprite.transform.localPosition = Vector3.zero;
+            upperBodySprite.transform.localPosition = unarmedSpritePos;
         }
     }
 

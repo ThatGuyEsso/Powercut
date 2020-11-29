@@ -808,8 +808,60 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86d84cb58e8df4047898c38745dc26d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds: []
-  pitchChange: 0
+  sounds:
+  - name: bulletCollision
+    clip: {fileID: 8300000, guid: 31a4728b3c690e542b33db40d48d7007, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: PistolSFX
+    clip: {fileID: 8300000, guid: 6c5fd125a21095942bf2126920428368, type: 3}
+    volume: 0.3
+    pitch: 0.59
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: ShotgunSFX
+    clip: {fileID: 8300000, guid: 9e25c97b3b83a3a4eabc16d5e44f3333, type: 3}
+    volume: 0.5
+    pitch: 1.2
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: ClickSFX
+    clip: {fileID: 8300000, guid: aac1f515210835c49b99e242dcdccee5, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 3525846a8c6c0554ca016fe884c13243, type: 2}
+  soundGroups:
+  - name: CharacterStepsSFX
+    clips:
+    - {fileID: 8300000, guid: 5707b776539767b4a9681c773b905608, type: 3}
+    - {fileID: 8300000, guid: 40621f37c1e79684d854295a2507a18c, type: 3}
+    - {fileID: 8300000, guid: efacad8509a9124468ca47ba00f5ffdd, type: 3}
+    - {fileID: 8300000, guid: ee003c0d629923d418b293de4364bf7c, type: 3}
+    - {fileID: 8300000, guid: 40b306025c6772c41baf32303a6893de, type: 3}
+    volume: 0.2
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: CharacterHurtSFX
+    clips:
+    - {fileID: 8300000, guid: ece979bf68e92804096fa6ffb9c2e732, type: 3}
+    - {fileID: 8300000, guid: fab18dd9b2b616a448dd08fd7a40f37c, type: 3}
+    - {fileID: 8300000, guid: df8f7286848ed2849b9ba6911eebac6b, type: 3}
+    - {fileID: 8300000, guid: 0dc37443ca947ac479fdd706ec856680, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  pitchChange: 0.5
 --- !u!4 &379767846
 Transform:
   m_ObjectHideFlags: 0
@@ -1188,16 +1240,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7129836826155685509, guid: 9b0e4f7fb2224f84dbf54f0836fc2786, type: 3}
+      propertyPath: showNavGraphs
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7129836826155685509, guid: 9b0e4f7fb2224f84dbf54f0836fc2786, type: 3}
       propertyPath: showGraphs
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7129836826155685509, guid: 9b0e4f7fb2224f84dbf54f0836fc2786, type: 3}
       propertyPath: data.dataString
-      value: UEsDBBQAAAgIAAAAIewHaWTMdQIAABwFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVE1z2jAQ/SuMzoWxDcbQWwuE9JCPCe3k4ouQ11iDLHkkOUAy/PeuZBu79IR4u2/19u3KX4RLUwGzSm81z55UBuT7iLgz+Tbqg49wpgcld/wTupx3ntnCJVGf80YtV4iHjmZUCVZz9kMehEsOEKwlz5UuN9kBVspYg3BOhQEMaWUdWyL0NSJn/BkvHeWCpyhxp088LYPRFY8MpAXdp0bhZDYLgiCatYxxGE2mESKzuGU2xFoyQcsKMtdFz4+Xk2Qez6O4pSfBZBpGsadI7LXNDibxIl5OE5fGlBDctIKJvVTekF1VgAbnSMYp9u9FIg2BAvihsE7skP2S5wZsa4+mlzXXaGRTlvxUjbslNcdG7AcVtbtoOsVevbym7NN/GePQh3Otysfu5jBwt9iCs+MbvTBq7GAAQ3jdiw+9aycqjnQv4L0A+ay2WtUyw6DVtaPWBqJ1//fW3KoAduzxRuodWFf9GLp5d9N2PVx9/+eV4OXeezlrgJ1Q3nK/JKBxSL9QsF8h05ZA1Kn4Y+A3PQx3rQ08cG0shtoupZO3V7V2qWTjPXPd1HaltAQPt6IrkFTYyyuWsfdDvIsNrr2LPFD3qtrL21j3WO4oHu7zg+Au9KpOt2GZQp2ewBQvtRVcQi/aBZ7Rp5WSstmxoScdbVfrnLIB7VDz7N/VIoyF+5wu5nEyz/MkgXG+p4swZ9GCRosgpyHxu8cl9knFayO0tQenJvviEves+9iMtppWft8zTU9b/lmqgeVc5mrHNIB8aSrchIPGS/CBZpuMo0E7sJZLP2/ylRKh2BGy9FYo9Z1uzlbTtK+Skop/KOuQlKz81yUlV3L9C1BLAwQUAAAICAAAACHsaoOQtW0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNVRUEovSizIKAaKGII4pZkpIHa0UnKyYVJaooWZqblZWpq5eapuWlKihWFaspFFopGFQVqioVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAACHsB2lkzHUCAAAcBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAACHsaoOQtW0AAAB4AAAACQAkAAAAAAAAAAAAAADCAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAHoDAAAAAA==
-      objectReference: {fileID: 0}
-    - target: {fileID: 7129836826155685509, guid: 9b0e4f7fb2224f84dbf54f0836fc2786, type: 3}
-      propertyPath: showNavGraphs
-      value: 1
+      value: UEsDBBQAAAgIAAAAIexkIf2kUgIAAPcEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzk3HJiGQ3lpCSA8kmdBOLr4s8gprkCWPJAdIhv/elWxjl05PLPve7r79kD+Z1K5C7o1dWpmvTI7s24gFm30Z9eAjHmBr9Fp+YMd5k7kvAgki5xW8NORPQ5gzJXor+Xe9VYGckLPWUhhbLvItzo3zjtwClEOCrPEhWpPrc8QO9HN1F0KOZI2nwfog6y4ZncjkqD3antoRO1rDqjVXUFaYB8k9eTpp2dNJpGlqpmUkXwPGjVLStVqYP1ax13VVoMXQbC6BWov1m4AC5bbwQegw+lkIh75VZeF4Ly3NqEnLfphmcCW4XSPtHVQdCl1fJ+ObKKxJu/qHcZVGWFhTPnaV0yRU8YXku1c4cnB+MNuh+74Xn8YZ7UHtYKPwrUD9ZJbW1Don0Ns6hNYOx/f933Nz8wL5rvc3Ui+cdfX/DYUeTrH/w1zJchNnedM41srEkcf9o6X1/CTB8Tpcm4K8QcVvh79gOzyjFniQ1nmC2i51kLcxtQ1UtogzC93Ufm6sxuhuRVeoQfnjC6Xxl0u8wAZlL5AHCA+mLd5i3Tu4CInunp8kF9CL2Z+X5QqzX6ErnmuvpMZedACeaE5zo3VzY8OZdGHr2grgg7BtLfO/T4txnm4EzG4n01shplO8EhuYpYKPZzCeJQJSFm9PauoT1EsjtB0PbU33yTXdWfcdGS0tVPHecwv7pfwozWDkUguz5hZRPzcZzsLRUhF6mvkilzSgNXovddw3+8yYMnyHeXZOlMVOFwdvIeuzZKyS78YHT8bm8cORsRM7/QFQSwMEFAAACAgAAAAh7GqDkLVtAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTVUVBKL0osyCgGihiCOKWZKSB2tFJysmFSWqKFmam5WVqauXmqblpSooVhWrKRRaKRhUFaoqFSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAAh7GQh/aRSAgAA9wQAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAAh7GqDkLVtAAAAeAAAAAkAJAAAAAAAAAAAAAAAnwIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABXAwAAAAA=
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9b0e4f7fb2224f84dbf54f0836fc2786, type: 3}
@@ -11578,14 +11630,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 566597568345642696, guid: ef759053b7ab126499db6923b978376d, type: 3}
-      propertyPath: shotForce
-      value: 35
-      objectReference: {fileID: 0}
-    - target: {fileID: 5706933381846199863, guid: ef759053b7ab126499db6923b978376d, type: 3}
-      propertyPath: shotForce
-      value: 30
-      objectReference: {fileID: 0}
     - target: {fileID: 5706933382755762389, guid: ef759053b7ab126499db6923b978376d, type: 3}
       propertyPath: activeCamera
       value: 
@@ -11594,6 +11638,10 @@ PrefabInstance:
       propertyPath: fieldOfView
       value: 
       objectReference: {fileID: 804821504}
+    - target: {fileID: 5706933382755762389, guid: ef759053b7ab126499db6923b978376d, type: 3}
+      propertyPath: maxTimeBtwnSteps
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5706933382755762390, guid: ef759053b7ab126499db6923b978376d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11
@@ -58531,6 +58579,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1303148296, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -21.473633
+      objectReference: {fileID: 0}
+    - target: {fileID: 503208252583316531, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 222.65039
+      objectReference: {fileID: 0}
+    - target: {fileID: 503208252583316531, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -240.08008
+      objectReference: {fileID: 0}
     - target: {fileID: 538298158162118176, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
       propertyPath: origin.y
       value: 165
@@ -58626,6 +58686,18 @@ PrefabInstance:
     - target: {fileID: 4445555425298562108, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
       propertyPath: m_Name
       value: HUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445555425609940860, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 219.10059
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445555425611274872, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -245.90039
+      objectReference: {fileID: 0}
+    - target: {fileID: 4445555425611274872, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 105.18994
       objectReference: {fileID: 0}
     - target: {fileID: 4445555425993189679, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
       propertyPath: m_VerticalAlignment

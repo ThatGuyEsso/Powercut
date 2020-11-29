@@ -15,4 +15,9 @@ public class PlayerSettings : ScriptableObject
     [Header("health Settings")]
     public float maxHealth;
     public float maxHurtTime;
+
+ 
+    [Header("ScreenShake Settings")]
+    public float duration, smoothIn, smoothOut,magnitude;
+
 }

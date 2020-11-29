@@ -45,6 +45,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxAmmo: 0
   maxClip: 99
+  gunPortrait: {fileID: 0}
+  shootSFX: PistolSFX
+  reloadSFX: 
   reloadTime: 0.2
   maxTimeBetweenShots: 0.1
   bulletPrefab: {fileID: 5927806012387839767, guid: 935114ad378a131468db129ec7cee3b7, type: 3}

@@ -24,6 +24,7 @@ public class Shotgun : BaseGun
 
             Vector3[] shotDirs;
             shotDirs = GetVectorsInArc();
+            AudioManager.instance.PlayAtRandomPitch(shootSFX);
             for (int i = 0; i < bullets.Length; i++)
             {
 

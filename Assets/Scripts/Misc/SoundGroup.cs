@@ -15,4 +15,11 @@ public class SoundGroup
     public bool loop;
     [HideInInspector]
     public AudioSource source;
+    public AudioMixerGroup mixerGroup;
+
+    public AudioClip GetRandClip()
+    {
+        int rand = Random.Range(0, clips.Length - 1);
+        return clips[rand];
+    }
 }

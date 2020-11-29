@@ -10,7 +10,7 @@ public class ShadowCrawler : BaseEnemy
 
     public float maxScaleMultiplier;
     private BaseEnemyAnimController animController;
-   
+
     protected override void Awake()
     {
         base.Awake();
@@ -22,7 +22,7 @@ public class ShadowCrawler : BaseEnemy
         RandomStatMutation();
         animController = gameObject.GetComponent<BaseEnemyAnimController>();
         animController.Init();
-        InvokeRepeating("ProcessAI",0f, settings.aiTickrate);
+        InvokeRepeating("ProcessAI", 0f, settings.aiTickrate);
     }
 
     private void Start()
@@ -56,10 +56,12 @@ public class ShadowCrawler : BaseEnemy
                 //Destroy mechanics
                 animController.PlayAnim("Break");
                 BreakAppliance();
-           
+
                 break;
 
             case EnemyStates.Chase:
+                UpdatePath();
+
                 //Move to target position
                 ResolveTargetType();
                 animController.PlayAnim("Walk");
@@ -71,11 +73,15 @@ public class ShadowCrawler : BaseEnemy
                 break;
         }
     }
+    protected override void Update()
+    {
+        base.Update();
 
+    }
     protected void FixedUpdate()
     {
-      
-   
+
+
         switch (currentState)
         {
             case EnemyStates.Idle:
@@ -88,7 +94,7 @@ public class ShadowCrawler : BaseEnemy
                 ChargePlayer();
 
                 FaceTarget();
-         
+
                 break;
             case EnemyStates.Destroy:
                 FaceTarget();
@@ -97,10 +103,10 @@ public class ShadowCrawler : BaseEnemy
 
             case EnemyStates.Chase:
                 //Move to target position
-
-
-                UpdatePath();
                 DrawPathToTarget();
+
+
+
                 SmoothAccelerate(moveDirection, maxSpeed, settings.timeZeroToMax);
                 FaceMovementDirection();
                 break;
@@ -110,18 +116,12 @@ public class ShadowCrawler : BaseEnemy
 
     protected override void DrawPathToTarget()
     {
+        //valid path checks
+        if (target == false) return;
+        if (path == null) return; //No path so return
+        if (currentWaypoint >= path.vectorPath.Count) return;
+
         float distance = Vector3.Distance(transform.position, target.transform.position);
-
-        if (path == null)
-        {
-            return; //No path so return
-        }
-
-        if (currentWaypoint >= path.vectorPath.Count)
-        {
-            return; // current waypoint is out of range of total way point. Hence path end has been reached return
-        }
-
         if (isTargetHuman)
         {
             if (distance <= settings.attackRange)
@@ -136,17 +136,22 @@ public class ShadowCrawler : BaseEnemy
                 SetEnemyState(EnemyStates.Destroy);
             }
         }
+
         distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-    
+
+        moveDirection = path.vectorPath[currentWaypoint] - (Vector3)rb.position;
         if (distance < nextWaypointDistance) // if the distance to the next waypoint is shorter than the current one, go to it
         {
             currentWaypoint++; // AI cuts corners
         }
-        moveDirection = path.vectorPath[currentWaypoint] - transform.position;
+
+
+    } 
 
 
 
-    }
+
+    
     public void RandomStatMutation()
     {
         float mutationMultipler = Random.Range(1f, maxScaleMultiplier);//Get multplier in range of current scale to max scale
