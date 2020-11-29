@@ -6,11 +6,12 @@ using System;
 public class AudioManager : MonoBehaviour
 {
     public Sound[] sounds;
+    public SoundGroup[] soundGroups;
     public static AudioManager instance;
     public float pitchChange;
     private void Awake()
     {
-
+        //Initialise Singleton Instance
         if (instance == false)
         {
             instance = this;
@@ -20,6 +21,8 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        //Create sound class
         foreach (Sound s in sounds)
         {
             //Create audio source or respective sound
@@ -28,6 +31,15 @@ public class AudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+        }
+        foreach (SoundGroup sG in soundGroups)
+        {
+            ////Create audio source or respective sound
+            //s.source = gameObject.AddComponent<AudioSource>();
+            //s.source.clip = s.clip;
+            //s.source.volume = s.volume;
+            //s.source.pitch = s.pitch;
+            //s.source.loop = s.loop;
         }
     }
 
