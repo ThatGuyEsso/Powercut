@@ -32,6 +32,9 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     protected Vector2 knockBack;
     //Component refs
     protected Rigidbody2D rb;
+    //VFX
+    [SerializeField]
+    protected GameObject hurtNumber;
     protected MultiSpriteHurtFlash hurtVFX;
 
     //Pathfinding
@@ -368,7 +371,14 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
                 hurtVFX.BeginFlash();
                 currentHealth -= damage;
                 this.knockBack = knockBack * knockBackDir;
-                if(currentHealth <= 0)
+                DamageNumber dmgVFX = Instantiate(hurtNumber, transform.position, Quaternion.identity).GetComponent<DamageNumber>();
+                if(dmgVFX != false)
+                {
+                    dmgVFX.Init();
+                    dmgVFX.SetTextValues(damage, settings.maxHealth, knockBackDir);
+                }
+
+                if (currentHealth <= 0)
                 {
                     KillEnemy();
                 }

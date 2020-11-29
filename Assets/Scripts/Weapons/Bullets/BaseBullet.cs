@@ -22,7 +22,8 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable
         if(((1 << other.gameObject.layer) & collisionLayers) != 0)
         {
             Instantiate(sparkPrefab, transform.position, transform.rotation);
-            SetupAndPlayBulletSound("BulletCollisionSFX");
+            //SetupAndPlayBulletSound("BulletCollisionSFX");
+            AudioManager.instance.PlayAtRandomPitch("BulletCollisionSFX");
             Destroy(gameObject);
         }
         if (other.gameObject.CompareTag("Enemy"))

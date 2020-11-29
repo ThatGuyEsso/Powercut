@@ -90,7 +90,10 @@ public class AudioManager : MonoBehaviour
             float ogPitch = currentSound.pitch;
             currentSound.pitch = UnityEngine.Random.Range( currentSound.pitch- pitchChange, currentSound.pitch+ pitchChange);
 
+         
+
             currentSound.source.Play();
+       
             currentSound.pitch = ogPitch;
 
 
