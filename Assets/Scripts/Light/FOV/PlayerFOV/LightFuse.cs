@@ -60,7 +60,7 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
             if (!isFixing)
             {
                 targetTrans = other.gameObject.transform;
-                Debug.Log(targetTrans);
+
                 canFix = !parentLamp.GetIsLampWorking();
            
                 if (canFix)

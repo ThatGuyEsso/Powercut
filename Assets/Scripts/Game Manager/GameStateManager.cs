@@ -11,9 +11,15 @@ public enum GameStates
     TasksCompleted,
     LevelClear
 };
-public class GameStateManager : MonoBehaviour
+public class GameStateManager : MonoBehaviour, IInitialisable
 {
     public static GameStateManager instance;
+    [SerializeField]
+    public GameObject[] itemsToInit;
+    [SerializeField]
+    Transform initSpawnPoint;
+    [SerializeField]
+    Transform respawnPoint;
     private  GameStates currentGameState;
     private void Awake()
     {
@@ -70,6 +76,46 @@ public class GameStateManager : MonoBehaviour
         return currentGameState;
     }
 
-   
+    public void BindToInitManager()
+    {
+        InitStateManager.instance.OnStateChange += EvaluateNewState;
+    }
 
+    private void EvaluateNewState(InitStates newState)
+    {
+        switch (newState)
+        {
+            case InitStates.SpawnPlayer:
+                SpawnPlayer();
+                break;
+        }
+    }
+    private void SpawnPlayer()
+    {
+        FindObjectOfType<PlayerBehaviour>().transform.position = initSpawnPoint.position;
+        Invoke("PlayerSpawnedUpdate", 0.5f);
+      
+    }
+    private void RespawnPlayer()
+    {
+        FindObjectOfType<PlayerBehaviour>().transform.position = respawnPoint.position;
+        InitStateManager.instance.BeginNewState(InitStates.PlayerSpawned);
+    }
+
+    void IInitialisable.Init()
+    {
+        Init();
+    }
+    public void Init()
+    {
+        foreach(GameObject init in itemsToInit)
+        {
+            init.GetComponent<IInitialisable>().Init();
+        }
+    }
+
+    private void PlayerSpawnedUpdate()
+    {
+        InitStateManager.instance.BeginNewState(InitStates.PlayerSpawned);
+    }
 }

@@ -47,12 +47,13 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     private bool canBeHurt;
     private MovementStates currMoveState;
     private bool isDead;
+    private bool isInitialised;
 
     //Input
     private Vector2 moveDir;
     private Controls input;
     private int equippedIndex;
-    public void Awake()
+    public void Init()
     {
         //Cache
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -66,34 +67,37 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         currHurtTime = settings.maxHurtTime;
         numberOfPrimaryGadget = 3;
         numberOfSecondaryGadget = 2;
+
+        CycleBetweenGuns();
+        SetUpHealth();
+        animControl.UpdatePlayergun();
+        WeaponManager.instance.SetUpGadget(gadgetCarried, numberOfPrimaryGadget, numberOfSecondaryGadget);
+        currMoveState = MovementStates.Idle;
         //Set input
         input = new Controls();
         input.PlayerControls.SetCallbacks(this);
         input.Enable();
 
         input.PlayerControls.Movement.canceled += _ => EndMovement();
+        isInitialised = true;
     }
-    private void Start()
-    {
-        CycleBetweenGuns();
-        SetUpHealth();
-        animControl.UpdatePlayergun();
-        WeaponManager.instance.SetUpGadget(gadgetCarried, numberOfPrimaryGadget, numberOfSecondaryGadget);
-        currMoveState = MovementStates.Idle;
-    }
+
     public void Update()
     {
 
-
-        //Updates direction and origin of field of view
-        fieldOfView.SetAimDirection(transform.up);
-        fieldOfView.SetOrigin(transform.position);
-
-        //Update player rotation
-        if (!isDead)
+        if (isInitialised)
         {
-            PlayerFacePointer();
 
+            //Updates direction and origin of field of view
+            fieldOfView.SetAimDirection(transform.up);
+            fieldOfView.SetOrigin(transform.position);
+
+            //Update player rotation
+            if (!isDead)
+            {
+                PlayerFacePointer();
+
+        }
         }
 
         //If can't player can be hurt they must have recently be damaged
@@ -206,7 +210,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         //Needs to be refactured 
         if (context.performed)
         {
-   
+            
             CycleBetweenGuns();
         }
     }
@@ -298,8 +302,11 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     }
     public void Walk()
     {
-        rb.velocity =  (moveDir.normalized * settings.maxSpeed * Time.deltaTime)+knockBack;
-        PlayStepSFX();
+        if (isInitialised)
+        {
+             rb.velocity =  (moveDir.normalized * settings.maxSpeed * Time.deltaTime)+knockBack;
+            PlayStepSFX();
+        }
     }
 
 
@@ -333,8 +340,11 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
 
     private void OnDestroy()
     {
-        input.Disable();
-        input.PlayerControls.Movement.canceled -= _ => EndMovement();
+        if (input != null)
+        {
+            input.Disable();
+            input.PlayerControls.Movement.canceled -= _ => EndMovement();
+        }
     }
 
     private void CycleBetweenGuns()

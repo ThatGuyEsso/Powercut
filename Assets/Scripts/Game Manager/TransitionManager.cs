@@ -7,8 +7,10 @@ public class TransitionManager : MonoBehaviour
     public static TransitionManager instance;
 
 
-    private SceneIndex currentGameScene;
+    private SceneIndex currentLevel;
     private List<AsyncOperation> sceneLoading = new List<AsyncOperation>();
+    private bool isLoading = false;
+    private bool isFading =false;
     private void Awake()
     {
         if (instance == false)
@@ -21,7 +23,7 @@ public class TransitionManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-        currentGameScene = SceneIndex.MainMenu;
+        currentLevel = SceneIndex.MainMenu;
     }
 
     public void BindToInitManager()
@@ -34,46 +36,86 @@ public class TransitionManager : MonoBehaviour
         {
             case InitStates.Init:
                 GameInit();
-                Debug.Log("Transition manager is bound");
+
                 break;
         }
     }
 
     public void GameInit()
     {
+        LoadingScreen.instance.OnFadeComplete += EvaluateFade;
         sceneLoading.Add(SceneManager.LoadSceneAsync((int)(SceneIndex.MainMenu), LoadSceneMode.Additive));
         StartCoroutine(GetGameInitLoadProgress());
     }
-    private void LoadDungeonLevel(SceneIndex scene)
+
+
+
+
+    public void LoadLevel(SceneIndex newScene,bool shouldFade)
     {
-        //LoadingScreen.instance.ToggleScreen(true);
-        sceneLoading.Add(SceneManager.UnloadSceneAsync((int)currentGameScene));
-        sceneLoading.Add(SceneManager.LoadSceneAsync((int)(scene),LoadSceneMode.Additive));
-      
-        currentGameScene = scene;
-        StartCoroutine( PlaySceneLoadProgress());
+        if (shouldFade) LoadingScreen.instance.BeginFade(true);
+        sceneLoading.Add(SceneManager.UnloadSceneAsync((int)currentLevel));
+        sceneLoading.Add(SceneManager.LoadSceneAsync((int)newScene, LoadSceneMode.Additive));
+        currentLevel = newScene;
+        StartCoroutine(GetSceneLoadProgress());
     }
-    public IEnumerator LoadPlayerScene()
+
+    public void StartLevel(SceneIndex newLevel)
     {
-      
-     
-        sceneLoading.Add(SceneManager.LoadSceneAsync((int)SceneIndex.PlayerScene, LoadSceneMode.Additive));
+        StartCoroutine(BeginGameLoad(newLevel));
+    }
 
-        for (int i = 0; i < sceneLoading.Count; i++)
+    private IEnumerator BeginGameLoad(SceneIndex newLevel)
+    {
+        isLoading = true;
+        LoadingScreen.instance.BeginFade(true);
+        isFading = true;
+
+        //wait till fade end before initialising level
+  
+        Debug.Log("started  fading");
+        while (isFading)
         {
-            while (!sceneLoading[i].isDone)
-            {
-                yield return null;
-            }
+            yield return null;
         }
+        Debug.Log("Finisied  fading");
+        //Unload currentlevel (e.g. mainMenu)
+        AsyncOperation sceneUnload = (SceneManager.UnloadSceneAsync((int)currentLevel));
+        while (!sceneUnload.isDone)
+        {
+            yield return null;
+        }
+        //Load in new level
+        AsyncOperation sceneLoad = (SceneManager.LoadSceneAsync((int)newLevel, LoadSceneMode.Additive));
+        while (!sceneLoad.isDone)
+        {
+            yield return null;
+        }
+        currentLevel = newLevel; // once done current level is new level
+        InitStateManager.instance.BeginNewState(InitStates.LevelLoaded);
+        //loadUi
+        sceneLoad = SceneManager.LoadSceneAsync((int)SceneIndex.UIscene, LoadSceneMode.Additive);
+        while (!sceneLoad.isDone)
+        {
+            yield return null;
+        }
+        InitStateManager.instance.BeginNewState(InitStates.UISceneLoaded);
+        //load in player scene
+        sceneLoad = (SceneManager.LoadSceneAsync((int)SceneIndex.PlayerScene, LoadSceneMode.Additive));
+        while (!sceneLoad.isDone)
+        {
+            yield return null;
+        }
+        InitStateManager.instance.BeginNewState(InitStates.PlayerSceneLoaded);
 
-        sceneLoading.Clear();
-        InitStateManager.instance.BeginNewState(InitStates.SpawnPlayer);
+        isLoading = false;
+
     }
 
 
     public IEnumerator GetSceneLoadProgress()
     {
+        isLoading = true;
         for (int i = 0; i < sceneLoading.Count; i++)
         {
             while (!sceneLoading[i].isDone)
@@ -81,7 +123,7 @@ public class TransitionManager : MonoBehaviour
                 yield return null;
             }
         }
-      
+        isLoading = false;
         sceneLoading.Clear();
 
 
@@ -95,22 +137,17 @@ public class TransitionManager : MonoBehaviour
                 yield return null;
             }
         }
-        //LoadingScreen.instance.ToggleScreen(false);
+        LoadingScreen.instance.BeginFade(false);
         sceneLoading.Clear();
 
 
     }
-    public IEnumerator PlaySceneLoadProgress()
+
+
+    public void EvaluateFade()
     {
-        for (int i = 0; i < sceneLoading.Count; i++)
-        {
-            while (!sceneLoading[i].isDone)
-            {
-                yield return null;
-            }
-        }
+        isFading = false;
 
-        sceneLoading.Clear();
-  
     }
+
 }

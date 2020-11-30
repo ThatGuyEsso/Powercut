@@ -1,13 +1,13 @@
 ﻿
 using UnityEngine;
 using TMPro;
-public class InGamePrompt : MonoBehaviour
+public class InGamePrompt : MonoBehaviour, IInitialisable
 {
     private TextMeshPro promptText;
     private Transform playerTrans;
     public static InGamePrompt instance;
     public Vector3 offset;
-    private void Awake()
+    private void Init()
     {
         instance = this;
         promptText = gameObject.GetComponent<TextMeshPro>();
@@ -41,5 +41,9 @@ public class InGamePrompt : MonoBehaviour
 
             transform.position = playerTrans.position + offset;
         }
+    }
+    void IInitialisable.Init()
+    {
+        Init();
     }
 }

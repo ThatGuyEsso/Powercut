@@ -6,13 +6,17 @@ using UnityEngine;
 public enum InitStates
 {
     Init,
-    GenerateDungeon,
-    GenerateRooms,
+    InitLevel,
+    LevelLoaded,
+    PlayerSceneLoaded,
+    UISceneLoaded,
     SpawnPlayer,
+    PlayerSpawned,
     GameRunning,
-    DungeonClear,
+    LevelClear,
     PlayerDead,
-    CalculateScores,
+    ExitLevel
+
 };
 
 public class InitStateManager : MonoBehaviour
@@ -49,8 +53,8 @@ public class InitStateManager : MonoBehaviour
         Instantiate(audioManager, Vector3.zero, Quaternion.identity);
         Instantiate(transitionManager, Vector3.zero, Quaternion.identity);
 
-        //AudioManager.instance.BindToInitManager();
-        //TransitionManager.instance.BindToInitManager();
+        AudioManager.instance.BindToInitManager();
+        TransitionManager.instance.BindToInitManager();
 
         OnStateChange?.Invoke(currInitState);
 
@@ -60,19 +64,45 @@ public class InitStateManager : MonoBehaviour
     {
         switch (newState)
         {
-            case InitStates.GenerateDungeon:
-                //GameManager.instance.BindToInitManager();
-                //gameState = newState;
-                //OnStateChange?.Invoke(gameState);
+            case InitStates.InitLevel:
+                GameStateManager.instance.BindToInitManager();
+                currInitState = newState;
+                OnStateChange?.Invoke(currInitState);
                 break;
-            case InitStates.SpawnPlayer:
-                //gameState = newState;
-                //OnStateChange?.Invoke(gameState);
+            case InitStates.PlayerSpawned:
+                FindObjectOfType<PlayerBehaviour>().Init();
+
+                LoadingScreen.instance.cam.SetActive(false);
+                LoadingScreen.instance.BeginFade(false);
+                currInitState = InitStates.GameRunning;
+                OnStateChange?.Invoke(currInitState);
+         
                 break;
             case InitStates.GameRunning:
-                //LoadingScreen.instance.ToggleScreen(false);
+                LoadingScreen.instance.ToggleScreen(false);
                 break;
 
+            case InitStates.LevelLoaded:
+
+                currInitState = newState;
+                OnStateChange?.Invoke(currInitState);
+                GameStateManager.instance.BindToInitManager();
+
+                break;
+            case InitStates.PlayerSceneLoaded:
+                FindObjectOfType<WeaponManager>().Init();
+                FindObjectOfType<LightManager>().Init();
+      
+                GameStateManager.instance.Init();
+   
+                currInitState = InitStates.SpawnPlayer;
+                OnStateChange?.Invoke(currInitState);
+                break;
+            case InitStates.UISceneLoaded:
+                currInitState = newState;
+                OnStateChange?.Invoke(currInitState);
+
+                break;
         }
     }
 }

@@ -25,23 +25,21 @@ public class LightManager : MonoBehaviour
     private bool isFullyCharged;
 
 
- 
+    private bool isInitialised;
 
 
-    private void Awake()
+    public void Init()
     {
         //initial variables
         currentCharge = settings.maxCharge;
         dischargeRate = settings.dischargeRate;
         fieldViewCone = gameObject.GetComponent<FieldOfView>();
-
-    }
-
-    private void Start()
-    {
         batterySlider = UIManager.instance.batteryDisplay;
         batterySlider.InitSlider(settings.maxCharge);
+        isInitialised = true;
+
     }
+
     public void Update()
     {
         //Switch between charging states
@@ -60,27 +58,31 @@ public class LightManager : MonoBehaviour
     //Increase decrease current charge
     private void Discharge()
     {
-        if (dischargeRate > 0)
+        if (isInitialised)
         {
-            dischargeRate -= Time.deltaTime;
-        }
-        else
-        {
-            dischargeRate = settings.dischargeRate;
-            currentCharge -= settings.disChargeAmount;
-            if (currentCharge <= 0)
+            if (dischargeRate > 0)
             {
-                currentCharge = 0;
+                dischargeRate -= Time.deltaTime;
             }
-            batterySlider.UpdateSlider(currentCharge);
-        }
+            else
+            {
+                dischargeRate = settings.dischargeRate;
+                currentCharge -= settings.disChargeAmount;
+                if (currentCharge <= 0)
+                {
+                    currentCharge = 0;
+                }
+                batterySlider.UpdateSlider(currentCharge);
+            }
 
-        //If there is no charge turn off light if it is on
-        if (currentCharge <= 0 && fieldViewCone.GetLightIsOn())
-        {
-            fieldViewCone.ToggleLight(false);
-            SetChargeState(ChargeStates.StandBy);
+            //If there is no charge turn off light if it is on
+            if (currentCharge <= 0 && fieldViewCone.GetLightIsOn())
+            {
+                fieldViewCone.ToggleLight(false);
+                SetChargeState(ChargeStates.StandBy);
+            }
         }
+     
     }
 
     //Increase current charge

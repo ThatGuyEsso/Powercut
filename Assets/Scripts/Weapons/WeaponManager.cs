@@ -25,19 +25,17 @@ public class WeaponManager : MonoBehaviour
     public GameObject flashBangPrefab;
     public float throwForce;
  
-    private void Awake()
+    public void Init()
     {
         //Create static instance of this class
         instance = this;
         shotgun = FindObjectOfType<Shotgun>();
         pistol = FindObjectOfType<Pistol>();
         UIManager.instance.gunDisplay.UpdateActiveGun(shotgun.gunPortrait, pistol.gunPortrait);
-    }
 
-    private void Start()
-    {
         SetGunAmmoDisplay();
     }
+
     public void SetActiveWeapon(GunTypes newGun)
     {
         if (!IsActiveGunReloading())

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TaskManager : MonoBehaviour
+public class TaskManager : MonoBehaviour, IInitialisable
 {
     public static TaskManager instance;
 
@@ -25,7 +25,7 @@ public class TaskManager : MonoBehaviour
         }
        
     }
-    private void Start()
+    private void Init()
     {
         GetTasksInLevel();
     }
@@ -103,7 +103,10 @@ public class TaskManager : MonoBehaviour
         Debug.Log("Tasks: " +taskNames.Count);
     }
 
-
+    void IInitialisable.Init()
+    {
+        Init();
+    }
     public Transform GetNearestTask(Transform targetObject)
     {
         Transform nearestTaskT;

@@ -586,6 +586,10 @@ PrefabInstance:
       propertyPath: muzzleFlashSFX
       value: 
       objectReference: {fileID: 199393515811984992, guid: 729e01a3d56a17246aad605e214386f4, type: 3}
+    - target: {fileID: 7603566798095995842, guid: 4e348cea64a457548988be0e642f5c32, type: 3}
+      propertyPath: flashDuration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7603566798095995900, guid: 4e348cea64a457548988be0e642f5c32, type: 3}
       propertyPath: m_Name
       value: Pistol
@@ -720,6 +724,10 @@ PrefabInstance:
       propertyPath: muzzleFlashSFX
       value: 
       objectReference: {fileID: 199393515811984992, guid: 729e01a3d56a17246aad605e214386f4, type: 3}
+    - target: {fileID: 5950481766548817422, guid: 5607ba026a4353e41a1cc03fcd1015c7, type: 3}
+      propertyPath: flashDuration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8848792124790799599, guid: 5607ba026a4353e41a1cc03fcd1015c7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

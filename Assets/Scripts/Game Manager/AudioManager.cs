@@ -127,4 +127,18 @@ public class AudioManager : MonoBehaviour
     {
         return UnityEngine.Random.Range(sound.pitch - pitchChange, sound.pitch + pitchChange);
     }
+    public void BindToInitManager()
+    {
+        InitStateManager.instance.OnStateChange += EvaluateNewState;
+    }
+
+    private void EvaluateNewState(InitStates newState)
+    {
+        switch (newState)
+        {
+            case InitStates.Init:
+            
+                break;
+        }
+    }
 }
