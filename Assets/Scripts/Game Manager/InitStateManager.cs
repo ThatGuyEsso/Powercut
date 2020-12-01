@@ -100,6 +100,8 @@ public class InitStateManager : MonoBehaviour
                 break;
             case InitStates.UISceneLoaded:
                 currInitState = newState;
+                PauseScreen.instance.Resume();
+                UIManager.instance.Init();
                 OnStateChange?.Invoke(currInitState);
 
                 break;

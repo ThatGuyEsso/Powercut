@@ -14,6 +14,7 @@ public enum GameStates
 public class GameStateManager : MonoBehaviour, IInitialisable
 {
     public static GameStateManager instance;
+    public static bool isGamePaused = false;
     [SerializeField]
     public GameObject[] itemsToInit;
     [SerializeField]
@@ -117,5 +118,22 @@ public class GameStateManager : MonoBehaviour, IInitialisable
     private void PlayerSpawnedUpdate()
     {
         InitStateManager.instance.BeginNewState(InitStates.PlayerSpawned);
+    }
+
+    public void PauseGame()
+    {
+        if (!isGamePaused)
+        {
+            isGamePaused = true;
+            Time.timeScale = 0f;
+        }
+    }
+    public void ResumeGame()
+    {
+        if (isGamePaused)
+        {
+            isGamePaused = false;
+            Time.timeScale = 1f;
+        }
     }
 }
