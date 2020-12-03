@@ -63,6 +63,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         hurtVFX = gameObject.GetComponentInChildren<MultiSpriteHurtFlash>();
         currHurtTime = settings.hurtTime;
         currTimeBeforeInvulnerable = settings.timeBeforeInvulnerable;
+        BindToInitManager();
        // InvokeRepeating("ProcessAI", 0f, settings.aiTickrate);
     }
 
@@ -404,6 +405,22 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
             {
                 knockBack = Vector2.zero;
             }
+        }
+    }
+
+    public void BindToInitManager()
+    {
+        InitStateManager.instance.OnStateChange += EvaluateNewState;
+    }
+    private void EvaluateNewState(InitStates newState)
+    {
+        switch (newState)
+        {
+            case InitStates.RespawnPlayer:
+                InitStateManager.instance.OnStateChange -= EvaluateNewState;
+                Destroy(gameObject);
+            
+                break;
         }
     }
 }

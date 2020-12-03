@@ -212,6 +212,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         {
             
             CycleBetweenGuns();
+            PlayerDie();
         }
     }
 
@@ -284,7 +285,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         //Only hurt player if player can be hurt
         if (canBeHurt)
         {
-            AudioManager.instance.PlayRandFromGroup("CharacterHurtSFX");
+            AudioManager.instance.PlayRandFromGroup(hurtSFX);
             CamShake.instance.DoScreenShake(settings.duration, settings.magnitude, settings.smoothIn, settings.smoothOut);
 
             canBeHurt = false;//just been hurt so shouldn't hurt player again until timer has finished
@@ -335,6 +336,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
             component.PlayerDied();
         }
         fieldOfView.ToggleLight(false);
+        InitStateManager.instance.BeginNewState(InitStates.PlayerDead);
         
     }
 
@@ -365,16 +367,48 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     }
 
   
+    //Step sfx
     public void PlayStepSFX()
     {
         if (currTimeBetwenSteps <= 0f)
         {
-            AudioManager.instance.PlayRandFromGroup("CharacterStepsSFX");
+            AudioManager.instance.PlayRandFromGroup(stepSFX);
             currTimeBetwenSteps = maxTimeBtwnSteps;
         }
         else
         {
             currTimeBetwenSteps -= Time.deltaTime;
+        }
+    }
+
+    private void ResetCharacter()
+    {
+        currHealth = settings.maxHealth;
+        currHurtTime = settings.maxHurtTime;
+        numberOfPrimaryGadget = 3;
+        numberOfSecondaryGadget = 2;
+        SetUpHealth();
+        animControl.UpdatePlayergun();
+        input.Enable();
+    }
+
+
+    public void BindToInitManager()
+    {
+        InitStateManager.instance.OnStateChange += EvaluateNewState;
+    }
+    private void EvaluateNewState(InitStates newState)
+    {
+        switch (newState)
+        {
+            case InitStates.PlayerSpawned:
+                Init();
+                Debug.Log("init");
+                break;
+            case InitStates.PlayerRespawned:
+                ResetCharacter();
+                Debug.Log("init");
+                break;
         }
     }
 }

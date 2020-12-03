@@ -48,6 +48,10 @@ public class TransitionManager : MonoBehaviour
         StartCoroutine(GetGameInitLoadProgress());
     }
 
+    public void ReturnToTitleScreen()
+    {
+
+    }
 
 
 

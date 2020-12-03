@@ -488,7 +488,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: 987b7516e08aea440bf25a7233fe9d30, type: 2}
   knockBackFallOff: 0.1
   hurtSFX: CharacterHurtSFX
-  stepSFX: 
+  stepSFX: CharacterStepsSFX
   activeCamera: {fileID: 0}
   fieldOfView: {fileID: 0}
   throwingPoint: {fileID: 5190417104141410156}

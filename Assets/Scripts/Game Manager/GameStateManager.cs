@@ -89,6 +89,10 @@ public class GameStateManager : MonoBehaviour, IInitialisable
             case InitStates.SpawnPlayer:
                 SpawnPlayer();
                 break;
+            case InitStates.RespawnPlayer:
+                RespawnPlayer();
+
+                break;
         }
     }
     private void SpawnPlayer()
@@ -100,7 +104,7 @@ public class GameStateManager : MonoBehaviour, IInitialisable
     private void RespawnPlayer()
     {
         FindObjectOfType<PlayerBehaviour>().transform.position = respawnPoint.position;
-        InitStateManager.instance.BeginNewState(InitStates.PlayerSpawned);
+        InitStateManager.instance.BeginNewState(InitStates.PlayerRespawned);
     }
 
     void IInitialisable.Init()

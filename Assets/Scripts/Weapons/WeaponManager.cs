@@ -187,6 +187,12 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    private void ResetGuns()
+    {
+        pistol.ResetGun();
+        shotgun.ResetGun();
+    }
+
     public GunTypes GetActiveGun()
     {
         return activeGun;
@@ -205,6 +211,19 @@ public class WeaponManager : MonoBehaviour
     public void GainSecondaryGadget()
     {
 
+    }
+    public void BindToInitManager()
+    {
+        InitStateManager.instance.OnStateChange += EvaluateNewState;
+    }
+    private void EvaluateNewState(InitStates newState)
+    {
+        switch (newState)
+        {
+            case InitStates.RespawnPlayer:
+                ResetGuns();
+                break;
+        }
     }
 
 }

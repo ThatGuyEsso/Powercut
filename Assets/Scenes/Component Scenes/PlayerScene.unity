@@ -193,13 +193,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5706933382755762389, guid: ef759053b7ab126499db6923b978376d, type: 3}
-      propertyPath: fieldOfView
-      value: 
-      objectReference: {fileID: 1702423129}
-    - target: {fileID: 5706933382755762389, guid: ef759053b7ab126499db6923b978376d, type: 3}
       propertyPath: activeCamera
       value: 
       objectReference: {fileID: 307891153}
+    - target: {fileID: 5706933382755762389, guid: ef759053b7ab126499db6923b978376d, type: 3}
+      propertyPath: fieldOfView
+      value: 
+      objectReference: {fileID: 1702423129}
     - target: {fileID: 5706933382755762390, guid: ef759053b7ab126499db6923b978376d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

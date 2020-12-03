@@ -74,10 +74,12 @@ public class TaskManager : MonoBehaviour, IInitialisable
     private void GetTasksInLevel()
     {
         BaseTask[] tasks = FindObjectsOfType<BaseTask>();//Get everything that inherits tasks
+
         taskNames.Add(tasks[0].GetTaskName());
          //Add all tasks to list of tasks
         for (int i = 0; i < tasks.Length; i++)
         {
+            tasks[i].Init();
             bool exists = false;
             
             for(int j = 0; j < taskNames.Count; j++)
@@ -102,10 +104,33 @@ public class TaskManager : MonoBehaviour, IInitialisable
         UIManager.instance.taskDisplay.PopulateTasks(taskNames.Count, allTasks);
         Debug.Log("Tasks: " +taskNames.Count);
     }
+    private void ResetTasks()
+    {
+        foreach(BaseTask task in allTasks)
+        {
+            task.ResetTask();
+        }
+        allTasks.Clear();
+    }
 
     void IInitialisable.Init()
     {
         Init();
+    }
+    public void BindToInitManager()
+    {
+        InitStateManager.instance.OnStateChange += EvaluateNewState;
+    }
+    private void EvaluateNewState(InitStates newState)
+    {
+        switch (newState)
+        {
+            case InitStates.RespawnPlayer:
+                ResetTasks();
+                Init();
+                Debug.Log("init");
+                break;
+        }
     }
     public Transform GetNearestTask(Transform targetObject)
     {

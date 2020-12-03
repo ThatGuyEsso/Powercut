@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour, Controls.IUIActions
     public GadgetDisplay gadgetDisplay;
     public EventDisplay eventDisplay;
     private Controls input;
-
+    private bool isFading;
     private void Awake()
     {
         if (instance == false)
@@ -68,6 +68,49 @@ public class UIManager : MonoBehaviour, Controls.IUIActions
         taskDisplay = transform.Find("TaskDisplay").GetComponent<TaskDisplay>();
         gadgetDisplay = transform.Find("GadgetDisplay").GetComponent<GadgetDisplay>();
         eventDisplay = transform.Find("EventDisplay").GetComponent<EventDisplay>();
+    }
+    public void BindToInitManager()
+    {
+        InitStateManager.instance.OnStateChange += EvaluateNewState;
+    }
+    private void EvaluateNewState(InitStates newState)
+    {
+        switch (newState)
+        {
+            case InitStates.PlayerDead:
+
+                StartCoroutine(DeathTransition());
+                break;
+            case InitStates.RespawnPlayer:
+                
+            
+                break;
+        }
+    }
+    private IEnumerator DeathTransition()
+    {
+        LoadingScreen.instance.OnCurtainCallEnd += ResolveFading;
+        LoadingScreen.instance.StartCurtainCall(0.00001f, false);
+        isFading = true;
+        while (isFading)
+        {
+            yield return null;
+        }
+        LoadingScreen.instance.OnCurtainCallEnd -= ResolveFading;
+        LevelClearScreen.instance.textFade.OnTextFadeEnd += ResolveFading;
+        LevelClearScreen.instance.BeginGameOver();
+        isFading = true;
+        while (isFading)
+        {
+            yield return null;
+        }
+        LevelClearScreen.instance.gameOverScreen.SetActive(false);
+        InitStateManager.instance.BeginNewState(InitStates.RespawnPlayer);
+    }
+
+    private void ResolveFading()
+    {
+        isFading = false;
     }
 }
 

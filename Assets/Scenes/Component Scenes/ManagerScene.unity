@@ -274,7 +274,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6811723072670232293, guid: 00247d7ceb99b6c46afcd4e3c39967ab, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6811723072670232293, guid: 00247d7ceb99b6c46afcd4e3c39967ab, type: 3}
+      propertyPath: m_PixelPerfect
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6811723072670232294, guid: 00247d7ceb99b6c46afcd4e3c39967ab, type: 3}
       propertyPath: m_LocalPosition.x
@@ -383,7 +387,7 @@ MonoBehaviour:
   cam: {fileID: 122215674}
   loadingScreen: {fileID: 1424481368}
   loadingText: {fileID: 984112244}
-  fadeRate: 0.001
+  fadeRate: 0.0025
   screenImage: {fileID: 1424481370}
 --- !u!1 &1424481368 stripped
 GameObject:

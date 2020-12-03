@@ -15,6 +15,8 @@ public class LoadingScreen : MonoBehaviour
 
     public event FadeCompleted OnFadeComplete;
     public delegate void FadeCompleted( );
+    public event CurtainCall OnCurtainCallEnd;
+    public delegate void CurtainCall();
     private void Awake()
     {
 
@@ -27,7 +29,10 @@ public class LoadingScreen : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+   
     }
+        
+
 
     public void ToggleScreen( bool isOn)
     {
@@ -84,6 +89,31 @@ public class LoadingScreen : MonoBehaviour
         cam.SetActive(false);
         OnFadeComplete?.Invoke();
     }
+
+    public void StartCurtainCall(float callTime, bool useUICam)
+    {
+        StartCoroutine(CallCurtain(callTime,  useUICam));
+    }
+    private IEnumerator CallCurtain(float callTime, bool useUICam)
+    {
+        float oppacity = 0;
+        cam.SetActive(useUICam);
+        loadingScreen.SetActive(true);
+        loadingText.SetActive(false);
+        screenImage.color = new Color(screenImage.color.r, screenImage.color.g, screenImage.color.b, oppacity);
+
+
+        while (oppacity < 1f)
+        {
+            oppacity += 0.01f;
+            Debug.Log(oppacity);
+            screenImage.color = new Color(screenImage.color.r, screenImage.color.g, screenImage.color.b, oppacity);
+            yield return new WaitForSeconds(callTime);
+        }
+
+        OnCurtainCallEnd?.Invoke();
+    }
+   
 }
 
 

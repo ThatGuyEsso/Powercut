@@ -11,10 +11,12 @@ public enum InitStates
     PlayerSceneLoaded,
     UISceneLoaded,
     SpawnPlayer,
+    RespawnPlayer,
+    PlayerRespawned,
+    PlayerDead,
     PlayerSpawned,
     GameRunning,
     LevelClear,
-    PlayerDead,
     ExitLevel
 
 };
@@ -70,8 +72,8 @@ public class InitStateManager : MonoBehaviour
                 OnStateChange?.Invoke(currInitState);
                 break;
             case InitStates.PlayerSpawned:
-                FindObjectOfType<PlayerBehaviour>().Init();
-
+                OnStateChange?.Invoke(newState);
+                Debug.Log("Player spawned");
                 LoadingScreen.instance.cam.SetActive(false);
                 LoadingScreen.instance.BeginFade(false);
                 currInitState = InitStates.GameRunning;
@@ -79,6 +81,7 @@ public class InitStateManager : MonoBehaviour
          
                 break;
             case InitStates.GameRunning:
+                OnStateChange?.Invoke(newState);
                 LoadingScreen.instance.ToggleScreen(false);
                 break;
 
@@ -90,9 +93,11 @@ public class InitStateManager : MonoBehaviour
 
                 break;
             case InitStates.PlayerSceneLoaded:
+                OnStateChange?.Invoke(newState);
                 FindObjectOfType<WeaponManager>().Init();
                 FindObjectOfType<LightManager>().Init();
-      
+                FindObjectOfType<PlayerBehaviour>().BindToInitManager();
+                WeaponManager.instance.BindToInitManager();
                 GameStateManager.instance.Init();
    
                 currInitState = InitStates.SpawnPlayer;
@@ -102,8 +107,25 @@ public class InitStateManager : MonoBehaviour
                 currInitState = newState;
                 PauseScreen.instance.Resume();
                 UIManager.instance.Init();
+                UIManager.instance.BindToInitManager();
+                OnStateChange?.Invoke(currInitState);
+                break;
+            case InitStates.PlayerDead:
+                currInitState = newState;
                 OnStateChange?.Invoke(currInitState);
 
+                break;
+            case InitStates.RespawnPlayer:
+                currInitState = newState;
+                OnStateChange?.Invoke(currInitState);
+                LoadingScreen.instance.ToggleScreen(true);
+                break;
+            case InitStates.PlayerRespawned:
+                currInitState = newState;
+                OnStateChange?.Invoke(currInitState);
+                LoadingScreen.instance.BeginFade(false);
+                currInitState = InitStates.GameRunning;
+                OnStateChange?.Invoke(currInitState);
                 break;
         }
     }

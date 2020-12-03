@@ -27,7 +27,7 @@ public class PlayerLight : MonoBehaviour,IPlayerComponents
             }
             shrinkRate += 0.1f;
             transform.localScale = newScale;
-            Debug.Log("scaling");
+
         }
     }
     void IPlayerComponents.PlayerDied()

@@ -29,7 +29,7 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
     protected bool isFixing;
 
 
-    protected void Awake()
+    public void Init()
     {
         //Inputs
         input = new Controls();
@@ -209,6 +209,11 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
     public string GetTaskName()
     {
         return taskName;
+    }
+    public void ResetTask()
+    {
+        currHealth = 0f;
+        isFixed = false;
     }
     void OnDestroy()
     {

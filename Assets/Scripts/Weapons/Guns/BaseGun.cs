@@ -175,4 +175,11 @@ public abstract class BaseGun : MonoBehaviour, IShootable
     {
 
     }
+
+    //Reset gun
+    public void ResetGun()
+    {
+        currentClip = maxClip;
+        currentAmmo = maxAmmo;
+    }
 }
