@@ -214,6 +214,7 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
     {
         currHealth = 0f;
         isFixed = false;
+        UpdateDamageDisplay();
     }
     void OnDestroy()
     {

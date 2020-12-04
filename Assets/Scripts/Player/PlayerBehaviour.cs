@@ -97,7 +97,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
             {
                 PlayerFacePointer();
 
-        }
+            }
         }
 
         //If can't player can be hurt they must have recently be damaged
@@ -263,7 +263,10 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     {
         //Only needs to be able to interface with components so  left blank
     }
-
+    void IPlayerComponents.PlayerReset()
+    {
+        //Only needs to be able to interface with components so  left blank
+    }
     //Calculates if player has health left if not return false, Hence player is dead
     public bool GetIsAlive()
     {
@@ -387,6 +390,12 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         currHurtTime = settings.maxHurtTime;
         numberOfPrimaryGadget = 3;
         numberOfSecondaryGadget = 2;
+        IPlayerComponents[] components = gameObject.GetComponentsInChildren<IPlayerComponents>();
+        foreach (IPlayerComponents component in components)
+        {
+            component.PlayerReset();
+        }
+        isDead = false;
         SetUpHealth();
         animControl.UpdatePlayergun();
         input.Enable();
@@ -404,11 +413,11 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         {
             case InitStates.PlayerSpawned:
                 Init();
-                Debug.Log("init");
+
                 break;
             case InitStates.PlayerRespawned:
                 ResetCharacter();
-                Debug.Log("init");
+     
                 break;
         }
     }

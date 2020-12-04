@@ -155,14 +155,16 @@ public class ShadowCrawler : BaseEnemy
     public void RandomStatMutation()
     {
         float mutationMultipler = Random.Range(1f, maxScaleMultiplier);//Get multplier in range of current scale to max scale
-        transform.localScale = new Vector3(transform.localScale.x * mutationMultipler, transform.localScale.y * mutationMultipler, transform.localScale.z * mutationMultipler);//Increase scale by mutation
+        transform.localScale = new Vector3(transform.localScale.x * mutationMultipler,
+        transform.localScale.y * mutationMultipler,
+        transform.localScale.z * mutationMultipler);//Increase scale by mutation
        
         //scale base stats by mutation
         maxSpeed *= (1-(mutationMultipler-1));
 
         maxDamge *= mutationMultipler;
         minDamage *= mutationMultipler;
-        //Debug.Log(maxSpeed);
+
     }
 
     public void ChargePlayer()

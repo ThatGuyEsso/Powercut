@@ -67,6 +67,15 @@ public class TaskDisplay : MonoBehaviour
         }
 
     }
+    public void ClearTaskBar()
+    {
+        foreach(TaskTemplate task in tasks)
+        {
+            Destroy(task.gameObject);
+        }
+        nTypesOfTasks = 0;
+        tasks.Clear();
+    }
 
     //Set Up A task
     public void PopulateTasks(int nTaskTypes, List<BaseTask> listOfTasks)

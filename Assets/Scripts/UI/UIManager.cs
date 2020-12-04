@@ -98,7 +98,7 @@ public class UIManager : MonoBehaviour, Controls.IUIActions
           
                 break;
             case GameStates.MainPowerOff:
-                eventDisplay.CreateEvent("Main Power Switched Off", Color.green);
+                eventDisplay.CreateEvent("Main Power Switched Off", Color.red);
 
                 break;
         }

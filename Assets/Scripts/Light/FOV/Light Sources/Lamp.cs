@@ -114,12 +114,11 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
     }
     public void InstantFixLamp()
     {
-        if (isLampWorking)
-        {
-            lightRef.ToggleLight(true);
-            isLampWorking = true;
-            currentHealth = lightRef.lampSettings.maxLightHealth;
-        }
+   
+        lightRef.ToggleLight(true);
+        isLampWorking = true;
+        currentHealth = lightRef.lampSettings.maxLightHealth;
+     
     }
     //Light fixing 
     public void FixLamp(float heal)

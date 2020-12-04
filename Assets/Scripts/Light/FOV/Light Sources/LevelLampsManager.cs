@@ -30,7 +30,7 @@ public class LevelLampsManager : MonoBehaviour
             return;
         }
         GetNewBreakLampTime();
-        GameStateManager.instance.OnGameStateChange += EvaluateGameNewState;
+        BindToInitManager();
     }
 
     private void Start()
@@ -198,6 +198,22 @@ public class LevelLampsManager : MonoBehaviour
         currentTimeBeforeLightBreak = Random.Range(minTimeBeforeLightBreak, maxTimeBeforeLightBreak);
     }
 
+ 
+    public void BindToInitManager()
+    {
+        InitStateManager.instance.OnStateChange += EvaluateNewState;
+        GameStateManager.instance.OnGameStateChange += EvaluateGameNewState;
+    }
+    private void EvaluateNewState(InitStates newState)
+    {
+        switch (newState)
+        {
+           
+            case InitStates.PlayerRespawned:
+                FixAllSceneLamps();
+                break;
+        }
+    }
     private void EvaluateGameNewState(GameStates newState)
     {
         switch (newState)

@@ -28,6 +28,7 @@ public class TaskManager : MonoBehaviour, IInitialisable
     private void Init()
     {
         GetTasksInLevel();
+        BindToInitManager();
     }
 
 
@@ -110,7 +111,8 @@ public class TaskManager : MonoBehaviour, IInitialisable
         {
             task.ResetTask();
         }
-        allTasks.Clear();
+      
+       
     }
 
     void IInitialisable.Init()
@@ -127,7 +129,7 @@ public class TaskManager : MonoBehaviour, IInitialisable
         {
             case InitStates.RespawnPlayer:
                 ResetTasks();
-                Init();
+             
                 Debug.Log("init");
                 break;
         }
@@ -180,4 +182,5 @@ public class TaskManager : MonoBehaviour, IInitialisable
 
         return nearestTaskT;
     }
+
 }

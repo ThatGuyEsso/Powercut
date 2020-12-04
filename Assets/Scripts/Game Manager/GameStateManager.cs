@@ -60,6 +60,10 @@ public class GameStateManager : MonoBehaviour, IInitialisable
                 RespawnPlayer();
 
                 break;
+            case InitStates.PlayerRespawned:
+                BeginNewGameState(GameStates.MainPowerOff);
+
+                break;
         }
     }
     private void SpawnPlayer()

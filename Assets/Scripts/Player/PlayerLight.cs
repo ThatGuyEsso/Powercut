@@ -7,11 +7,12 @@ public class PlayerLight : MonoBehaviour,IPlayerComponents
     public float shrinkRate;
     private bool shouldShrink =false;
     private Vector3 newScale;
+    private Vector3 initialScale;
    
     private void Awake()
     {
         newScale = transform.localScale;
-
+        initialScale = transform.localScale;
     }
 
     private void FixedUpdate()
@@ -33,6 +34,11 @@ public class PlayerLight : MonoBehaviour,IPlayerComponents
     void IPlayerComponents.PlayerDied()
     {
         shouldShrink = true;
-        Debug.Log("Player died");
+
+    }
+    void IPlayerComponents.PlayerReset()
+    {
+        shouldShrink = false;
+        transform.localScale = initialScale;
     }
 }

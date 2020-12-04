@@ -392,6 +392,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     protected void KillEnemy()
     {
         Instantiate(deathVFX, transform.position, transform.rotation);
+        InitStateManager.instance.OnStateChange -= EvaluateNewState;
         Destroy(gameObject);
     }
 

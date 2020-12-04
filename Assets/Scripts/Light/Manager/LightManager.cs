@@ -38,7 +38,7 @@ public class LightManager : MonoBehaviour
         batterySlider.InitSlider(settings.maxCharge);
         isInitialised = true;
         fieldViewCone.ToggleLight(false);
-
+        batterySlider.UpdateSlider(currentCharge);
     }
 
     public void Update()
@@ -143,6 +143,8 @@ public class LightManager : MonoBehaviour
         currentCharge = settings.maxCharge;
         dischargeRate = settings.dischargeRate;
         batterySlider.UpdateSlider(currentCharge);
+
+        EvaluateGameNewState(GameStateManager.instance.GetCurrentGameState());
     }
     public void BindToInitManager()
     {
@@ -159,7 +161,7 @@ public class LightManager : MonoBehaviour
                 break;
             case InitStates.PlayerRespawned:
                 ResetLight();
-                Debug.Log("init");
+
                 break;
         }
     }
