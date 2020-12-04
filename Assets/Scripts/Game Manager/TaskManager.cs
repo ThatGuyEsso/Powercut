@@ -47,7 +47,7 @@ public class TaskManager : MonoBehaviour, IInitialisable
         if (totalNumberOfCompletedTask >= allTasks.Count)
         {
             //All task Completed so tell game state manager 
-            GameStateManager.instance.TasksCompleted();
+            GameStateManager.instance.BeginNewGameState(GameStates.TasksCompleted);
         }
     }
     public void RecordFailedTask(string taskName)
@@ -66,7 +66,7 @@ public class TaskManager : MonoBehaviour, IInitialisable
         if (totalNumberOfCompletedTask <= allTasks.Count)
         {
             //Not all tasks are completed so power is off and all lights should continue breaking
-            GameStateManager.instance.SwitchPowerOff();
+            GameStateManager.instance.BeginNewGameState(GameStates.MainPowerOff);
         }
     }
 

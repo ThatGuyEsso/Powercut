@@ -16,6 +16,7 @@ public class LevelLampsManager : MonoBehaviour
     public float minTimeBeforeLightBreak;
     private float currentTimeBeforeLightBreak;
 
+    GameStates currentGameState;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class LevelLampsManager : MonoBehaviour
             return;
         }
         GetNewBreakLampTime();
+        GameStateManager.instance.OnGameStateChange += EvaluateGameNewState;
     }
 
     private void Start()
@@ -39,7 +41,7 @@ public class LevelLampsManager : MonoBehaviour
 
     private void Update()
     {
-        switch (GameStateManager.instance.GetCurrentGameState())
+        switch (currentGameState)
         {
             case GameStates.MainPowerOff:
             if (shouldBreakLights)
@@ -194,5 +196,22 @@ public class LevelLampsManager : MonoBehaviour
     private void GetNewBreakLampTime()
     {
         currentTimeBeforeLightBreak = Random.Range(minTimeBeforeLightBreak, maxTimeBeforeLightBreak);
+    }
+
+    private void EvaluateGameNewState(GameStates newState)
+    {
+        switch (newState)
+        {
+            case GameStates.LevelClear:
+                currentGameState = newState;
+                FixAllSceneLamps();
+                break;
+            case GameStates.MainPowerOff:
+                currentGameState = newState;
+                break;
+            case GameStates.TasksCompleted:
+                currentGameState = newState;
+                break;
+        }
     }
 }

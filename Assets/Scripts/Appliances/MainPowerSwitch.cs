@@ -59,7 +59,7 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
                     //Switch it off
                     if (hasActivated == false)
                     {
-                        GameStateManager.instance.SwitchPowerOff();
+                        GameStateManager.instance.BeginNewGameState(GameStates.MainPowerOff);
                         hasActivated = true;
 
                     }
@@ -69,7 +69,7 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
                     //When all task completed player should be able to switch mains on again
                     if (LevelLampsManager.instance.GetAllSceneLampsWork())
                     {
-                         GameStateManager.instance.LevelCleared();
+                        GameStateManager.instance.BeginNewGameState(GameStates.LevelClear);
 
                     }
                     break;

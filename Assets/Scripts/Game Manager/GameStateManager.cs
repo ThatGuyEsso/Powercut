@@ -22,6 +22,8 @@ public class GameStateManager : MonoBehaviour, IInitialisable
     [SerializeField]
     Transform respawnPoint;
     private  GameStates currentGameState;
+    public event NewGameStateDelegate OnGameStateChange;
+    public delegate void NewGameStateDelegate(GameStates newState);
     private void Awake()
     {
         
@@ -36,41 +38,6 @@ public class GameStateManager : MonoBehaviour, IInitialisable
         }
     }
 
-
-
-    //Starts the game
-    public void SwitchPowerOff()
-    {
-        currentGameState = GameStates.MainPowerOff;
-
-        Debug.Log(currentGameState.ToString());
-        FindObjectOfType<PlayerAnimController>().UpdatePlayergun();
-        UIManager.instance.eventDisplay.CreateEvent("Main Power Switched off", Color.yellow);
-    }
-    public void TasksCompleted()
-    {
-        currentGameState = GameStates.TasksCompleted;
-        Debug.Log("Power is off but tasks completed");
-        Debug.Log(currentGameState.ToString());
-    }
-
-    public void LevelCleared()
-    {
-        currentGameState = GameStates.LevelClear;
-        LevelLampsManager.instance.FixAllSceneLamps();
-        Debug.Log("level cleared");
-        Debug.Log(currentGameState.ToString());
-        UIManager.instance.eventDisplay.CreateEvent("Main Power Switched On", Color.green);
-        UIManager.instance.eventDisplay.CreateEvent("Level Cleared", Color.green);
-    }
-    public void SwitchPowerOn()
-    {
-        currentGameState = GameStates.MainPowerOn;
-        Debug.Log("Power is On");
-        Debug.Log(currentGameState.ToString());
-        FindObjectOfType<PlayerAnimController>().UpdatePlayergun();
-        UIManager.instance.eventDisplay.CreateEvent("Main Power Switched On", Color.green);
-    }
 
     public GameStates GetCurrentGameState()
     {
@@ -138,6 +105,37 @@ public class GameStateManager : MonoBehaviour, IInitialisable
         {
             isGamePaused = false;
             Time.timeScale = 1f;
+        }
+    }
+
+    public void BeginNewGameState(GameStates newGameState)
+    {
+        switch (newGameState)
+        {
+            case GameStates.MainPowerOn:
+                currentGameState = newGameState;
+                OnGameStateChange?.Invoke(newGameState);
+
+                break;
+
+            case GameStates.MainPowerOff:
+         
+                currentGameState = newGameState;
+                OnGameStateChange?.Invoke(newGameState);
+
+                break;
+
+            case GameStates.LevelClear:
+                currentGameState = newGameState;
+                OnGameStateChange?.Invoke(newGameState);
+  
+
+                break;
+            case GameStates.TasksCompleted:
+                currentGameState = newGameState;
+                OnGameStateChange?.Invoke(newGameState);
+
+                break;
         }
     }
 }

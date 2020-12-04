@@ -396,6 +396,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     public void BindToInitManager()
     {
         InitStateManager.instance.OnStateChange += EvaluateNewState;
+        GameStateManager.instance.OnGameStateChange += EvaluateGameNewState;
     }
     private void EvaluateNewState(InitStates newState)
     {
@@ -408,6 +409,21 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
             case InitStates.PlayerRespawned:
                 ResetCharacter();
                 Debug.Log("init");
+                break;
+        }
+    }
+
+
+    private void EvaluateGameNewState(GameStates newState)
+    {
+        switch (newState)
+        {
+            case GameStates.LevelClear:
+                animControl.UpdatePlayergun();
+                break;
+            case GameStates.MainPowerOff:
+                animControl.UpdatePlayergun();
+
                 break;
         }
     }

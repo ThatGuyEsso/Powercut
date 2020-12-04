@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class LevelClearScreen : MonoBehaviour
 {
     [HideInInspector]
     public static LevelClearScreen instance;
     public FadeText textFade;
     public GameObject gameOverScreen;
+    private List<Button> buttons = new List<Button>();
     public float fadeInRate, fadeInMag, fadeOutRate, fadeOutMag;
 
     private void Awake()
@@ -22,6 +23,7 @@ public class LevelClearScreen : MonoBehaviour
             return;
         }
 
+        InitButtons();
         textFade = gameObject.GetComponent<FadeText>();
         gameOverScreen.SetActive(false);
 
@@ -55,7 +57,7 @@ public class LevelClearScreen : MonoBehaviour
     private void Retry()
     {
         textFade.OnTextFadeEnd -= Retry;
-     
+        InitStateManager.instance.BeginNewState(InitStates.RespawnPlayer);
 
     }
     private void ReturnToTitle()
@@ -68,12 +70,64 @@ public class LevelClearScreen : MonoBehaviour
     public void BeginGameOver()
     {
         gameOverScreen.SetActive(true);
+        ToggleButtons(false);
+        textFade.OnTextFadeEnd += EnableButtons;
+
         textFade.BeginTextFadeIn(fadeInRate, fadeInMag);
     }
     public void ClearGameOver()
     {
+        ToggleButtons(false);
         textFade.BeginTextFadeOut(fadeOutRate, fadeOutMag);
     }
 
+    //Enables and disables button components
+    public void ToggleButtons(bool isOn)
+    {
+        if(buttons.Count > 0)
+        {
+
+            foreach(Button button in buttons)
+            {
+                button.enabled = isOn;
+            }
+        }
+    }
+
+    private void EnableButtons()
+    {
+        //Only fire one so unsubscribe when done
+        textFade.OnTextFadeEnd -= EnableButtons;
+        if (buttons.Count > 0)
+        {
+
+            foreach (Button button in buttons)
+            {
+                button.enabled = true;
+            }
+        }
+    }
+
+    private void DisableButtons()
+    {
+        if (buttons.Count > 0)
+        {
+
+            foreach (Button button in buttons)
+            {
+                button.enabled = false;
+            }
+        }
+    }
+
+    private void InitButtons()
+    {
+        Button[] childButtons = gameObject.GetComponentsInChildren<Button>();
+
+        for(int i = 0; i < childButtons.Length; i++)
+        {
+            buttons.Add(childButtons[i]);
+        }
+    }
 }
 

@@ -106,7 +106,7 @@ public class LoadingScreen : MonoBehaviour
         while (oppacity < 1f)
         {
             oppacity += 0.01f;
-            Debug.Log(oppacity);
+
             screenImage.color = new Color(screenImage.color.r, screenImage.color.g, screenImage.color.b, oppacity);
             yield return new WaitForSeconds(callTime);
         }

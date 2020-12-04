@@ -72,6 +72,7 @@ public class UIManager : MonoBehaviour, Controls.IUIActions
     public void BindToInitManager()
     {
         InitStateManager.instance.OnStateChange += EvaluateNewState;
+        GameStateManager.instance.OnGameStateChange += EvaluateGameNewState;
     }
     private void EvaluateNewState(InitStates newState)
     {
@@ -87,25 +88,33 @@ public class UIManager : MonoBehaviour, Controls.IUIActions
                 break;
         }
     }
+    private void EvaluateGameNewState(GameStates newState)
+    {
+        switch (newState)
+        {
+            case GameStates.LevelClear:
+                eventDisplay.CreateEvent("Main Power Switched On", Color.green);
+                eventDisplay.CreateEvent("Level Cleared", Color.green);
+          
+                break;
+            case GameStates.MainPowerOff:
+                eventDisplay.CreateEvent("Main Power Switched Off", Color.green);
+
+                break;
+        }
+    }
     private IEnumerator DeathTransition()
     {
         LoadingScreen.instance.OnCurtainCallEnd += ResolveFading;
-        LoadingScreen.instance.StartCurtainCall(0.00001f, false);
+        LoadingScreen.instance.StartCurtainCall(0.000005f, false);
         isFading = true;
         while (isFading)
         {
             yield return null;
         }
         LoadingScreen.instance.OnCurtainCallEnd -= ResolveFading;
-        LevelClearScreen.instance.textFade.OnTextFadeEnd += ResolveFading;
         LevelClearScreen.instance.BeginGameOver();
-        isFading = true;
-        while (isFading)
-        {
-            yield return null;
-        }
-        LevelClearScreen.instance.gameOverScreen.SetActive(false);
-        InitStateManager.instance.BeginNewState(InitStates.RespawnPlayer);
+
     }
 
     private void ResolveFading()

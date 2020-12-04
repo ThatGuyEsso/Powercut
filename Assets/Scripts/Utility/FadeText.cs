@@ -34,8 +34,10 @@ public class FadeText : MonoBehaviour
            
             foreach (TextMeshProUGUI text in UITexts)
             {
+                if (oppacity >= 0.95) oppacity = 1f;
                 text.color = new Color(text.color.r, text.color.g, text.color.b, oppacity);
             }
+           
             yield return new WaitForSeconds(fadeTime);
     
         }
@@ -58,8 +60,10 @@ public class FadeText : MonoBehaviour
           
             foreach (TextMeshProUGUI text in UITexts)
             {
+                if (oppacity <= 0.05) oppacity = 0f;
                 text.color = new Color(text.color.r, text.color.g, text.color.b, oppacity);
             }
+     
             yield return new WaitForSeconds(fadeTime);
 
         }

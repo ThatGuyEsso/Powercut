@@ -566,10 +566,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textFade: {fileID: 0}
   gameOverScreen: {fileID: 1698297407}
-  fadeInRate: 0.005
-  fadeInMag: 0.01
-  fadeOutRate: 0.005
-  fadeOutMag: 0.01
+  fadeInRate: 0.0015
+  fadeInMag: 0.05
+  fadeOutRate: 0.0015
+  fadeOutMag: 0.05
 --- !u!1 &641898635
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,30 +26,33 @@ public class PlayerAnimController : MonoBehaviour
 
     public void UpdatePlayergun()
     {
-        if (GameStateManager.instance.GetCurrentGameState() != GameStates.MainPowerOn)
+        switch (GameStateManager.instance.GetCurrentGameState())
         {
-            weaponCollider.enabled = true;
-            switch (WeaponManager.instance.GetActiveGun()){
-                case GunTypes.Pistol:
-                    upperBodySprite.sprite = pistolSprite;
-                    playerCollider.offset = pistolCollisionOffset;
-                    upperBodySprite.transform.localPosition = pistolSpritePos;
-                    weaponCollider.offset = pistolWeaponColliderOffset;
-                    break;
-                case GunTypes.Shotgun:
-                    upperBodySprite.sprite = shotgunSprite;
-                    upperBodySprite.transform.localPosition = shotgunSpritePos;
-                    playerCollider.offset = shotgunCollisionOffset;
-                    weaponCollider.offset = shotgunWeaponColliderOffset;
-                    break;
-            }
-        }
-        else
-        {
-            playerCollider.offset = unarmedCollisionOffset;
-            weaponCollider.enabled = false;
-            upperBodySprite.sprite = unarmedSprite;
-            upperBodySprite.transform.localPosition = unarmedSpritePos;
+            case GameStates.MainPowerOff:
+            case GameStates.TasksCompleted:
+                weaponCollider.enabled = true;
+                switch (WeaponManager.instance.GetActiveGun()){
+                    case GunTypes.Pistol:
+                        upperBodySprite.sprite = pistolSprite;
+                        playerCollider.offset = pistolCollisionOffset;
+                        upperBodySprite.transform.localPosition = pistolSpritePos;
+                        weaponCollider.offset = pistolWeaponColliderOffset;
+                        break;
+                    case GunTypes.Shotgun:
+                        upperBodySprite.sprite = shotgunSprite;
+                        upperBodySprite.transform.localPosition = shotgunSpritePos;
+                        playerCollider.offset = shotgunCollisionOffset;
+                        weaponCollider.offset = shotgunWeaponColliderOffset;
+                        break;
+                }
+                break;
+            case GameStates.LevelClear:
+            case GameStates.MainPowerOn:
+                playerCollider.offset = unarmedCollisionOffset;
+                weaponCollider.enabled = false;
+                upperBodySprite.sprite = unarmedSprite;
+                upperBodySprite.transform.localPosition = unarmedSpritePos;
+                break;
         }
     }
 

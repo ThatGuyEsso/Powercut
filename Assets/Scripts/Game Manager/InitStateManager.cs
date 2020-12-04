@@ -82,7 +82,7 @@ public class InitStateManager : MonoBehaviour
                 break;
             case InitStates.GameRunning:
                 OnStateChange?.Invoke(newState);
-                LoadingScreen.instance.ToggleScreen(false);
+                //LoadingScreen.instance.ToggleScreen(false);
                 break;
 
             case InitStates.LevelLoaded:
@@ -95,7 +95,7 @@ public class InitStateManager : MonoBehaviour
             case InitStates.PlayerSceneLoaded:
                 OnStateChange?.Invoke(newState);
                 FindObjectOfType<WeaponManager>().Init();
-                FindObjectOfType<LightManager>().Init();
+                FindObjectOfType<LightManager>().BindToInitManager();
                 FindObjectOfType<PlayerBehaviour>().BindToInitManager();
                 WeaponManager.instance.BindToInitManager();
                 GameStateManager.instance.Init();
@@ -116,9 +116,9 @@ public class InitStateManager : MonoBehaviour
 
                 break;
             case InitStates.RespawnPlayer:
+                LoadingScreen.instance.ToggleScreen(true);
                 currInitState = newState;
                 OnStateChange?.Invoke(currInitState);
-                LoadingScreen.instance.ToggleScreen(true);
                 break;
             case InitStates.PlayerRespawned:
                 currInitState = newState;

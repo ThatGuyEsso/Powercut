@@ -83,7 +83,7 @@ public class DamageNumber : MonoBehaviour
 
         if (shouldShrink)
         {
-            Debug.Log("Time to Shrink");
+
 
 
             transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(0, 0, 0), (scale / scale * scaleMultipler) * scaledownRate);
