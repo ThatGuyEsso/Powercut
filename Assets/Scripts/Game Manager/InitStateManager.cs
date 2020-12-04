@@ -92,6 +92,13 @@ public class InitStateManager : MonoBehaviour
                 GameStateManager.instance.BindToInitManager();
 
                 break;
+            case InitStates.ExitLevel:
+
+                LoadingScreen.instance.ToggleScreen(true);
+                currInitState = newState;
+                OnStateChange?.Invoke(currInitState);
+
+                break;
             case InitStates.PlayerSceneLoaded:
                 OnStateChange?.Invoke(newState);
                 FindObjectOfType<WeaponManager>().Init();

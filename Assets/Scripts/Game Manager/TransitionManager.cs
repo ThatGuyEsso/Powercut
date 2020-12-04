@@ -69,6 +69,7 @@ public class TransitionManager : MonoBehaviour
         StartCoroutine(BeginGameLoad(newLevel));
     }
 
+
     private IEnumerator BeginGameLoad(SceneIndex newLevel)
     {
         isLoading = true;
