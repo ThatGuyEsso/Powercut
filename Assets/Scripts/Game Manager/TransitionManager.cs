@@ -50,9 +50,50 @@ public class TransitionManager : MonoBehaviour
 
     public void ReturnToTitleScreen()
     {
-
+        StartCoroutine(BeginReturnToTitle());
     }
 
+    private IEnumerator BeginReturnToTitle()
+    {
+        isLoading = true;
+        if (!LoadingScreen.instance.loadingScreen.activeSelf)
+        {
+            LoadingScreen.instance.BeginFade(true);
+            isFading = true;
+            Debug.Log("started  fading");
+            while (isFading)
+            {
+                yield return null;
+            }
+        }
+
+        //Get all count 
+        int countLoaded = SceneManager.sceneCount;
+        Scene[] loadedScenes = new Scene[countLoaded];
+        AsyncOperation sceneUnload = (SceneManager.UnloadSceneAsync((int)currentLevel));
+        for (int i = 0; i < countLoaded; i++)
+        {
+            loadedScenes[i] = SceneManager.GetSceneAt(i);
+        }
+        for(int i=0; i< loadedScenes.Length; i++)
+        {
+            if (loadedScenes[i].buildIndex != (int)(SceneIndex.ManagerScene))
+            {
+                sceneUnload = SceneManager.UnloadSceneAsync(loadedScenes[i].buildIndex);
+
+                while (!sceneUnload.isDone)
+                {
+                    yield return null;
+                }
+            }
+        }
+        currentLevel = SceneIndex.ManagerScene;
+        AsyncOperation sceneload = SceneManager.LoadSceneAsync((int)currentLevel, LoadSceneMode.Additive);
+
+
+
+
+    }
 
 
     public void LoadLevel(SceneIndex newScene,bool shouldFade)
@@ -67,6 +108,7 @@ public class TransitionManager : MonoBehaviour
     public void StartLevel(SceneIndex newLevel)
     {
         StartCoroutine(BeginGameLoad(newLevel));
+   
     }
 
 
@@ -78,12 +120,11 @@ public class TransitionManager : MonoBehaviour
 
         //wait till fade end before initialising level
   
-        Debug.Log("started  fading");
         while (isFading)
         {
             yield return null;
         }
-        Debug.Log("Finisied  fading");
+
         //Unload currentlevel (e.g. mainMenu)
         AsyncOperation sceneUnload = (SceneManager.UnloadSceneAsync((int)currentLevel));
         while (!sceneUnload.isDone)

@@ -17,7 +17,8 @@ public enum InitStates
     PlayerSpawned,
     GameRunning,
     LevelClear,
-    ExitLevel
+    ExitLevel,
+    TitleScreen
 
 };
 
