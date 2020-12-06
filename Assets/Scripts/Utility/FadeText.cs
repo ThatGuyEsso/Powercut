@@ -50,7 +50,11 @@ public class FadeText : MonoBehaviour
         float oppacity = 1f;
         foreach (TextMeshProUGUI text in UITexts)
         {
-            text.color = new Color(text.color.r, text.color.g, text.color.b, oppacity);
+            if (text.isActiveAndEnabled)
+            {
+
+                text.color = new Color(text.color.r, text.color.g, text.color.b, oppacity);
+            }
         }
 
 
@@ -60,8 +64,12 @@ public class FadeText : MonoBehaviour
           
             foreach (TextMeshProUGUI text in UITexts)
             {
-                if (oppacity <= 0.05) oppacity = 0f;
-                text.color = new Color(text.color.r, text.color.g, text.color.b, oppacity);
+                if (text.isActiveAndEnabled)
+                {
+
+                    if (oppacity <= 0.05) oppacity = 0f;
+                    text.color = new Color(text.color.r, text.color.g, text.color.b, oppacity);
+                }
             }
      
             yield return new WaitForSeconds(fadeTime);

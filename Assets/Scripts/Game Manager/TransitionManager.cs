@@ -60,7 +60,7 @@ public class TransitionManager : MonoBehaviour
         {
             LoadingScreen.instance.BeginFade(true);
             isFading = true;
-            Debug.Log("started  fading");
+  
             while (isFading)
             {
                 yield return null;
@@ -68,7 +68,7 @@ public class TransitionManager : MonoBehaviour
         }
 
         //Get all count 
-        int countLoaded = SceneManager.sceneCount;
+         int countLoaded = SceneManager.sceneCount;
         Scene[] loadedScenes = new Scene[countLoaded];
         AsyncOperation sceneUnload = (SceneManager.UnloadSceneAsync((int)currentLevel));
         for (int i = 0; i < countLoaded; i++)
@@ -79,19 +79,30 @@ public class TransitionManager : MonoBehaviour
         {
             if (loadedScenes[i].buildIndex != (int)(SceneIndex.ManagerScene))
             {
-                sceneUnload = SceneManager.UnloadSceneAsync(loadedScenes[i].buildIndex);
-
-                while (!sceneUnload.isDone)
+             
+                    sceneUnload = SceneManager.UnloadSceneAsync(loadedScenes[i].buildIndex);
+                if (sceneUnload != null)
                 {
-                    yield return null;
+                    while (!sceneUnload.isDone)
+                    {
+                        yield return null;
+                        Debug.Log("unloading");
+                    }
+
                 }
+               
             }
         }
-        currentLevel = SceneIndex.ManagerScene;
+        currentLevel = SceneIndex.MainMenu;
         AsyncOperation sceneload = SceneManager.LoadSceneAsync((int)currentLevel, LoadSceneMode.Additive);
 
+        while (!sceneload.isDone)
+        {
+            yield return null;
+        }
 
-
+        isLoading = false;
+        InitStateManager.instance.BeginNewState(InitStates.TitleScreen);
 
     }
 

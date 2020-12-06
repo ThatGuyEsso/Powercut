@@ -7,7 +7,7 @@ public class LevelClearScreen : MonoBehaviour
     [HideInInspector]
     public static LevelClearScreen instance;
     public FadeText textFade;
-    public GameObject gameOverScreen;
+    public GameObject gameOverScreen, jobCompletedScreen;
     private List<Button> buttons = new List<Button>();
     public float fadeInRate, fadeInMag, fadeOutRate, fadeOutMag;
 
@@ -26,6 +26,7 @@ public class LevelClearScreen : MonoBehaviour
         InitButtons();
         textFade = gameObject.GetComponent<FadeText>();
         gameOverScreen.SetActive(false);
+        jobCompletedScreen.SetActive(false);
 
 
     }
@@ -81,6 +82,15 @@ public class LevelClearScreen : MonoBehaviour
         ToggleButtons(false);
         textFade.BeginTextFadeOut(fadeOutRate, fadeOutMag);
     }
+
+
+    public void BeginLevelOver()
+    {
+        jobCompletedScreen.SetActive(true);
+        textFade.BeginTextFadeIn(fadeInRate, fadeInMag);
+    }
+
+
 
     //Enables and disables button components
     public void ToggleButtons(bool isOn)

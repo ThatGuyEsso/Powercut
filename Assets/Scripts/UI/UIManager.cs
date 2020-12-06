@@ -95,12 +95,13 @@ public class UIManager : MonoBehaviour, Controls.IUIActions
             case GameStates.LevelClear:
                 eventDisplay.CreateEvent("Main Power Switched On", Color.green);
                 eventDisplay.CreateEvent("Level Cleared", Color.green);
-          
+                LevelClearScreen.instance.BeginLevelOver();
                 break;
             case GameStates.MainPowerOff:
                 eventDisplay.CreateEvent("Main Power Switched Off", Color.red);
 
                 break;
+     
         }
     }
     private IEnumerator DeathTransition()
