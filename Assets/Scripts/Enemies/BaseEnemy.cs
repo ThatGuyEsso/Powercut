@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Pathfinding;
+using UnityEngine.AI;
 
 public enum EnemyStates
 {
@@ -30,20 +30,19 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     public EnemySettings settings;
     protected float smoothRot;
     protected Vector2 knockBack;
+
     //Component refs
     protected Rigidbody2D rb;
+    protected NavMeshAgent navAgent;
     //VFX
     [SerializeField]
     protected GameObject hurtNumber;
     protected MultiSpriteHurtFlash hurtVFX;
 
     //Pathfinding
-    protected int currentWaypoint = 0;
     public Transform target;
-    protected Path path;
-    protected Seeker seeker;
     protected Vector3 moveDirection;
-    protected float nextWaypointDistance = 3f;
+
     //stats
     protected float currentHealth;
     private float smoothAX;
@@ -59,12 +58,21 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         //cache component references
         rb = gameObject.GetComponent<Rigidbody2D>();
         currentHealth = settings.maxHealth;
-        seeker = gameObject.GetComponent<Seeker>();
+        //cache navigation 
+        navAgent = gameObject.GetComponent<NavMeshAgent>();
         hurtVFX = gameObject.GetComponentInChildren<MultiSpriteHurtFlash>();
+
+        //navmesh2D values
+        navAgent.updateRotation = false;
+        navAgent.updateUpAxis = false;
+        //initial values
         currHurtTime = settings.hurtTime;
         currTimeBeforeInvulnerable = settings.timeBeforeInvulnerable;
         BindToInitManager();
-       // InvokeRepeating("ProcessAI", 0f, settings.aiTickrate);
+
+
+
+        InvokeRepeating("ProcessAI", 0f, settings.aiTickrate);
     }
 
 
@@ -108,7 +116,8 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
 
     virtual protected void FaceMovementDirection()
     {
-        float targetAngle = EssoUtility.GetAngleFromVector(rb.velocity.normalized);
+      
+        float targetAngle = EssoUtility.GetAngleFromVector(navAgent.velocity.normalized);
        /* targetAngle += 90f;*/// turn offset -Due to converting between forward vector and up vector
         //if (targetAngle < 0) targetAngle += 360f;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.z, targetAngle, ref smoothRot, settings.rotationSpeed);//rotate player smoothly to target angle
@@ -160,25 +169,8 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
 
 
 
-    //#PATHFINDING FUNCTIONS#
-    virtual protected void UpdatePath()
-    {
-        if (target != null)
-        {
-            if (seeker.IsDone()) //if seeker is done mapping, start the path to target
-                seeker.StartPath(rb.position, target.position, OnPathComplete);
-        }
 
-    }
-    virtual protected void OnPathComplete(Path p)
-    {
-        if (!p.error)  //if no errors, reset path and waypoint
-        {
-            path = p;
-            currentWaypoint = 0;
-        }
 
-    }
 
     virtual protected void Update()
     {
@@ -241,30 +233,8 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
 
 
 
-    virtual protected void DrawPathToTarget()
-    {
-        float distance = Vector3.Distance(transform.position, target.transform.position);
- 
-            if (path == null)
-            {
-                return; //No path so return
-            }
 
-            if (currentWaypoint >= path.vectorPath.Count)
-            {
-                return; // current waypoint is out of range of total way point. Hence path end has been reached return
-            }
 
-            distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
-
-            if (distance < nextWaypointDistance) // if the distance to the next waypoint is shorter than the current one, go to it
-            {
-                currentWaypoint++; // AI cuts corners
-            }
-            moveDirection = path.vectorPath[currentWaypoint] - transform.position;
-
-    }
-    //# END OF PATHFINDING FUNCTIONS#
 
 
     //#Setters#
@@ -367,6 +337,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
 
             if (canBeHurt)
             {
+                navAgent.enabled = false;
                 canBeHurt = false;
                 isHurt = true;
                 hurtVFX.BeginFlash();
@@ -422,6 +393,47 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
                 ObjectPoolManager.Recycle(gameObject);
             
                 break;
+        }
+    }
+
+    //check if target is in range
+    virtual protected void EvaluateInRange()
+    {
+        //get distance
+        float distance = Vector3.Distance(transform.position, target.transform.position);
+        if (isTargetHuman)//if human attack if in range
+        {
+            if (distance <= settings.attackRange)
+            {
+                SetEnemyState(EnemyStates.Attack);
+            }
+        }
+        else//otherwise it is an object so destroy its
+        {
+            if (distance <= settings.destroyRange)
+            {
+                SetEnemyState(EnemyStates.Destroy);
+            }
+        }
+    }
+
+    virtual protected void EvaluateOutOfRange()
+    {
+        //get distance
+        float distance = Vector3.Distance(transform.position, target.transform.position);
+        if (isTargetHuman)//if human attack if in range
+        {
+            if (distance > settings.attackRange)
+            {
+                SetEnemyState(EnemyStates.Chase);
+            }
+        }
+        else//otherwise it is an object so destroy its
+        {
+            if (distance >= settings.destroyRange)
+            {
+                SetEnemyState(EnemyStates.Chase);
+            }
         }
     }
 }

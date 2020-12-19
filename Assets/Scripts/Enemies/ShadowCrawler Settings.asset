@@ -16,6 +16,7 @@ MonoBehaviour:
   timeZeroToMax: 0.05
   timeMaxToZero: 0.05
   rotationSpeed: 0.01
+  navAgentSpeedScalar: 0.006
   maxHealth: 50
   maxDamage: 12
   minDamage: 10
