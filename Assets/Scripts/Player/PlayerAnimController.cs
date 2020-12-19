@@ -31,7 +31,8 @@ public class PlayerAnimController : MonoBehaviour
             case GameStates.MainPowerOff:
             case GameStates.TasksCompleted:
                 weaponCollider.enabled = true;
-                switch (WeaponManager.instance.GetActiveGun()){
+                switch (WeaponManager.instance.GetActiveGun().GetGunTypes())
+                {
                     case GunTypes.Pistol:
                         upperBodySprite.sprite = pistolSprite;
                         playerCollider.offset = pistolCollisionOffset;

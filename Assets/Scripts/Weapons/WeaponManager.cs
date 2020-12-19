@@ -2,12 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GunTypes
-{
-    Pistol,
-    Shotgun,
-    AutoRifle
-};
 
 public enum GadgetTypes
 {
@@ -17,142 +11,95 @@ public class WeaponManager : MonoBehaviour
 {
 
     public static WeaponManager instance;
-    public Shotgun shotgun;
-    public Pistol pistol;
-    private GunTypes activeGun;
+
+    //stores number of guns carried
+    private List<BaseGun> gunsCarried = new List<BaseGun>();
+    //stores refrence to active gun in list of guns
+    private int activeGunIndex =0;
+
     private GadgetTypes primaryGadget;
     private GadgetTypes secondaryGadget;
     public GameObject flashBangPrefab;
     public float throwForce;
- 
+
+    public void Awake()
+    {
+        if (instance == false)
+        {
+            instance = this;
+
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     public void Init()
     {
-        //Create static instance of this class
-        instance = this;
-        shotgun = FindObjectOfType<Shotgun>();
-        pistol = FindObjectOfType<Pistol>();
-        UIManager.instance.gunDisplay.UpdateActiveGun(shotgun.gunPortrait, pistol.gunPortrait);
 
         SetGunAmmoDisplay();
+        UIManager.instance.gunDisplay.UpdateActiveGun(gunsCarried[activeGunIndex].gunPortrait, gunsCarried[DetermineSecondaryGun()].gunPortrait);
+
     }
 
-    public void SetActiveWeapon(GunTypes newGun)
+    public void SwitchWeapons( )
     {
         if (!IsActiveGunReloading())
         {
-
-            activeGun = newGun;
-            SetGunAmmoDisplay();
-            switch (activeGun)
+            //Increment index
+            activeGunIndex++;
+            //If index reaches end of array
+            if (activeGunIndex >= gunsCarried.Count)
             {
-                case GunTypes.Shotgun:
-
-                    UIManager.instance.gunDisplay.UpdateActiveGun(shotgun.gunPortrait,pistol.gunPortrait);
-
-                    break;
-
-                case GunTypes.Pistol:
-                    UIManager.instance.gunDisplay.UpdateActiveGun(pistol.gunPortrait, shotgun.gunPortrait);
-
-                    break;
+                activeGunIndex = 0;//loop back round
             }
+            SetGunAmmoDisplay();
+            //Update the portraits
+            UIManager.instance.gunDisplay.UpdateActiveGun(gunsCarried[activeGunIndex].gunPortrait, gunsCarried[DetermineSecondaryGun()].gunPortrait);
+
         }
     }
     
    public void ShootActiveWeapon()
     {
-        switch (activeGun)
-        {
-            case GunTypes.Shotgun:
-                shotgun.Shoot();
-                UIManager.instance.ammoDisplay.SetClipCount(shotgun.GetCurrentClip());
-             
-                break;
-
-            case GunTypes.Pistol:
-                pistol.Shoot();
-                UIManager.instance.ammoDisplay.SetClipCount(pistol.GetCurrentClip());
-
-                break;
-        }
+        //gets currently active gun and shoots them
+        gunsCarried[activeGunIndex].Shoot();
+        UIManager.instance.ammoDisplay.SetClipCount(gunsCarried[activeGunIndex].GetCurrentClip());
    }
 
     public void ReloadActiveWeapon()
     {
-        switch (activeGun)
-        {
-            case GunTypes.Shotgun:
-                shotgun.Reload();
-
-                break;
-            case GunTypes.Pistol:
-                pistol.Reload();
-                break;
-        }
+        //gets currently active gun and reloadsit
+        gunsCarried[activeGunIndex].Reload();
 
     }
 
     public void SetGunAmmoDisplay()
     {
-        switch (activeGun)
-        {
-            case GunTypes.Shotgun:
-                UIManager.instance.ammoDisplay.SetAmmoCount(shotgun.GetCurrentAmmo());
-                UIManager.instance.ammoDisplay.SetClipCount(shotgun.GetCurrentClip());
-                break;
+        //sets ammo display of respective gun
+        UIManager.instance.ammoDisplay.SetAmmoCount(gunsCarried[activeGunIndex].GetCurrentAmmo());
+        UIManager.instance.ammoDisplay.SetClipCount(gunsCarried[activeGunIndex].GetCurrentClip());
 
-            case GunTypes.Pistol:
-                UIManager.instance.ammoDisplay.SetAmmoCount(pistol.GetCurrentAmmo());
-                UIManager.instance.ammoDisplay.SetClipCount(pistol.GetCurrentClip());
-                break;
-        }
     }
     public void UpdateGunClipDisplay()
     {
-        switch (activeGun)
-        {
-            case GunTypes.Shotgun:
-                
-                UIManager.instance.ammoDisplay.SetClipCount(shotgun.GetCurrentClip());
-                break;
 
-            case GunTypes.Pistol:
-            
-                UIManager.instance.ammoDisplay.SetClipCount(pistol.GetCurrentClip());
-                break;
-        }
+        //updates thee clips only of respectve gun
+        UIManager.instance.ammoDisplay.SetClipCount(gunsCarried[activeGunIndex].GetCurrentClip());
+ 
     }
     public void UpdateGunAmmoDisplay()
     {
-        switch (activeGun)
-        {
-            case GunTypes.Shotgun:
-                UIManager.instance.ammoDisplay.SetAmmoCount(shotgun.GetCurrentAmmo());
-              
-                break;
+        //updates  only ammo reserve display of respective gun
+        UIManager.instance.ammoDisplay.SetAmmoCount(gunsCarried[activeGunIndex].GetCurrentAmmo());
 
-            case GunTypes.Pistol:
-
-                UIManager.instance.ammoDisplay.SetClipCount(pistol.GetCurrentAmmo());
-                break;
-        }
     }
 
     public bool IsActiveGunReloading()
     {
-        switch (activeGun)
-        {
+       //checks if currently equipped gun is reloading
+        return gunsCarried[activeGunIndex].GetIsReloading();
 
-            case GunTypes.Shotgun:
-                return shotgun.GetIsReloading();
-
-            case GunTypes.Pistol:
-                return pistol.GetIsReloading();
-
-            default:
-                return false;
-
-        }
     }
 
     public void SetUpGadget(GadgetTypes[] gadgets,int primaryAmount, int secondaryAmount)
@@ -160,23 +107,26 @@ public class WeaponManager : MonoBehaviour
         //if there is a secondary and primary gadget
         if (gadgets.Length > 1 && gadgets.Length < 3)
         {
+            //assign gadgets
             primaryGadget = gadgets[0];
-            secondaryGadget= gadgets[1];
+            secondaryGadget = gadgets[1];
+            //Update UI
             UIManager.instance.gadgetDisplay.GenerateNewGadgetTemplate(primaryGadget, primaryAmount);
-            //UIManager.instance.gadgetDisplay.GenerateNewGadgetTemplate(secondaryGadget, secondaryAmount);
         }
-
         else
         {
+            //assign gadgets
             primaryGadget = gadgets[0];
+            //Update UI
             UIManager.instance.gadgetDisplay.GenerateNewGadgetTemplate(primaryGadget, primaryAmount);
-            Debug.Log("Spawn gadgets");
+
         }
     }
 
 
     public void UsePrimaryGadget(int newAmount, Vector2 dir,Vector3 origin)
     {
+        //Checks primarily assign gadget and uses them
         switch (primaryGadget)
         {
             case GadgetTypes.FlashBang:
@@ -187,15 +137,20 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    //loops through all guns carried and resets them
     private void ResetGuns()
     {
-        pistol.ResetGun();
-        shotgun.ResetGun();
+        foreach(BaseGun gun in gunsCarried)
+        {
+            gun.ResetGun();
+        }
+
     }
 
-    public GunTypes GetActiveGun()
+    public BaseGun GetActiveGun()
     {
-        return activeGun;
+        //return active gun
+        return gunsCarried[activeGunIndex];
     }
 
     public void GainPrimaryGadget()
@@ -223,7 +178,34 @@ public class WeaponManager : MonoBehaviour
             case InitStates.RespawnPlayer:
                 ResetGuns();
                 break;
+            //case InitStates.SpawnPlayer:
+            //    Init();
+            //    break;
         }
     }
 
+    //takes an array of all guns carried and adds the to guns carried array
+    public void InitEquippedGuns(BaseGun[] guns)
+    {
+        for(int i=0; i< guns.Length; i++)
+        {
+            //player should only ever have 2 guns
+            if (i < 2) gunsCarried.Add(guns[i]); //in that case add current gun to list
+        }
+    }
+
+    private int DetermineSecondaryGun()
+    {
+        //check if gun index overflows
+        if(activeGunIndex +1 >= gunsCarried.Count)
+        {
+            //if it does then it must the last index, so return 0
+            return 0;
+        }
+        else
+        {
+            // if not then it must be the first so return the next index value
+            return activeGunIndex + 1;
+        }
+    }
 }

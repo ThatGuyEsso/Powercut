@@ -30,9 +30,9 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     public FieldOfView fieldOfView;
     private Rigidbody2D rb;
     public Transform throwingPoint;
+
     //Weapons
-    private GunTypes[] gunsCarried = new GunTypes[2];
-    private GunTypes equippedGun;
+
     private GadgetTypes[] gadgetCarried = new GadgetTypes[1];
     private int numberOfPrimaryGadget;
     private int numberOfSecondaryGadget;
@@ -60,18 +60,17 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         animControl = gameObject.GetComponent<PlayerAnimController>();
 
         //Set initial variables
-        gunsCarried[0] = GunTypes.Pistol;
-        gunsCarried[1] = GunTypes.Shotgun;
         gadgetCarried[0] = GadgetTypes.FlashBang;
         currHealth = settings.maxHealth;
         currHurtTime = settings.maxHurtTime;
         numberOfPrimaryGadget = 3;
         numberOfSecondaryGadget = 2;
 
+        CheckLoadOut();
         CycleBetweenGuns();
         SetUpHealth();
         animControl.UpdatePlayergun();
-        WeaponManager.instance.SetUpGadget(gadgetCarried, numberOfPrimaryGadget, numberOfSecondaryGadget);
+
         currMoveState = MovementStates.Idle;
         //Set input
         input = new Controls();
@@ -354,19 +353,8 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
 
     private void CycleBetweenGuns()
     {
-        //Increment index
-        equippedIndex++;
-        //If index reaches end of array
-        if (equippedIndex >= gunsCarried.Length)
-        {
-            equippedIndex = 0;//loop back round
-        }
-
-        //equipped gun is the respective gun
-        equippedGun = gunsCarried[equippedIndex];
-        
         //Update weapon manager
-        WeaponManager.instance.SetActiveWeapon(equippedGun);
+        WeaponManager.instance.SwitchWeapons();
     }
 
   
@@ -413,6 +401,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         {
             case InitStates.PlayerSpawned:
                 Init();
+                WeaponManager.instance.Init();
 
                 break;
             case InitStates.PlayerRespawned:
@@ -435,5 +424,16 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
 
                 break;
         }
+    }
+
+    private void CheckLoadOut()
+    {
+        //get all gun components
+        BaseGun[] guns = gameObject.GetComponentsInChildren<BaseGun>();
+        //pass  values to weapon manager
+        WeaponManager.instance.InitEquippedGuns(guns);
+
+        //Pass in all gadget data too (should be separate gadget manger)
+        WeaponManager.instance.SetUpGadget(gadgetCarried, numberOfPrimaryGadget, numberOfSecondaryGadget);
     }
 }

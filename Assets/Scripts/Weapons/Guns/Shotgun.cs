@@ -5,7 +5,12 @@ using UnityEngine;
 public class Shotgun : BaseGun
 {
     public int bulletsPerShot;
-
+    override protected void Awake()
+    {
+        base.Awake();
+        //set appropriate gun type
+        gunType = GunTypes.Shotgun;
+    }
     public override void Shoot()
     {
  

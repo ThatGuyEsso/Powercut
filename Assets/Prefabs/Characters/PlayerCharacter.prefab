@@ -590,6 +590,18 @@ PrefabInstance:
       propertyPath: flashDuration
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 7603566798095995842, guid: 4e348cea64a457548988be0e642f5c32, type: 3}
+      propertyPath: maxAmmo
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603566798095995842, guid: 4e348cea64a457548988be0e642f5c32, type: 3}
+      propertyPath: maxClip
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603566798095995842, guid: 4e348cea64a457548988be0e642f5c32, type: 3}
+      propertyPath: reloadTime
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7603566798095995900, guid: 4e348cea64a457548988be0e642f5c32, type: 3}
       propertyPath: m_Name
       value: Pistol

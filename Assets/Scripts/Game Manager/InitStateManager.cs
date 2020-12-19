@@ -111,10 +111,10 @@ public class InitStateManager : MonoBehaviour
                 break;
             case InitStates.PlayerSceneLoaded:
                 OnStateChange?.Invoke(newState);
-                FindObjectOfType<WeaponManager>().Init();
+              
+                WeaponManager.instance.BindToInitManager();
                 FindObjectOfType<LightManager>().BindToInitManager();
                 FindObjectOfType<PlayerBehaviour>().BindToInitManager();
-                WeaponManager.instance.BindToInitManager();
                 GameStateManager.instance.Init();
    
                 currInitState = InitStates.SpawnPlayer;

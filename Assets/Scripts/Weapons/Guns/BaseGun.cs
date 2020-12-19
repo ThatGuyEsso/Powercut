@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum GunTypes
+{
+    Pistol,
+    Shotgun,
+    AutoRifle
+};
+
 public abstract class BaseGun : MonoBehaviour, IShootable
 {
     protected GunTypes gunType;
@@ -181,5 +188,11 @@ public abstract class BaseGun : MonoBehaviour, IShootable
     {
         currentClip = maxClip;
         currentAmmo = maxAmmo;
+    }
+
+    public GunTypes GetGunTypes()
+    {
+        //returns type of the gun
+        return gunType;
     }
 }
