@@ -55,7 +55,7 @@ public class EnemySpawner : MonoBehaviour,IEnemySpawnable
                     rand = 0;
                 }
 
-                BaseEnemy currEnemy = Instantiate(settings.enemyTypes[rand],(Random.insideUnitCircle*settings.spawnRadius+(Vector2)transform.position),Quaternion.identity).GetComponent<BaseEnemy>();
+                BaseEnemy currEnemy = ObjectPoolManager.Spawn(settings.enemyTypes[rand],(Random.insideUnitCircle*settings.spawnRadius+(Vector2)transform.position),Quaternion.identity).GetComponent<BaseEnemy>();
                 currEnemy.SetTarget(target);
             }
         }
@@ -72,6 +72,7 @@ public class EnemySpawner : MonoBehaviour,IEnemySpawnable
     void IEnemySpawnable.LampInDarkness()
     {
         canSpawn = true;
+        SpawnEnemies();
     }
 
     void IEnemySpawnable.LampInLight()

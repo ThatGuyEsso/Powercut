@@ -5,7 +5,7 @@ using UnityEngine;
 public class BaseEnemyAnimController : MonoBehaviour
 {
     private Animator anim;
- 
+
  
     public void Init()
     {
@@ -16,10 +16,15 @@ public class BaseEnemyAnimController : MonoBehaviour
 
     public void PlayAnim(string animationName)
     {
-        anim.Play(animationName);
+        if (anim.gameObject.activeSelf)
+        {
+            anim.Play(animationName);
+
+
+        }
     }
 
-    
+  
 
 }
 

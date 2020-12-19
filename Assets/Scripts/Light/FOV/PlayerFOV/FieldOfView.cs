@@ -48,6 +48,11 @@ public class FieldOfView : MonoBehaviour, ILightWeakness
 
     virtual protected void Update()
     {
+        UpdateConeView();
+    }
+
+    public void UpdateConeView()
+    {
         //Every frame update the cone shape
         if (lightIsOn)
         {
@@ -55,7 +60,6 @@ public class FieldOfView : MonoBehaviour, ILightWeakness
             WeakenEnemy();
         }
     }
-
     virtual protected void DrawVisionConeShape()
     {
         //Create then number of total vertices required

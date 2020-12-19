@@ -212,7 +212,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         {
             
             CycleBetweenGuns();
-            PlayerDie();
+           
         }
     }
 

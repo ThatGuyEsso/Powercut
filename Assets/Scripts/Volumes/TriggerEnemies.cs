@@ -6,7 +6,7 @@ public class TriggerEnemies : MonoBehaviour
 {
     private void Awake()
     {
-        Destroy(gameObject, 0.25f);
+        Invoke("BeginRecycle", 0.15f);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -17,4 +17,8 @@ public class TriggerEnemies : MonoBehaviour
         }
     }
 
+    public void BeginRecycle()
+    {
+        ObjectPoolManager.Recycle(gameObject);
+    }
 }

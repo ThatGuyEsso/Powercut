@@ -24,14 +24,14 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable
             Instantiate(sparkPrefab, transform.position, transform.rotation);
             //SetupAndPlayBulletSound("BulletCollisionSFX");
             AudioManager.instance.PlayAtRandomPitch("BulletCollisionSFX");
-            Destroy(gameObject);
+            ObjectPoolManager.Recycle(gameObject);
         }
         if (other.gameObject.CompareTag("Enemy"))
         {
             other.GetComponent<IHurtable>().Damage(damage, rb.velocity.normalized, knockBack);
-            Instantiate(sparkPrefab, transform.position, transform.rotation);
-            Instantiate(triggerEnemyPrefab, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            ObjectPoolManager.Spawn(sparkPrefab, transform.position, transform.rotation);
+            ObjectPoolManager.Spawn(triggerEnemyPrefab, transform.position, Quaternion.identity);
+            ObjectPoolManager.Recycle(gameObject);
         }
     }
 

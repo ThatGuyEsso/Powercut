@@ -11,12 +11,18 @@ public class BaseLampLight : FieldOfView
         base.Awake();
     }
 
-    override protected void Update()
+
+    public void InitLampView()
     {
-        base.Update();
-       
+        ///lamps shadows do not change very often.
+        /// so to impove performance reduce update rate     
+        InvokeRepeating("UpdateConeView", 0.0f, lampSettings.lightTickRate);
     }
 
+    protected override void Update()
+    {
+        
+    }
     override protected void SetUpLight()
     {
         origin = Vector3.zero;

@@ -372,7 +372,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
                 hurtVFX.BeginFlash();
                 currentHealth -= damage;
                 this.knockBack = knockBack * knockBackDir;
-                DamageNumber dmgVFX = Instantiate(hurtNumber, transform.position, Quaternion.identity).GetComponent<DamageNumber>();
+                DamageNumber dmgVFX = ObjectPoolManager.Spawn(hurtNumber, transform.position, Quaternion.identity).GetComponent<DamageNumber>();
                 if(dmgVFX != false)
                 {
                     dmgVFX.Init();
@@ -391,9 +391,9 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     }
     protected void KillEnemy()
     {
-        Instantiate(deathVFX, transform.position, transform.rotation);
+        ObjectPoolManager.Spawn(deathVFX, transform.position, transform.rotation);
         InitStateManager.instance.OnStateChange -= EvaluateNewState;
-        Destroy(gameObject);
+        ObjectPoolManager.Recycle(gameObject);
     }
 
     public void CalculateKnockBack()
@@ -419,7 +419,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         {
             case InitStates.RespawnPlayer:
                 InitStateManager.instance.OnStateChange -= EvaluateNewState;
-                Destroy(gameObject);
+                ObjectPoolManager.Recycle(gameObject);
             
                 break;
         }

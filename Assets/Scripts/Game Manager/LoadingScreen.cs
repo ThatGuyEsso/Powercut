@@ -13,6 +13,7 @@ public class LoadingScreen : MonoBehaviour
     public Image screenImage;
 
 
+
     public event FadeCompleted OnFadeComplete;
     public delegate void FadeCompleted( );
     public event CurtainCall OnCurtainCallEnd;

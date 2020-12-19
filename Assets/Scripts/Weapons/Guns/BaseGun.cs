@@ -62,7 +62,7 @@ public abstract class BaseGun : MonoBehaviour, IShootable
         {
             CamShake.instance.DoScreenShake(time, magnitude, smoothIn, smoothOut);
             //Instatiate a bullet
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            GameObject bullet = ObjectPoolManager.Spawn(bulletPrefab, firePoint.position, firePoint.rotation);
             IShootable shot = bullet.GetComponent<IShootable>();
             Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();//Get RB component
 
@@ -81,7 +81,7 @@ public abstract class BaseGun : MonoBehaviour, IShootable
             else
             {
                 //bullet can't get shot so just destroy
-                Destroy(bulletRB);
+                ObjectPoolManager.Recycle(bulletRB);
             }
             StartCoroutine(ShotDelay());
         }

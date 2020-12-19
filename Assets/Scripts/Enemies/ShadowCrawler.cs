@@ -30,7 +30,7 @@ public class ShadowCrawler : BaseEnemy
         if (target != null)
         {
             SetEnemyState(EnemyStates.Chase);
-            Debug.Log("Chase");
+          
         }
     }
     protected override void ProcessAI()
@@ -61,6 +61,7 @@ public class ShadowCrawler : BaseEnemy
 
             case EnemyStates.Chase:
                 UpdatePath();
+                DrawPathToTarget();
 
                 //Move to target position
                 ResolveTargetType();
@@ -103,7 +104,7 @@ public class ShadowCrawler : BaseEnemy
 
             case EnemyStates.Chase:
                 //Move to target position
-                DrawPathToTarget();
+            
 
 
 

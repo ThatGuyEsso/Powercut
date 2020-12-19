@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: ShadowCrawler Settings
   m_EditorClassIdentifier: 
   maxSpeed: 1500
-  timeZeroToMax: 0.15
-  timeMaxToZero: 0.25
+  timeZeroToMax: 0.05
+  timeMaxToZero: 0.05
   rotationSpeed: 0.01
   maxHealth: 50
   maxDamage: 12

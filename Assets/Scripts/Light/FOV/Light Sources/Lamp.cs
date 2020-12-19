@@ -71,6 +71,8 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
         lightRef.SetOrigin(transform.position);
         lightRef.SetAimDirection(transform.up);
         lightRef.ToggleLight(isLampWorking);
+        lightRef.InitLampView();
+
         if (!isLampWorking)
         {
             currentHealth = 0f;

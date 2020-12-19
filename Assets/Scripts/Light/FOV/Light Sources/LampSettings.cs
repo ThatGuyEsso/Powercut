@@ -11,5 +11,6 @@ public class LampSettings : ScriptableObject
     public LayerMask lightBlockingLayers;
 
     public float maxLightHealth;
+    public float lightTickRate = 0.25f;
 }
 

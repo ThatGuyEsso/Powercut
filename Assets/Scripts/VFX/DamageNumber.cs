@@ -91,7 +91,7 @@ public class DamageNumber : MonoBehaviour
             text.color = Vector4.Lerp(text.color, new Vector4(text.color.r, text.color.g, text.color.b, 0f), fadeRate);
             if (text.color.a == 0f)
             {
-                Destroy(gameObject);
+                ObjectPoolManager.Recycle(gameObject);
             }
         }
     }

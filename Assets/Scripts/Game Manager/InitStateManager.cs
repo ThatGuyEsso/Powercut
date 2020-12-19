@@ -25,7 +25,7 @@ public enum InitStates
 public class InitStateManager : MonoBehaviour
 {
     public static InitStateManager instance;
-    public GameObject audioManager, transitionManager;
+    public GameObject audioManager, transitionManager,objectPoolManager;
     public static InitStates currInitState;
 
     public event NewInitStateDelegate OnStateChange;
@@ -55,9 +55,11 @@ public class InitStateManager : MonoBehaviour
         //Spawn necessary utillity managers
         Instantiate(audioManager, Vector3.zero, Quaternion.identity);
         Instantiate(transitionManager, Vector3.zero, Quaternion.identity);
+        Instantiate(objectPoolManager, Vector3.zero, Quaternion.identity);
 
         AudioManager.instance.BindToInitManager();
         TransitionManager.instance.BindToInitManager();
+        ObjectPoolManager._instance.BindToInitManager();
 
         OnStateChange?.Invoke(currInitState);
 

@@ -17,7 +17,7 @@ public class Shotgun : BaseGun
             IShootable[] shot = new IShootable[bulletsPerShot];
             for (int i = 0; i<bulletsPerShot; i++)
             {
-                bullets[i] = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+                bullets[i] = ObjectPoolManager.Spawn(bulletPrefab, firePoint.position, firePoint.rotation);
                 bulletRB[i] = bullets[i].GetComponent<Rigidbody2D>();
                 shot[i] = bullets[i].GetComponent<IShootable>();
             }
@@ -41,7 +41,7 @@ public class Shotgun : BaseGun
                 }
                 else
                 {
-                    Destroy(bulletRB[i]);
+                    ObjectPoolManager.Recycle(bulletRB[i]);
                 }
 
             }
