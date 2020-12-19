@@ -103,10 +103,7 @@ public class ShadowCrawler : BaseEnemy
                 break;
 
             case EnemyStates.Chase:
-                //Move to target position
-            
-
-
+                //Move
 
                 SmoothAccelerate(moveDirection, maxSpeed, settings.timeZeroToMax);
                 FaceMovementDirection();
