@@ -15,7 +15,8 @@ public class GameStateManager : MonoBehaviour, IInitialisable
 {
     public static GameStateManager instance;
     public static bool isGamePaused = false;
-    [SerializeField]
+    [SerializeField] private RunTimeData runTimeData;
+    [SerializeField] private TutorialManager tutorialManager;
     public GameObject[] itemsToInit;
     [SerializeField]
     Transform initSpawnPoint;
@@ -87,6 +88,16 @@ public class GameStateManager : MonoBehaviour, IInitialisable
         foreach(GameObject init in itemsToInit)
         {
             init.GetComponent<IInitialisable>().Init();
+        }
+        if (runTimeData.firstBoot)
+        {
+            runTimeData.firstBoot = false;
+            if (tutorialManager.gameObject != false)
+            {
+                TutorialManager tutorial = Instantiate(tutorialManager, Vector3.zero, Quaternion.identity);
+                tutorial.Init();
+            }
+      
         }
     }
 

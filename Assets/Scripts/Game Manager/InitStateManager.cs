@@ -27,7 +27,7 @@ public class InitStateManager : MonoBehaviour
     public static InitStateManager instance;
     public GameObject audioManager, transitionManager,objectPoolManager;
     public static InitStates currInitState;
-
+    [SerializeField] private RunTimeData runTimeData;
     public event NewInitStateDelegate OnStateChange;
     public delegate void NewInitStateDelegate(InitStates newState);
     private void Awake()
@@ -41,6 +41,7 @@ public class InitStateManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        runTimeData.firstBoot = true;
         DontDestroyOnLoad(gameObject);
     }
     private void Start()

@@ -437,6 +437,7 @@ MonoBehaviour:
   audioManager: {fileID: 8508617408298378890, guid: 90f8ef9e1567501429c209814d4bcfc2, type: 3}
   transitionManager: {fileID: 1239431896879086905, guid: 1b31d858234fc48499cc95936a765fef, type: 3}
   objectPoolManager: {fileID: 4843924930161013370, guid: dc6f9526c7a658745ad4aeb00ea6831c, type: 3}
+  runTimeData: {fileID: 11400000, guid: 4ea2dd1b21a7c2547bf6145914c27a6f, type: 2}
 --- !u!4 &1503789066
 Transform:
   m_ObjectHideFlags: 0

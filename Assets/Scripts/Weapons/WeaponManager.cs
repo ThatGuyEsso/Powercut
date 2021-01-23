@@ -77,7 +77,7 @@ public class WeaponManager : MonoBehaviour
     public void SetGunAmmoDisplay()
     {
         //sets ammo display of respective gun
-        UIManager.instance.ammoDisplay.SetAmmoCount(gunsCarried[activeGunIndex].GetCurrentAmmo());
+        UIManager.instance.ammoDisplay.SetAmmoCount(gunsCarried[activeGunIndex].GetCurrentAmmo(), gunsCarried[activeGunIndex].HasInifiniteBullets());
         UIManager.instance.ammoDisplay.SetClipCount(gunsCarried[activeGunIndex].GetCurrentClip());
 
     }
@@ -91,7 +91,7 @@ public class WeaponManager : MonoBehaviour
     public void UpdateGunAmmoDisplay()
     {
         //updates  only ammo reserve display of respective gun
-        UIManager.instance.ammoDisplay.SetAmmoCount(gunsCarried[activeGunIndex].GetCurrentAmmo());
+        UIManager.instance.ammoDisplay.SetAmmoCount(gunsCarried[activeGunIndex].GetCurrentAmmo(), gunsCarried[activeGunIndex].HasInifiniteBullets());
 
     }
 

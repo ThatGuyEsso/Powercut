@@ -14,7 +14,10 @@ public abstract class BaseGun : MonoBehaviour, IShootable
     protected GunTypes gunType;
     [Header("Gun Settings")]
     //Ammo max values
-    public int maxAmmo, maxClip;
+    [Tooltip("If max ammo is less than zero game assumes gun has maximum ammo")]
+    [SerializeField] protected int maxAmmo, maxClip;
+    //Ammo current
+    protected int currentAmmo, currentClip;
     public Sprite gunPortrait;
     [SerializeField]
     protected string shootSFX;
@@ -25,8 +28,6 @@ public abstract class BaseGun : MonoBehaviour, IShootable
     protected MuzzleFlash muzzleFlash;
     [SerializeField]
     protected float flashDuration =0.2f;
-    //Ammo current
-    protected int currentAmmo, currentClip;
     //Reload and shot interval max value
     public float reloadTime,maxTimeBetweenShots;
     //Current time between reload and shot interval
@@ -156,14 +157,19 @@ public abstract class BaseGun : MonoBehaviour, IShootable
 
     }
 
-    protected IEnumerator ReloadRoutine(int newClip)
+    virtual protected IEnumerator ReloadRoutine(int newClip)
     {
      
         yield return new WaitForSeconds(reloadTime);
         isReloading = false;
+      
         currentAmmo -= newClip;
+        if (HasInifiniteBullets()) currentAmmo = maxAmmo;
         currentClip += newClip;
-        UIManager.instance.ammoDisplay.SetAmmoCount(currentAmmo);
+     
+
+        UIManager.instance.ammoDisplay.SetAmmoCount(currentAmmo, HasInifiniteBullets());
+      
         UIManager.instance.ammoDisplay.SetClipCount(currentClip);
     }
 
@@ -183,6 +189,11 @@ public abstract class BaseGun : MonoBehaviour, IShootable
 
     }
 
+    public bool HasInifiniteBullets()
+    {
+        //if true the gun has infinite bullets
+        return maxAmmo < 0;
+    }
     //Reset gun
     public void ResetGun()
     {

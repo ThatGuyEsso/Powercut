@@ -592,7 +592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7603566798095995842, guid: 4e348cea64a457548988be0e642f5c32, type: 3}
       propertyPath: maxAmmo
-      value: 50
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7603566798095995842, guid: 4e348cea64a457548988be0e642f5c32, type: 3}
       propertyPath: maxClip

@@ -34,15 +34,23 @@ public class AmmoDisplay : MonoBehaviour
     }
 
 
-    public void SetAmmoCount(int newCount)
+    public void SetAmmoCount(int newCount, bool isInfinite)
     {
-        if (newCount > 0)
+        if (!isInfinite)
         {
-            ammoDisplay.text = newCount.ToString();
+            //if ammo isn't infinite display the actual count
+            if (newCount > 0)
+            {
+                ammoDisplay.text = newCount.ToString();
+            }
+            else
+            {
+                clipDisplay.text = "00";
+            }
         }
         else
         {
-            clipDisplay.text = "00";
+            ammoDisplay.text = "NA";
         }
     }
 
