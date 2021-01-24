@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2195761185384274688}
   - component: {fileID: 1074179764}
   - component: {fileID: 118379377296335105}
-  m_Layer: 15
+  m_Layer: 11
   m_Name: ConveyorMotor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.27413952, y: -0.8739401}
+  m_Offset: {x: -0.034347296, y: -0.3943559}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -58,7 +58,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.451721, y: 2.7478797}
+  m_Size: {x: 1.084907, y: 1.7887113}
   m_EdgeRadius: 0
 --- !u!114 &1074179764
 MonoBehaviour:
@@ -76,6 +76,10 @@ MonoBehaviour:
   fixTickRate: 0.5
   fixAmountPerTick: 10
   taskName: Fix Conveyor Belt Motor
+  taskDescription: Conveyor Motor
+  playerPrompt: '[E] To fix the motor'
+  powerStillOnPrompt: Too dangerous to fix with the main power still active
+  fixingPrompt: Fixing
   stateSprites:
   - {fileID: 5363417563520248136, guid: 715f4a3b7f18da1468a8f2ee377aebb4, type: 3}
   - {fileID: 4022559130877821374, guid: 715f4a3b7f18da1468a8f2ee377aebb4, type: 3}
@@ -148,7 +152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4477824901512771651}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.375, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4477824900034591446}

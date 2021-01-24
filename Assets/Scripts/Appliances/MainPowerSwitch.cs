@@ -60,6 +60,8 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
                     if (hasActivated == false)
                     {
                         GameStateManager.instance.BeginNewGameState(GameStates.MainPowerOff);
+                        InGamePrompt.instance.SetColor(Color.red);
+                        InGamePrompt.instance.ChangePrompt("Main Power Disabled");
                         hasActivated = true;
 
                     }
@@ -71,6 +73,11 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
                     {
                         GameStateManager.instance.BeginNewGameState(GameStates.LevelClear);
 
+                    }
+                    else
+                    {
+                        InGamePrompt.instance.SetColor(Color.white);
+                        InGamePrompt.instance.ChangePrompt("Need to fix all lights before power can be turned on");
                     }
                     break;
 

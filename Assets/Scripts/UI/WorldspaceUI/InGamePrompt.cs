@@ -1,5 +1,7 @@
 ﻿
 using UnityEngine;
+using System.Collections;
+
 using TMPro;
 public class InGamePrompt : MonoBehaviour, IInitialisable
 {
@@ -24,9 +26,20 @@ public class InGamePrompt : MonoBehaviour, IInitialisable
     {
         promptText.text = newString;
     }
+    public void SetColor(Color newColor)
+    {
+        promptText.color = newColor;
+    }
+    public void ShowPromptTimer(string newString,float timeToHide)
+    {
+        StopAllCoroutines();
+        promptText.text = newString;
+        StartCoroutine(HidePromptDelay(timeToHide));
+    }
 
     public void HidePrompt()
     {
+        SetColor(Color.white);
         promptText.enabled = false;
     }
     public void ShowPrompt()
@@ -45,5 +58,11 @@ public class InGamePrompt : MonoBehaviour, IInitialisable
     void IInitialisable.Init()
     {
         Init();
+    }
+
+    private IEnumerator HidePromptDelay(float time)
+    {
+        yield return new WaitForSeconds(time);
+        HidePrompt();
     }
 }

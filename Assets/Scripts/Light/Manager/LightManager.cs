@@ -11,6 +11,8 @@ public enum ChargeStates
 }
 public class LightManager : MonoBehaviour
 {
+    public static LightManager instance;
+
     //Charge variables
     private float currentCharge;
     private float dischargeRate;
@@ -27,9 +29,20 @@ public class LightManager : MonoBehaviour
 
     private bool isInitialised;
 
-
+    public delegate void ChargeDelegate();
+    public event ChargeDelegate OnChargeDepleted;
+    public event ChargeDelegate OnFullyCharged;
     public void Init()
     {
+        if (instance == false)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
         //initial variables
         currentCharge = settings.maxCharge;
         dischargeRate = settings.dischargeRate;
@@ -81,6 +94,7 @@ public class LightManager : MonoBehaviour
             {
                 fieldViewCone.ToggleLight(false);
                 SetChargeState(ChargeStates.StandBy);
+                OnChargeDepleted?.Invoke();
             }
         }
      
@@ -109,8 +123,12 @@ public class LightManager : MonoBehaviour
         {
             fieldViewCone.ToggleLight(true);
           
+          
 
-
+        }
+        if(currentCharge >= settings.maxCharge)
+        {
+            OnFullyCharged?.Invoke();
         }
     }
 

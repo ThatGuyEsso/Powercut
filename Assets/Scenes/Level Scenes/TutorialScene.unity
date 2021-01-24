@@ -222,26 +222,38 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 290939447852221661, guid: b9c8fb64afd5bba4791cd85316078aac, type: 3}
+      propertyPath: offset.y
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 290939447852221662, guid: b9c8fb64afd5bba4791cd85316078aac, type: 3}
       propertyPath: m_fontAsset
       value: 
-      objectReference: {fileID: 11400000, guid: eff4c6524441c5a4e86c7702088fa9c4, type: 2}
+      objectReference: {fileID: 11400000, guid: c71a5b86aff31da45909cfefccfae163, type: 2}
     - target: {fileID: 290939447852221662, guid: b9c8fb64afd5bba4791cd85316078aac, type: 3}
       propertyPath: m_sharedMaterial
       value: 
-      objectReference: {fileID: -5376736755775340906, guid: eff4c6524441c5a4e86c7702088fa9c4, type: 2}
+      objectReference: {fileID: 6265859298723282780, guid: c71a5b86aff31da45909cfefccfae163, type: 2}
     - target: {fileID: 290939447852221662, guid: b9c8fb64afd5bba4791cd85316078aac, type: 3}
       propertyPath: m_margin.w
       value: -7.676504
       objectReference: {fileID: 0}
     - target: {fileID: 290939447852221662, guid: b9c8fb64afd5bba4791cd85316078aac, type: 3}
       propertyPath: m_wordSpacing
-      value: -80
+      value: -20
+      objectReference: {fileID: 0}
+    - target: {fileID: 290939447852221662, guid: b9c8fb64afd5bba4791cd85316078aac, type: 3}
+      propertyPath: m_fontSize
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 290939447852221662, guid: b9c8fb64afd5bba4791cd85316078aac, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 290939447852221663, guid: b9c8fb64afd5bba4791cd85316078aac, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: -5376736755775340906, guid: eff4c6524441c5a4e86c7702088fa9c4, type: 2}
+      objectReference: {fileID: 6265859298723282780, guid: c71a5b86aff31da45909cfefccfae163, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9c8fb64afd5bba4791cd85316078aac, type: 3}
 --- !u!1 &52975495 stripped
@@ -59388,33 +59400,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1631178903}
     m_Modifications:
-    - target: {fileID: 1074179764, guid: 4103e75278b5f9c4fb65dd8af79fbd34, type: 3}
-      propertyPath: taskDescription
-      value: Conveyor Motor
-      objectReference: {fileID: 0}
-    - target: {fileID: 2195761185384274688, guid: 4103e75278b5f9c4fb65dd8af79fbd34, type: 3}
-      propertyPath: m_Offset.x
-      value: -0.034347296
-      objectReference: {fileID: 0}
-    - target: {fileID: 2195761185384274688, guid: 4103e75278b5f9c4fb65dd8af79fbd34, type: 3}
-      propertyPath: m_Size.x
-      value: 1.084907
-      objectReference: {fileID: 0}
-    - target: {fileID: 2195761185384274688, guid: 4103e75278b5f9c4fb65dd8af79fbd34, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.3943559
-      objectReference: {fileID: 0}
-    - target: {fileID: 2195761185384274688, guid: 4103e75278b5f9c4fb65dd8af79fbd34, type: 3}
-      propertyPath: m_Size.y
-      value: 1.7887113
-      objectReference: {fileID: 0}
     - target: {fileID: 4477824900034591440, guid: 4103e75278b5f9c4fb65dd8af79fbd34, type: 3}
       propertyPath: m_Name
       value: ConveyorMotor
-      objectReference: {fileID: 0}
-    - target: {fileID: 4477824900034591440, guid: 4103e75278b5f9c4fb65dd8af79fbd34, type: 3}
-      propertyPath: m_Layer
-      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4477824900034591446, guid: 4103e75278b5f9c4fb65dd8af79fbd34, type: 3}
       propertyPath: m_LocalPosition.x
@@ -59458,10 +59446,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4477824900034591446, guid: 4103e75278b5f9c4fb65dd8af79fbd34, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4477824901512771650, guid: 4103e75278b5f9c4fb65dd8af79fbd34, type: 3}
-      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

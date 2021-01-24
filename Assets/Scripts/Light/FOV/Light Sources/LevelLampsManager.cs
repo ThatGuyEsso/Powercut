@@ -18,6 +18,8 @@ public class LevelLampsManager : MonoBehaviour
 
     GameStates currentGameState;
 
+    public delegate void LampBrokeDelegate();
+    public event LampBrokeDelegate OnLampBroke;
     private void Awake()
     {
         if (instance == false)
@@ -165,6 +167,7 @@ public class LevelLampsManager : MonoBehaviour
         int rand = Random.Range(0, workingLamps.Count);
 
         workingLamps[rand].InstantBreakLamp();
+        OnLampBroke?.Invoke();
     }
 
     //Get percent of lamps working in level

@@ -11,12 +11,20 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private FadeMediaGroup shootPrompt;
     [SerializeField] private FadeMediaGroup reloadPrompt;
     [SerializeField] private FadeMediaGroup gadgetPrompt;
+    [SerializeField] private FadeMediaGroup fusePrompt;
+    [SerializeField] private FadeMediaGroup rechargePrompt;
     [SerializeField] private List<BaseTutorial> allTutorials;
 
+    [Header("Management Settings")]
     [SerializeField] private float timebeforeTutorialStart =1.5f;
     [SerializeField] private int nTutorialsLeft;
     bool gameplayTutorialTriggered =false;
 
+
+    [SerializeField] private TargetPointer pointerPrefab;
+    private TargetPointer objectivePointer;
+    [SerializeField] private TargetPointer rechargePointerPrefab;
+    private TargetPointer rechargePointer;
 
     public void Init()
     {
@@ -30,10 +38,11 @@ public class TutorialManager : MonoBehaviour
 
         GameStateManager.instance.OnGameStateChange += EvaluateGameState;
         Invoke("OrientationTutorial", timebeforeTutorialStart);
+        SetUpObjectivePointer();
 
 
 
-   
+
     }
 
     private void EvaluateGameState(GameStates newState)
@@ -46,6 +55,7 @@ public class TutorialManager : MonoBehaviour
                 {
                     gameplayTutorialTriggered = true;
                     BeginGamePlayTutoiral();
+                    objectivePointer.SetCurrentTarget(TaskManager.instance.GetNearestBrokenTask(objectivePointer.transform));
                 }
                 break;
         }
@@ -89,10 +99,42 @@ public class TutorialManager : MonoBehaviour
 
             }
         }
+        LevelLampsManager.instance.OnLampBroke += LightFixingPrompt;
+        LightManager.instance.OnChargeDepleted += RechargePrompt;
+        TaskManager.instance.OnAllTasksCompletd += TaskCompletedPrompt;
     }
 
+    private void TaskCompletedPrompt()
+    {
+        TaskManager.instance.OnAllTasksCompletd -= TaskCompletedPrompt;
+        InGamePrompt.instance.SetColor(Color.green);
+        InGamePrompt.instance.ShowPromptTimer("Job completed Turn Main Power Back On",4.0f);
+        objectivePointer.SetCurrentTarget(FindObjectOfType<MainPowerSwitch>().transform);
+    }
+    private void LightFixingPrompt()
+    {
+        LevelLampsManager.instance.OnLampBroke -= LightFixingPrompt;
+        fusePrompt.gameObject.SetActive(true);
+        fusePrompt.gameObject.GetComponent<MouseTutorial>().Init();
+        fusePrompt.BeginFadeIn();
+    }
 
- 
+    private void DisableRechargePointer()
+    {
+        LightManager.instance.OnFullyCharged -= DisableRechargePointer;
+        Destroy(rechargePointer.gameObject);
+    }
+
+    private void RechargePrompt()
+    {
+        LightManager.instance.OnChargeDepleted -= RechargePrompt;
+        LightManager.instance.OnFullyCharged += DisableRechargePointer;
+        rechargePrompt.gameObject.SetActive(true);
+        rechargePrompt.gameObject.GetComponent<MouseTutorial>().Init();
+        SetUpRechargePointer();
+        rechargePrompt.BeginFadeIn();
+
+    }
     private void GamePlayTutoiral(GameObject go)
     {
         //unbind if bound
@@ -136,7 +178,20 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-
+    private void SetUpObjectivePointer()
+    {
+        Transform playerTransform = FindObjectOfType<PlayerBehaviour>().transform;
+        objectivePointer = Instantiate(pointerPrefab, playerTransform.position, Quaternion.identity);
+        objectivePointer.Init(playerTransform, FindObjectOfType<MainPowerSwitch>().transform);
+        objectivePointer.ActivatePointer();
+    }
+    private void SetUpRechargePointer()
+    {
+        Transform playerTransform = FindObjectOfType<PlayerBehaviour>().transform;
+        rechargePointer = Instantiate(rechargePointerPrefab, playerTransform.position, Quaternion.identity);
+        rechargePointer.Init(playerTransform, FindObjectOfType<RechargeStationBehaviour>().transform);
+        rechargePointer.ActivatePointer();
+    }
     private void OnDestroy()
     {
 

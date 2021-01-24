@@ -14,6 +14,9 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
     public string taskName;//Task Settings
     public string taskDescription;
 
+    [SerializeField] protected string playerPrompt;
+    [SerializeField] protected string powerStillOnPrompt;
+    [SerializeField] protected string fixingPrompt;
     public Sprite[] stateSprites;//0 should be fixed max should be max broken
     public GameObject fixVFX;
 
@@ -77,10 +80,11 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
             if (!isFixed)
             {
                 inRange = true;
-                InGamePrompt.instance.ChangePrompt("[E] To Fix Motor");
+                InGamePrompt.instance.ChangePrompt(playerPrompt);
                 InGamePrompt.instance.ShowPrompt();
 
             }
+          
 
         }
 
@@ -112,11 +116,14 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
                     //Begin fixing
                     isFixing = true;
                     Debug.Log("Should begin fixing");
-
+                    InGamePrompt.instance.SetColor(Color.green);
+                    InGamePrompt.instance.ShowPromptTimer(fixingPrompt, 5.0f);
                     break;
 
                 default:
-                    Debug.Log("Can't fix main power is still on");
+                    InGamePrompt.instance.SetColor(Color.red);
+                    InGamePrompt.instance.ShowPromptTimer(powerStillOnPrompt,5.0f);
+                   
                     break;
             }
         }
