@@ -14,7 +14,6 @@ public class BaseTutorial : MonoBehaviour, Controls.IPlayerControlsActions
 
     public delegate void TutorialCompleteDelegate();
     public event TutorialCompleteDelegate OnTutorialComplete;
-
     virtual public void Init()
     {
         fadeController = gameObject.GetComponent<FadeMediaGroup>();
@@ -22,6 +21,10 @@ public class BaseTutorial : MonoBehaviour, Controls.IPlayerControlsActions
         input = new Controls();
         input.PlayerControls.SetCallbacks(this);
         input.Enable();
+    }
+    public void DisablePrompt()
+    {
+        BeginEndTutorial();
     }
 
     public void Activate(GameObject go)

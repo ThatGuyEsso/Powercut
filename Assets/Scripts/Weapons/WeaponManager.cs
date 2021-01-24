@@ -22,6 +22,9 @@ public class WeaponManager : MonoBehaviour
     public GameObject flashBangPrefab;
     public float throwForce;
 
+
+    public event ClipEmptyDelegate OnClipEmpty;
+    public delegate void ClipEmptyDelegate();
     public void Awake()
     {
         if (instance == false)
@@ -65,6 +68,11 @@ public class WeaponManager : MonoBehaviour
         //gets currently active gun and shoots them
         gunsCarried[activeGunIndex].Shoot();
         UIManager.instance.ammoDisplay.SetClipCount(gunsCarried[activeGunIndex].GetCurrentClip());
+        if(gunsCarried[activeGunIndex].GetCurrentClip() <= 0)
+        {
+            //call clip is empty
+            OnClipEmpty?.Invoke();
+        }
    }
 
     public void ReloadActiveWeapon()

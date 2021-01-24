@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 public class FadeMediaGroup : MonoBehaviour
 {
+
     [Header("Media Elements")]
     [SerializeField] private List<Image> images;
     [Tooltip("Elements that have specific oppacity values")] [SerializeField] private List<Image> limitedImages; 
@@ -16,6 +17,7 @@ public class FadeMediaGroup : MonoBehaviour
 
     public delegate void FadeCompleteDelgate(GameObject go);
     public event FadeCompleteDelgate OnFadeComplete;
+    private bool isFading =false;
 
     public void BeginFadeIn()
     {
@@ -30,6 +32,8 @@ public class FadeMediaGroup : MonoBehaviour
     }
     private IEnumerator FadeIn()
     {
+
+        isFading = true;
         //set oppacity to zero to initialise fade in
         float oppacity = 0f;
         foreach (Image image in images)
@@ -44,7 +48,6 @@ public class FadeMediaGroup : MonoBehaviour
         {
             txt.color = new Color(txt.color.r, txt.color.g, txt.color.b, oppacity);
         }
-
 
         //start fading in elements 
         while (oppacity < 1f)
@@ -86,12 +89,13 @@ public class FadeMediaGroup : MonoBehaviour
         }
 
         //call complete
+        isFading = false;
         OnFadeComplete?.Invoke(gameObject);
-
 
     }
     public IEnumerator FadeOut()
     {
+        isFading = true;
         //set oppacity to one to initialise fade in
         float oppacity = 1f;
     
@@ -139,9 +143,11 @@ public class FadeMediaGroup : MonoBehaviour
             txt.color = new Color(txt.color.r, txt.color.g, txt.color.b, 0f);
         }
         //call complete
+        isFading = false;
         OnFadeComplete?.Invoke(gameObject);
 
     }
 
-
+    public bool GetIsFading() { return isFading; }
+   
 }
