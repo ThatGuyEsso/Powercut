@@ -43,7 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e45d8863f15f0d47bb4a115a8b85a2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotgun: {fileID: 0}
-  pistol: {fileID: 0}
   flashBangPrefab: {fileID: 4157752393891043654, guid: 9552d8ff0b9caf14b9db641f5efec501, type: 3}
-  throwForce: 16
+  throwForce: 10

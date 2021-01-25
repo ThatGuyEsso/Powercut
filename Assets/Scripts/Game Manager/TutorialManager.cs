@@ -58,6 +58,10 @@ public class TutorialManager : MonoBehaviour
                     objectivePointer.SetCurrentTarget(TaskManager.instance.GetNearestBrokenTask(objectivePointer.transform));
                 }
                 break;
+            case GameStates.LevelClear:
+                objectivePointer.SetCurrentTarget(FindObjectOfType<Car>().transform);
+                Debug.Log("new Pointer");
+                break;
         }
     }
 

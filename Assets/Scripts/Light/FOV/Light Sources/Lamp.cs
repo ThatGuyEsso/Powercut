@@ -112,6 +112,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
             lightRef.ToggleLight(false);
             isLampWorking = false;
             currentHealth = 0;
+            enemySpawner.Spawn();
         }
     }
     public void InstantFixLamp()
@@ -177,5 +178,16 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
     {
 
     }
+    void IEnemySpawnable.Spawn()
+    {
+
+    }
     // # End of Getters#
+
+
+    private void OnDestroy()
+    {
+        if(lightRef!=false)
+        Destroy(lightRef.gameObject);
+    }
 }

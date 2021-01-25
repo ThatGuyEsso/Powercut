@@ -38,6 +38,9 @@ public class TransitionManager : MonoBehaviour
                 GameInit();
 
                 break;
+            case InitStates.LoadTitleScreen:
+                ReturnToTitleScreen();
+                break;
         }
     }
 
@@ -50,61 +53,9 @@ public class TransitionManager : MonoBehaviour
 
     public void ReturnToTitleScreen()
     {
-        StartCoroutine(BeginReturnToTitle());
+        StartCoroutine(LoadTitle());
     }
 
-    private IEnumerator BeginReturnToTitle()
-    {
-        isLoading = true;
-        if (!LoadingScreen.instance.loadingScreen.activeSelf)
-        {
-            LoadingScreen.instance.BeginFade(true);
-            isFading = true;
-  
-            while (isFading)
-            {
-                yield return null;
-            }
-        }
-
-        //Get all count 
-         int countLoaded = SceneManager.sceneCount;
-        Scene[] loadedScenes = new Scene[countLoaded];
-        AsyncOperation sceneUnload = (SceneManager.UnloadSceneAsync((int)currentLevel));
-        for (int i = 0; i < countLoaded; i++)
-        {
-            loadedScenes[i] = SceneManager.GetSceneAt(i);
-        }
-        for(int i=0; i< loadedScenes.Length; i++)
-        {
-            if (loadedScenes[i].buildIndex != (int)(SceneIndex.ManagerScene))
-            {
-             
-                    sceneUnload = SceneManager.UnloadSceneAsync(loadedScenes[i].buildIndex);
-                if (sceneUnload != null)
-                {
-                    while (!sceneUnload.isDone)
-                    {
-                        yield return null;
-                        Debug.Log("unloading");
-                    }
-
-                }
-               
-            }
-        }
-        currentLevel = SceneIndex.MainMenu;
-        AsyncOperation sceneload = SceneManager.LoadSceneAsync((int)currentLevel, LoadSceneMode.Additive);
-
-        while (!sceneload.isDone)
-        {
-            yield return null;
-        }
-
-        isLoading = false;
-        InitStateManager.instance.BeginNewState(InitStates.TitleScreen);
-
-    }
 
 
     public void LoadLevel(SceneIndex newScene,bool shouldFade)
@@ -169,7 +120,52 @@ public class TransitionManager : MonoBehaviour
 
     }
 
+    private IEnumerator LoadTitle()
+    {
+        isLoading = true;
+        LoadingScreen.instance.BeginFade(true);
+        isFading = true;
 
+        //wait till fade end before initialising level
+
+        while (isFading)
+        {
+            yield return null;
+        }
+
+        //get all currently loaded scenes
+        Scene[] loadedScenes = GetAllActiveScenes();
+
+        //add and unload operations
+        foreach (Scene scene in loadedScenes)
+        {
+            if(scene.buildIndex != (int)SceneIndex.ManagerScene)
+            sceneLoading.Add(SceneManager.UnloadSceneAsync(scene));
+        }
+
+        //wait until every scene has unloaded
+        for (int i = 0; i < sceneLoading.Count; i++)
+        {
+            while (!sceneLoading[i].isDone)
+            {
+                yield return null;
+            }
+        }
+        //clear scens loading
+        sceneLoading.Clear();
+
+        //begin loading title screen
+        AsyncOperation titleScreenScene = SceneManager.LoadSceneAsync((int)SceneIndex.MainMenu, LoadSceneMode.Additive);
+
+        while (!titleScreenScene.isDone)
+        {
+            yield return null;
+
+        }
+        InitStateManager.instance.BeginNewState(InitStates.TitleScreen);
+        currentLevel = SceneIndex.MainMenu;
+        LoadingScreen.instance.ToggleScreen(false);
+    }
     public IEnumerator GetSceneLoadProgress()
     {
         isLoading = true;
@@ -205,6 +201,23 @@ public class TransitionManager : MonoBehaviour
     {
         isFading = false;
 
+    }
+
+    private Scene[] GetAllActiveScenes()
+    {
+        //Get all number of scenes loaded
+        int countLoaded = SceneManager.sceneCount;
+
+        //create array of respective size
+        Scene[] loadedScenes = new Scene[countLoaded];
+
+        //get all loaded scnes
+        for (int i = 0; i < countLoaded; i++)
+        {
+            loadedScenes[i] = (SceneManager.GetSceneAt(i));
+        }
+    //retun loaded scenes
+        return loadedScenes;
     }
 
 }

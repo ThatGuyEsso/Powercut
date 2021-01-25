@@ -202,16 +202,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
                     currHurtTime -= Time.deltaTime;
                 }
             }
-            if (currTimeBeforeInvulnerable <= 0)
-            {
-                inLight = false;
-                currTimeBeforeInvulnerable = settings.timeBeforeInvulnerable;
-
-            }
-            else
-            {
-                currTimeBeforeInvulnerable -= Time.deltaTime;
-            }
+      
         }
         
 
@@ -267,6 +258,19 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         }
     }
     
+    protected void ResetInvulnarability()
+    {
+        if (currTimeBeforeInvulnerable <= 0)
+        {
+            inLight = false;
+            currTimeBeforeInvulnerable = settings.timeBeforeInvulnerable;
+
+        }
+        else
+        {
+            currTimeBeforeInvulnerable -= Time.deltaTime;
+        }
+    }
     void IBreakable.Damage(float damage, BaseEnemy interfacingEnemy)
     {
         //Does not matter to enemies just allows them to interface with lamps
@@ -393,6 +397,19 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
                 ObjectPoolManager.Recycle(gameObject);
             
                 break;
+            
+                case InitStates.PlayerDead:
+                    SetEnemyState(EnemyStates.Wander);
+                    break;
+                case InitStates.LoadTitleScreen:
+                ObjectPoolManager.Recycle(gameObject);
+
+                    break;
+                case InitStates.ExitLevel:
+                ObjectPoolManager.Recycle(gameObject);
+
+                    break;
+                
         }
     }
 
@@ -436,4 +453,15 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
             }
         }
     }
+
+    virtual protected void OnDisable()
+    {
+        InitStateManager.instance.OnStateChange -= EvaluateNewState;
+    }
+    virtual protected void OnEnable()
+    {
+        InitStateManager.instance.OnStateChange += EvaluateNewState;
+    }
+
+
 }

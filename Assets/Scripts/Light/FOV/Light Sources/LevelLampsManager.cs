@@ -215,6 +215,10 @@ public class LevelLampsManager : MonoBehaviour
             case InitStates.PlayerRespawned:
                 FixAllSceneLamps();
                 break;
+
+            case InitStates.ExitLevel:
+
+                break;
         }
     }
     private void EvaluateGameNewState(GameStates newState)
@@ -233,4 +237,7 @@ public class LevelLampsManager : MonoBehaviour
                 break;
         }
     }
+
+
+  
 }

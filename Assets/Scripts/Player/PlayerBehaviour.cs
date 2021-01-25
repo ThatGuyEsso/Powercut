@@ -256,6 +256,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     {
         HurtPlayer(damage, knockBackDir, knockBack);
         
+        
     }
 
     void IPlayerComponents.PlayerDied()
@@ -285,7 +286,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     public void HurtPlayer(float damage,Vector2 knockBackDir,float knockBack)
     {
         //Only hurt player if player can be hurt
-        if (canBeHurt)
+        if (canBeHurt && currHealth >0)
         {
             AudioManager.instance.PlayRandFromGroup(hurtSFX);
             CamShake.instance.DoScreenShake(settings.duration, settings.magnitude, settings.smoothIn, settings.smoothOut);

@@ -77,8 +77,12 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
                     else
                     {
                         InGamePrompt.instance.SetColor(Color.white);
-                        InGamePrompt.instance.ChangePrompt("Need to fix all lights before power can be turned on");
+                        InGamePrompt.instance.ChangePrompt("Need to fix all lights before power can be turned back on");
                     }
+                    break;
+                case GameStates.MainPowerOff:
+                    InGamePrompt.instance.SetColor(Color.red);
+                    InGamePrompt.instance.ChangePrompt("Can't turn power back on still got tasks to complete");
                     break;
 
             }

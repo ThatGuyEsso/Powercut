@@ -24,6 +24,7 @@ public class InGamePrompt : MonoBehaviour, IInitialisable
 
     public void ChangePrompt(string newString)
     {
+        ShowPrompt();
         promptText.text = newString;
     }
     public void SetColor(Color newColor)

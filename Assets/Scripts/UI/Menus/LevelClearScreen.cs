@@ -64,8 +64,7 @@ public class LevelClearScreen : MonoBehaviour
     private void ReturnToTitle()
     {
         textFade.OnTextFadeEnd -= ReturnToTitle;
-        InitStateManager.instance.BeginNewState(InitStates.ExitLevel);
-        TransitionManager.instance.ReturnToTitleScreen();
+        InitStateManager.instance.BeginNewState(InitStates.LoadTitleScreen);
 
     }
 

@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour,IEnemySpawnable
         
     }
     //Spawns enemies and sets their target
-    private void SpawnEnemies()
+    public void SpawnEnemies()
     {
         if (canSpawn)
         {
@@ -79,5 +79,12 @@ public class EnemySpawner : MonoBehaviour,IEnemySpawnable
     {
       
         canSpawn = false;
+    }
+
+    void IEnemySpawnable.Spawn()
+    {
+        canSpawn = true;
+        SpawnEnemies();
+        ResetSpawnTimer();
     }
 }

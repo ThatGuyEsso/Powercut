@@ -18,8 +18,8 @@ public enum InitStates
     GameRunning,
     LevelClear,
     ExitLevel,
-    TitleScreen
-
+    TitleScreen,
+    LoadTitleScreen
 };
 
 public class InitStateManager : MonoBehaviour
@@ -30,6 +30,7 @@ public class InitStateManager : MonoBehaviour
     [SerializeField] private RunTimeData runTimeData;
     public event NewInitStateDelegate OnStateChange;
     public delegate void NewInitStateDelegate(InitStates newState);
+   
     private void Awake()
     {
         if (instance == false)
@@ -99,6 +100,13 @@ public class InitStateManager : MonoBehaviour
             case InitStates.ExitLevel:
 
                 LoadingScreen.instance.ToggleScreen(true);
+                currInitState = newState;
+                OnStateChange?.Invoke(currInitState);
+
+                break;
+            case InitStates.LoadTitleScreen:
+
+           
                 currInitState = newState;
                 OnStateChange?.Invoke(currInitState);
 

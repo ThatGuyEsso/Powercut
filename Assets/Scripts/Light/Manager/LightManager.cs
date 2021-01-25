@@ -188,7 +188,7 @@ public class LightManager : MonoBehaviour
         switch (newState)
         {
             case GameStates.LevelClear:
-                fieldViewCone.ToggleLight(false);
+                SetChargeState(ChargeStates.StandBy);
                 break;
             case GameStates.MainPowerOn:
                 fieldViewCone.ToggleLight(false);

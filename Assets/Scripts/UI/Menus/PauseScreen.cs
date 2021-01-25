@@ -42,6 +42,9 @@ public class PauseScreen : MonoBehaviour
     public void ReturnToTitleScreen()
     {
         AudioManager.instance.PlayAtRandomPitch("ClickSFX");
+        GameStateManager.instance.ResumeGame();
+        InitStateManager.instance.BeginNewState(InitStates.LoadTitleScreen);
+      
     }
 
 

@@ -530,6 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 3514705287029353993}
+  sliderFill: {fileID: 4445555426225045071}
 --- !u!1 &4445555425105450686
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,6 +816,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4445555425609940860}
   - component: {fileID: 4445555425609940861}
+  - component: {fileID: 2311059481646867527}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -855,6 +857,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 2229928790750227553}
+  sliderFill: {fileID: 1025986009791814564}
+--- !u!114 &2311059481646867527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4445555425609940863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52126149ed771cc4faa19b23199ff8e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColour: {r: 1, g: 1, b: 1, a: 1}
+  flashTime: 0.2
 --- !u!1 &4445555425611274875
 GameObject:
   m_ObjectHideFlags: 0

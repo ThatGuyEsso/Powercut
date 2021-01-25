@@ -22,6 +22,8 @@ public class GameStateManager : MonoBehaviour, IInitialisable
     Transform initSpawnPoint;
     [SerializeField]
     Transform respawnPoint;
+    [SerializeField]
+    Transform playerTransform;
     private  GameStates currentGameState;
     public event NewGameStateDelegate OnGameStateChange;
     public delegate void NewGameStateDelegate(GameStates newState);
@@ -152,5 +154,11 @@ public class GameStateManager : MonoBehaviour, IInitialisable
 
                 break;
         }
+    }
+
+    private void OnDestroy()
+    {
+        Destroy(FindObjectOfType<TutorialManager>().gameObject);
+
     }
 }

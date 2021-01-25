@@ -36,6 +36,7 @@ public class ShadowCrawler : BaseEnemy
     }
     protected override void ProcessAI()
     {
+        inLight = false;
         switch (currentState)
         {
             case EnemyStates.Idle:

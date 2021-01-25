@@ -43,6 +43,7 @@ public class LoadingScreen : MonoBehaviour
     }
     public void BeginFade(bool fadeIn)
     {
+        StopAllCoroutines();
         if (fadeIn)
         {
             StartCoroutine(FadeIn());

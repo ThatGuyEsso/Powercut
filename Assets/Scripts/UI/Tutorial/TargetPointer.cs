@@ -17,6 +17,27 @@ public class TargetPointer : MonoBehaviour
     virtual public void Init(Transform followTarget)
     {
         this.followTarget = followTarget;
+       
+
+    }
+
+
+    private void Awake()
+    {
+        InitStateManager.instance.OnStateChange += EvaluateInitState;
+    }
+    private void EvaluateInitState(InitStates newstate)
+    {
+        switch (newstate)
+        {
+            case InitStates.ExitLevel:
+                Destroy(gameObject);
+                break;
+            case InitStates.LoadTitleScreen:
+                Destroy(gameObject);
+                break;
+
+        }
     }
     virtual public void Init(Transform followTarget, Transform pointTarget)
     {

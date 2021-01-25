@@ -6,5 +6,5 @@ public interface IHurtable
 {
     void Damage(float damage, Vector3 knockBackDir, float knockBack);
 
-   
+  
 }
