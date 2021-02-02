@@ -82,7 +82,7 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
                     break;
                 case GameStates.MainPowerOff:
                     InGamePrompt.instance.SetColor(Color.red);
-                    InGamePrompt.instance.ChangePrompt("Can't turn power back on still got tasks to complete");
+                    InGamePrompt.instance.ChangePrompt("Can't turn power back on until all tasks are completed");
                     break;
 
             }

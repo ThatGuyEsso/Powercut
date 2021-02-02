@@ -10,7 +10,7 @@ public class Car : MonoBehaviour, Controls.IInteractionsActions
 
     private Controls input;
     private bool inRange;
-    private bool hasActivated;
+    private bool hasActivated =false;
 
     private void Awake()
     {
@@ -63,7 +63,7 @@ public class Car : MonoBehaviour, Controls.IInteractionsActions
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if(context.performed && GameStateManager.instance.GetCurrentGameState() == GameStates.LevelClear&&inRange)
+        if(context.performed && GameStateManager.instance.GetCurrentGameState() == GameStates.LevelClear&&inRange&& hasActivated==false)
         {
             InitStateManager.instance.BeginNewState(InitStates.LoadTitleScreen);
             InGamePrompt.instance.HidePrompt();
