@@ -28,4 +28,8 @@ public class Result
         hasTriggered = false;
     }
 
+    public string ResultName { get { return resultName; } }
+    public bool Triggered { get { return hasTriggered; } }
+
+
 }
