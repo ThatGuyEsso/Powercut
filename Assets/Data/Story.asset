@@ -13,7 +13,98 @@ MonoBehaviour:
   m_Name: Story
   m_EditorClassIdentifier: 
   beats:
-  - dialogueChoices: []
-    text: First Story Beat
+  - dialogueChoices:
+    - text: "Hey how are\t"
+      targetBeatID: 2
+      resultName: 
+    - text: What time is it
+      targetBeatID: 3
+      resultName: 
+    - text: Do you want to be my friend
+      targetBeatID: 4
+      resultName: 
+    text: Test beat to see if it works
     id: 1
+    targetBeatID: 0
     endBeat: 0
+    typeTime: 0
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: 'Hey how are you
+
+'
+    id: 2
+    targetBeatID: 9
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: 'What is the time?
+
+'
+    id: 3
+    targetBeatID: 8
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: 'Do you want to be my friend
+
+'
+    id: 4
+    targetBeatID: 5
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: No
+    id: 5
+    targetBeatID: 7
+    endBeat: 0
+    typeTime: 1
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Do not like you
+    id: 6
+    targetBeatID: 23
+    endBeat: 0
+    typeTime: 2
+    isClientBeat: 0
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: You've hurt my feelings
+    id: 7
+    targetBeatID: 23
+    endBeat: 0
+    typeTime: 3
+    isClientBeat: 0
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: around 3
+    id: 8
+    targetBeatID: 23
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: Good
+    id: 9
+    targetBeatID: 23
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: New Story Beat
+    id: 10
+    targetBeatID: 23
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 0

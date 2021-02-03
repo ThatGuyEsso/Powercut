@@ -56,9 +56,16 @@ public class StoryEditor : EditorWindow
             SerializedProperty arrayElement = beatList.GetArrayElementAtIndex(count);
             SerializedProperty text = arrayElement.FindPropertyRelative("text");
             SerializedProperty id = arrayElement.FindPropertyRelative("id");
+         
 
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField(id.intValue.ToString());
+            if (GUILayout.Button("Add Beat"))
+            {
+                AddBeat(beatList,beatList.arraySize+1);
+                break;
+            }
+
 
             if (GUILayout.Button("Edit"))
             {
@@ -89,6 +96,10 @@ public class StoryEditor : EditorWindow
         SerializedProperty choiceList = arrayElement.FindPropertyRelative("dialogueChoices");
         SerializedProperty text = arrayElement.FindPropertyRelative("text");
         SerializedProperty id = arrayElement.FindPropertyRelative("id");
+        SerializedProperty typingTime = arrayElement.FindPropertyRelative("typeTime");
+        SerializedProperty clientBeat = arrayElement.FindPropertyRelative("isClientBeat");
+        SerializedProperty chains = arrayElement.FindPropertyRelative("isBeatChain");
+        SerializedProperty targetID = arrayElement.FindPropertyRelative("targetBeatID");
         //To easily toggle if beat leads to a transition
         SerializedProperty isEnd = arrayElement.FindPropertyRelative("endBeat");
 
@@ -97,11 +108,28 @@ public class StoryEditor : EditorWindow
         EditorGUILayout.LabelField("Beat ID: " + id.intValue.ToString());
 
         //Displays wether beat is a trigger to a transition
-        text.stringValue = EditorGUILayout.TextArea(text.stringValue, GUILayout.Height(200));
+        text.stringValue = EditorGUILayout.TextArea(text.stringValue, GUILayout.Height(100));
+        EditorGUILayout.EndVertical();
+        EditorGUILayout.BeginHorizontal();
 
-        GUILayout.Label("\nIs Transition Trigger");
-        isEnd.boolValue = EditorGUILayout.Toggle(isEnd.boolValue,GUILayout.Height(10f), GUILayout.Width(10f));
+        isEnd.boolValue = GUILayout.Toggle(isEnd.boolValue, "Is story beat end");//if the dialogue chain is finished after this beat
+
+        clientBeat.boolValue= GUILayout.Toggle(clientBeat.boolValue," Beat belongs to client");//if the dialogue chain is finished after this beat
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginVertical();
+        GUILayout.Label("Beat Typing time:");
       
+        typingTime.floatValue= EditorGUILayout.FloatField(typingTime.floatValue, GUILayout.Height(15), GUILayout.Width(40));
+
+       
+        if(chains.boolValue= GUILayout.Toggle(chains.boolValue, "Chains To beats"))
+        {
+            
+            EditorGUILayout.LabelField("Target Beat ID: " + targetID.intValue.ToString());
+            targetID.intValue = EditorGUILayout.IntField(targetID.intValue, GUILayout.Height(20), GUILayout.Width(20));
+        }
+
         OnGUI_BeatViewDecision(choiceList, beatList);
 
         EditorGUILayout.EndVertical();

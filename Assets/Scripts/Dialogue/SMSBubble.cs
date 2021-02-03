@@ -12,16 +12,13 @@ public class SMSBubble : MonoBehaviour
     [SerializeField] private string displayText;
     [Tooltip("Filler to the background Image size")]
     [SerializeField] private Vector2 padding; 
-    private void Start()
-    {
-        SetUp(displayText);
-    }
 
 
 
-    public void SetUp(string text)
+    public void SetUp(string text,Color color)
     {
         dialogueText.text = text;
+        bubbleImage.color = color;
         dialogueText.ForceMeshUpdate();
         Vector2 renderBounds= dialogueText.GetRenderedValues(false);
         rt.sizeDelta = renderBounds + padding;
