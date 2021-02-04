@@ -14,16 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beats:
   - dialogueChoices:
-    - text: "Hey how are\t"
+    - text: Yes how can I help ypu
       targetBeatID: 2
       resultName: 
-    - text: What time is it
+    - text: No wrong number...
       targetBeatID: 3
       resultName: 
-    - text: Do you want to be my friend
+    - text: 'We''re closed sorry
+
+'
       targetBeatID: 4
       resultName: 
-    text: Test beat to see if it works
+    text: Hey, is this the dialogue testing hotline?
     id: 1
     targetBeatID: 0
     endBeat: 0
@@ -31,9 +33,7 @@ MonoBehaviour:
     isClientBeat: 1
     isBeatChain: 0
   - dialogueChoices: []
-    text: 'Hey how are you
-
-'
+    text: Yes it is how can we help you today?
     id: 2
     targetBeatID: 9
     endBeat: 0
@@ -41,9 +41,7 @@ MonoBehaviour:
     isClientBeat: 0
     isBeatChain: 1
   - dialogueChoices: []
-    text: 'What is the time?
-
-'
+    text: No wrong number...
     id: 3
     targetBeatID: 8
     endBeat: 0
@@ -51,21 +49,22 @@ MonoBehaviour:
     isClientBeat: 0
     isBeatChain: 1
   - dialogueChoices: []
-    text: 'Do you want to be my friend
-
-'
+    text: No sorry we're closed
     id: 4
     targetBeatID: 5
     endBeat: 0
     typeTime: 0
     isClientBeat: 0
     isBeatChain: 1
-  - dialogueChoices: []
-    text: No
+  - dialogueChoices:
+    - text: magic?
+      targetBeatID: 11
+      resultName: 
+    text: How are you closed if you can pick up your phone and respond to this call?
     id: 5
     targetBeatID: 7
     endBeat: 0
-    typeTime: 1
+    typeTime: 3.5
     isClientBeat: 1
     isBeatChain: 1
   - dialogueChoices: []
@@ -77,27 +76,27 @@ MonoBehaviour:
     isClientBeat: 0
     isBeatChain: 0
   - dialogueChoices: []
-    text: You've hurt my feelings
+    text: GOOD BYE!
     id: 7
     targetBeatID: 23
     endBeat: 0
-    typeTime: 3
+    typeTime: 0
     isClientBeat: 0
     isBeatChain: 0
   - dialogueChoices: []
-    text: around 3
+    text: No way I know you're lying to me very rude, BYE!
     id: 8
     targetBeatID: 23
     endBeat: 0
-    typeTime: 0
+    typeTime: 2
     isClientBeat: 1
     isBeatChain: 0
   - dialogueChoices: []
-    text: Good
+    text: Don't worry just testing if the functions work thank you.
     id: 9
     targetBeatID: 23
     endBeat: 0
-    typeTime: 0
+    typeTime: 3
     isClientBeat: 1
     isBeatChain: 0
   - dialogueChoices: []
@@ -108,3 +107,11 @@ MonoBehaviour:
     typeTime: 0
     isClientBeat: 0
     isBeatChain: 0
+  - dialogueChoices: []
+    text: Uhhmm ehm magic?
+    id: 11
+    targetBeatID: 7
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1

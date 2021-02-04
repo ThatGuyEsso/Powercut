@@ -23,11 +23,16 @@ public class SMSDialogue : MonoBehaviour
     [SerializeField] private Image mcImage;
     [SerializeField] private StoryData storyData;
     [SerializeField] private List<DialgoueOption> dialogueOptions;
-
+    [SerializeField] private GameObject typingBubblePrefab;
+    [SerializeField] private GameObject typingBubble;
     //Display Settings
     [SerializeField] private Vector2 clientSmsOffset;
     [SerializeField] private Vector2 mcSmsOffset;
     [SerializeField] private Vector2 bubbleOffset;
+    [SerializeField] private Vector2 typingOffset;
+
+    [SerializeField] private Color clientBubbleColor;
+    [SerializeField] private Color mcBubbleColor;
 
     [SerializeField] private Transform smsClientStartPosition;
     [SerializeField] private Transform smsMCStartPosition;
@@ -60,6 +65,8 @@ public class SMSDialogue : MonoBehaviour
             }
         }
         currentDialogueState = DialogueState.Idle;
+        typingBubble = Instantiate(typingBubblePrefab, transform);
+        typingBubble.SetActive(false);
     }
 
 
@@ -111,7 +118,7 @@ public class SMSDialogue : MonoBehaviour
                         + clientSmsOffset + bubbleOffset;
                     //create new bubble and parent it to the canvas
                     previousBubble = DialogueManager.instance.CreateSMSBubble(transform);
-                    previousBubble.SetUp(data.DisplayText, Color.white);
+                    previousBubble.SetUp(data.DisplayText, clientBubbleColor);
                     bubbleWidth = previousBubble.gameObject.GetComponent<RectTransform>().rect.width;
                     //Update position
                     previousBubble.transform.position = pos + new Vector2(bubbleWidth / 2, 0f); ;
@@ -123,7 +130,7 @@ public class SMSDialogue : MonoBehaviour
                   + mcSmsOffset + bubbleOffset;
                     //create new bubble and parent it to the canvas
                     previousBubble = DialogueManager.instance.CreateSMSBubble(transform);
-                    previousBubble.SetUp(data.DisplayText, Color.green);
+                    previousBubble.SetUp(data.DisplayText, mcBubbleColor);
 
                     bubbleWidth = previousBubble.gameObject.GetComponent<RectTransform>().rect.width;
                     //caluclate new bubble offset of its previous position + the offset of it's height from its centre
@@ -162,9 +169,10 @@ public class SMSDialogue : MonoBehaviour
             yield return null; //wait until dialogue is no longer busy
         }
         currentDialogueState = DialogueState.Busy;
+        DisplayTypingBubble();
         //wait time should probably create a small texting bubble
         yield return new WaitForSeconds(typingTime);
-
+        typingBubble.SetActive(false);
         //if there is no previous bubble assume this is the start of the conversation
         if (previousBubble == false)
         {
@@ -177,7 +185,7 @@ public class SMSDialogue : MonoBehaviour
                     previousBubble = DialogueManager.instance.CreateSMSBubble(transform);
 
                     //update postion and display text
-                    previousBubble.SetUp(data.DisplayText, Color.white);
+                    previousBubble.SetUp(data.DisplayText, clientBubbleColor);
                     previousBubble.transform.position = pos + new Vector2(previousBubble.GetComponent<RectTransform>().rect.width / 2, 0f);
 
                     break;
@@ -189,7 +197,7 @@ public class SMSDialogue : MonoBehaviour
 
 
                     //update postion and display text
-                    previousBubble.SetUp(data.DisplayText, Color.green);
+                    previousBubble.SetUp(data.DisplayText, mcBubbleColor);
                     previousBubble.transform.position = pos - new Vector2(previousBubble.GetComponent<RectTransform>().rect.width / 2, 0f); ;
                     break;
             }
@@ -208,7 +216,7 @@ public class SMSDialogue : MonoBehaviour
                         + clientSmsOffset + bubbleOffset;
                     //create new bubble and parent it to the canvas
                     previousBubble = DialogueManager.instance.CreateSMSBubble(transform);
-                    previousBubble.SetUp(data.DisplayText,Color.white);
+                    previousBubble.SetUp(data.DisplayText,clientBubbleColor);
                      bubbleWidth = previousBubble.gameObject.GetComponent<RectTransform>().rect.width;
                     //Update position
                     previousBubble.transform.position = pos + new Vector2(bubbleWidth / 2, 0f); ;
@@ -220,7 +228,7 @@ public class SMSDialogue : MonoBehaviour
                   + mcSmsOffset + bubbleOffset;
                     //create new bubble and parent it to the canvas
                     previousBubble = DialogueManager.instance.CreateSMSBubble(transform);
-                    previousBubble.SetUp(data.DisplayText, Color.green);
+                    previousBubble.SetUp(data.DisplayText, mcBubbleColor);
 
                     bubbleWidth = previousBubble.gameObject.GetComponent<RectTransform>().rect.width;
                     //caluclate new bubble offset of its previous position + the offset of it's height from its centre
@@ -257,5 +265,30 @@ public class SMSDialogue : MonoBehaviour
         {
             options.OnDialogueSelected -= ClearOptions;
         }
+    }
+
+
+    private void DisplayTypingBubble()
+    {
+        Vector2 pos;
+        typingBubble.SetActive(true);
+        if (previousBubble == false)
+        {
+            pos = (Vector2)smsClientStartPosition.position + typingOffset;
+            typingBubble.transform.position = pos + new Vector2(typingBubble.GetComponent<RectTransform>().rect.width / 2, 0f);
+        }
+        else
+        {
+            float bubbleHeight = typingBubble.gameObject.GetComponent<RectTransform>().rect.height;
+            float bubbleWidth;
+            pos = new Vector2(smsClientStartPosition.position.x, previousBubble.transform.position.y - bubbleHeight / 2)
+                     + typingOffset + bubbleOffset;
+
+
+            bubbleWidth = typingBubble.GetComponent<RectTransform>().rect.width;
+            //Update position
+            typingBubble.transform.position = pos + new Vector2(bubbleWidth / 2, 0f); ;
+        }
+           
     }
 }

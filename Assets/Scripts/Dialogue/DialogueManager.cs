@@ -37,7 +37,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-        dialogueMenu.DisplayBeat(1,Speaker.Client);
+        dialogueMenu.DisplayClientBeat(1,2.0f,Speaker.Client);
     }
     public SMSBubble CreateSMSBubble(Transform parent)
     {
