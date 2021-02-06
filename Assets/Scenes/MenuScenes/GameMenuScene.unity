@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -169.5, y: 85.86}
+  m_AnchoredPosition: {x: -160, y: 85.86}
   m_SizeDelta: {x: 143.35547, y: 129.71301}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &73712974
@@ -708,10 +708,9 @@ MonoBehaviour:
   - {fileID: 98674015}
   - {fileID: 1630553942}
   typingBubblePrefab: {fileID: 7709276755115536136, guid: 113dd3a838c00f6448ff39dc67f1c7c7, type: 3}
-  typingBubble: {fileID: 0}
   clientSmsOffset: {x: 40, y: 0}
   mcSmsOffset: {x: -40, y: 0}
-  bubbleOffset: {x: 0, y: -50}
+  bubbleOffset: {x: 0, y: -2}
   typingOffset: {x: 10, y: 0}
   clientBubbleColor: {r: 0.754717, g: 0.754717, b: 0.754717, a: 1}
   mcBubbleColor: {r: 0, g: 1, b: 0, a: 1}
@@ -2176,7 +2175,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 169, y: 85.86}
+  m_AnchoredPosition: {x: 160, y: 85.86}
   m_SizeDelta: {x: 179.30505, y: 144.92252}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1852450736

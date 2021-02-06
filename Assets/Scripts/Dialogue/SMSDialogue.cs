@@ -24,7 +24,7 @@ public class SMSDialogue : MonoBehaviour
     [SerializeField] private StoryData storyData;
     [SerializeField] private List<DialgoueOption> dialogueOptions;
     [SerializeField] private GameObject typingBubblePrefab;
-    [SerializeField] private GameObject typingBubble;
+    private GameObject typingBubble;
     //Display Settings
     [SerializeField] private Vector2 clientSmsOffset;
     [SerializeField] private Vector2 mcSmsOffset;
@@ -78,67 +78,13 @@ public class SMSDialogue : MonoBehaviour
         //if there is no previous bubble assume this is the start of the conversation
         if (previousBubble == false)
         {
-            Vector2 pos;
-            switch (currentSpeaker)
-            {
-                case Speaker.Client:
-                    //calculate position at the top of the screen in the client case
-                    pos = (Vector2)smsClientStartPosition.position + clientSmsOffset;
-                    previousBubble = DialogueManager.instance.CreateSMSBubble(transform);
-
-                    //update postion and display text
-                    previousBubble.SetUp(data.DisplayText, Color.white);
-                    previousBubble.transform.position = pos + new Vector2(previousBubble.GetComponent<RectTransform>().rect.width / 2, 0f);
-
-                    break;
-
-                //calculate position at the top of the screen in the mc case
-                case Speaker.MainCharacter:
-                    pos = (Vector2)smsMCStartPosition.position + mcSmsOffset;
-                    previousBubble = DialogueManager.instance.CreateSMSBubble(transform);
-
-
-                    //update postion and display text
-                    previousBubble.SetUp(data.DisplayText, Color.green);
-                    previousBubble.transform.position = pos - new Vector2(previousBubble.GetComponent<RectTransform>().rect.width / 2, 0f); ;
-                    break;
-            }
+            DisplayFirstBeat(data);
         }
         //if not append from previous bubble
         else
         {
-            Vector2 pos;
-            float bubbleHeight = previousBubble.gameObject.GetComponent<RectTransform>().rect.height;
-            float bubbleWidth;
-            switch (currentSpeaker)
-            {
-                case Speaker.Client:
-                    //Spawn new bubble with an offset of its previous position + the offset of it's height from its centre 
-                    pos = new Vector2(smsClientStartPosition.position.x, previousBubble.transform.position.y - bubbleHeight / 2)
-                        + clientSmsOffset + bubbleOffset;
-                    //create new bubble and parent it to the canvas
-                    previousBubble = DialogueManager.instance.CreateSMSBubble(transform);
-                    previousBubble.SetUp(data.DisplayText, clientBubbleColor);
-                    bubbleWidth = previousBubble.gameObject.GetComponent<RectTransform>().rect.width;
-                    //Update position
-                    previousBubble.transform.position = pos + new Vector2(bubbleWidth / 2, 0f); ;
-                    //Display text
-                    break;
-
-                case Speaker.MainCharacter:
-                    pos = new Vector2(smsMCStartPosition.position.x, previousBubble.transform.position.y - bubbleHeight / 2)
-                  + mcSmsOffset + bubbleOffset;
-                    //create new bubble and parent it to the canvas
-                    previousBubble = DialogueManager.instance.CreateSMSBubble(transform);
-                    previousBubble.SetUp(data.DisplayText, mcBubbleColor);
-
-                    bubbleWidth = previousBubble.gameObject.GetComponent<RectTransform>().rect.width;
-                    //caluclate new bubble offset of its previous position + the offset of it's height from its centre
-                    //Update position
-                    previousBubble.transform.position = pos - new Vector2(bubbleWidth / 2, 0f); ; ;
-                    //Display text
-                    break;
-            }
+            DisplaySmsBubble(data);
+        
         }
 
         OnBeatDisplayed?.Invoke(data);
@@ -176,67 +122,13 @@ public class SMSDialogue : MonoBehaviour
         //if there is no previous bubble assume this is the start of the conversation
         if (previousBubble == false)
         {
-            Vector2 pos;
-            switch (currentSpeaker)
-            {
-                case Speaker.Client:
-                    //calculate position at the top of the screen in the client case
-                    pos = (Vector2)smsClientStartPosition.position + clientSmsOffset;
-                    previousBubble = DialogueManager.instance.CreateSMSBubble(transform);
-
-                    //update postion and display text
-                    previousBubble.SetUp(data.DisplayText, clientBubbleColor);
-                    previousBubble.transform.position = pos + new Vector2(previousBubble.GetComponent<RectTransform>().rect.width / 2, 0f);
-
-                    break;
-
-                //calculate position at the top of the screen in the mc case
-                case Speaker.MainCharacter:
-                    pos = (Vector2)smsMCStartPosition.position + mcSmsOffset;
-                    previousBubble = DialogueManager.instance.CreateSMSBubble(transform);
-
-
-                    //update postion and display text
-                    previousBubble.SetUp(data.DisplayText, mcBubbleColor);
-                    previousBubble.transform.position = pos - new Vector2(previousBubble.GetComponent<RectTransform>().rect.width / 2, 0f); ;
-                    break;
-            }
+            DisplayFirstBeat(data);
         }
         //if not append from previous bubble
         else
         {
-            Vector2 pos;
-            float bubbleHeight = previousBubble.gameObject.GetComponent<RectTransform>().rect.height;
-            float bubbleWidth;
-            switch (currentSpeaker)
-            {
-                case Speaker.Client:
-                    //Spawn new bubble with an offset of its previous position + the offset of it's height from its centre 
-                    pos = new Vector2(smsClientStartPosition.position.x , previousBubble.transform.position.y - bubbleHeight / 2)
-                        + clientSmsOffset + bubbleOffset;
-                    //create new bubble and parent it to the canvas
-                    previousBubble = DialogueManager.instance.CreateSMSBubble(transform);
-                    previousBubble.SetUp(data.DisplayText,clientBubbleColor);
-                     bubbleWidth = previousBubble.gameObject.GetComponent<RectTransform>().rect.width;
-                    //Update position
-                    previousBubble.transform.position = pos + new Vector2(bubbleWidth / 2, 0f); ;
-                    //Display text
-                    break;
 
-                case Speaker.MainCharacter:
-                    pos = new Vector2(smsMCStartPosition.position.x , previousBubble.transform.position.y - bubbleHeight / 2)
-                  + mcSmsOffset + bubbleOffset;
-                    //create new bubble and parent it to the canvas
-                    previousBubble = DialogueManager.instance.CreateSMSBubble(transform);
-                    previousBubble.SetUp(data.DisplayText, mcBubbleColor);
-
-                    bubbleWidth = previousBubble.gameObject.GetComponent<RectTransform>().rect.width;
-                    //caluclate new bubble offset of its previous position + the offset of it's height from its centre
-                    //Update position
-                    previousBubble.transform.position = pos - new Vector2(bubbleWidth / 2, 0f); ; ;
-                    //Display text
-                    break;
-            }
+            DisplaySmsBubble(data);
         }
         currentDialogueState = DialogueState.Idle;
         OnBeatDisplayed?.Invoke(data);
@@ -271,6 +163,7 @@ public class SMSDialogue : MonoBehaviour
     private void DisplayTypingBubble()
     {
         Vector2 pos;
+
         typingBubble.SetActive(true);
         if (previousBubble == false)
         {
@@ -290,5 +183,100 @@ public class SMSDialogue : MonoBehaviour
             typingBubble.transform.position = pos + new Vector2(bubbleWidth / 2, 0f); ;
         }
            
+    }
+
+    private void DisplayFirstBeat(BeatData data)
+    {
+        Vector2 pos;
+        SMSBubble newBubble;
+        float bubbleHeight;
+        float bubbleWidth;
+        switch (currentSpeaker)
+        {
+            case Speaker.Client:
+                //Create newbubble
+                newBubble = DialogueManager.instance.CreateSMSBubble(transform);
+                newBubble.SetUp(data.DisplayText, clientBubbleColor);
+
+                //get dimension
+                bubbleHeight = newBubble.GetComponent<RectTransform>().rect.height;
+                bubbleWidth = newBubble.GetComponent<RectTransform>().rect.width;
+
+                //calculate position at the top of the screen in the client case
+                pos = (Vector2)smsClientStartPosition.position + clientSmsOffset;
+
+                //update postion and display text
+                newBubble.transform.position = pos + new Vector2(bubbleWidth/2,-(bubbleHeight/2));
+                previousBubble = newBubble;
+                break;
+
+            //calculate position at the top of the screen in the mc case
+            case Speaker.MainCharacter:
+                newBubble = DialogueManager.instance.CreateSMSBubble(transform);
+                newBubble.SetUp(data.DisplayText, mcBubbleColor);
+
+                //get dimension
+                bubbleHeight = newBubble.GetComponent<RectTransform>().rect.height;
+                bubbleWidth = newBubble.GetComponent<RectTransform>().rect.width;
+
+                //calculate position at the top of the screen in the client case
+                pos = (Vector2)smsMCStartPosition.position + mcSmsOffset;
+
+                //update postion and display text
+                newBubble.transform.position = pos + new Vector2(bubbleWidth / 2, -(bubbleHeight / 2));
+                previousBubble = newBubble;
+                break;
+
+        }
+    }
+    private void DisplaySmsBubble(BeatData data)
+    {
+        Vector2 pos;
+        SMSBubble newBubble;
+        float bubbleHeight = previousBubble.GetComponent<RectTransform>().rect.height; ;
+        float newBubbleHeight;
+        float newBubbleWidth;
+        switch (currentSpeaker)
+        {
+            case Speaker.Client:
+                //set up sms bubbles
+                newBubble = DialogueManager.instance.CreateSMSBubble(transform);
+                newBubble.SetUp(data.DisplayText, clientBubbleColor);
+
+                //get bubble dimensions
+                newBubbleHeight = newBubble.GetComponent<RectTransform>().rect.height;
+                newBubbleWidth = newBubble.GetComponent<RectTransform>().rect.width;
+
+                //Spawn new bubble with an offset of its previous position + the offset of it's height from its centre 
+                pos = new Vector2(smsClientStartPosition.position.x+ newBubbleWidth / 2, previousBubble.transform.position.y - bubbleHeight / 2 - newBubbleHeight/2)
+                    + clientSmsOffset + bubbleOffset;
+
+                //Update position
+                newBubble.transform.position = pos;
+                previousBubble = newBubble;
+
+                //Display text
+                break;
+
+            case Speaker.MainCharacter:
+                //set up sms bubbles
+                newBubble = DialogueManager.instance.CreateSMSBubble(transform);
+                newBubble.SetUp(data.DisplayText, mcBubbleColor);
+
+                //get bubble dimensions
+                newBubbleHeight = newBubble.GetComponent<RectTransform>().rect.height;
+                newBubbleWidth = newBubble.GetComponent<RectTransform>().rect.width;
+
+                //Spawn new bubble with an offset of its previous position + the offset of it's height from its centre 
+                pos = new Vector2(smsMCStartPosition.position.x - newBubbleWidth / 2, previousBubble.transform.position.y - bubbleHeight / 2 - newBubbleHeight / 2)
+                    + mcSmsOffset + bubbleOffset;
+
+                //Update position
+                newBubble.transform.position = pos;
+                previousBubble = newBubble;
+
+                //Display text
+                break;
+        }
     }
 }
