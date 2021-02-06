@@ -51,7 +51,7 @@ public class DialogueManager : MonoBehaviour
      
         if (beat.IsEnd)
         {
-
+            FindObjectOfType<PhoneButtons>().EnableStartButton(SceneIndex.Tutorial);
         }
         //if beat doesn't end dialogue
         //evaluate next dialogue beats

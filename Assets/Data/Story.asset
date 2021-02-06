@@ -71,7 +71,7 @@ MonoBehaviour:
     text: Do not like you
     id: 6
     targetBeatID: 23
-    endBeat: 0
+    endBeat: 1
     typeTime: 2
     isClientBeat: 0
     isBeatChain: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
     text: GOOD BYE!
     id: 7
     targetBeatID: 23
-    endBeat: 0
+    endBeat: 1
     typeTime: 0
     isClientBeat: 0
     isBeatChain: 0
@@ -87,7 +87,7 @@ MonoBehaviour:
     text: No way I know you're lying to me very rude, BYE!
     id: 8
     targetBeatID: 23
-    endBeat: 0
+    endBeat: 1
     typeTime: 2
     isClientBeat: 1
     isBeatChain: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
     text: Don't worry just testing if the functions work thank you.
     id: 9
     targetBeatID: 23
-    endBeat: 0
+    endBeat: 1
     typeTime: 3
     isClientBeat: 1
     isBeatChain: 0

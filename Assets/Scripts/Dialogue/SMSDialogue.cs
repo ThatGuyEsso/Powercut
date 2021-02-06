@@ -36,6 +36,7 @@ public class SMSDialogue : MonoBehaviour
 
     [SerializeField] private Transform smsClientStartPosition;
     [SerializeField] private Transform smsMCStartPosition;
+    [SerializeField] private Transform smsArea;
     //print states
     private Speaker currentSpeaker;
     private DialogueState currentDialogueState;
@@ -195,7 +196,7 @@ public class SMSDialogue : MonoBehaviour
         {
             case Speaker.Client:
                 //Create newbubble
-                newBubble = DialogueManager.instance.CreateSMSBubble(transform);
+                newBubble = DialogueManager.instance.CreateSMSBubble(smsArea);
                 newBubble.SetUp(data.DisplayText, clientBubbleColor);
 
                 //get dimension
@@ -212,7 +213,7 @@ public class SMSDialogue : MonoBehaviour
 
             //calculate position at the top of the screen in the mc case
             case Speaker.MainCharacter:
-                newBubble = DialogueManager.instance.CreateSMSBubble(transform);
+                newBubble = DialogueManager.instance.CreateSMSBubble(smsArea);
                 newBubble.SetUp(data.DisplayText, mcBubbleColor);
 
                 //get dimension
@@ -240,7 +241,7 @@ public class SMSDialogue : MonoBehaviour
         {
             case Speaker.Client:
                 //set up sms bubbles
-                newBubble = DialogueManager.instance.CreateSMSBubble(transform);
+                newBubble = DialogueManager.instance.CreateSMSBubble(smsArea);
                 newBubble.SetUp(data.DisplayText, clientBubbleColor);
 
                 //get bubble dimensions
@@ -260,7 +261,7 @@ public class SMSDialogue : MonoBehaviour
 
             case Speaker.MainCharacter:
                 //set up sms bubbles
-                newBubble = DialogueManager.instance.CreateSMSBubble(transform);
+                newBubble = DialogueManager.instance.CreateSMSBubble(smsArea);
                 newBubble.SetUp(data.DisplayText, mcBubbleColor);
 
                 //get bubble dimensions
