@@ -15,6 +15,13 @@ public enum DialogueState
     Busy
 };
 
+public enum ScrollMode
+{
+    Up,
+    Down
+};
+
+
 
 public class SMSDialogue : MonoBehaviour
 {
@@ -37,6 +44,14 @@ public class SMSDialogue : MonoBehaviour
     [SerializeField] private Transform smsClientStartPosition;
     [SerializeField] private Transform smsMCStartPosition;
     [SerializeField] private Transform smsArea;
+
+    [SerializeField] private List<Transform> bubbleTransforms = new List<Transform>();
+
+    private ScrollMode scrollMode;
+    private bool isScrolling=false;
+
+    [SerializeField] private float scrollRate;
+
     //print states
     private Speaker currentSpeaker;
     private DialogueState currentDialogueState;
@@ -47,8 +62,14 @@ public class SMSDialogue : MonoBehaviour
     public event BeatEvaluationDelegate OnBeatDisplayed;
 
 
-  
-  
+    private void Update()
+    {
+        if (isScrolling&&!IsBusy())
+        {
+            ScrollText();
+        }
+    }
+
 
     public void Init(Speaker currentSpeaker)
     {
@@ -68,6 +89,7 @@ public class SMSDialogue : MonoBehaviour
         currentDialogueState = DialogueState.Idle;
         typingBubble = Instantiate(typingBubblePrefab, transform);
         typingBubble.SetActive(false);
+        bubbleTransforms.Add(typingBubble.transform);
     }
 
 
@@ -169,7 +191,8 @@ public class SMSDialogue : MonoBehaviour
         if (previousBubble == false)
         {
             pos = (Vector2)smsClientStartPosition.position + typingOffset;
-            typingBubble.transform.position = pos + new Vector2(typingBubble.GetComponent<RectTransform>().rect.width / 2, 0f);
+            typingBubble.transform.position = pos + new Vector2(typingBubble.GetComponent<RectTransform>().rect.width / 2,
+               - typingBubble.GetComponent<RectTransform>().rect.height / 2);
         }
         else
         {
@@ -209,6 +232,8 @@ public class SMSDialogue : MonoBehaviour
                 //update postion and display text
                 newBubble.transform.position = pos + new Vector2(bubbleWidth/2,-(bubbleHeight/2));
                 previousBubble = newBubble;
+
+                bubbleTransforms.Add(previousBubble.transform);
                 break;
 
             //calculate position at the top of the screen in the mc case
@@ -226,6 +251,8 @@ public class SMSDialogue : MonoBehaviour
                 //update postion and display text
                 newBubble.transform.position = pos + new Vector2(bubbleWidth / 2, -(bubbleHeight / 2));
                 previousBubble = newBubble;
+
+                bubbleTransforms.Add(previousBubble.transform);
                 break;
 
         }
@@ -256,7 +283,8 @@ public class SMSDialogue : MonoBehaviour
                 newBubble.transform.position = pos;
                 previousBubble = newBubble;
 
-                //Display text
+                bubbleTransforms.Add(previousBubble.transform);
+         
                 break;
 
             case Speaker.MainCharacter:
@@ -276,8 +304,43 @@ public class SMSDialogue : MonoBehaviour
                 newBubble.transform.position = pos;
                 previousBubble = newBubble;
 
-                //Display text
+                bubbleTransforms.Add(previousBubble.transform);
                 break;
         }
     }
+
+
+    public void ScrollText()
+    {
+        switch (scrollMode)
+        {
+            case ScrollMode.Down:
+                foreach (Transform bubble in bubbleTransforms)
+                {
+                    bubble.position = Vector2.Lerp(bubble.position, new Vector2(bubble.position.x, bubble.position.y - 1), scrollRate * Time.deltaTime);
+                }
+                break;
+            case ScrollMode.Up:
+                foreach (Transform bubble in bubbleTransforms)
+                {
+                    bubble.position = Vector2.Lerp(bubble.position, new Vector2(bubble.position.x, bubble.position.y + 1), scrollRate * Time.deltaTime);
+                }
+                break;
+        }
+    
+    }
+
+    public void BeginScrolling(ScrollMode mode)
+    {
+        scrollMode = mode;
+        isScrolling = true;
+    }
+
+    public void EndScrolling()
+    {
+
+        isScrolling = false;
+    }
+
+
 }
