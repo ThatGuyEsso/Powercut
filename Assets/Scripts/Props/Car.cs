@@ -7,7 +7,7 @@ public class Car : MonoBehaviour, Controls.IInteractionsActions
 
     [SerializeField] private GameObject openCarGFX;
     [SerializeField] private GameObject closedCarGFX;
-
+    [SerializeField] private Transform spawnPosition;
     private Controls input;
     private bool inRange;
     private bool hasActivated =false;
@@ -70,5 +70,12 @@ public class Car : MonoBehaviour, Controls.IInteractionsActions
             InGamePrompt.instance.ShowPrompt();
             hasActivated = true;
         }
+    }
+
+
+    public Transform GetSpawn()
+    {
+        if (spawnPosition == false) return spawnPosition;
+        else return null;
     }
 }
