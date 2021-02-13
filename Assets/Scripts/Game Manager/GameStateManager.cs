@@ -18,9 +18,8 @@ public class GameStateManager : MonoBehaviour, IInitialisable
     [SerializeField] private RunTimeData runTimeData;
     [SerializeField] private TutorialManager tutorialManager;
     public GameObject[] itemsToInit;
-    [SerializeField]
+
     Transform initSpawnPoint;
-    [SerializeField]
     Transform respawnPoint;
     [SerializeField]
     Transform playerTransform;
@@ -67,11 +66,14 @@ public class GameStateManager : MonoBehaviour, IInitialisable
                 BeginNewGameState(GameStates.MainPowerOff);
 
                 break;
+            case InitStates.PlayerSceneLoaded:
+                playerTransform = FindObjectOfType<PlayerBehaviour>().transform;
+                break;
         }
     }
     private void SpawnPlayer()
     {
-        FindObjectOfType<PlayerBehaviour>().transform.position = initSpawnPoint.position;
+        playerTransform.position = initSpawnPoint.position;
         Invoke("PlayerSpawnedUpdate", 0.5f);
       
     }
@@ -87,7 +89,8 @@ public class GameStateManager : MonoBehaviour, IInitialisable
     }
     public void Init()
     {
-        foreach(GameObject init in itemsToInit)
+        GetSpawns();
+        foreach (GameObject init in itemsToInit)
         {
             init.GetComponent<IInitialisable>().Init();
         }
@@ -154,6 +157,12 @@ public class GameStateManager : MonoBehaviour, IInitialisable
 
                 break;
         }
+    }
+
+    private void GetSpawns()
+    {
+        initSpawnPoint = FindObjectOfType<Car>().GetSpawn();
+        respawnPoint = FindObjectOfType<MainPowerSwitch>().GetRespawn();
     }
 
     private void OnDestroy()

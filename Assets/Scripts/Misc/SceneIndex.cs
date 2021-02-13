@@ -6,6 +6,7 @@ public enum SceneIndex
     UIscene = 2,
     MainMenu =3,
     Tutorial =4,
-    PhoneScene = 5
+    PhoneScene = 5,
+    LevelOne= 6
 
 };

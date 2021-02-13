@@ -2,25 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelLampsManager : MonoBehaviour
+public class LevelLampsManager : MonoBehaviour, IInitialisable
 {
+    [SerializeField] private LevelDifficultyData difficultySettings;
     public static LevelLampsManager instance;//Sets up for singleton class (one per level)
     private List<Lamp> levelLamps = new List<Lamp>();
     public GameObject lampLightPrefab;
 
     //Disable lights mechanism (should be moved into a scriptable object to allow for difficulty easy difficulty scaling)
 
-    public float targetLightWorkingPercent; //How many lights that can be broken before we stop breaking light.
+    private float targetLightWorkingPercent; //How many lights that can be broken before we stop breaking light.
     private bool shouldBreakLights;
-    public float maxTimeBeforeLightBreak;
-    public float minTimeBeforeLightBreak;
     private float currentTimeBeforeLightBreak;
 
     GameStates currentGameState;
 
     public delegate void LampBrokeDelegate();
     public event LampBrokeDelegate OnLampBroke;
-    private void Awake()
+    private void Init()
     {
         if (instance == false)
         {
@@ -31,15 +30,15 @@ public class LevelLampsManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
         GetNewBreakLampTime();
         BindToInitManager();
-    }
-
-    private void Start()
-    {
         GetAllSceneLamps();
         SetUpSceneLamps();
+        targetLightWorkingPercent = 1 - difficultySettings.targetPercentBrokenLamps;
     }
+
+
 
     private void Update()
     {
@@ -198,7 +197,7 @@ public class LevelLampsManager : MonoBehaviour
 
     private void GetNewBreakLampTime()
     {
-        currentTimeBeforeLightBreak = Random.Range(minTimeBeforeLightBreak, maxTimeBeforeLightBreak);
+        currentTimeBeforeLightBreak = Random.Range(difficultySettings.minLampBreakTime, difficultySettings.maxLampBreakTime);
     }
 
  
@@ -238,6 +237,8 @@ public class LevelLampsManager : MonoBehaviour
         }
     }
 
-
-  
+    void IInitialisable.Init()
+    {
+        Init();
+    }
 }

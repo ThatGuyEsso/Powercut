@@ -72,6 +72,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
         lightRef.SetAimDirection(transform.up);
         lightRef.ToggleLight(isLampWorking);
         lightRef.InitLampView();
+        enemySpawner.SetUp();
 
         if (!isLampWorking)
         {
@@ -189,5 +190,10 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
     {
         if(lightRef!=false)
         Destroy(lightRef.gameObject);
+    }
+
+    public void SetUp()
+    {
+        throw new System.NotImplementedException();
     }
 }

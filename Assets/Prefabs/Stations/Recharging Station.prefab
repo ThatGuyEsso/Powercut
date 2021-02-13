@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd3bd323caf39c942bc62affff4ba739, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChargingColour: {r: 0, g: 0, b: 0, a: 0}
+  ChargingColour: {r: 0.31439927, g: 0.20392154, b: 0.7372549, a: 1}
 --- !u!58 &3071078350378001782
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -411,7 +411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cable: {fileID: 0}
-  origin: {fileID: 0}
+  origin: {fileID: 1753397796571687986}
   lineVelocity: 20
   lineQuality: 20
   damper: 80

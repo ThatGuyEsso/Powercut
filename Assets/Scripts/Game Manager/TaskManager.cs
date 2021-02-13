@@ -82,6 +82,7 @@ public class TaskManager : MonoBehaviour, IInitialisable
     {
         BaseTask[] tasks = FindObjectsOfType<BaseTask>();//Get everything that inherits tasks
 
+        if (tasks.Length <= 0) return;
         taskNames.Add(tasks[0].GetTaskName());
          //Add all tasks to list of tasks
         for (int i = 0; i < tasks.Length; i++)

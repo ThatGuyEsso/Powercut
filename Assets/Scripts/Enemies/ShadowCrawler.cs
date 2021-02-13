@@ -92,7 +92,7 @@ public class ShadowCrawler : BaseEnemy
         base.Update();
 
     }
-    protected void FixedUpdate()
+    protected void FixeupdUpdate()
     {
 
 

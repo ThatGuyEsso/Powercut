@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
+public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
 {
     [Header("Settings")]
     public float maxHealth;
@@ -24,7 +24,7 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
     protected Controls input;
 
     //Component
-    private SpriteRenderer gfx;
+    protected SpriteRenderer gfx;
 
     //object states
     protected bool inRange;
@@ -45,7 +45,7 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
         UpdateDamageDisplay();
     }
 
-    protected void FixedUpdate()
+    protected void Update()
     {
         if (isFixing && !isFixed)
         {
@@ -56,9 +56,9 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
                 {
                     currHealth += fixAmountPerTick;
                     currFixTime = fixTickRate;
-                    if(currFixTime>= maxHealth)
+                    if(currHealth>= maxHealth)
                     {
-                        
+                        currHealth = maxHealth;
                     }
                 }
                 else
@@ -134,7 +134,7 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
     void IBreakable.Damage(float damage, BaseEnemy interfacingEnemy)
     {
 
-        DamageMotor(damage);
+        DamageTask(damage);
         if (!isFixed)
         {
             interfacingEnemy.GetComponent<IBreakable>().ObjectIsBroken();
@@ -146,7 +146,7 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
 
     }
 
-    protected void DamageMotor(float damage)
+    protected void DamageTask(float damage)
     {
         //Check if lamp is working before damaging lamp
         if (isFixed)
@@ -181,7 +181,7 @@ public class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
         
     }
 
-    protected void EvaluateSpriteDisplay()
+    virtual protected void EvaluateSpriteDisplay()
     {
         float percentageHealth = currHealth / maxHealth;
 

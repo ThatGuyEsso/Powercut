@@ -8,25 +8,34 @@ public class EnemySpawner : MonoBehaviour,IEnemySpawnable
     private float currTimeBeforeSpawn;
     private int spawnAmount;
     private bool canSpawn;
-    private void Awake()
+    private bool isAtMax =false;
+
+
+    public void Init()
     {
         ResetSpawnTimer();
-        
+        GameIntensityManager.instance.OnLimitReached += OnEnemyCap;
+        GameIntensityManager.instance.OnLimitReached += OnEnemyCapRemoved;
     }
-    private void FixedUpdate()
+    private void Update()
     {
-        if (canSpawn)
+        if (!isAtMax)
         {
-            if (currTimeBeforeSpawn <=0){
-
-                SpawnEnemies();
-                ResetSpawnTimer();
-            }
-            else
+            if (canSpawn && !GameIntensityManager.instance.GetIsAtCrawlerLimit())
             {
-                currTimeBeforeSpawn -= Time.deltaTime;
+                if (currTimeBeforeSpawn <= 0)
+                {
+
+                    SpawnEnemies();
+                    ResetSpawnTimer();
+                }
+                else
+                {
+                    currTimeBeforeSpawn -= Time.deltaTime;
+                }
             }
         }
+
         
     }
     //Spawns enemies and sets their target
@@ -44,19 +53,30 @@ public class EnemySpawner : MonoBehaviour,IEnemySpawnable
             spawnAmount = Random.Range(settings.minNumberSpawned, settings.maxNumberSpawned);
             for(int i =0; i < spawnAmount; i++)
             {
-                int rand;
-                if (settings.enemyTypes.Count > 1)
+                if (!GameIntensityManager.instance.GetIsAtCrawlerLimit())
                 {
-                 rand = Random.Range(0, settings.enemyTypes.Count - 1);
+
+                    int rand;
+                    if (settings.enemyTypes.Count > 1)
+                    {
+                     rand = Random.Range(0, settings.enemyTypes.Count - 1);
+
+                    }
+                    else
+                    {
+                        rand = 0;
+                    }
+
+                    BaseEnemy currEnemy = ObjectPoolManager.Spawn(settings.enemyTypes[rand],
+                        (Random.insideUnitCircle*settings.spawnRadius+(Vector2)transform.position),Quaternion.identity).GetComponent<BaseEnemy>();
+                    currEnemy.SetTarget(target);
+                    GameIntensityManager.instance.IncrementNumberOfCrawlers();
 
                 }
                 else
                 {
-                    rand = 0;
+                    break;
                 }
-
-                BaseEnemy currEnemy = ObjectPoolManager.Spawn(settings.enemyTypes[rand],(Random.insideUnitCircle*settings.spawnRadius+(Vector2)transform.position),Quaternion.identity).GetComponent<BaseEnemy>();
-                currEnemy.SetTarget(target);
             }
         }
     }
@@ -86,5 +106,27 @@ public class EnemySpawner : MonoBehaviour,IEnemySpawnable
         canSpawn = true;
         SpawnEnemies();
         ResetSpawnTimer();
+    }
+
+
+    private void OnEnemyCap()
+    {
+        isAtMax = true;
+    }
+
+    private void OnEnemyCapRemoved()
+    {
+        isAtMax = false;
+    }
+
+    private void OnDestroy()
+    {
+        GameIntensityManager.instance.OnLimitReached -= OnEnemyCap;
+        GameIntensityManager.instance.OnLimitReached -= OnEnemyCapRemoved;
+    }
+
+    public void SetUp()
+    {
+        Init();
     }
 }

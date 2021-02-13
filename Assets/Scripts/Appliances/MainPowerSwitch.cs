@@ -7,7 +7,7 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
     private Controls input;
     private bool inRange;
     private bool hasActivated;
-    
+    [SerializeField] private Transform respawnPoint;
     private void Awake()
     {
         //Inputs
@@ -42,6 +42,14 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
             InGamePrompt.instance.HidePrompt();
         }
 
+
+    }
+
+
+    public Transform GetRespawn()
+    {
+        if (respawnPoint != false) return respawnPoint;
+        else return null;
 
     }
 

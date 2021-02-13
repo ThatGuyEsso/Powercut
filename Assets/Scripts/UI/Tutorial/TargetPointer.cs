@@ -31,10 +31,11 @@ public class TargetPointer : MonoBehaviour
         switch (newstate)
         {
             case InitStates.ExitLevel:
-                Destroy(gameObject);
+                if (gameObject != false) Destroy(gameObject);
                 break;
             case InitStates.LoadTitleScreen:
-                Destroy(gameObject);
+                if(gameObject!=false) Destroy(gameObject);
+
                 break;
 
         }

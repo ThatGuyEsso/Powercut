@@ -9,4 +9,6 @@ public interface IEnemySpawnable
     void LampInLight();
 
     void Spawn();
+
+    void SetUp();
 }

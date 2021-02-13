@@ -26,13 +26,14 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable
             AudioManager.instance.PlayAtRandomPitch("BulletCollisionSFX");
             ObjectPoolManager.Recycle(gameObject);
         }
-        if (other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy")|| other.gameObject.CompareTag("PhysicsObject"))
         {
             other.GetComponent<IHurtable>().Damage(damage, rb.velocity.normalized, knockBack);
             ObjectPoolManager.Spawn(sparkPrefab, transform.position, transform.rotation);
             ObjectPoolManager.Spawn(triggerEnemyPrefab, transform.position, Quaternion.identity);
             ObjectPoolManager.Recycle(gameObject);
         }
+
     }
 
     void IShootable.SetUpBullet(float knockBack, float damage)

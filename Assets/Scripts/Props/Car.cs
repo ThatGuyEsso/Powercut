@@ -75,7 +75,7 @@ public class Car : MonoBehaviour, Controls.IInteractionsActions
 
     public Transform GetSpawn()
     {
-        if (spawnPosition == false) return spawnPosition;
+        if (spawnPosition != false) return spawnPosition;
         else return null;
     }
 }

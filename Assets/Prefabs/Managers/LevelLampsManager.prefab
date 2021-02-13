@@ -43,4 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c84d084322c9cde4fbc095794c13cfd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficultySettings: {fileID: 11400000, guid: c130ff2d70e06dc4e9f8c04731e4ba81, type: 2}
   lampLightPrefab: {fileID: 5545216736709471773, guid: 7b4ff87814f184e4da50865fdcba2e4f, type: 3}

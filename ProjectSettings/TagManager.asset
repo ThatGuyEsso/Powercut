@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Electrical
   - Enemy
+  - PhysicsObject
   layers:
   - Default
   - TransparentFX
