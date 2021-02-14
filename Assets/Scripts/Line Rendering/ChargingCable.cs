@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class ChargingCable : MonoBehaviour
 {
-    public LineRenderer cable;//Line renderer reference
+    private LineRenderer cable;//Line renderer reference
     public Transform origin;
     public RopeAnim ropeAnim;
     private Vector3 currentPoint;
     private  Transform targetTransform;
     private Vector3 lastTargetPosistion;
-    private bool isDrawing;
+    [HideInInspector]
+    public bool isDrawing;
     private bool isReeledIn;
 
     public float lineVelocity;

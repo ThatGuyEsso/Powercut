@@ -14,6 +14,12 @@ TextureImporter:
   - first:
       213: 5563132918332051822
     second: FenceGate_3
+  - first:
+      213: 4714667014693127763
+    second: FenceGate_0
+  - first:
+      213: 5193211872693430949
+    second: FenceGate_1
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -109,14 +115,18 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: -16, y: -14}
+        - {x: 16, y: -14}
+        - {x: 16, y: -10}
+        - {x: -16, y: -10}
       tessellationDetail: 0
       bones: []
-      spriteID: 765acc666ad023e90800000000000000
-      internalID: -7047555458540984985
+      spriteID: 3560905abacdd6140800000000000000
+      internalID: 4714667014693127763
       vertices: []
       indices: 
       edges: []
@@ -130,35 +140,34 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape: []
+      physicsShape:
+      - - {x: 14, y: -7}
+        - {x: 12, y: -7}
+        - {x: 12, y: -8}
+        - {x: 11, y: -8}
+        - {x: 11, y: -10}
+        - {x: -16, y: -10}
+        - {x: -16, y: -14}
+        - {x: 11, y: -14}
+        - {x: 11, y: -15}
+        - {x: 12, y: -15}
+        - {x: 12, y: -16}
+        - {x: 14, y: -16}
+        - {x: 14, y: -15}
+        - {x: 15, y: -15}
+        - {x: 15, y: -14}
+        - {x: 16, y: -14}
+        - {x: 16, y: -10}
+        - {x: 15, y: -10}
+        - {x: 15, y: -8}
+        - {x: 14, y: -8}
       tessellationDetail: 0
       bones: []
-      spriteID: f04369e1867819170800000000000000
-      internalID: 8183470879168410639
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FenceGate_2
-      rect:
-        serializedVersion: 2
-        x: 64
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c8caa3d3b99cc0000800000000000000
-      internalID: 3599368304897164
+      spriteID: 5aaab33feaef11840800000000000000
+      internalID: 5193211872693430949
       vertices: []
       indices: 
       edges: []

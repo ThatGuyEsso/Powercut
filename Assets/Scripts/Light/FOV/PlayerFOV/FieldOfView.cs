@@ -57,7 +57,7 @@ public class FieldOfView : MonoBehaviour, ILightWeakness
         if (lightIsOn)
         {
             DrawVisionConeShape();
-            WeakenEnemy();
+            //WeakenEnemy();
         }
     }
     virtual protected void DrawVisionConeShape()

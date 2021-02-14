@@ -5,6 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "RunTimeData")]
 public class RunTimeData : ScriptableObject
 {
-    public bool firstBoot = true;
+    public bool firstBoot = false;
 
 }

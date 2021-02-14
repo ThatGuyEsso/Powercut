@@ -262,10 +262,10 @@ MonoBehaviour:
   origin: {fileID: 5965045241559176876}
   lineVelocity: 20
   lineQuality: 20
-  damper: 80
-  strength: 500
-  waveHeight: 1
-  waveCount: 20
+  damper: 50
+  strength: 700
+  waveHeight: 0.5
+  waveCount: 5
   lerpSpeed: 10
   effectCurve:
     serializedVersion: 2
@@ -273,17 +273,17 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 17.135956
-      outSlope: 17.135956
+      inSlope: 9.838595
+      outSlope: 9.838595
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.087498784
-      value: 1.4993753
-      inSlope: 7.7416096
-      outSlope: 7.7416096
+      time: 0.1332637
+      value: 1.3111277
+      inSlope: 4.1580105
+      outSlope: 4.1580105
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -291,8 +291,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0.9984131
       value: -0.006126404
-      inSlope: -1.652737
-      outSlope: -1.652737
+      inSlope: -1.5225742
+      outSlope: -1.5225742
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334

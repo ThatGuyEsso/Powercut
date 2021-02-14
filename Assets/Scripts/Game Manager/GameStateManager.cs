@@ -167,7 +167,9 @@ public class GameStateManager : MonoBehaviour, IInitialisable
 
     private void OnDestroy()
     {
-        Destroy(FindObjectOfType<TutorialManager>().gameObject);
+        GameObject tutorial;
+        if(tutorial = FindObjectOfType<TutorialManager>().gameObject) Destroy(tutorial);
+
 
     }
 }

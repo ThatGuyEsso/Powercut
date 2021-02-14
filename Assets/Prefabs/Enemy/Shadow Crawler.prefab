@@ -740,6 +740,7 @@ MonoBehaviour:
   hurtNumber: {fileID: 7152689479093340677, guid: e2c021df58a3bbf4d9284bfcec171352, type: 3}
   target: {fileID: 0}
   deathVFX: {fileID: 7808037342350693099, guid: f43db82d1dae9a64bad3eaa90777b1c5, type: 3}
+  chargeSpeed: 1000
   maxScaleMultiplier: 1.5
 --- !u!50 &8721458964809571229
 Rigidbody2D:
@@ -753,7 +754,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -799,7 +800,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 8721458964809571201}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: f1df1af9df8bbe5488dc2bc510023732, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

@@ -20,7 +20,6 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     protected bool isTargetHuman;
     protected bool canDestroy;
     protected bool canBeHurt;
-    protected bool inLight;
     //Timers
     protected float currTimeToDestroy;
     protected float currTimeToAttack;
@@ -117,9 +116,9 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     virtual protected void FaceMovementDirection()
     {
       
-        float targetAngle = EssoUtility.GetAngleFromVector(navAgent.velocity.normalized);
-       /* targetAngle += 90f;*/// turn offset -Due to converting between forward vector and up vector
-        //if (targetAngle < 0) targetAngle += 360f;
+        float targetAngle = EssoUtility.GetAngleFromVector((navAgent.velocity.normalized));
+       /// turn offset -Due to converting between forward vector and up vector
+        if (targetAngle < 0) targetAngle += 360f;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.z, targetAngle, ref smoothRot, settings.rotationSpeed);//rotate player smoothly to target angle
         transform.rotation = Quaternion.Euler(0f, 0f, angle);//update angle
         //fovObject.SetAimDirection((-1)*fovObject.GetVectorFromAngle(angle));
@@ -188,22 +187,22 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
             }
         }
 
-        if (inLight)
+        //if (inLight)
+        //{
+        if (!canBeHurt)
         {
-            if (!canBeHurt)
+            if (currHurtTime <= 0)
             {
-                if (currHurtTime <= 0)
-                {
-                    canBeHurt = true;
-                    currHurtTime = settings.hurtTime;
-                }
-                else
-                {
-                    currHurtTime -= Time.deltaTime;
-                }
+                canBeHurt = true;
+                currHurtTime = settings.hurtTime;
             }
-      
+            else
+            {
+                currHurtTime -= Time.deltaTime;
+            }
         }
+      
+        //}
         
 
         if (isHurt)
@@ -262,7 +261,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     {
         if (currTimeBeforeInvulnerable <= 0)
         {
-            inLight = false;
+            //inLight = false;
             currTimeBeforeInvulnerable = settings.timeBeforeInvulnerable;
 
         }
@@ -330,7 +329,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
 
     void ILightWeakness.MakeVulnerable()
     {
-        inLight = true;
+        //inLight = true;
         //Debug.Log("vulnerable");
     }
 
@@ -368,6 +367,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     {
         ObjectPoolManager.Spawn(deathVFX, transform.position, transform.rotation);
         InitStateManager.instance.OnStateChange -= EvaluateNewState;
+        if (GameIntensityManager.instance != false) GameIntensityManager.instance.DecrementNumberOfCrawlers();
         ObjectPoolManager.Recycle(gameObject);
     }
 

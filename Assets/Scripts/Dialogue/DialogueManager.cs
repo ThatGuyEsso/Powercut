@@ -35,10 +35,7 @@ public class DialogueManager : MonoBehaviour
         dialogueMenu.Init(Speaker.Client);
     }
 
-    private void Start()
-    {
-        dialogueMenu.DisplayClientBeat(1,2.0f,Speaker.Client);
-    }
+
     public SMSBubble CreateSMSBubble(Transform parent)
     {
         SMSBubble bubble = Instantiate(bubblePrefab, parent);
@@ -100,4 +97,13 @@ public class DialogueManager : MonoBehaviour
         dialogueMenu.OnBeatDisplayed -= EvaluateBeat;
     }
 
+    public void ToggleDialogueScreen(bool isShown, bool isAnimated)
+    {
+        dialogueMenu.gameObject.SetActive(isShown);
+
+        if (isAnimated)
+        {
+
+        }
+    }
 }

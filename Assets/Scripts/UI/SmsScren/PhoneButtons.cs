@@ -14,7 +14,7 @@ public class PhoneButtons : MonoBehaviour
     bool canStart =false;
 
 
-    public void Awake()
+    public void Init()
     {
         playButton.enabled = false;
         playButtonImage.color = inactiveColourButton;

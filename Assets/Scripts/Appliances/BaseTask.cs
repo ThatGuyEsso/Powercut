@@ -41,11 +41,12 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
         //Set initial variables
         currHealth = 0f;
         isFixed = false;
+        inRange = false;
         gfx = gameObject.GetComponentInChildren<SpriteRenderer>();
         UpdateDamageDisplay();
     }
 
-    protected void Update()
+    virtual protected void Update()
     {
         if (isFixing && !isFixed)
         {
@@ -73,7 +74,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
         }
     }
 
-    protected void OnTriggerEnter2D(Collider2D other)
+    virtual protected void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -90,7 +91,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
 
     }
 
-    protected void OnTriggerExit2D(Collider2D other)
+    virtual protected void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -104,7 +105,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
     //---------------------------------------------------------
     //Input actions
     //---------------------------------------------------------
-    public void OnInteract(InputAction.CallbackContext context)
+    virtual public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.performed && inRange)
         {

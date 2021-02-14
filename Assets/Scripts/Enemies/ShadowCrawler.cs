@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class ShadowCrawler : BaseEnemy
 {
-    private float maxDamge;
+    private float maxDamage;
     private float minDamage;
     private float maxSpeed;
+    [SerializeField] private float chargeSpeed;
 
     public float maxScaleMultiplier;
     private BaseEnemyAnimController animController;
@@ -16,13 +17,14 @@ public class ShadowCrawler : BaseEnemy
         base.Awake();
 
         //Set initial variables need to define own variables to change them
-        maxDamge = settings.maxDamage;
+        maxDamage = settings.maxDamage;
         minDamage = settings.minDamage;
         maxSpeed = settings.maxSpeed;
         //Initiate mutation of base character
         RandomStatMutation();
         animController = gameObject.GetComponent<BaseEnemyAnimController>();
         animController.Init();
+    
 
     }
 
@@ -36,7 +38,7 @@ public class ShadowCrawler : BaseEnemy
     }
     protected override void ProcessAI()
     {
-        inLight = false;
+       
         switch (currentState)
         {
             case EnemyStates.Idle:
@@ -67,6 +69,7 @@ public class ShadowCrawler : BaseEnemy
                 {
                     navAgent.enabled = true;
                     EvaluateInRange();
+             
                     if (target != null && navAgent.enabled)
                     {
                         navAgent.SetDestination(target.position);
@@ -91,11 +94,6 @@ public class ShadowCrawler : BaseEnemy
     {
         base.Update();
 
-    }
-    protected void FixeupdUpdate()
-    {
-
-
         switch (currentState)
         {
             case EnemyStates.Idle:
@@ -107,9 +105,9 @@ public class ShadowCrawler : BaseEnemy
 
                 if (!isHurt)
                 {
+                    FaceTarget();
                     //Attack player
                     ChargePlayer();
-                    FaceTarget();
 
                 }
 
@@ -121,9 +119,6 @@ public class ShadowCrawler : BaseEnemy
                 break;
 
             case EnemyStates.Chase:
-                //Move
-
-                //SmoothAccelerate(moveDirection, maxSpeed, settings.timeZeroToMax);
                 FaceMovementDirection();
                 break;
 
@@ -131,18 +126,21 @@ public class ShadowCrawler : BaseEnemy
     }
 
 
+
     
     public void RandomStatMutation()
     {
         float mutationMultipler = Random.Range(1f, maxScaleMultiplier);//Get multplier in range of current scale to max scale
-        transform.localScale = new Vector3(transform.localScale.x * mutationMultipler,
-        transform.localScale.y * mutationMultipler,
-        transform.localScale.z * mutationMultipler);//Increase scale by mutation
+        transform.localScale = new Vector3(transform.localScale.x,
+        transform.localScale.y ,
+        transform.localScale.z)*mutationMultipler;//Increase scale by mutation
        
+
         //scale base stats by mutation
         maxSpeed *= (1-(mutationMultipler-1));
-        navAgent.speed = maxSpeed *settings.navAgentSpeedScalar;
-        maxDamge *= mutationMultipler;
+        chargeSpeed *= ((mutationMultipler-1));
+        navAgent.speed = maxSpeed;
+        maxDamage *= mutationMultipler;
         minDamage *= mutationMultipler;
 
     }
@@ -150,7 +148,7 @@ public class ShadowCrawler : BaseEnemy
     public void ChargePlayer()
     {
         moveDirection = target.position - transform.position;
-        SmoothAccelerate(moveDirection, maxSpeed, settings.timeZeroToMax);
+        SmoothAccelerate(moveDirection, chargeSpeed, settings.timeZeroToMax);
     }
 
 
@@ -160,7 +158,7 @@ public class ShadowCrawler : BaseEnemy
         if (canDestroy)
         {
             canDestroy = false;
-            float dmg = Random.Range(minDamage,maxDamge);
+            float dmg = Random.Range(minDamage,maxDamage);
             IBreakable appliance = target.GetComponent<IBreakable>();
             if (appliance != null)
             {
