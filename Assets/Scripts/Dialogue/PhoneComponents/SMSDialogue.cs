@@ -113,14 +113,16 @@ public class SMSDialogue : MonoBehaviour
         OnBeatDisplayed?.Invoke(data);
     }
 
-    public void DisplayChoice(int choiceIndex, string text,int targetBeatID)
+    public void DisplayChoice(int choiceIndex, string text,int targetBeatID,ChoiceData choice)
     {
        
         if (choiceIndex < dialogueOptions.Count)
         {
             dialogueOptions[choiceIndex].gameObject.SetActive(true);
 
-            dialogueOptions[choiceIndex].SetUpDialogue(text, targetBeatID);
+            if(choice.ChoiceResult != string.Empty)
+            dialogueOptions[choiceIndex].SetUpDialogue(text, targetBeatID, choice);
+            else dialogueOptions[choiceIndex].SetUpDialogue(text, targetBeatID);
         }
     }
     public void DisplayClientBeat(int id, float typingTime, Speaker newSpeaker)
@@ -198,7 +200,7 @@ public class SMSDialogue : MonoBehaviour
         {
             float bubbleHeight = typingBubble.gameObject.GetComponent<RectTransform>().rect.height;
             float bubbleWidth;
-            pos = new Vector2(smsClientStartPosition.position.x, previousBubble.transform.position.y - bubbleHeight / 2)
+            pos = new Vector2(smsClientStartPosition.position.x, previousBubble.transform.position.y - bubbleHeight)
                      + typingOffset + bubbleOffset;
 
 

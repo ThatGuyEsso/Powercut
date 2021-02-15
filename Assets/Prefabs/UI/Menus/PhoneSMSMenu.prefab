@@ -590,7 +590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clientImage: {fileID: 8296264912914453960}
   mcImage: {fileID: 8296264913099075563}
-  storyData: {fileID: 11400000, guid: 08e9e575dd11efe47bd055e6b98b4c17, type: 2}
+  storyData: {fileID: 11400000, guid: 4a94eff66b835bf41946ae2581ad9f93, type: 2}
   dialogueOptions:
   - {fileID: 8296264914552901922}
   - {fileID: 8296264912612412158}
@@ -2501,33 +2501,9 @@ PrefabInstance:
       propertyPath: dialogueMenu
       value: 
       objectReference: {fileID: 8296264913084456671}
-    - target: {fileID: 2769011643893270947, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
-      propertyPath: m_AnchorMin.x
+    - target: {fileID: 774216863, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: mode
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2769011643893270947, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2769011643893270947, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2769011643893270947, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2769011643893270947, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2769011643893270947, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2769011644352344560, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
-      propertyPath: m_Colors.m_PressedColor.a
-      value: 0.44705883
       objectReference: {fileID: 0}
     - target: {fileID: 2769011644352344562, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
       propertyPath: m_Name

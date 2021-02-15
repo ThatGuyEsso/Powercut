@@ -213,7 +213,7 @@ MonoBehaviour:
   m_Colors:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0.44705883}
     m_HighlightedColor: {r: 0, g: 0, b: 0, a: 0.8392157}
-    m_PressedColor: {r: 0, g: 0, b: 0, a: 0.8392157}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 0.44705883}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueMenu: {fileID: 0}
-  mode: 0
+  mode: 1
 --- !u!114 &774216862
 MonoBehaviour:
   m_ObjectHideFlags: 0

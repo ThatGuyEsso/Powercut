@@ -179,6 +179,9 @@ public class StoryEditor : EditorWindow
         GUILayout.Label("Result Name");
         Result.stringValue = EditorGUILayout.TextArea(Result.stringValue, GUILayout.Height(20f), GUILayout.Width(200f));
 
+
+        GUILayout.Label("Target Beat:");
+        beatId.intValue = EditorGUILayout.IntField(beatId.intValue, GUILayout.Height(15), GUILayout.Width(40));
         EditorGUILayout.LabelField("Leads to Beat ID: " + beatId.intValue.ToString());
            
         if (GUILayout.Button("Go to Beat", GUILayout.Height(20f), GUILayout.Width(100f)))

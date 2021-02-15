@@ -23,7 +23,16 @@ public class PhoneButtons : MonoBehaviour
     {
         if (canStart)
         {
-            TransitionManager.instance.LoadLevel(targetScene, true);
+            switch (InitStateManager.currGameMode)
+            {
+                case GameModes.Menu:
+                    TransitionManager.instance.LoadLevel(targetScene, true);
+                    break;
+                case GameModes.Dialogue:
+                    DialogueManager.instance.ToggleDialogueScreen(false, true);
+                    break;
+            }
+       
         }
 
     }

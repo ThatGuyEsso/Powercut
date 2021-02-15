@@ -9,6 +9,9 @@ public class AutomaticDoor : MonoBehaviour
 
     [SerializeField] private Transform leftDoorTransform;
     [SerializeField] private Transform rightDoorTransform;
+
+    [SerializeField] private string resultName;
+    bool isBound = false;
     int nEntities=0;
 
     private Vector2 leftClosedPosition, rightClosedPosition,leftOpenPosition, rightOpenPosition;
@@ -20,6 +23,16 @@ public class AutomaticDoor : MonoBehaviour
         leftOpenPosition = (Vector2)leftDoorTransform.position + Vector2.left;
         rightOpenPosition = (Vector2)rightDoorTransform.position + Vector2.right;
         state = DoorState.Closed;
+
+    }
+
+    private void Start()
+    {
+        if (isLocked)
+        {
+            DialogueManager.instance.GetResultByName(resultName).OnTriggerResult += UnlockDoor;
+            isBound = true;
+        }
     }
     private enum DoorState
     {
@@ -92,8 +105,26 @@ public class AutomaticDoor : MonoBehaviour
         if (isLocked)
         {
             isLocked = false;
-            if(nEntities >0)
+            StartCoroutine(Unlocking());
+        }
+    }
+
+    private IEnumerator Unlocking()
+    {
+        while(InitStateManager.currGameMode != GameModes.Powercut)
+        {
+            yield return null;
+        }
+        if (nEntities > 0)
             state = DoorState.Opening;
+    }
+
+
+    private void OnDestroy()
+    {
+        if (isBound)
+        {
+            DialogueManager.instance.GetResultByName(resultName).OnTriggerResult -= UnlockDoor;
         }
     }
 }

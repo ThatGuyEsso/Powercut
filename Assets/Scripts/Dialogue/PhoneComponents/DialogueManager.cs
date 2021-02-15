@@ -45,6 +45,10 @@ public class DialogueManager : MonoBehaviour
         return bubble;
     }
 
+    public Result GetResultByName(string name)
+    {
+        return resultData.GetConsequenceByName(name);
+    }
 
     public void EvaluateBeat(BeatData beat)
     {
@@ -65,7 +69,7 @@ public class DialogueManager : MonoBehaviour
                 //generate a choice display for each choice
                 for (int i =0; i < beat.GetChoices().Count; i++)
                 {
-                    dialogueMenu.DisplayChoice(i, choices[i].DisplayText, choices[i].NextID);
+                    dialogueMenu.DisplayChoice(i, choices[i].DisplayText, choices[i].NextID,choices[i]);
                 }
             }
             else
@@ -102,6 +106,7 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayBeat()
     {
+
         phoneAnim.enabled = false;
         dialogueMenu.DisplayBeat(nextBeat, nextSpeaker);
     }
@@ -118,18 +123,21 @@ public class DialogueManager : MonoBehaviour
 
     public void ToggleDialogueScreen(bool isShown, bool isAnimated)
     {
+        if(isShown) InitStateManager.currGameMode = GameModes.Dialogue;
         PlayerBehaviour player;
         if ((player = FindObjectOfType<PlayerBehaviour>()) != false&& isShown)
             player.EnableControls();
-        dialogueMenu.gameObject.SetActive(isShown);
+     
    
         if (isAnimated && isShown)
         {
+            dialogueMenu.gameObject.SetActive(true);
             phoneAnim.enabled = true;
             phoneAnim.Play("PhonePopUP");
         }
         else if(isAnimated && !isShown){
             phoneAnim.enabled = true;
+            phoneAnim.Play("PhonePopDown");
         }
         else {
 
@@ -145,6 +153,8 @@ public class DialogueManager : MonoBehaviour
             player.EnableControls();
 
         phoneAnim.enabled = false;
+        dialogueMenu.gameObject.SetActive(false);
+        InitStateManager.currGameMode = GameModes.Powercut;
 
     }
 

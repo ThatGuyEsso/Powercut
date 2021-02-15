@@ -1004,6 +1004,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6147344844691332688, guid: 13c507b9c6d60174d9737d223cd46034, type: 3}
+      propertyPath: mode
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296264912604004220, guid: 13c507b9c6d60174d9737d223cd46034, type: 3}
+      propertyPath: mode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8296264913084456664, guid: 13c507b9c6d60174d9737d223cd46034, type: 3}
       propertyPath: m_Name
       value: PhoneSMSMenu
@@ -19474,7 +19482,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297339342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.25, y: -0.093, z: -13.128077}
+  m_LocalPosition: {x: 8.25, y: -0.093, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -19493,7 +19501,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.5100001, y: -0.39000002}
+  m_Offset: {x: -0.5100001, y: -0.9}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -19504,7 +19512,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.0000002, y: 1}
+  m_Size: {x: 2.0000002, y: 2}
   m_EdgeRadius: 0
 --- !u!114 &1297339346
 MonoBehaviour:
@@ -19520,6 +19528,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BeatID: 1
   speaker: 1
+  prompt: '[E] To Open Door'
 --- !u!1001 &1317437047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20124,7 +20133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resultData: {fileID: 11400000, guid: c453f33a849661645aad9ee8dec652ce, type: 2}
-  beatData: {fileID: 11400000, guid: 08e9e575dd11efe47bd055e6b98b4c17, type: 2}
+  beatData: {fileID: 11400000, guid: 4a94eff66b835bf41946ae2581ad9f93, type: 2}
   bubblePrefab: {fileID: 164829888630608337, guid: 7765c17fef65c104dae74205b4a5f05f, type: 3}
   dialogueMenu: {fileID: 881421167}
   phoneAnim: {fileID: 881421168}
@@ -21483,6 +21492,10 @@ PrefabInstance:
     - target: {fileID: 4568173748380410729, guid: e87b75abb437ec845be8c90d145bcca5, type: 3}
       propertyPath: m_Name
       value: Automatic Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 4568173748380410730, guid: e87b75abb437ec845be8c90d145bcca5, type: 3}
+      propertyPath: resultName
+      value: Tutorial Keycode Received
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e87b75abb437ec845be8c90d145bcca5, type: 3}

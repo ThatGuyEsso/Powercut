@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum GameModes
+{
+    Menu,
+    Powercut,
+    Dialogue
+};
 public enum InitStates
 {
     Init,
@@ -27,6 +34,7 @@ public class InitStateManager : MonoBehaviour
     public static InitStateManager instance;
     public GameObject audioManager, transitionManager,objectPoolManager;
     public static InitStates currInitState;
+    public static GameModes currGameMode;
     [SerializeField] private RunTimeData runTimeData;
     public event NewInitStateDelegate OnStateChange;
     public delegate void NewInitStateDelegate(InitStates newState);
@@ -87,6 +95,7 @@ public class InitStateManager : MonoBehaviour
                 break;
             case InitStates.GameRunning:
                 OnStateChange?.Invoke(newState);
+                currGameMode = GameModes.Powercut;
                 //LoadingScreen.instance.ToggleScreen(false);
                 break;
 
@@ -116,6 +125,7 @@ public class InitStateManager : MonoBehaviour
                 LoadingScreen.instance.BeginFade(false);
                 currInitState = newState;
                 OnStateChange?.Invoke(currInitState);
+                currGameMode = GameModes.Menu;
 
                 break;
             case InitStates.PlayerSceneLoaded:
