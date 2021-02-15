@@ -14,10 +14,12 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] private SMSBubble bubblePrefab;
     [SerializeField] private SMSDialogue dialogueMenu;
-
+    [SerializeField] private Animator phoneAnim;
 
     //beat to send to
     public static int nextBeat;
+    //beat to send to
+    public static Speaker nextSpeaker;
 
     private void Awake()
     {
@@ -33,6 +35,7 @@ public class DialogueManager : MonoBehaviour
         dialogueMenu = FindObjectOfType<SMSDialogue>();
         dialogueMenu.OnBeatDisplayed += EvaluateBeat;
         dialogueMenu.Init(Speaker.Client);
+        dialogueMenu.gameObject.SetActive(false);
     }
 
 
@@ -91,7 +94,23 @@ public class DialogueManager : MonoBehaviour
         dialogueMenu.DisplayBeat(id, Speaker.MainCharacter);
     }
 
+    public void DisplayBeat(int id, Speaker speaker)
+    {
+        dialogueMenu.DisplayBeat(id, speaker);
+    }
 
+
+    public void DisplayBeat()
+    {
+        phoneAnim.enabled = false;
+        dialogueMenu.DisplayBeat(nextBeat, nextSpeaker);
+    }
+
+    public void SetUpNextBeat(int id, Speaker speaker)
+    {
+        nextBeat = id;
+        nextSpeaker = speaker;
+    }
     public void OnDestroy()
     {
         dialogueMenu.OnBeatDisplayed -= EvaluateBeat;
@@ -99,11 +118,36 @@ public class DialogueManager : MonoBehaviour
 
     public void ToggleDialogueScreen(bool isShown, bool isAnimated)
     {
+        PlayerBehaviour player;
+        if ((player = FindObjectOfType<PlayerBehaviour>()) != false&& isShown)
+            player.EnableControls();
         dialogueMenu.gameObject.SetActive(isShown);
-
-        if (isAnimated)
+   
+        if (isAnimated && isShown)
         {
+            phoneAnim.enabled = true;
+            phoneAnim.Play("PhonePopUP");
+        }
+        else if(isAnimated && !isShown){
+            phoneAnim.enabled = true;
+        }
+        else {
 
+            DisplayBeat();
         }
     }
+
+
+    public void PhoneScreenHidden()
+    {
+        PlayerBehaviour player;
+        if ((player= FindObjectOfType < PlayerBehaviour>()) != false)
+            player.EnableControls();
+
+        phoneAnim.enabled = false;
+
+    }
+
+ 
+   
 }

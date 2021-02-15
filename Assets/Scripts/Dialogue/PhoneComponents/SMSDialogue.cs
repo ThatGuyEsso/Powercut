@@ -249,7 +249,7 @@ public class SMSDialogue : MonoBehaviour
                 pos = (Vector2)smsMCStartPosition.position + mcSmsOffset;
 
                 //update postion and display text
-                newBubble.transform.position = pos + new Vector2(bubbleWidth / 2, -(bubbleHeight / 2));
+                newBubble.transform.position = pos + new Vector2(-bubbleWidth / 2, -(bubbleHeight / 2));
                 previousBubble = newBubble;
 
                 bubbleTransforms.Add(previousBubble.transform);

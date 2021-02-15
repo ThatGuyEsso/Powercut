@@ -117,7 +117,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         }
     }
 
-
+    
     public void FixedUpdate()
     {
         //Movement loopUpdate
@@ -436,5 +436,15 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
 
         //Pass in all gadget data too (should be separate gadget manger)
         WeaponManager.instance.SetUpGadget(gadgetCarried, numberOfPrimaryGadget, numberOfSecondaryGadget);
+    }
+
+
+    public void DisableControl()
+    {
+        input.Disable();
+    }
+    public void EnableControls()
+    {
+        input.Enable();
     }
 }
