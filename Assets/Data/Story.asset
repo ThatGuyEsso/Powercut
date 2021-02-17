@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beats:
   - dialogueChoices: []
-    text: 'Him I''m here never.
+    text: 'Hi, I''m here never.
 
       You never sent me the key code.
 
@@ -72,7 +72,7 @@ MonoBehaviour:
     isClientBeat: 1
     isBeatChain: 1
   - dialogueChoices: []
-    text: By the way? are not scared of the bugs?
+    text: By the way? are you not scared of the bugs?
     id: 7
     targetBeatID: 8
     endBeat: 0

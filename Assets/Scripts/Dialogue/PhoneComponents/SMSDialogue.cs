@@ -43,9 +43,10 @@ public class SMSDialogue : MonoBehaviour
 
     [SerializeField] private Transform smsClientStartPosition;
     [SerializeField] private Transform smsMCStartPosition;
+    [SerializeField] private Transform smsScreenEndPoint;
     [SerializeField] private Transform smsArea;
 
-    [SerializeField] private List<Transform> bubbleTransforms = new List<Transform>();
+    [SerializeField] private List<SMSBubble> smsBubbles = new List<SMSBubble>();
 
     private ScrollMode scrollMode;
     private bool isScrolling=false;
@@ -64,7 +65,7 @@ public class SMSDialogue : MonoBehaviour
 
     private void Update()
     {
-        if (isScrolling&&!IsBusy())
+        if (isScrolling&&!IsBusy()&&smsBubbles.Count>0)
         {
             ScrollText();
         }
@@ -87,9 +88,9 @@ public class SMSDialogue : MonoBehaviour
             }
         }
         currentDialogueState = DialogueState.Idle;
-        typingBubble = Instantiate(typingBubblePrefab, transform);
+        typingBubble = Instantiate(typingBubblePrefab, smsArea);
         typingBubble.SetActive(false);
-        bubbleTransforms.Add(typingBubble.transform);
+ 
     }
 
 
@@ -205,8 +206,19 @@ public class SMSDialogue : MonoBehaviour
 
 
             bubbleWidth = typingBubble.GetComponent<RectTransform>().rect.width;
+            pos += new Vector2(bubbleWidth / 2, 0f); ;
+
+
             //Update position
-            typingBubble.transform.position = pos + new Vector2(bubbleWidth / 2, 0f); ;
+            typingBubble.transform.position = pos;
+
+            if (pos.y < smsScreenEndPoint.position.y)
+            {
+                float vertDistance = smsScreenEndPoint.position.y - pos.y;
+                ScrollUnitsUp(vertDistance +bubbleWidth / 2);
+                typingBubble.transform.position = (Vector3)new Vector2(typingBubble.transform.position.x,
+                    typingBubble.transform.position.y + vertDistance);
+            }
         }
            
     }
@@ -235,7 +247,7 @@ public class SMSDialogue : MonoBehaviour
                 newBubble.transform.position = pos + new Vector2(bubbleWidth/2,-(bubbleHeight/2));
                 previousBubble = newBubble;
 
-                bubbleTransforms.Add(previousBubble.transform);
+                smsBubbles.Add(previousBubble);
                 break;
 
             //calculate position at the top of the screen in the mc case
@@ -254,7 +266,7 @@ public class SMSDialogue : MonoBehaviour
                 newBubble.transform.position = pos + new Vector2(-bubbleWidth / 2, -(bubbleHeight / 2));
                 previousBubble = newBubble;
 
-                bubbleTransforms.Add(previousBubble.transform);
+                smsBubbles.Add(previousBubble);
                 break;
 
         }
@@ -285,8 +297,14 @@ public class SMSDialogue : MonoBehaviour
                 newBubble.transform.position = pos;
                 previousBubble = newBubble;
 
-                bubbleTransforms.Add(previousBubble.transform);
-         
+                smsBubbles.Add(previousBubble);
+
+                if (pos.y < smsScreenEndPoint.position.y)
+                {
+                    float vertDistance = smsScreenEndPoint.position.y - pos.y;
+                    ScrollUnitsUp(vertDistance+newBubbleHeight / 2);
+                }
+
                 break;
 
             case Speaker.MainCharacter:
@@ -306,7 +324,13 @@ public class SMSDialogue : MonoBehaviour
                 newBubble.transform.position = pos;
                 previousBubble = newBubble;
 
-                bubbleTransforms.Add(previousBubble.transform);
+                smsBubbles.Add(previousBubble);
+                if (pos.y < smsScreenEndPoint.position.y)
+                {
+                    float vertDistance = smsScreenEndPoint.position.y - pos.y;
+                    ScrollUnitsUp(vertDistance+newBubbleHeight / 2);
+                }
+
                 break;
         }
     }
@@ -317,15 +341,20 @@ public class SMSDialogue : MonoBehaviour
         switch (scrollMode)
         {
             case ScrollMode.Down:
-                foreach (Transform bubble in bubbleTransforms)
+                Debug.Log("Scrolling down");
+                if (CanScrollDown())
                 {
-                    bubble.position = Vector2.Lerp(bubble.position, new Vector2(bubble.position.x, bubble.position.y - 1), scrollRate * Time.deltaTime);
+
+                    ScrollDown();
                 }
+       
                 break;
             case ScrollMode.Up:
-                foreach (Transform bubble in bubbleTransforms)
+                Debug.Log("Scrolling up");
+                if (CanScrollUp())
                 {
-                    bubble.position = Vector2.Lerp(bubble.position, new Vector2(bubble.position.x, bubble.position.y + 1), scrollRate * Time.deltaTime);
+                    ScrollUp();
+
                 }
                 break;
         }
@@ -342,6 +371,62 @@ public class SMSDialogue : MonoBehaviour
     {
 
         isScrolling = false;
+    }
+    public void ScrollUp()
+    {
+        foreach (SMSBubble bubble in smsBubbles)
+        {
+            bubble.transform.position = Vector2.Lerp(bubble.transform.position, new Vector2(bubble.transform.position.x,
+                bubble.transform.position.y - 1), scrollRate * Time.deltaTime);
+        }
+    }
+    public void ScrollUnitsUp(float scrollAmount)
+    {
+        foreach (SMSBubble bubble in smsBubbles)
+        {
+            bubble.transform.position = (Vector3)new Vector2(bubble.transform.position.x, bubble.transform.position.y + scrollAmount);
+        }
+    }
+    public void ScrollUnitsDown(float scrollAmount)
+    {
+        foreach (SMSBubble bubble in smsBubbles)
+        {
+            bubble.transform.position += (Vector3)new Vector2(bubble.transform.position.x, scrollAmount);
+        }
+    }
+    public void ScrollDown()
+    {
+        foreach (SMSBubble bubble in smsBubbles)
+        {
+            bubble.transform.position = Vector2.Lerp(bubble.transform.position, new Vector2(bubble.transform.position.x,
+                bubble.transform.position.y + 1), scrollRate * Time.deltaTime);
+        }
+
+    }
+    public bool CanScrollUp()
+    {
+     
+        Vector2 position = (Vector2)smsBubbles[0].transform.position + new Vector2(0.0f,
+            smsBubbles[0].GetComponent<RectTransform>().rect.height / 2);
+        if (position.y > smsClientStartPosition.position.y)
+        {
+            return true;
+        }
+        return false;
+
+
+    }
+
+    public bool CanScrollDown()
+    {
+        int lastIndex = smsBubbles.Count - 1;
+        Vector2 position = (Vector2)smsBubbles[lastIndex].transform.position - new Vector2(0.0f,
+            smsBubbles[lastIndex].GetComponent<RectTransform>().rect.height/2);
+        if (position.y < smsScreenEndPoint.position.y)
+        {
+            return true;
+        }
+        return false;
     }
 
 
