@@ -33,7 +33,7 @@ public class BaseTutorial : MonoBehaviour, Controls.IPlayerControlsActions
         fadeController.OnFadeComplete -= Activate;
     }
 
-
+    public bool GetIsActive() { return isActive; }
     protected void BeginEndTutorial() {
         fadeController.OnFadeComplete += EndTutorial;
         isActive = false;

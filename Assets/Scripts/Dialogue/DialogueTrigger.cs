@@ -6,11 +6,14 @@ public class DialogueTrigger : MonoBehaviour {
     private Controls input;
     private bool inRange =false;
     private bool hasTriggered=false;
-
+    [SerializeField] private Sprite clientPortrait;
     [SerializeField] private int BeatID;
     [SerializeField] private Speaker speaker;
 
     [SerializeField] private string prompt;
+
+    public delegate void TriggerDelegate();
+    public event TriggerDelegate OnDialogueTriggered;
     private void Awake()
     {
         //Inputs
@@ -40,12 +43,13 @@ public class DialogueTrigger : MonoBehaviour {
     {
         if (!hasTriggered && inRange)
         {
+            OnDialogueTriggered?.Invoke();
             hasTriggered = true;
             InGamePrompt.instance.HidePrompt();
             input.Interactions.Interact.performed -= TriggerDialogue;
             DialogueManager.instance.SetUpNextBeat(BeatID, speaker);
+            DialogueManager.currentClientPortrait = clientPortrait;
             DialogueManager.instance.ToggleDialogueScreen(true, true);
-
             InGamePrompt.instance.SetColor(Color.white);
             InGamePrompt.instance.ChangePrompt(prompt);
         }

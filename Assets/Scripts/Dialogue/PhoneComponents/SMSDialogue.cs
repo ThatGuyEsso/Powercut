@@ -200,9 +200,10 @@ public class SMSDialogue : MonoBehaviour
         else
         {
             float bubbleHeight = typingBubble.gameObject.GetComponent<RectTransform>().rect.height;
+            float prevbubbleHeight = previousBubble.gameObject.GetComponent<RectTransform>().rect.height;
             float bubbleWidth;
-            pos = new Vector2(smsClientStartPosition.position.x, previousBubble.transform.position.y - bubbleHeight)
-                     + typingOffset + bubbleOffset;
+            pos = new Vector2(smsClientStartPosition.position.x, previousBubble.transform.position.y - prevbubbleHeight / 2 - bubbleHeight / 2)
+                     + typingOffset;
 
 
             bubbleWidth = typingBubble.GetComponent<RectTransform>().rect.width;
@@ -215,9 +216,9 @@ public class SMSDialogue : MonoBehaviour
             if (pos.y < smsScreenEndPoint.position.y)
             {
                 float vertDistance = smsScreenEndPoint.position.y - pos.y;
-                ScrollUnitsUp(vertDistance +bubbleWidth / 2);
+                ScrollUnitsUp(vertDistance + bubbleHeight / 2);
                 typingBubble.transform.position = (Vector3)new Vector2(typingBubble.transform.position.x,
-                    typingBubble.transform.position.y + vertDistance);
+                    typingBubble.transform.position.y + vertDistance + bubbleHeight / 2);
             }
         }
            
@@ -429,5 +430,9 @@ public class SMSDialogue : MonoBehaviour
         return false;
     }
 
-
+    public void DisplayClientImage(Sprite portrait)
+    {
+        if (!clientImage.gameObject.activeSelf) clientImage.gameObject.SetActive(true);
+        clientImage.sprite = portrait;
+    }
 }

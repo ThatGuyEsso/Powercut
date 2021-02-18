@@ -20,6 +20,8 @@ public class DialogueManager : MonoBehaviour
     public static int nextBeat;
     //beat to send to
     public static Speaker nextSpeaker;
+    //beat to send to
+    public static Sprite currentClientPortrait;
 
     private void Awake()
     {
@@ -123,11 +125,15 @@ public class DialogueManager : MonoBehaviour
 
     public void ToggleDialogueScreen(bool isShown, bool isAnimated)
     {
-        if(isShown) InitStateManager.currGameMode = GameModes.Dialogue;
+        if (isShown)
+        {
+            InitStateManager.currGameMode = GameModes.Dialogue;
+            if (currentClientPortrait != false) dialogueMenu.DisplayClientImage(currentClientPortrait);
+        }
         PlayerBehaviour player;
         if ((player = FindObjectOfType<PlayerBehaviour>()) != false&& isShown)
             player.EnableControls();
-     
+        
    
         if (isAnimated && isShown)
         {

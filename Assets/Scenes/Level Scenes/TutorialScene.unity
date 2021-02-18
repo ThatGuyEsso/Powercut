@@ -793,7 +793,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1489685226284682032, guid: 3522048e80f9e2c4c8a483d910b84ce1, type: 3}
       propertyPath: lightDistanceModifier
-      value: -5
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 1489685226284682033, guid: 3522048e80f9e2c4c8a483d910b84ce1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1091,6 +1091,10 @@ PrefabInstance:
     - target: {fileID: 8296264913084456668, guid: 13c507b9c6d60174d9737d223cd46034, type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296264913084456671, guid: 13c507b9c6d60174d9737d223cd46034, type: 3}
+      propertyPath: typingOffset.y
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13c507b9c6d60174d9737d223cd46034, type: 3}
@@ -19408,6 +19412,7 @@ GameObject:
   - component: {fileID: 1297339343}
   - component: {fileID: 1297339345}
   - component: {fileID: 1297339346}
+  - component: {fileID: 1297339347}
   m_Layer: 13
   m_Name: DoorKeyPad
   m_TagString: Untagged
@@ -19518,9 +19523,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf9c46b8d81436f4c8def9df89375dc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clientPortrait: {fileID: 21300000, guid: cbc1a3112212fcb4c80df27afa0a7904, type: 3}
   BeatID: 1
   speaker: 1
   prompt: '[E] To Open Door'
+--- !u!114 &1297339347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297339342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0664cf3570374034494110354f5663cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1317437047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20453,11 +20471,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8599252770362277145, guid: c4a422e01c18c2a48b8507ce6a75659c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.1
+      value: 5.1000004
       objectReference: {fileID: 0}
     - target: {fileID: 8599252770362277145, guid: c4a422e01c18c2a48b8507ce6a75659c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -13.8
+      value: 5.7
       objectReference: {fileID: 0}
     - target: {fileID: 8599252770362277145, guid: c4a422e01c18c2a48b8507ce6a75659c, type: 3}
       propertyPath: m_LocalPosition.z

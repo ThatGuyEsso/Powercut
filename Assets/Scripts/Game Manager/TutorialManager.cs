@@ -26,9 +26,18 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private TargetPointer rechargePointerPrefab;
     private TargetPointer rechargePointer;
 
+    public static TutorialManager instance;
     public void Init()
     {
+        if (instance == false)
+        {
+            instance = this;
 
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         nTutorialsLeft = allTutorials.Count;
 
         foreach (BaseTutorial tutorial in allTutorials)
@@ -55,17 +64,17 @@ public class TutorialManager : MonoBehaviour
                 {
                     gameplayTutorialTriggered = true;
                     BeginGamePlayTutoiral();
-                    objectivePointer.SetCurrentTarget(TaskManager.instance.GetNearestBrokenTask(objectivePointer.transform));
+
                 }
                 break;
             case GameStates.LevelClear:
-                objectivePointer.SetCurrentTarget(FindObjectOfType<Car>().transform);
-                Debug.Log("new Pointer");
+ 
+      
                 break;
         }
     }
 
-    private void OrientationTutorial()
+    public void OrientationTutorial()
     {
         movementPrompt.gameObject.SetActive(true);
         movementPrompt.gameObject.GetComponent<MovementTutorial>().Init();
@@ -200,5 +209,13 @@ public class TutorialManager : MonoBehaviour
     {
 
         GameStateManager.instance.OnGameStateChange -= EvaluateGameState;
+    }
+
+    public void ClearActivePrompts()
+    {
+        foreach(BaseTutorial tut in allTutorials)
+        {
+            if (tut.GetIsActive()) tut.DisablePrompt();
+        }
     }
 }
