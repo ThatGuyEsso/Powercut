@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class AirConditionTask : BaseTask
+public class AirConditionTask : BaseTask, IFixable
 {
     [SerializeField] private Color fixedColor;
     [SerializeField] private Color fixingColor;
@@ -23,7 +23,7 @@ public class AirConditionTask : BaseTask
         {
             fixingCable.ChangeColour(fixingColor);
             playerTransform = other.transform;
-
+            player = other.gameObject;
         }
     }
 
@@ -32,6 +32,12 @@ public class AirConditionTask : BaseTask
         base.OnTriggerExit2D(other);
         if (other.gameObject.CompareTag("Player") && fixingCable.isDrawing) fixingCable.StopDrawingRope();
         playerTransform = null;
+     
+        if (player != false)
+        {
+            player.GetComponent<IFixable>().NotFixing();
+            player = null;
+        }
     }
 
 
@@ -52,13 +58,22 @@ public class AirConditionTask : BaseTask
                 //If Main power is of player can begin to fix 
                 case GameStates.MainPowerOff:
                     //Begin fixing
-                    isFixing = true;
-                    Debug.Log("Should begin fixing");
-                    InGamePrompt.instance.SetColor(Color.green);
-                    InGamePrompt.instance.ShowPromptTimer(fixingPrompt, 5.0f);
+                    if (!isFixed)
+                    {
+                        if (player != false)
+                        {
+                            if (player.GetComponent<IFixable>().CanFix())
+                            {
 
-                    if (playerTransform != false) fixingCable.StartDrawingRope(playerTransform);
+                                isFixing = true;
+                                Debug.Log("Should begin fixing");
+                                InGamePrompt.instance.SetColor(Color.green);
+                                InGamePrompt.instance.ShowPromptTimer(fixingPrompt, 5.0f);
 
+                                if (playerTransform != false) fixingCable.StartDrawingRope(playerTransform);
+                            }
+                        }
+                    }
 
                     break;
 

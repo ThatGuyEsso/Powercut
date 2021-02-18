@@ -11,7 +11,7 @@ public enum MovementStates
 };
 
 //Manages player behaviour (walking, input, health)
-public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControlsActions,IPlayerComponents
+public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControlsActions,IPlayerComponents, IFixable
 {
    
 
@@ -30,12 +30,12 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     public FieldOfView fieldOfView;
     private Rigidbody2D rb;
     public Transform throwingPoint;
-
     //Weapons
 
     private GadgetTypes[] gadgetCarried = new GadgetTypes[1];
     private int numberOfPrimaryGadget;
     private int numberOfSecondaryGadget;
+    private bool canAttack;
 
     //Timers
     private float currHealth;
@@ -48,6 +48,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     private MovementStates currMoveState;
     private bool isDead;
     private bool isInitialised;
+    private bool isFixing =false;
 
     //Input
     private Vector2 moveDir;
@@ -167,37 +168,50 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     //Get input action to move
     public void OnMovement(InputAction.CallbackContext context)
     {
-        //If it is performed character should move
-        if (context.performed)
+        if (InitStateManager.currGameMode == GameModes.Powercut)
         {
-            moveDir = context.ReadValue<Vector2>(); // gets direction of movement
-            SetMovementState(MovementStates.Walking);
-            animControl.PlayWalkAnim();
-            //currTimeBetwenSteps = maxTimeBtwnSteps;
+            //If it is performed character should move
+            if (context.performed)
+            {
+                moveDir = context.ReadValue<Vector2>(); // gets direction of movement
+                SetMovementState(MovementStates.Walking);
+                animControl.PlayWalkAnim();
+                //currTimeBetwenSteps = maxTimeBtwnSteps;
+            }
         }
     }
 
     //on shoot input action
     public void OnShoot(InputAction.CallbackContext context)
     {
-        if (GameStateManager.instance.GetCurrentGameState() != GameStates.MainPowerOn)
+      
+        if (GameStateManager.instance.GetCurrentGameState() != GameStates.MainPowerOn && InitStateManager.currGameMode == GameModes.Powercut)
         {
-
-            if (context.performed)
+            if (canAttack)
             {
-                WeaponManager.instance.ShootActiveWeapon();//Trigger Weapon manager to reload
+                if (context.performed)
+                {
+                    WeaponManager.instance.ShootActiveWeapon();//Trigger Weapon manager to reload
+                }
             }
         }
+        
     }
     //on reload input action
     public void OnReload(InputAction.CallbackContext context)
     {
-        if (GameStateManager.instance.GetCurrentGameState() != GameStates.MainPowerOn)
+        if (InitStateManager.currGameMode == GameModes.Powercut)
         {
-            if (context.performed)
+            if (canAttack)
             {
-                //tell weapon manager to reload active weapon
-                WeaponManager.instance.ReloadActiveWeapon();
+                if (GameStateManager.instance.GetCurrentGameState() != GameStates.MainPowerOn)
+                {
+                    if (context.performed)
+                    {
+                        //tell weapon manager to reload active weapon
+                        WeaponManager.instance.ReloadActiveWeapon();
+                    }
+                }
             }
         }
     }
@@ -205,28 +219,42 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     //on Switch Weapon input action
     public void OnSwitchWeapon(InputAction.CallbackContext context)
     {
-        animControl.UpdatePlayergun();
-        //Needs to be refactured 
-        if (context.performed)
+        if(InitStateManager.currGameMode == GameModes.Powercut)
         {
+        
+            animControl.UpdatePlayergun();
+            //Needs to be refactured 
+            if (context.performed)
+            {
+
+                CycleBetweenGuns();
+
+            }
             
-            CycleBetweenGuns();
-           
         }
+
     }
 
     public void OnUsePrimaryGadget(InputAction.CallbackContext context)
     {
-        //Needs to be refactured 
-        if (context.performed)
+
+        if (InitStateManager.currGameMode == GameModes.Powercut)
         {
-            if (numberOfPrimaryGadget > 0)
+            if (canAttack)
             {
-                numberOfPrimaryGadget--;
-                WeaponManager.instance.UsePrimaryGadget(numberOfPrimaryGadget,transform.up,throwingPoint.position);
-                
+                //Needs to be refactured 
+                if (context.performed)
+                {
+                    if (numberOfPrimaryGadget > 0)
+                    {
+                        numberOfPrimaryGadget--;
+                        WeaponManager.instance.UsePrimaryGadget(numberOfPrimaryGadget, transform.up, throwingPoint.position);
+
+                    }
+
+                }
             }
-           
+
         }
     }
     public void PlayerFacePointer()
@@ -379,6 +407,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         currHurtTime = settings.maxHurtTime;
         numberOfPrimaryGadget = 3;
         numberOfSecondaryGadget = 2;
+        NotFixing();n
         IPlayerComponents[] components = gameObject.GetComponentsInChildren<IPlayerComponents>();
         foreach (IPlayerComponents component in components)
         {
@@ -419,10 +448,11 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         {
             case GameStates.LevelClear:
                 animControl.UpdatePlayergun();
+                canAttack = false;
                 break;
             case GameStates.MainPowerOff:
                 animControl.UpdatePlayergun();
-
+                canAttack = true;
                 break;
         }
     }
@@ -446,5 +476,23 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     public void EnableControls()
     {
         input.Enable();
+    }
+
+    public bool CanFix()
+    {
+        if(isFixing == true)
+        {
+            return false;
+        }
+        else
+        {
+            isFixing = true;
+            return true;
+        }
+    }
+
+    public void NotFixing()
+    {
+        isFixing = false;
     }
 }

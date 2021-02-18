@@ -16,7 +16,12 @@ public class TaskTemplate : MonoBehaviour
         Init();
     }
 
-
+    public void ResetDisplay()
+    {
+        nTasksCompleted = 0;
+        nTotalTasksText.text = nTotalTasks.ToString();
+        nTasksCompletedText.text = nTasksCompleted.ToString();
+    }
 
     //Increment and decremnt tasks
     //-------------------------------------------------------

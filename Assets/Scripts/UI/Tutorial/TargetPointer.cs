@@ -34,7 +34,7 @@ public class TargetPointer : MonoBehaviour
                 if (gameObject != false) Destroy(gameObject);
                 break;
             case InitStates.LoadTitleScreen:
-                if(gameObject!=false) Destroy(gameObject);
+                
 
                 break;
 

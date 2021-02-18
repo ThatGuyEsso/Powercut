@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsActions
+public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsActions,IFixable
 {
     private Lamp parentLamp;
     public FuseSettings fuseSettings;
@@ -13,7 +13,7 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
     private Transform targetTrans;
     public float currentTimeToFix;
     private Controls input;
-
+    private GameObject player;
     private void Awake()
     {
         parentLamp = transform.parent.GetComponent<Lamp>();
@@ -45,6 +45,7 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
             }
             else
             {
+                player.GetComponent<IFixable>().NotFixing();
                 fixingCable.ChangeColour(Color.green);
                 isFixing = false;
             }
@@ -69,7 +70,8 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
                     InGamePrompt.instance.ShowPrompt();
            
                     fixingCable.ChangeColour(fixingCableColour);
-       
+                    player = other.gameObject;
+
                 }
 
 
@@ -85,7 +87,7 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
             if (!isFixing)
             {
                 canFix = !parentLamp.GetIsLampWorking();
-
+       
             }
          
         }
@@ -104,6 +106,13 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
 
                 fixingCable.StopDrawingRope();
                 targetTrans = null;
+
+                if (player != false)
+                {
+                    player.GetComponent<IFixable>().NotFixing();
+                    player = null;
+                }
+           
             }
         }
     }
@@ -112,13 +121,21 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
     {
         if(context.performed&& canFix)
         {
-            isFixing = true;
-            InGamePrompt.instance.HidePrompt();
-            if (targetTrans != null)
+            if (player != false)
             {
-                fixingCable.StartDrawingRope(targetTrans);
+                if (player.GetComponent<IFixable>().CanFix())
+                {
+                    
+                    isFixing = true;
+                    InGamePrompt.instance.HidePrompt();
+                    if (targetTrans != null)
+                    {
+                        fixingCable.StartDrawingRope(targetTrans);
 
+                    }
+                }
             }
+         
         }
     }
     void IBreakable.Damage(float damage,BaseEnemy interfacingEnemy)
@@ -138,5 +155,15 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
     void OnDestroy()
     {
         input.Disable();
+    }
+
+    public bool CanFix()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void NotFixing()
+    {
+        throw new System.NotImplementedException();
     }
 }

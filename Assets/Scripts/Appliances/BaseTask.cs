@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable
+public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable,IFixable
 {
     [Header("Settings")]
     public float maxHealth;
@@ -19,7 +19,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
     [SerializeField] protected string fixingPrompt;
     public Sprite[] stateSprites;//0 should be fixed max should be max broken
     public GameObject fixVFX;
-
+    protected GameObject player;
     //input
     protected Controls input;
 
@@ -30,6 +30,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
     protected bool inRange;
     protected bool isFixed;
     protected bool isFixing;
+    protected bool isRecorded =false;
 
 
     public void Init()
@@ -68,6 +69,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
                 }
             }
             else{
+                player.GetComponent<IFixable>().NotFixing();
                 UIManager.instance.eventDisplay.CreateEvent(taskDescription + " Fixed", Color.green);
             }
            
@@ -83,7 +85,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
                 inRange = true;
                 InGamePrompt.instance.ChangePrompt(playerPrompt);
                 InGamePrompt.instance.ShowPrompt();
-
+                player = other.gameObject;
             }
           
 
@@ -98,6 +100,12 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
             inRange = false;
             isFixing = false;
             InGamePrompt.instance.HidePrompt();
+
+            if (player != false)
+            {
+                player.GetComponent<IFixable>().NotFixing();
+                player = null;
+            }
         }
 
 
@@ -115,10 +123,21 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
                 //If Main power is of player can begin to fix 
                 case GameStates.MainPowerOff:
                     //Begin fixing
-                    isFixing = true;
-                    Debug.Log("Should begin fixing");
-                    InGamePrompt.instance.SetColor(Color.green);
-                    InGamePrompt.instance.ShowPromptTimer(fixingPrompt, 5.0f);
+                    if (!isFixed)
+                    {
+                        if (player != false)
+                        {
+                            if (player.GetComponent<IFixable>().CanFix())
+                            {
+                                isFixing = true;
+
+                                Debug.Log("Should begin fixing");
+                                InGamePrompt.instance.SetColor(Color.green);
+                                InGamePrompt.instance.ShowPromptTimer(fixingPrompt, 5.0f);
+                            }
+                        }
+                  
+                    }
                     break;
 
                 default:
@@ -158,7 +177,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
             if (currHealth <= 0)
             {
 
-
+                isRecorded = false;
                 isFixed = false;
                 currHealth = 0;
                 TaskManager.instance.RecordFailedTask(taskName);
@@ -171,7 +190,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
 
     protected void UpdateDamageDisplay()
     {
-        if (isFixed && currHealth >= maxHealth)
+        if (isFixed )
         {
             gfx.sprite = stateSprites[0];
         }
@@ -204,7 +223,13 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
         if (currHealth >= maxHealth)
         {
             isFixed = true;
-            TaskManager.instance.RecordCompletedTask(taskName);
+            if (isRecorded == false)
+            {
+
+                TaskManager.instance.RecordCompletedTask(taskName);
+                isRecorded = true;
+            }
+      
         }
         else
         {
@@ -227,5 +252,15 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
     void OnDestroy()
     {
         input.Disable();
+    }
+
+    public bool CanFix()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void NotFixing()
+    {
+        throw new System.NotImplementedException();
     }
 }

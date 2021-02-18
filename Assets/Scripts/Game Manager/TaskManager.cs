@@ -136,7 +136,7 @@ public class TaskManager : MonoBehaviour, IInitialisable
         {
             case InitStates.RespawnPlayer:
                 ResetTasks();
-             
+                ResetManager();
                 Debug.Log("init");
                 break;
         }
@@ -239,4 +239,9 @@ public class TaskManager : MonoBehaviour, IInitialisable
         return nearestTaskT;
     }
 
+    private void ResetManager()
+    {
+        totalNumberOfCompletedTask = 0;
+        UIManager.instance.taskDisplay.ResetTasks();
+    }
 }

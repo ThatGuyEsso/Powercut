@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 5224600117101052763}
   - component: {fileID: 7434350382917992640}
   - component: {fileID: 7267219307381819875}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Fuse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,8 +258,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e2e8137ea093442b79ca274fe0f2c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cable: {fileID: 0}
   origin: {fileID: 5965045241559176876}
+  isDrawing: 0
   lineVelocity: 20
   lineQuality: 20
   damper: 50
@@ -309,7 +309,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5965045241559176876}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: CableOrigin
   m_TagString: Untagged
   m_Icon: {fileID: -5938655980376293919, guid: 0000000000000000d000000000000000, type: 0}
@@ -414,7 +414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 688787503007137149}
   - component: {fileID: 8432846291052556862}
-  m_Layer: 11
+  m_Layer: 13
   m_Name: FuseGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

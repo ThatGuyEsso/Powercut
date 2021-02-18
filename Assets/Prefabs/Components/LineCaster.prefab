@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4778922723363290265}
   - component: {fileID: 4778922723363290271}
   - component: {fileID: 4778922723363290270}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: LineCaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -142,8 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e2e8137ea093442b79ca274fe0f2c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cable: {fileID: 0}
   origin: {fileID: 0}
+  isDrawing: 0
   lineVelocity: 20
   lineQuality: 20
   damper: 50

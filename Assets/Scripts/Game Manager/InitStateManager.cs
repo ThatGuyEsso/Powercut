@@ -90,8 +90,9 @@ public class InitStateManager : MonoBehaviour
                 LoadingScreen.instance.cam.SetActive(false);
                 LoadingScreen.instance.BeginFade(false);
                 currInitState = InitStates.GameRunning;
-                OnStateChange?.Invoke(currInitState);
-         
+                BeginNewState(currInitState);
+
+
                 break;
             case InitStates.GameRunning:
                 OnStateChange?.Invoke(newState);

@@ -34,6 +34,14 @@ public class TaskDisplay : MonoBehaviour
         float size = (panelPadding * nTypesOfTasks);
         backgroundPanel.offsetMin = new Vector2(0f, size);
     }
+
+    public void ResetTasks()
+    {
+        foreach(TaskTemplate task in tasks)
+        {
+            task.ResetDisplay();
+        }
+    }
     private void GenerateNewTaskDisplay(int indexPosition)
     {
         TaskTemplate newTemplate = Instantiate(taskTemplatePrefab, transform.position,Quaternion.identity).GetComponent<TaskTemplate>();

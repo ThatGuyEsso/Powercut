@@ -13,6 +13,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField] private FadeMediaGroup gadgetPrompt;
     [SerializeField] private FadeMediaGroup fusePrompt;
     [SerializeField] private FadeMediaGroup rechargePrompt;
+    [SerializeField] private FadeMediaGroup taskCompletionPrompts;
     [SerializeField] private List<BaseTutorial> allTutorials;
 
     [Header("Management Settings")]
@@ -27,6 +28,8 @@ public class TutorialManager : MonoBehaviour
     private TargetPointer rechargePointer;
 
     public static TutorialManager instance;
+
+    
     public void Init()
     {
         if (instance == false)
@@ -63,7 +66,7 @@ public class TutorialManager : MonoBehaviour
                 if (!gameplayTutorialTriggered)
                 {
                     gameplayTutorialTriggered = true;
-                    BeginGamePlayTutoiral();
+                    BeginGamePlayTutorial();
 
                 }
                 break;
@@ -85,34 +88,13 @@ public class TutorialManager : MonoBehaviour
     }
 
 
-    private void BeginGamePlayTutoiral()
+    private void BeginGamePlayTutorial()
     {
-        //if the previous tutorial is not visible begin displaying the new
-        if(!movementPrompt!=false && !rotatePrompt !=false)
-        {
-            GamePlayTutoiral(null);
-        }
-        else
-        {
-            //if this prompt is active and already fading
-            if(movementPrompt ==true && !movementPrompt.GetIsFading())
-            {
-                movementPrompt.BeginFadeOut();
-                movementPrompt.gameObject.GetComponent<MovementTutorial>().DisablePrompt();
-                movementPrompt.OnFadeComplete += GamePlayTutoiral;
+        ClearActivePrompts();
+        DisplayObjectives();
 
 
-            }
-            //if this prompt is active and already fading
-            if (rotatePrompt ==true && !rotatePrompt.GetIsFading())
-            {
-                rotatePrompt.BeginFadeOut();
-                rotatePrompt.gameObject.GetComponent<MouseTutorial>().DisablePrompt();
-                rotatePrompt.OnFadeComplete += GamePlayTutoiral;
-
-            }
-        }
-        LevelLampsManager.instance.OnLampBroke += LightFixingPrompt;
+        LevelLampsManager.instance.OnLampBroke += BeginFightTutorial;
         LightManager.instance.OnChargeDepleted += RechargePrompt;
         TaskManager.instance.OnAllTasksCompletd += TaskCompletedPrompt;
     }
@@ -127,6 +109,17 @@ public class TutorialManager : MonoBehaviour
     private void LightFixingPrompt()
     {
         LevelLampsManager.instance.OnLampBroke -= LightFixingPrompt;
+        fusePrompt.gameObject.SetActive(true);
+        fusePrompt.gameObject.GetComponent<MouseTutorial>().Init();
+        fusePrompt.BeginFadeIn();
+    }
+    private void DisplayObjectives()
+    {
+        // task prompt
+        taskCompletionPrompts.gameObject.SetActive(true);
+        taskCompletionPrompts.gameObject.GetComponent<MouseTutorial>().Init();
+        taskCompletionPrompts.BeginFadeIn();
+        //fix  prompt
         fusePrompt.gameObject.SetActive(true);
         fusePrompt.gameObject.GetComponent<MouseTutorial>().Init();
         fusePrompt.BeginFadeIn();
@@ -148,16 +141,19 @@ public class TutorialManager : MonoBehaviour
         rechargePrompt.BeginFadeIn();
 
     }
-    private void GamePlayTutoiral(GameObject go)
+    private void BeginFightTutorial()
     {
-        //unbind if bound
-        if(rotatePrompt !=false) rotatePrompt.OnFadeComplete -= GamePlayTutoiral;
-        if (movementPrompt != false) movementPrompt.OnFadeComplete -= GamePlayTutoiral;
-        //weapon switch prompt
-        switchWeaponPrompt.gameObject.SetActive(true);
-        switchWeaponPrompt.gameObject.GetComponent<SingleKeyTutorial>().Init();
-        switchWeaponPrompt.BeginFadeIn();
+        LevelLampsManager.instance.OnLampBroke -= BeginFightTutorial;
+        ClearActivePrompts();
+        FightTutorial(null);
+    }
+    private void FightTutorial(GameObject go)
+    {
 
+        //use gadget prompt
+        gadgetPrompt.gameObject.SetActive(true);
+        gadgetPrompt.gameObject.GetComponent<SingleKeyTutorial>().Init();
+        gadgetPrompt.BeginFadeIn();
         //shoot weapon prompt
         shootPrompt.gameObject.SetActive(true);
         shootPrompt.gameObject.GetComponent<SingleKeyTutorial>().Init();
@@ -169,17 +165,20 @@ public class TutorialManager : MonoBehaviour
 
     private void OutOfAmmoTutorial()
     {
-
+        ClearActivePrompts();
         WeaponManager.instance.OnClipEmpty -= OutOfAmmoTutorial;
         //reload prompt
         reloadPrompt.gameObject.SetActive(true);
         reloadPrompt.gameObject.GetComponent<SingleKeyTutorial>().Init();
         reloadPrompt.BeginFadeIn();
 
-        //use gadget prompt
-        gadgetPrompt.gameObject.SetActive(true);
-        gadgetPrompt.gameObject.GetComponent<SingleKeyTutorial>().Init();
-        gadgetPrompt.BeginFadeIn();
+
+        //weapon switch prompt
+        switchWeaponPrompt.gameObject.SetActive(true);
+        switchWeaponPrompt.gameObject.GetComponent<SingleKeyTutorial>().Init();
+        switchWeaponPrompt.BeginFadeIn();
+
+        
     }
 
     private void DecrementTutorialsLeft()
