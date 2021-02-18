@@ -1790,10 +1790,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4445555425298562107, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 4445555425298562108, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
       propertyPath: m_Name
       value: HUD
