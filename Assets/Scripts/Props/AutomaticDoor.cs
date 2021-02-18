@@ -4,29 +4,47 @@ using UnityEngine;
 
 public class AutomaticDoor : MonoBehaviour
 {
-    [SerializeField] private bool isLocked;
-    [SerializeField] private float transitionTime;
+    [SerializeField] protected bool isLocked;
+    [SerializeField] protected float transitionTime;
 
-    [SerializeField] private Transform leftDoorTransform;
-    [SerializeField] private Transform rightDoorTransform;
+    [SerializeField] protected Transform leftDoorTransform;
+    [SerializeField] protected Transform rightDoorTransform;
+    [SerializeField] protected Vector2 moveAxis;
 
-    [SerializeField] private string resultName;
-    bool isBound = false;
-    int nEntities=0;
+    [SerializeField] protected string resultName;
+    protected bool isBound = false;
+    protected int nEntities =0;
 
-    private Vector2 leftClosedPosition, rightClosedPosition,leftOpenPosition, rightOpenPosition;
-
-    private void Awake()
+    protected enum DoorState
     {
-        leftClosedPosition = leftDoorTransform.position;
-        rightClosedPosition = rightDoorTransform.position;
-        leftOpenPosition = (Vector2)leftDoorTransform.position + Vector2.left;
-        rightOpenPosition = (Vector2)rightDoorTransform.position + Vector2.right;
+        Open,
+        Closed,
+        Opening,
+        Closing
+    };
+    protected DoorState state;
+
+    protected Vector2 leftClosedPosition, rightClosedPosition,leftOpenPosition, rightOpenPosition;
+
+    protected void Awake()
+    {
+        if (leftDoorTransform != false)
+        {
+            leftClosedPosition = leftDoorTransform.position;
+            leftOpenPosition = (Vector2)leftDoorTransform.position - moveAxis;
+
+        }
+        if (rightDoorTransform != false)
+        {
+            rightClosedPosition = rightDoorTransform.position;
+            rightOpenPosition = (Vector2)rightDoorTransform.position + moveAxis;
+
+        }
         state = DoorState.Closed;
 
     }
 
-    private void Start()
+    protected void Start()
     {
         if (isLocked)
         {
@@ -34,15 +52,8 @@ public class AutomaticDoor : MonoBehaviour
             isBound = true;
         }
     }
-    private enum DoorState
-    {
-        Open,
-        Closed,
-        Opening,
-        Closing
-    };
-    DoorState state;
-    private void OnTriggerEnter2D(Collider2D other)
+
+    protected void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy"))
         {
@@ -55,7 +66,7 @@ public class AutomaticDoor : MonoBehaviour
     }
 
 
-    private void OnTriggerExit2D(Collider2D other)
+    protected void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Enemy"))
         {
@@ -68,15 +79,15 @@ public class AutomaticDoor : MonoBehaviour
     }
 
 
-    private void Update()
+    virtual protected void Update()
     {
         switch (state)
         {
            
             case DoorState.Opening:
-              leftDoorTransform.position += (Vector3)(Vector2.left *transitionTime*Time.deltaTime);
+                leftDoorTransform.position += (Vector3)(-moveAxis * transitionTime*Time.deltaTime);
 
-                rightDoorTransform.position += (Vector3)(Vector2.right * transitionTime * Time.deltaTime);
+                rightDoorTransform.position += (Vector3)(moveAxis * transitionTime * Time.deltaTime);
 
                 if (Vector2.Distance(rightDoorTransform.position,rightOpenPosition) <= 0.01f
                     || (Vector2.Distance(leftDoorTransform.position, leftOpenPosition) <= 0.01f)){
@@ -85,9 +96,9 @@ public class AutomaticDoor : MonoBehaviour
 
                 break;
             case DoorState.Closing:
-                leftDoorTransform.position -= (Vector3)(Vector2.left * transitionTime * Time.deltaTime);
+                leftDoorTransform.position -= (Vector3)(-moveAxis * transitionTime * Time.deltaTime);
 
-                rightDoorTransform.position -= (Vector3)(Vector2.right * transitionTime * Time.deltaTime);
+                rightDoorTransform.position -= (Vector3)(moveAxis * transitionTime * Time.deltaTime);
 
                 if (Vector2.Distance(rightDoorTransform.position, rightClosedPosition) <= 0.01f
                     || (Vector2.Distance(leftDoorTransform.position, leftClosedPosition) <= 0.01f))
@@ -109,7 +120,7 @@ public class AutomaticDoor : MonoBehaviour
         }
     }
 
-    private IEnumerator Unlocking()
+    protected IEnumerator Unlocking()
     {
         while(InitStateManager.currGameMode != GameModes.Powercut)
         {
@@ -120,7 +131,7 @@ public class AutomaticDoor : MonoBehaviour
     }
 
 
-    private void OnDestroy()
+    protected void OnDestroy()
     {
         if (isBound)
         {
