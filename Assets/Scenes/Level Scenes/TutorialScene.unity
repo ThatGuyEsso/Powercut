@@ -376,11 +376,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3252031232372118243, guid: 3a789a16d8c0e9e4ebc18a6b088001f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.52
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3252031232372118243, guid: 3a789a16d8c0e9e4ebc18a6b088001f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 16.4
+      value: 16.53
       objectReference: {fileID: 0}
     - target: {fileID: 3252031232372118243, guid: 3a789a16d8c0e9e4ebc18a6b088001f0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -396,11 +396,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3252031232372118243, guid: 3a789a16d8c0e9e4ebc18a6b088001f0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.70710576
+      value: 0.0000009685754
       objectReference: {fileID: 0}
     - target: {fileID: 3252031232372118243, guid: 3a789a16d8c0e9e4ebc18a6b088001f0, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.70710784
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3252031232372118243, guid: 3a789a16d8c0e9e4ebc18a6b088001f0, type: 3}
       propertyPath: m_RootOrder
@@ -416,7 +416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3252031232372118243, guid: 3a789a16d8c0e9e4ebc18a6b088001f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -90
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5367022063000022663, guid: 3a789a16d8c0e9e4ebc18a6b088001f0, type: 3}
       propertyPath: m_Layer
@@ -21878,7 +21878,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4568173748380410730, guid: e87b75abb437ec845be8c90d145bcca5, type: 3}
       propertyPath: isLocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4568173748380410730, guid: e87b75abb437ec845be8c90d145bcca5, type: 3}
       propertyPath: transitionTime

@@ -407,7 +407,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         currHurtTime = settings.maxHurtTime;
         numberOfPrimaryGadget = 3;
         numberOfSecondaryGadget = 2;
-        NotFixing();n
+        NotFixing();
         IPlayerComponents[] components = gameObject.GetComponentsInChildren<IPlayerComponents>();
         foreach (IPlayerComponents component in components)
         {
