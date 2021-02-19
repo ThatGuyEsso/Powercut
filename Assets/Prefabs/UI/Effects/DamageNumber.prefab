@@ -191,6 +191,7 @@ MonoBehaviour:
   minTravelDistance: 0.1
   maxTravelDistance: 0.3
   minSpeed: 0.003
+  maxSize: 1.2
   maxSpeed: 0.03
   colorGradient:
     serializedVersion: 2

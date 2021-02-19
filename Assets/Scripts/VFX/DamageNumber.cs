@@ -29,9 +29,12 @@ public class DamageNumber : MonoBehaviour
     [SerializeField]
     private float minSpeed;
     [SerializeField]
+    private float maxSize;
+    [SerializeField]
     private float maxSpeed;
     [Header("Appearance Settings")]
 
+   
     private float speed;
     private float traveldDistance;
     private float timeBeforeShrink;
@@ -108,6 +111,8 @@ public class DamageNumber : MonoBehaviour
     {
         float percentageDmg = damageAmount / targetMaxHealth;
         scale = percentageDmg;
+
+        if (scale > maxSize) scale = maxSize;
         float gradient = percentageDmg;
         transform.localScale = new Vector3(scale, scale, scale);
         text.color = colorGradient.Evaluate(gradient);
