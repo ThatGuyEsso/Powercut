@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PhoneAnimEventListener : MonoBehaviour
 {
+
+
     public void OnPopUpAnimationEnd()
     {
         DialogueManager.instance.DisplayBeat();
-      
+       
     }
 
     public void OnPopDownAnimationEnd()

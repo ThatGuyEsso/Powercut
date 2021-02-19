@@ -40,6 +40,9 @@ public class UIManager : MonoBehaviour, Controls.IUIActions
     void OnDestroy()
     {
         input.Disable();
+    
+            InitStateManager.instance.OnStateChange -= EvaluateNewState;
+            GameStateManager.instance.OnGameStateChange -= EvaluateGameNewState;
     }
     void OnDisable()
     {

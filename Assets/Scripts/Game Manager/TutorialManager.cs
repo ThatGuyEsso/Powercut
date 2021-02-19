@@ -22,10 +22,7 @@ public class TutorialManager : MonoBehaviour
     bool gameplayTutorialTriggered =false;
 
 
-    [SerializeField] private TargetPointer pointerPrefab;
-    private TargetPointer objectivePointer;
-    [SerializeField] private TargetPointer rechargePointerPrefab;
-    private TargetPointer rechargePointer;
+
 
     public static TutorialManager instance;
 
@@ -50,7 +47,7 @@ public class TutorialManager : MonoBehaviour
 
         GameStateManager.instance.OnGameStateChange += EvaluateGameState;
         Invoke("OrientationTutorial", timebeforeTutorialStart);
-        SetUpObjectivePointer();
+        //SetUpObjectivePointer();
 
 
 
@@ -104,7 +101,7 @@ public class TutorialManager : MonoBehaviour
         TaskManager.instance.OnAllTasksCompletd -= TaskCompletedPrompt;
         InGamePrompt.instance.SetColor(Color.green);
         InGamePrompt.instance.ShowPromptTimer("Job completed Turn Main Power Back On",4.0f);
-        objectivePointer.SetCurrentTarget(FindObjectOfType<MainPowerSwitch>().transform);
+        //objectivePointer.SetCurrentTarget(FindObjectOfType<MainPowerSwitch>().transform);
     }
     private void LightFixingPrompt()
     {
@@ -128,7 +125,7 @@ public class TutorialManager : MonoBehaviour
     private void DisableRechargePointer()
     {
         LightManager.instance.OnFullyCharged -= DisableRechargePointer;
-        Destroy(rechargePointer.gameObject);
+
     }
 
     private void RechargePrompt()
@@ -137,8 +134,8 @@ public class TutorialManager : MonoBehaviour
         LightManager.instance.OnFullyCharged += DisableRechargePointer;
         rechargePrompt.gameObject.SetActive(true);
         rechargePrompt.gameObject.GetComponent<MouseTutorial>().Init();
-        SetUpRechargePointer();
         rechargePrompt.BeginFadeIn();
+        //SetUpRechargePointer();
 
     }
     private void BeginFightTutorial()
@@ -190,20 +187,20 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
-    private void SetUpObjectivePointer()
-    {
-        Transform playerTransform = FindObjectOfType<PlayerBehaviour>().transform;
-        objectivePointer = Instantiate(pointerPrefab, playerTransform.position, Quaternion.identity);
-        objectivePointer.Init(playerTransform, FindObjectOfType<MainPowerSwitch>().transform);
-        objectivePointer.ActivatePointer();
-    }
-    private void SetUpRechargePointer()
-    {
-        Transform playerTransform = FindObjectOfType<PlayerBehaviour>().transform;
-        rechargePointer = Instantiate(rechargePointerPrefab, playerTransform.position, Quaternion.identity);
-        rechargePointer.Init(playerTransform, FindObjectOfType<RechargeStationBehaviour>().transform);
-        rechargePointer.ActivatePointer();
-    }
+    //private void SetUpObjectivePointer()
+    //{
+    //    Transform playerTransform = FindObjectOfType<PlayerBehaviour>().transform;
+    //    objectivePointer = Instantiate(pointerPrefab, playerTransform.position, Quaternion.identity);
+    //    objectivePointer.Init(playerTransform, FindObjectOfType<MainPowerSwitch>().transform);
+    //    objectivePointer.ActivatePointer();
+    //}
+    //private void SetUpRechargePointer()
+    //{
+    //    Transform playerTransform = FindObjectOfType<PlayerBehaviour>().transform;
+    //    rechargePointer = Instantiate(rechargePointerPrefab, playerTransform.position, Quaternion.identity);
+    //    rechargePointer.Init(playerTransform, FindObjectOfType<RechargeStationBehaviour>().transform);
+    //    rechargePointer.ActivatePointer();
+    //}
     private void OnDestroy()
     {
 

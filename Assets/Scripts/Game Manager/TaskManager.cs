@@ -244,4 +244,9 @@ public class TaskManager : MonoBehaviour, IInitialisable
         totalNumberOfCompletedTask = 0;
         UIManager.instance.taskDisplay.ResetTasks();
     }
+
+    private void OnDestroy()
+    {
+        InitStateManager.instance.OnStateChange -= EvaluateNewState;
+    }
 }

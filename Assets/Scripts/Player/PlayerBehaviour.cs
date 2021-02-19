@@ -268,10 +268,6 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     }
 
 
-
-
-
-
     //Initialises Health and health UI
     public void SetUpHealth()
     {
@@ -378,6 +374,9 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
             input.Disable();
             input.PlayerControls.Movement.canceled -= _ => EndMovement();
         }
+
+        InitStateManager.instance.OnStateChange -= EvaluateNewState;
+        GameStateManager.instance.OnGameStateChange -= EvaluateGameNewState;
     }
 
     private void CycleBetweenGuns()
@@ -495,4 +494,6 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     {
         isFixing = false;
     }
+
+
 }

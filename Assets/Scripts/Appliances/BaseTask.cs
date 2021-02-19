@@ -69,7 +69,8 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
                 }
             }
             else{
-                player.GetComponent<IFixable>().NotFixing();
+                if(player!=false)
+                    player.GetComponent<IFixable>().NotFixing();
                 UIManager.instance.eventDisplay.CreateEvent(taskDescription + " Fixed", Color.green);
             }
            
@@ -247,6 +248,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
     {
         currHealth = 0f;
         isFixed = false;
+        isRecorded = false;
         UpdateDamageDisplay();
     }
     void OnDestroy()

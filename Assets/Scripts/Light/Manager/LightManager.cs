@@ -199,5 +199,11 @@ public class LightManager : MonoBehaviour
 
         }
     }
+
+    private void OnDestroy()
+    {
+        InitStateManager.instance.OnStateChange -= EvaluateNewState;
+        GameStateManager.instance.OnGameStateChange -= EvaluateGameNewState;
+    }
 }
 

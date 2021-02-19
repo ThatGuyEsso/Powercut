@@ -28,6 +28,7 @@ public class DialogueTrigger : MonoBehaviour {
         if(other.CompareTag("Player")&& !hasTriggered)
         {
             inRange = true;
+            InGamePrompt.instance.ChangePrompt(prompt);
         }
     }
 

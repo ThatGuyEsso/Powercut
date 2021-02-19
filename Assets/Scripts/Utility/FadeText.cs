@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 public class FadeText : MonoBehaviour
 {
-    public TextMeshProUGUI[] UITexts;
+    private List<TextMeshProUGUI> UITexts = new List<TextMeshProUGUI>();
 
 
     public event TextFadeComplete OnTextFadeEnd;
@@ -21,25 +21,29 @@ public class FadeText : MonoBehaviour
 
     private IEnumerator TextFadeIn(float fadeTime, float fadeMagnitude)
     {
-        float oppacity = 0;
-        foreach(TextMeshProUGUI text in UITexts)
+        if (UITexts.Count > 0)
         {
-            text.color = new Color(text.color.r, text.color.g, text.color.b, oppacity);
-        }
 
-
-        while (oppacity < 1f)
-        {
-            oppacity += fadeMagnitude;
-           
-            foreach (TextMeshProUGUI text in UITexts)
+            float oppacity = 0;
+            foreach(TextMeshProUGUI text in UITexts)
             {
-                if (oppacity >= 0.95) oppacity = 1f;
                 text.color = new Color(text.color.r, text.color.g, text.color.b, oppacity);
             }
+
+
+            while (oppacity < 1f)
+            {
+                oppacity += fadeMagnitude;
            
-            yield return new WaitForSeconds(fadeTime);
+                foreach (TextMeshProUGUI text in UITexts)
+                {
+                    if (oppacity >= 0.95) oppacity = 1f;
+                    text.color = new Color(text.color.r, text.color.g, text.color.b, oppacity);
+                }
+           
+                yield return new WaitForSeconds(fadeTime);
     
+            }
         }
 
         OnTextFadeEnd?.Invoke();
@@ -47,35 +51,47 @@ public class FadeText : MonoBehaviour
 
     private IEnumerator TextFadeOut(float fadeTime, float fadeMagnitude)
     {
-        float oppacity = 1f;
-        foreach (TextMeshProUGUI text in UITexts)
+        if (UITexts.Count > 0)
         {
-            if (text.isActiveAndEnabled)
-            {
 
-                text.color = new Color(text.color.r, text.color.g, text.color.b, oppacity);
-            }
-        }
-
-
-        while (oppacity > 0f)
-        {
-            oppacity -= fadeMagnitude;
-          
+            float oppacity = 1f;
             foreach (TextMeshProUGUI text in UITexts)
             {
                 if (text.isActiveAndEnabled)
                 {
 
-                    if (oppacity <= 0.05) oppacity = 0f;
                     text.color = new Color(text.color.r, text.color.g, text.color.b, oppacity);
                 }
             }
-     
-            yield return new WaitForSeconds(fadeTime);
 
+
+            while (oppacity > 0f)
+            {
+                oppacity -= fadeMagnitude;
+          
+                foreach (TextMeshProUGUI text in UITexts)
+                {
+                    if (text.isActiveAndEnabled)
+                    {
+
+                        if (oppacity <= 0.05) oppacity = 0f;
+                        text.color = new Color(text.color.r, text.color.g, text.color.b, oppacity);
+                    }
+                }
+     
+                yield return new WaitForSeconds(fadeTime);
+
+            }
         }
 
         OnTextFadeEnd?.Invoke();
     }
+
+    public void AddScreenElements(List<TextMeshProUGUI> list)
+    {
+        UITexts = list;
+    }
+
+    public void ClearList() { UITexts.Clear(); }
+
 }

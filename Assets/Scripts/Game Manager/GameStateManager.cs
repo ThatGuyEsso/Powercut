@@ -169,7 +169,7 @@ public class GameStateManager : MonoBehaviour, IInitialisable
     {
         //GameObject tutorial;
         //if ((tutorial = FindObjectOfType<TutorialManager>().gameObject) != false) Destroy(tutorial);
-
+        InitStateManager.instance.OnStateChange -= EvaluateNewState;
 
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class LevelClearScreen : MonoBehaviour
 {
     [HideInInspector]
@@ -10,7 +11,8 @@ public class LevelClearScreen : MonoBehaviour
     public GameObject gameOverScreen, jobCompletedScreen;
     private List<Button> buttons = new List<Button>();
     public float fadeInRate, fadeInMag, fadeOutRate, fadeOutMag;
-
+    [SerializeField] private List<TextMeshProUGUI> successScreenElements = new List<TextMeshProUGUI>();
+    [SerializeField] private List<TextMeshProUGUI> failScreenElements = new List<TextMeshProUGUI>();
     private void Awake()
     {
         if (instance == false)
@@ -33,6 +35,7 @@ public class LevelClearScreen : MonoBehaviour
     public void BeginRetry()
     {
         AudioManager.instance.PlayAtRandomPitch("ClickSFX");
+
         textFade.OnTextFadeEnd += Retry;
         ClearGameOver();
     }
@@ -52,24 +55,28 @@ public class LevelClearScreen : MonoBehaviour
     private void Quit()
     {
         textFade.OnTextFadeEnd -= Quit;
+        textFade.ClearList();
         InitStateManager.instance.BeginNewState(InitStates.ExitLevel);
         Application.Quit();
     }
     private void Retry()
     {
         textFade.OnTextFadeEnd -= Retry;
+        textFade.ClearList();
         InitStateManager.instance.BeginNewState(InitStates.RespawnPlayer);
 
     }
     private void ReturnToTitle()
     {
         textFade.OnTextFadeEnd -= ReturnToTitle;
+        textFade.ClearList();
         InitStateManager.instance.BeginNewState(InitStates.LoadTitleScreen);
 
     }
 
     public void BeginGameOver()
     {
+        textFade.AddScreenElements(failScreenElements);
         gameOverScreen.SetActive(true);
         ToggleButtons(false);
         textFade.OnTextFadeEnd += EnableButtons;
@@ -85,6 +92,7 @@ public class LevelClearScreen : MonoBehaviour
 
     public void BeginLevelOver()
     {
+        textFade.AddScreenElements(successScreenElements);
         jobCompletedScreen.SetActive(true);
         textFade.BeginTextFadeIn(fadeInRate, fadeInMag);
     }

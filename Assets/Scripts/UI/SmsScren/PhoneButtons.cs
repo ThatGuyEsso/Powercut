@@ -13,7 +13,12 @@ public class PhoneButtons : MonoBehaviour
     SceneIndex targetScene;
     bool canStart =false;
 
-
+    private void Awake()
+    {
+  
+        Init();
+        
+    }
     public void Init()
     {
         playButton.enabled = false;
