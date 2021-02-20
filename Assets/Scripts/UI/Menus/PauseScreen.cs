@@ -7,6 +7,9 @@ public class PauseScreen : MonoBehaviour
     public static PauseScreen instance;
     public GameObject pauseScreen;
 
+    public delegate void PauseDelegate();
+    public event PauseDelegate OnPause;
+    public event PauseDelegate OnResume;
     private void Awake()
     {
         if (instance == false)
@@ -27,6 +30,7 @@ public class PauseScreen : MonoBehaviour
         {
             pauseScreen.SetActive(true);
             GameStateManager.instance.PauseGame();
+            OnPause?.Invoke();
         }
     }
     public void Resume()
@@ -37,6 +41,7 @@ public class PauseScreen : MonoBehaviour
             AudioManager.instance.PlayAtRandomPitch("ClickSFX");
             pauseScreen.SetActive(false);
             GameStateManager.instance.ResumeGame();
+            OnResume?.Invoke();
         }
     }
     public void ReturnToTitleScreen()

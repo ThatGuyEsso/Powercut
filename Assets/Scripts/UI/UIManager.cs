@@ -68,7 +68,7 @@ public class UIManager : MonoBehaviour, Controls.IUIActions
         batteryDisplay = transform.Find("Battery").GetComponent<ProgressBar>();
         healthBarDisplay = transform.Find("HealthBar").GetComponent<ProgressBar>();
         gunDisplay = transform.Find("ActiveGunDisplay").GetComponent<ActiveGunDisplay>();
-        taskDisplay = transform.Find("TaskDisplay").GetComponent<TaskDisplay>();
+
         gadgetDisplay = transform.Find("GadgetDisplay").GetComponent<GadgetDisplay>();
         eventDisplay = transform.Find("EventDisplay").GetComponent<EventDisplay>();
     }

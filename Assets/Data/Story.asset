@@ -48,11 +48,16 @@ MonoBehaviour:
     - text: Thanks I will get on with it now.
       targetBeatID: 12
       resultName: Tutorial Keycode Received
-    text: URAQT42
+    text: 'URAQT42
+
+      P.S I also texted you the tasks I need you to do.
+
+      So
+      just check your phone if you forget! [ESC To Check]'
     id: 4
     targetBeatID: 4
     endBeat: 0
-    typeTime: 0.5
+    typeTime: 3
     isClientBeat: 1
     isBeatChain: 0
   - dialogueChoices: []
@@ -295,7 +300,9 @@ MonoBehaviour:
     isClientBeat: 1
     isBeatChain: 1
   - dialogueChoices: []
-    text: So you better get on with it before we'll have to pay for another hour!
+    text: 'But that''s just capitalism for ya!
+
+'
     id: 32
     targetBeatID: 32
     endBeat: 1

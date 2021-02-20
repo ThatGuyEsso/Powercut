@@ -5,9 +5,8 @@ using UnityEngine;
 public class TaskDisplay : MonoBehaviour
 {
     [Header("Postioning Settings")]
-    public float taskYOffset;
-    public float taskXOffset;
-    public float panelPadding;
+    [SerializeField] private Vector2 offset;
+    
 
     [Header("Display Settings")]
     public GameObject taskTemplatePrefab;
@@ -15,24 +14,21 @@ public class TaskDisplay : MonoBehaviour
     public int nTypesOfTasks; //stores the number of different tasks.
 
     //Rect transforms
-    private RectTransform backgroundPanel;
-    private RectTransform rectTrans;
-    private void Awake()
+    [SerializeField] private Transform taskArea;
+    [SerializeField] private RectTransform taskStartPositon;
+    RectTransform prevousTaskTransform;
+
+
+    public Transform phone;
+    public Transform offPositon;
+
+    bool isinitiated = false;
+
+    public void Init()
     {
-        //Cache referencs
-        backgroundPanel = transform.Find("BackGround").GetComponent<RectTransform>();
-        rectTrans = gameObject.GetComponent<RectTransform>();
-       
-
-    }
-
-
-
-    //Size the panel to fit all tasks
-    private void ResizePanelHeight()
-    {
-        float size = (panelPadding * nTypesOfTasks);
-        backgroundPanel.offsetMin = new Vector2(0f, size);
+        PauseScreen.instance.OnPause += UnHide;
+        PauseScreen.instance.OnResume += Hide;
+        isinitiated = true;
     }
 
     public void ResetTasks()
@@ -42,20 +38,30 @@ public class TaskDisplay : MonoBehaviour
             task.ResetDisplay();
         }
     }
-    private void GenerateNewTaskDisplay(int indexPosition)
+    public void GenerateNewTaskDisplay()
     {
-        TaskTemplate newTemplate = Instantiate(taskTemplatePrefab, transform.position,Quaternion.identity).GetComponent<TaskTemplate>();
-        newTemplate.transform.SetParent(transform);
-        RectTransform templateRect = newTemplate.gameObject.GetComponent<RectTransform>();
         
-        if (templateRect == true)
-        {
+        TaskTemplate newTemplate = Instantiate(taskTemplatePrefab, transform.position,Quaternion.identity).GetComponent<TaskTemplate>();
+        newTemplate.transform.SetParent(taskArea);
+        RectTransform newTaskTransfrom = newTemplate.GetComponent<RectTransform>();
 
-            Vector2 targetPos = rectTrans.transform.position;
-            
+
+        if (prevousTaskTransform!=false)
+        {
+            float newHeight = newTaskTransfrom.rect.height;
+            float prevHeight = prevousTaskTransform.rect.height;
+            newTaskTransfrom.position = new Vector2(prevousTaskTransform.position.x, taskStartPositon.position.y - newHeight / 2- prevHeight/2) + offset;
+            prevousTaskTransform = newTaskTransfrom;
+
+        }
+        else
+        {
            
-            templateRect.anchoredPosition = new Vector2(0, taskYOffset + (taskYOffset*indexPosition)/2);
-           
+            float height = newTaskTransfrom.rect.height;
+
+            newTaskTransfrom.position = new Vector2(taskStartPositon.position.x, taskStartPositon.position.y - height / 2)+ offset;
+            prevousTaskTransform = newTaskTransfrom;
+
         }
         tasks.Add(newTemplate);
     }
@@ -65,7 +71,7 @@ public class TaskDisplay : MonoBehaviour
      
         for (int i = 0; i < listOfTaskNames.Count; i++)
         {
-            GenerateNewTaskDisplay(i);
+            GenerateNewTaskDisplay();
            
         }
         for (int i = 0; i < listOfTaskNames.Count; i++)
@@ -90,7 +96,7 @@ public class TaskDisplay : MonoBehaviour
     {
         //Resize to number of task types
         nTypesOfTasks = nTaskTypes;
-        ResizePanelHeight();
+      
 
         //Go through each type of task
         for (int i =0; i < nTaskTypes; i++)
@@ -132,6 +138,22 @@ public class TaskDisplay : MonoBehaviour
         }
     }
 
+    private void Hide()
+    {
+        phone.position = offPositon.position;
+    }
 
-  
+    private void UnHide()
+    {
+        phone.position = transform.position;
+    }
+
+    private void OnDestroy()
+    {
+        if (isinitiated)
+        {
+            PauseScreen.instance.OnPause -= UnHide;
+            PauseScreen.instance.OnResume -= Hide;
+        }
+    }
 }

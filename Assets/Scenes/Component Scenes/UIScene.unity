@@ -288,6 +288,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4445555425298562105, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
+      propertyPath: taskDisplay
+      value: 
+      objectReference: {fileID: 8280417650554960320}
     - target: {fileID: 4445555425298562108, guid: b4f1ca36b48190d41a5d8997748bc7a4, type: 3}
       propertyPath: m_Name
       value: HUD
@@ -504,3 +508,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d66af393a4e8a5344a3aea09cc981127, type: 3}
+--- !u!114 &8280417650554960320 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8033586197366436764, guid: d66af393a4e8a5344a3aea09cc981127, type: 3}
+  m_PrefabInstance: {fileID: 8280417650554960319}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cad9df637d1d944fbaa4fd48a280277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

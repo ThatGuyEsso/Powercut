@@ -11,7 +11,6 @@ public class TaskManager : MonoBehaviour, IInitialisable
     private List<string> taskNames =new List<string>(); //Stores individual task names
     private int totalNumberOfCompletedTask; //How many task have been completed 
 
-
     public delegate void AllTaskCompletedDelegate();
     public event AllTaskCompletedDelegate OnAllTasksCompletd;
     public delegate void TaskDestroyedDelegate();
@@ -80,6 +79,7 @@ public class TaskManager : MonoBehaviour, IInitialisable
 
     private void GetTasksInLevel()
     {
+        FindObjectOfType<TaskDisplay>().Init();
         BaseTask[] tasks = FindObjectsOfType<BaseTask>();//Get everything that inherits tasks
 
         if (tasks.Length <= 0) return;
@@ -244,6 +244,7 @@ public class TaskManager : MonoBehaviour, IInitialisable
         totalNumberOfCompletedTask = 0;
         UIManager.instance.taskDisplay.ResetTasks();
     }
+
 
     private void OnDestroy()
     {
