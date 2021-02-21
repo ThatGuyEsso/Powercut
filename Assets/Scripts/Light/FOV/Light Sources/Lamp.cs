@@ -12,6 +12,14 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
     private float currentHealth;
     public bool isLampWorking;
     private IEnemySpawnable enemySpawner;
+
+    private bool isFlickering = false;
+    [SerializeField] private float maxFlickerTime;
+    [SerializeField] private float minFlickerTime;
+    [SerializeField] private float minFlickerRate;
+    [SerializeField] private float maxFlickerRate;
+    private float timeToNextFlciker;
+    private float currFlickerTime;
     [SerializeField] private SpriteRenderer fuseIcon;
     private void Awake()
     {
@@ -19,6 +27,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
         enemySpawner= gameObject.GetComponentInChildren<EnemySpawner>();
     }
 
+    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -58,6 +67,34 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
 
     }
 
+    private void Update()
+    {
+        if (isFlickering)
+        {
+            if(currFlickerTime<= 0&& isLampWorking==true)
+            {
+                isFlickering = false;
+                InstantBreakLamp();
+            }
+            else
+            {
+
+                if (timeToNextFlciker <= 0)
+                {
+                    if (lightRef.GetLightIsOn()) lightRef.ToggleLight(false);
+                    else lightRef.ToggleLight(true);
+                    timeToNextFlciker = Random.Range(minFlickerRate,maxFlickerRate);
+                }
+                else
+                {
+                    timeToNextFlciker -= Time.deltaTime;
+
+                }
+                currFlickerTime -= Time.deltaTime;
+            }
+
+        }
+    }
 
     public void InitialiseLamp(BaseLampLight newLightRef)
     {
@@ -112,6 +149,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
     {
         if (isLampWorking)
         {
+            fuseIcon.color = Color.red;
             lightRef.ToggleLight(false);
             isLampWorking = false;
             currentHealth = 0;
@@ -197,5 +235,11 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
     public void SetUp()
     {
         throw new System.NotImplementedException();
+    }
+
+    public void BeginLampFlicker()
+    {
+        currFlickerTime = Random.Range(minFlickerTime, maxFlickerTime);
+        isFlickering = true;
     }
 }

@@ -380,6 +380,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightDistanceModifier: -2
   isLampWorking: 1
+  maxFlickerTime: 3
+  minFlickerTime: 1
+  minFlickerRate: 0.1
+  maxFlickerRate: 0.5
   fuseIcon: {fileID: 959294329809177601}
 --- !u!61 &6911541680644259162
 BoxCollider2D:

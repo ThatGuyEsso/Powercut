@@ -165,7 +165,7 @@ public class LevelLampsManager : MonoBehaviour, IInitialisable
 
         int rand = Random.Range(0, workingLamps.Count);
 
-        workingLamps[rand].InstantBreakLamp();
+        workingLamps[rand].BeginLampFlicker();
         OnLampBroke?.Invoke();
     }
 
