@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEditor;
 
+
 public class StoryEditor : EditorWindow
 {
     private enum View { List, Beat }
