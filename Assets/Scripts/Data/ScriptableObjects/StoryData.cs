@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEditor;
 #endif
 
-[CreateAssetMenu(menuName = "Story Data",fileName = "Story.asset")]
+//[CreateAssetMenu(menuName = "Story Data",fileName = "Story.asset")]
 //Scriptable object to store story of game
 [Serializable]
 public class StoryData : ScriptableObject
