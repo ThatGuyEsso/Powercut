@@ -6,6 +6,9 @@ using UnityEngine.UI;
 public class SingleKeyTutorial : BaseTutorial
 {
     [SerializeField] private float triggeredOppacity;
+    [SerializeField] private bool shouldFadeAway=false;
+    [SerializeField] private float maxShowTime = 10.0f;
+
     private enum InputActionType
     {
         SwitchWeapon,
@@ -17,6 +20,16 @@ public class SingleKeyTutorial : BaseTutorial
     [SerializeField]
     private Image keyPrompt;
     [SerializeField] private InputActionType inputActionType;
+
+    public override void Init()
+    {
+        base.Init();
+
+        if (shouldFadeAway)
+        {
+            Invoke("BeginEndTutorial", maxShowTime);
+        }
+    }
 
 
 

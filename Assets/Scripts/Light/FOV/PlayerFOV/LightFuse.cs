@@ -14,6 +14,7 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
     public float currentTimeToFix;
     private Controls input;
     private GameObject player;
+    [SerializeField] private SpriteRenderer fuseIcon;
     private void Awake()
     {
         parentLamp = transform.parent.GetComponent<Lamp>();

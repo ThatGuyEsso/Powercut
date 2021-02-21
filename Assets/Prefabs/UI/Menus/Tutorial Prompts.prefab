@@ -1653,6 +1653,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nTutorialElements: 1
   triggeredOppacity: 0.25
+  shouldFadeAway: 0
+  maxShowTime: 10
   keyPrompt: {fileID: 5604972863261511303}
   inputActionType: 3
 --- !u!1 &5550856895262282893
@@ -2093,6 +2095,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nTutorialElements: 1
   triggeredOppacity: 0.25
+  shouldFadeAway: 1
+  maxShowTime: 10
   keyPrompt: {fileID: 338346619741111931}
   inputActionType: 1
 --- !u!1 &6490137241503140526
@@ -2738,6 +2742,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nTutorialElements: 1
   triggeredOppacity: 0.25
+  shouldFadeAway: 0
+  maxShowTime: 10
   keyPrompt: {fileID: 4452193108433816432}
   inputActionType: 2
 --- !u!1 &8348834287226222841
@@ -2815,6 +2821,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nTutorialElements: 1
   triggeredOppacity: 0.25
+  shouldFadeAway: 0
+  maxShowTime: 10
   keyPrompt: {fileID: 928372186008549992}
   inputActionType: 0
 --- !u!1 &8479667910197279760

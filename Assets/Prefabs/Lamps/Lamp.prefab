@@ -149,6 +149,7 @@ MonoBehaviour:
   fuseSettings: {fileID: 11400000, guid: 0f1bea56218fa454c981679e8627d555, type: 2}
   fixingCableColour: {r: 1, g: 0.67510533, b: 0, a: 1}
   currentTimeToFix: 0
+  fuseIcon: {fileID: 0}
 --- !u!120 &7434350382917992640
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -379,6 +380,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightDistanceModifier: -2
   isLampWorking: 1
+  fuseIcon: {fileID: 959294329809177601}
 --- !u!61 &6911541680644259162
 BoxCollider2D:
   m_ObjectHideFlags: 0

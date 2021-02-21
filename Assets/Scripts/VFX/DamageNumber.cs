@@ -92,7 +92,7 @@ public class DamageNumber : MonoBehaviour
             transform.localScale = Vector3.Lerp(transform.localScale, new Vector3(0, 0, 0), (scale / scale * scaleMultipler) * scaledownRate);
 
             text.color = Vector4.Lerp(text.color, new Vector4(text.color.r, text.color.g, text.color.b, 0f), fadeRate);
-            if (text.color.a == 0f)
+            if (text.color.a <= 0.05f)
             {
                 ObjectPoolManager.Recycle(gameObject);
             }

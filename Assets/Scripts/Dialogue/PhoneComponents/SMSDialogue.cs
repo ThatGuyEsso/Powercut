@@ -31,6 +31,7 @@ public class SMSDialogue : MonoBehaviour
     [SerializeField] private StoryData storyData;
     [SerializeField] private List<DialgoueOption> dialogueOptions;
     [SerializeField] private GameObject typingBubblePrefab;
+    [SerializeField] private PhoneVibration vibrationController;
     private GameObject typingBubble;
     //Display Settings
     [SerializeField] private Vector2 clientSmsOffset;
@@ -233,6 +234,7 @@ public class SMSDialogue : MonoBehaviour
         switch (currentSpeaker)
         {
             case Speaker.Client:
+              
                 //Create newbubble
                 newBubble = DialogueManager.instance.CreateSMSBubble(smsArea);
                 newBubble.SetUp(data.DisplayText, clientBubbleColor);
@@ -249,6 +251,8 @@ public class SMSDialogue : MonoBehaviour
                 previousBubble = newBubble;
 
                 smsBubbles.Add(previousBubble);
+                vibrationController.BeginViewBob();
+                AudioManager.instance.PlayAtRandomPitch("PhoneVibrateSFX");
                 break;
 
             //calculate position at the top of the screen in the mc case
@@ -305,6 +309,8 @@ public class SMSDialogue : MonoBehaviour
                     float vertDistance = smsScreenEndPoint.position.y - pos.y;
                     ScrollUnitsUp(vertDistance+newBubbleHeight / 2);
                 }
+                vibrationController.BeginViewBob();
+                AudioManager.instance.PlayAtRandomPitch("PhoneVibrateSFX");
 
                 break;
 

@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 4818023552027555256}
   - component: {fileID: 3748181921780967239}
   m_Layer: 18
-  m_Name: Wrench
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -401,6 +401,9 @@ MonoBehaviour:
   fixAmountPerTick: 25
   taskName: Fix Air Conditioner(s)
   taskDescription: Air Conditioner
+  icon: {fileID: 3748181921780967239}
+  BrokenSprite: {fileID: 21300000, guid: fc88cae930e3cb84780c38d57b03c1f4, type: 3}
+  FixedSprite: {fileID: 21300000, guid: 0520d7eab3f2eb64c91f4d881bf20a26, type: 3}
   playerPrompt: '[E] To fix Air Condtion'
   powerStillOnPrompt: Can't fix appliances while the main power is sitll on
   fixingPrompt: Fixing!

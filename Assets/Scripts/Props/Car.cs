@@ -27,11 +27,13 @@ public class Car : MonoBehaviour, Controls.IInteractionsActions
     {
         openCarGFX.SetActive(true);
         closedCarGFX.SetActive(false);
+        AudioManager.instance.PlayRandFromGroup("CarOpenSFX");
     }
     private void CloseCar()
     {
         openCarGFX.SetActive(false);
         closedCarGFX.SetActive(true);
+        AudioManager.instance.PlayRandFromGroup("CarCloseSFX");
     }
 
     private void OnTriggerEnter2D(Collider2D other)

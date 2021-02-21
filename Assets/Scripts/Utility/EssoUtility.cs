@@ -33,4 +33,19 @@ public class EssoUtility : MonoBehaviour
 
         return orignToMouse.normalized;//Return normalised direction
     }
+    private Vector3[] GetVectorsInArc(Vector3 dir, int count, float arc, float spread)
+    {
+        Vector3[] vectors = new Vector3[count];
+
+        for (int i = 0; i < vectors.Length; i++)
+        {
+            float startingAngle = (GetAngleFromVector(dir) - arc / 2);
+            float randOffset = Random.Range(-spread, spread);
+
+            vectors[i] = GetVectorFromAngle(randOffset + startingAngle + arc);
+        }
+
+        return vectors;
+    }
+
 }

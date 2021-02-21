@@ -23,8 +23,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     public float knockBackFallOff = 0.1f;
     [SerializeField]
     private string hurtSFX;
-    [SerializeField]
-    private string stepSFX;
+  
     //Object Components
     public Camera activeCamera;
     public FieldOfView fieldOfView;
@@ -333,7 +332,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         if (isInitialised)
         {
              rb.velocity =  (moveDir.normalized * settings.maxSpeed * Time.deltaTime)+knockBack;
-            PlayStepSFX();
+            
         }
     }
 
@@ -386,19 +385,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     }
 
   
-    //Step sfx
-    public void PlayStepSFX()
-    {
-        if (currTimeBetwenSteps <= 0f)
-        {
-            AudioManager.instance.PlayRandFromGroup(stepSFX);
-            currTimeBetwenSteps = maxTimeBtwnSteps;
-        }
-        else
-        {
-            currTimeBetwenSteps -= Time.deltaTime;
-        }
-    }
+
 
     private void ResetCharacter()
     {

@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class PhoneAnimEventListener : MonoBehaviour
 {
+    private Animator anim;
 
+    private void Awake()
+    {
+        anim = gameObject.GetComponent<Animator>();
+    }
 
     public void OnPopUpAnimationEnd()
     {
@@ -16,5 +21,11 @@ public class PhoneAnimEventListener : MonoBehaviour
     {
         DialogueManager.instance.PhoneScreenHidden();
 
+    }
+
+    public void OnPlayButtonAnimEnd()
+    {
+
+        anim.enabled = false;
     }
 }

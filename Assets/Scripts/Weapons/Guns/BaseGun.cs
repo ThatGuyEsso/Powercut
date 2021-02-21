@@ -99,7 +99,7 @@ public abstract class BaseGun : MonoBehaviour, IShootable
     {
         if(currentAmmo > 0 && !isReloading && currentClip <maxClip)
         {
-
+            AudioManager.instance.PlayAtRandomPitch(reloadSFX);
             if (currentClip <= 0)
             {
                 if (currentAmmo >= maxClip)

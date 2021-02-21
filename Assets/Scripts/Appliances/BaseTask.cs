@@ -14,6 +14,9 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
     public string taskName;//Task Settings
     public string taskDescription;
 
+    [SerializeField] private SpriteRenderer icon;
+    [SerializeField] private Sprite BrokenSprite;
+    [SerializeField] private Sprite FixedSprite;
     [SerializeField] protected string playerPrompt;
     [SerializeField] protected string powerStillOnPrompt;
     [SerializeField] protected string fixingPrompt;
@@ -45,6 +48,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
         inRange = false;
         gfx = gameObject.GetComponentInChildren<SpriteRenderer>();
         UpdateDamageDisplay();
+        icon.transform.rotation = Quaternion.Euler(Vector2.up);
     }
 
     virtual protected void Update()
@@ -177,7 +181,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
             //Check wether the lamp is still has health left if not it must not be working
             if (currHealth <= 0)
             {
-
+                icon.sprite = BrokenSprite;
                 isRecorded = false;
                 isFixed = false;
                 currHealth = 0;
@@ -224,6 +228,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
         if (currHealth >= maxHealth)
         {
             isFixed = true;
+            icon.sprite = FixedSprite;
             if (isRecorded == false)
             {
 
@@ -249,6 +254,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
         currHealth = 0f;
         isFixed = false;
         isRecorded = false;
+        icon.sprite = BrokenSprite;
         UpdateDamageDisplay();
     }
     void OnDestroy()

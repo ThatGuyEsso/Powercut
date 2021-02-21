@@ -21,14 +21,18 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable
     {
         if(((1 << other.gameObject.layer) & collisionLayers) != 0)
         {
-            Instantiate(sparkPrefab, transform.position, transform.rotation);
+            ObjectPoolManager.Spawn(sparkPrefab, transform.position, transform.rotation);
             //SetupAndPlayBulletSound("BulletCollisionSFX");
             AudioManager.instance.PlayAtRandomPitch("BulletCollisionSFX");
             ObjectPoolManager.Recycle(gameObject);
         }
         if (other.gameObject.CompareTag("Enemy")|| other.gameObject.CompareTag("PhysicsObject"))
         {
-            other.GetComponent<IHurtable>().Damage(damage, rb.velocity.normalized, knockBack);
+            if (other.GetComponent<IHurtable>() != null)
+            {
+                other.GetComponent<IHurtable>().Damage(damage, rb.velocity.normalized, knockBack);
+
+            }
             ObjectPoolManager.Spawn(sparkPrefab, transform.position, transform.rotation);
             ObjectPoolManager.Spawn(triggerEnemyPrefab, transform.position, Quaternion.identity);
             ObjectPoolManager.Recycle(gameObject);

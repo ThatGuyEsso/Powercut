@@ -21,5 +21,6 @@ public class MainMenu : MonoBehaviour
     public void Quit()
     {
         AudioManager.instance.PlayAtRandomPitch("ClickSFX");
+        Application.Quit();
     }
 }

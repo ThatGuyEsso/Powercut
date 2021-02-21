@@ -11,8 +11,8 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
     public float lightDistanceModifier = 0;//Increases or decreases light distance to allow differenct sized light sources.
     private float currentHealth;
     public bool isLampWorking;
-    private IEnemySpawnable enemySpawner; 
-
+    private IEnemySpawnable enemySpawner;
+    [SerializeField] private SpriteRenderer fuseIcon;
     private void Awake()
     {
         fuseRef = gameObject.GetComponentInChildren<LightFuse>();
@@ -78,10 +78,12 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
         {
             currentHealth = 0f;
             enemySpawner.LampInDarkness();
+            fuseIcon.color = Color.red;
         }
         else
         {
             enemySpawner.LampInLight();
+            fuseIcon.color = Color.white;
         }
     }
 
@@ -97,7 +99,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
             if (currentHealth <= 0)
             {
 
-      
+                fuseIcon.color = Color.red;
                 isLampWorking = false;
                 currentHealth = 0;
                 enemySpawner.LampInDarkness();
@@ -139,7 +141,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
                 isLampWorking = true;
                 currentHealth = lightRef.lampSettings.maxLightHealth;
                 enemySpawner.LampInLight();
-
+                fuseIcon.color = Color.white;
             }
 
             lightRef.ToggleLight(isLampWorking);

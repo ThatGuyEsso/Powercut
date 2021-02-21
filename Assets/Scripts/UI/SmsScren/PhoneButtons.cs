@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 public class PhoneButtons : MonoBehaviour
 {
    //colours of button
@@ -13,6 +14,10 @@ public class PhoneButtons : MonoBehaviour
     SceneIndex targetScene;
     bool canStart =false;
 
+
+    [SerializeField] private PhoneButtonWidget playWidget, menuWidget, titleWidget;
+
+    [SerializeField] private bool isTitleButtonActive =true, isPlayButtonActive=true, isMenuButtonActive=true;
     private void Awake()
     {
   
@@ -22,33 +27,65 @@ public class PhoneButtons : MonoBehaviour
     public void Init()
     {
         playButton.enabled = false;
+        playWidget.UpdateLabel("Can't do that right now", Color.red);
         playButtonImage.color = inactiveColourButton;
     }
     public void StartLevel()
     {
         if (canStart)
         {
-            switch (InitStateManager.currGameMode)
+            playWidget.ResetLabel();
+            if (isPlayButtonActive)
             {
-                case GameModes.Menu:
-                    TransitionManager.instance.LoadLevel(targetScene, true);
-                    break;
-                case GameModes.Dialogue:
-                    DialogueManager.instance.ToggleDialogueScreen(false, true);
-                    break;
+
+                switch (InitStateManager.currGameMode)
+                {
+                    case GameModes.Menu:
+                        TransitionManager.instance.LoadLevel(targetScene, true);
+                        break;
+                    case GameModes.Dialogue:
+                        DialogueManager.instance.ToggleDialogueScreen(false, true);
+                        break;
+                }
+
             }
-       
+
+
         }
 
+
     }
+
     public void TitleScreen()
     {
-        InitStateManager.instance.BeginNewState(InitStates.LoadTitleScreen);
+        if (isTitleButtonActive)
+        {
+
+            InitStateManager.instance.BeginNewState(InitStates.LoadTitleScreen);
+        }
+        else
+        {
+            if (titleWidget.gameObject.activeSelf)
+            {
+                titleWidget.UpdateLabel("can't do that right now", Color.red);
+            }
+        }
     }
 
     public void ReturnToMenus()
     {
-        InitStateManager.instance.BeginNewState(InitStates.LoadTitleScreen);
+        if (isMenuButtonActive)
+        {
+            InitStateManager.instance.BeginNewState(InitStates.LoadTitleScreen);
+
+        }
+        else
+        {
+            if (menuWidget.gameObject.activeSelf)
+            {
+                menuWidget.UpdateLabel("Can't do that right now", Color.red);
+            }
+        }
     }
 
 
@@ -56,7 +93,10 @@ public class PhoneButtons : MonoBehaviour
     {
         targetScene = scene;
         canStart = true;
+        playWidget.ResetLabel();
         playButtonImage.color = activeColour;
         playButton.enabled = true;
+  
+
     }
 }

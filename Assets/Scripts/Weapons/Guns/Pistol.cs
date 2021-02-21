@@ -19,7 +19,7 @@ public class Pistol : BaseGun
        //if not reloading
         if ( !isReloading )
         {
-
+            AudioManager.instance.PlayAtRandomPitch(reloadSFX);
             //if there are no bullets in the chamber
             if (currentClip <= 0)
             {

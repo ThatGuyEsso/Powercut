@@ -57,6 +57,8 @@ public class DialogueManager : MonoBehaviour
      
         if (beat.IsEnd)
         {
+            phoneAnim.enabled = true;
+            phoneAnim.Play("ActivatePlayButton");
             FindObjectOfType<PhoneButtons>().EnableStartButton(SceneIndex.Tutorial);
         }
         //if beat doesn't end dialogue

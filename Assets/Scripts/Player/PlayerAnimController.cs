@@ -15,6 +15,9 @@ public class PlayerAnimController : MonoBehaviour
     private SpriteRenderer upperBodySprite;
     public CapsuleCollider2D playerCollider;
     public CapsuleCollider2D weaponCollider;
+
+    [SerializeField]
+    private string stepSFX;
     private void Awake()
     {
         playerRef = gameObject.GetComponent<PlayerBehaviour>();
@@ -66,4 +69,6 @@ public class PlayerAnimController : MonoBehaviour
     {
         lowerBodyAnim.Play("idle");
     }
+
+
 }
