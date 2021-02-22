@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BaseBullet : MonoBehaviour, IShootable, IHurtable
+public class BaseBullet : MonoBehaviour, IShootable, IHurtable,IAudio
 {
     public LayerMask collisionLayers;
 
@@ -12,6 +12,7 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable
     private float knockBack;
     private Rigidbody2D rb;
     private AudioSource source;
+    [SerializeField] protected GameObject audioPlayerPrefab;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -21,9 +22,13 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable
     {
         if(((1 << other.gameObject.layer) & collisionLayers) != 0)
         {
+            IAudio audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position).GetComponent<IAudio>();
+            audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("BulletCollisionSFX"));
+            audioPlayer.PlayAtRandomPitch();
+  
             ObjectPoolManager.Spawn(sparkPrefab, transform.position, transform.rotation);
             //SetupAndPlayBulletSound("BulletCollisionSFX");
-            AudioManager.instance.PlayAtRandomPitch("BulletCollisionSFX");
+
             ObjectPoolManager.Recycle(gameObject);
         }
         if (other.gameObject.CompareTag("Enemy")|| other.gameObject.CompareTag("PhysicsObject"))
@@ -65,5 +70,20 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable
         source.Play();
 
         
+    }
+
+    public void SetUpAudioSource(Sound sound)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Play()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void PlayAtRandomPitch()
+    {
+        throw new System.NotImplementedException();
     }
 }

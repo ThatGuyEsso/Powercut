@@ -221,6 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   openCarGFX: {fileID: 1147476286743089751}
   closedCarGFX: {fileID: 1147476285664716122}
+  audioPlayerPrefab: {fileID: 3912195020010027157, guid: bd5d0c2d9dcef8b44bc27c081b8263e3, type: 3}
   spawnPosition: {fileID: 1064657891}
 --- !u!1 &1147476285664716122
 GameObject:

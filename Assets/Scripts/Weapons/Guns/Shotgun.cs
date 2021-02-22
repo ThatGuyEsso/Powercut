@@ -54,6 +54,10 @@ public class Shotgun : BaseGun
             canShoot = false;
             StartCoroutine(ShotDelay());
         }
+        else if (currentClip <= 0)
+        {
+            AudioManager.instance.PlayAtRandomPitch("OutOfAmmoSFX");
+        }
     }
 
 

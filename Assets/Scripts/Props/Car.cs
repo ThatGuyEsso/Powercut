@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class Car : MonoBehaviour, Controls.IInteractionsActions
+public class Car : MonoBehaviour, Controls.IInteractionsActions,IAudio
 {
 
     [SerializeField] private GameObject openCarGFX;
     [SerializeField] private GameObject closedCarGFX;
+    [SerializeField] private GameObject audioPlayerPrefab;
     [SerializeField] private Transform spawnPosition;
     private Controls input;
     private bool inRange;
@@ -67,6 +68,10 @@ public class Car : MonoBehaviour, Controls.IInteractionsActions
     {
         if(context.performed && GameStateManager.instance.GetCurrentGameState() == GameStates.LevelClear&&inRange&& hasActivated==false)
         {
+            IAudio audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position).GetComponent<IAudio>();
+            audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("CarEngineSFX"));
+            audioPlayer.Play();
+
             InitStateManager.instance.BeginNewState(InitStates.LoadTitleScreen);
             InGamePrompt.instance.HidePrompt();
             InGamePrompt.instance.ShowPrompt();
@@ -79,5 +84,20 @@ public class Car : MonoBehaviour, Controls.IInteractionsActions
     {
         if (spawnPosition != false) return spawnPosition;
         else return null;
+    }
+
+    public void SetUpAudioSource(Sound sound)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Play()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void PlayAtRandomPitch()
+    {
+        throw new System.NotImplementedException();
     }
 }

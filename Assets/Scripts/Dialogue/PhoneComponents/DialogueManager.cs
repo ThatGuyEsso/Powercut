@@ -142,10 +142,12 @@ public class DialogueManager : MonoBehaviour
             dialogueMenu.gameObject.SetActive(true);
             phoneAnim.enabled = true;
             phoneAnim.Play("PhonePopUP");
+            AudioManager.instance.PlayAtRandomPitch("PhonePullOutSFX");
         }
         else if(isAnimated && !isShown){
             phoneAnim.enabled = true;
             phoneAnim.Play("PhonePopDown");
+            AudioManager.instance.PlayAtRandomPitch("PhonePullOutSFX");
         }
         else {
 

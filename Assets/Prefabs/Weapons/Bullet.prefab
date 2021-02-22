@@ -134,6 +134,7 @@ MonoBehaviour:
     m_Bits: 33024
   sparkPrefab: {fileID: 7808037342350693099, guid: a6bf8427c8eed5c44a5dc8c0441f3376, type: 3}
   triggerEnemyPrefab: {fileID: 8802122154967875711, guid: 8c3a4e8232c10704bb2c293b373c52ed, type: 3}
+  audioPlayerPrefab: {fileID: 3912195020010027157, guid: bd5d0c2d9dcef8b44bc27c081b8263e3, type: 3}
 --- !u!61 &5927806012387839764
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -124,6 +124,14 @@ public class AudioManager : MonoBehaviour
         Sound currentSound = Array.Find(sounds, sound => sound.name == name);
         return currentSound;
     }
+    public Sound GetSound(Sound sound)
+    {
+        foreach(Sound currentSound in sounds)
+        {
+            if (currentSound == sound) return currentSound;
+        }
+        return null;
+    }
     public float GetRandomPitchOfSound(Sound sound)
     {
         return UnityEngine.Random.Range(sound.pitch - pitchChange, sound.pitch + pitchChange);

@@ -93,6 +93,10 @@ public abstract class BaseGun : MonoBehaviour, IShootable
             }
             StartCoroutine(ShotDelay());
         }
+        else if(currentClip<= 0)
+        {
+            AudioManager.instance.PlayAtRandomPitch("OutOfAmmoSFX");
+        }
     }
 
     virtual public void Reload()
