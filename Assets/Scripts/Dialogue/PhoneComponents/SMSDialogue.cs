@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public enum Speaker
 {
     Client,
@@ -244,10 +245,10 @@ public class SMSDialogue : MonoBehaviour
                 bubbleWidth = newBubble.GetComponent<RectTransform>().rect.width;
 
                 //calculate position at the top of the screen in the client case
-                pos = (Vector2)smsClientStartPosition.position + clientSmsOffset;
+                pos = (Vector2)smsClientStartPosition.position + (clientSmsOffset * EssoUtility.GetAspectRatio());
 
                 //update postion and display text
-                newBubble.transform.position = pos + new Vector2(bubbleWidth/2,-(bubbleHeight/2));
+                newBubble.transform.position = pos + new Vector2(bubbleWidth/2,-(bubbleHeight/2) * EssoUtility.GetAspectRatio());
                 previousBubble = newBubble;
 
                 smsBubbles.Add(previousBubble);
@@ -265,10 +266,10 @@ public class SMSDialogue : MonoBehaviour
                 bubbleWidth = newBubble.GetComponent<RectTransform>().rect.width;
 
                 //calculate position at the top of the screen in the client case
-                pos = (Vector2)smsMCStartPosition.position + mcSmsOffset;
+                pos = (Vector2)smsMCStartPosition.position +( mcSmsOffset * EssoUtility.GetAspectRatio());
 
                 //update postion and display text
-                newBubble.transform.position = pos + new Vector2(-bubbleWidth / 2, -(bubbleHeight / 2));
+                newBubble.transform.position = pos + new Vector2(-bubbleWidth / 2, -(bubbleHeight / 2) * EssoUtility.GetAspectRatio());
                 previousBubble = newBubble;
 
                 smsBubbles.Add(previousBubble);
@@ -296,7 +297,7 @@ public class SMSDialogue : MonoBehaviour
 
                 //Spawn new bubble with an offset of its previous position + the offset of it's height from its centre 
                 pos = new Vector2(smsClientStartPosition.position.x+ newBubbleWidth / 2, previousBubble.transform.position.y - bubbleHeight / 2 - newBubbleHeight/2)
-                    + clientSmsOffset + bubbleOffset;
+                    +(clientSmsOffset + bubbleOffset) * EssoUtility.GetAspectRatio();
 
                 //Update position
                 newBubble.transform.position = pos;
@@ -325,7 +326,7 @@ public class SMSDialogue : MonoBehaviour
 
                 //Spawn new bubble with an offset of its previous position + the offset of it's height from its centre 
                 pos = new Vector2(smsMCStartPosition.position.x - newBubbleWidth / 2, previousBubble.transform.position.y - bubbleHeight / 2 - newBubbleHeight / 2)
-                    + mcSmsOffset + bubbleOffset;
+                    +( mcSmsOffset + bubbleOffset) * EssoUtility.GetAspectRatio();
 
                 //Update position
                 newBubble.transform.position = pos;

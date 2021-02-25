@@ -33,7 +33,7 @@ public class EssoUtility : MonoBehaviour
 
         return orignToMouse.normalized;//Return normalised direction
     }
-    private Vector3[] GetVectorsInArc(Vector3 dir, int count, float arc, float spread)
+    public static Vector3[] GetVectorsInArc(Vector3 dir, int count, float arc, float spread)
     {
         Vector3[] vectors = new Vector3[count];
 
@@ -46,6 +46,14 @@ public class EssoUtility : MonoBehaviour
         }
 
         return vectors;
+    }
+
+
+    public static float GetAspectRatio()
+    {
+        float aspectRatio = Screen.width / Screen.height;
+
+        return aspectRatio;
     }
 
 }
