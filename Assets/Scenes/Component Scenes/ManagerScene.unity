@@ -274,7 +274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6811723072670232293, guid: 00247d7ceb99b6c46afcd4e3c39967ab, type: 3}
       propertyPath: m_SortingOrder
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6811723072670232293, guid: 00247d7ceb99b6c46afcd4e3c39967ab, type: 3}
       propertyPath: m_PixelPerfect

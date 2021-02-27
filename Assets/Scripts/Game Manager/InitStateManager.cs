@@ -26,7 +26,9 @@ public enum InitStates
     LevelClear,
     ExitLevel,
     TitleScreen,
-    LoadTitleScreen
+    LoadTitleScreen,
+    MainMenu,
+    LoadMainMenu
 };
 
 public class InitStateManager : MonoBehaviour
@@ -122,6 +124,21 @@ public class InitStateManager : MonoBehaviour
 
                 break;
             case InitStates.TitleScreen:
+
+                LoadingScreen.instance.BeginFade(false);
+                currInitState = newState;
+                OnStateChange?.Invoke(currInitState);
+                currGameMode = GameModes.Menu;
+
+                break;
+            case InitStates.LoadMainMenu:
+
+
+                currInitState = newState;
+                OnStateChange?.Invoke(currInitState);
+
+                break;
+            case InitStates.MainMenu:
 
                 LoadingScreen.instance.BeginFade(false);
                 currInitState = newState;

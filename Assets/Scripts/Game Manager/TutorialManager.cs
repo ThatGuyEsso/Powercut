@@ -46,6 +46,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         GameStateManager.instance.OnGameStateChange += EvaluateGameState;
+        InitStateManager.instance.OnStateChange += EvaluateInitState;
         Invoke("OrientationTutorial", timebeforeTutorialStart);
         //SetUpObjectivePointer();
 
@@ -54,6 +55,19 @@ public class TutorialManager : MonoBehaviour
 
     }
 
+    private void EvaluateInitState(InitStates newState)
+    {
+        switch (newState)
+        {
+            case InitStates.LoadTitleScreen:
+                Destroy(gameObject);
+                break;
+            case InitStates.LoadMainMenu:
+                Destroy(gameObject);
+                break;
+
+        }
+    }
     private void EvaluateGameState(GameStates newState)
     {
         switch (newState)
@@ -183,6 +197,7 @@ public class TutorialManager : MonoBehaviour
         nTutorialsLeft--;
         if(nTutorialsLeft <= 0)
         {
+            GameStateManager.instance.runTimeData.isTutoiralFinished = true;
             Destroy(gameObject);
         }
     }
@@ -203,7 +218,7 @@ public class TutorialManager : MonoBehaviour
     //}
     private void OnDestroy()
     {
-
+        InitStateManager.instance.OnStateChange -= EvaluateInitState;
         GameStateManager.instance.OnGameStateChange -= EvaluateGameState;
     }
 
@@ -214,4 +229,7 @@ public class TutorialManager : MonoBehaviour
             if (tut.GetIsActive()) tut.DisablePrompt();
         }
     }
+
+
+
 }

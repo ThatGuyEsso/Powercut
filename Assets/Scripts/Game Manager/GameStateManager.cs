@@ -15,7 +15,7 @@ public class GameStateManager : MonoBehaviour, IInitialisable
 {
     public static GameStateManager instance;
     public static bool isGamePaused = false;
-    [SerializeField] private RunTimeData runTimeData;
+    public RunTimeData runTimeData;
     [SerializeField] private TutorialManager tutorialManager;
     public GameObject[] itemsToInit;
 
@@ -94,7 +94,7 @@ public class GameStateManager : MonoBehaviour, IInitialisable
         {
             init.GetComponent<IInitialisable>().Init();
         }
-        if (runTimeData.firstBoot)
+        if (runTimeData.firstBoot&&!runTimeData.isTutoiralFinished)
         {
             runTimeData.firstBoot = false;
             if (tutorialManager.gameObject != false)

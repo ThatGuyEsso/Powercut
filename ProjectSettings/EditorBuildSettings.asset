@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level Scenes/LevelScene.unity
     guid: 9d3246f3522d7ac4bbc160d431296543
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/Tabletmenu.unity
+    guid: 6d97fc6ff510e3847baf1472f642c5a1
   m_configObjects: {}

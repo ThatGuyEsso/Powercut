@@ -37,7 +37,8 @@ public class DialogueManager : MonoBehaviour
         dialogueMenu = FindObjectOfType<SMSDialogue>();
         dialogueMenu.OnBeatDisplayed += EvaluateBeat;
         dialogueMenu.Init(Speaker.Client);
-        dialogueMenu.gameObject.SetActive(false);
+        if(dialogueMenu.gameObject.activeSelf)
+            dialogueMenu.gameObject.SetActive(false);
     }
 
 
@@ -112,7 +113,8 @@ public class DialogueManager : MonoBehaviour
     {
 
         phoneAnim.enabled = false;
-        dialogueMenu.DisplayBeat(nextBeat, nextSpeaker);
+        if(dialogueMenu.gameObject.activeSelf)
+            dialogueMenu.DisplayBeat(nextBeat, nextSpeaker);
     }
 
     public void SetUpNextBeat(int id, Speaker speaker)

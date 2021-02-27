@@ -6,5 +6,6 @@ using UnityEngine;
 public class RunTimeData : ScriptableObject
 {
     public bool firstBoot = false;
+    public bool isTutoiralFinished = false;
 
 }

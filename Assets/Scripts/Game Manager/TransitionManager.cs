@@ -23,7 +23,7 @@ public class TransitionManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-        currentLevel = SceneIndex.MainMenu;
+        currentLevel = SceneIndex.TitleScreen;
     }
 
     public void BindToInitManager()
@@ -41,13 +41,16 @@ public class TransitionManager : MonoBehaviour
             case InitStates.LoadTitleScreen:
                 ReturnToTitleScreen();
                 break;
+            case InitStates.LoadMainMenu:
+                StartCoroutine(LoadTabletMenu());
+                break;
         }
     }
 
     public void GameInit()
     {
         LoadingScreen.instance.OnFadeComplete += EvaluateFade;
-        sceneLoading.Add(SceneManager.LoadSceneAsync((int)(SceneIndex.MainMenu), LoadSceneMode.Additive));
+        sceneLoading.Add(SceneManager.LoadSceneAsync((int)(SceneIndex.TitleScreen), LoadSceneMode.Additive));
         StartCoroutine(GetGameInitLoadProgress());
     }
 
@@ -155,7 +158,7 @@ public class TransitionManager : MonoBehaviour
         sceneLoading.Clear();
 
         //begin loading title screen
-        AsyncOperation titleScreenScene = SceneManager.LoadSceneAsync((int)SceneIndex.MainMenu, LoadSceneMode.Additive);
+        AsyncOperation titleScreenScene = SceneManager.LoadSceneAsync((int)SceneIndex.TitleScreen, LoadSceneMode.Additive);
 
         while (!titleScreenScene.isDone)
         {
@@ -163,8 +166,56 @@ public class TransitionManager : MonoBehaviour
 
         }
         InitStateManager.instance.BeginNewState(InitStates.TitleScreen);
-        currentLevel = SceneIndex.MainMenu;
-        LoadingScreen.instance.ToggleScreen(false);
+        currentLevel = SceneIndex.TitleScreen;
+
+    }
+
+
+    private IEnumerator LoadTabletMenu()
+    {
+        isLoading = true;
+        LoadingScreen.instance.BeginFade(true);
+        isFading = true;
+
+        //wait till fade end before initialising level
+
+        while (isFading)
+        {
+            yield return null;
+        }
+
+        //get all currently loaded scenes
+        Scene[] loadedScenes = GetAllActiveScenes();
+
+        //add and unload operations
+        foreach (Scene scene in loadedScenes)
+        {
+            if (scene.buildIndex != (int)SceneIndex.ManagerScene)
+                sceneLoading.Add(SceneManager.UnloadSceneAsync(scene));
+        }
+
+        //wait until every scene has unloaded
+        for (int i = 0; i < sceneLoading.Count; i++)
+        {
+            while (!sceneLoading[i].isDone)
+            {
+                yield return null;
+            }
+        }
+        //clear scens loading
+        sceneLoading.Clear();
+
+        //begin loading title screen
+        AsyncOperation menu = SceneManager.LoadSceneAsync((int)SceneIndex.TabletMenu, LoadSceneMode.Additive);
+
+        while (!menu.isDone)
+        {
+            yield return null;
+
+        }
+        InitStateManager.instance.BeginNewState(InitStates.MainMenu);
+        currentLevel = SceneIndex.TabletMenu;
+    
     }
     public IEnumerator GetSceneLoadProgress()
     {

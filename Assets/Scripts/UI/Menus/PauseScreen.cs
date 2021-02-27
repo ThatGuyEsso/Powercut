@@ -31,6 +31,7 @@ public class PauseScreen : MonoBehaviour
             pauseScreen.SetActive(true);
             GameStateManager.instance.PauseGame();
             OnPause?.Invoke();
+            InitStateManager.currGameMode = GameModes.Menu;
         }
     }
     public void Resume()
@@ -42,13 +43,16 @@ public class PauseScreen : MonoBehaviour
             pauseScreen.SetActive(false);
             GameStateManager.instance.ResumeGame();
             OnResume?.Invoke();
+            InitStateManager.currGameMode = GameModes.Powercut;
         }
     }
     public void ReturnToTitleScreen()
     {
         AudioManager.instance.PlayAtRandomPitch("ClickSFX");
         GameStateManager.instance.ResumeGame();
-        InitStateManager.instance.BeginNewState(InitStates.LoadTitleScreen);
+        pauseScreen.SetActive(false);
+
+        InitStateManager.instance.BeginNewState(InitStates.LoadMainMenu);
       
     }
 
