@@ -41,7 +41,7 @@ public class PhoneButtons : MonoBehaviour
                 switch (InitStateManager.currGameMode)
                 {
                     case GameModes.Menu:
-                        TransitionManager.instance.LoadLevel(targetScene, true);
+                        TransitionManager.instance.LoadLevel(targetScene);
                         break;
                     case GameModes.Dialogue:
                         DialogueManager.instance.ToggleDialogueScreen(false, true);
@@ -97,6 +97,17 @@ public class PhoneButtons : MonoBehaviour
         playButtonImage.color = activeColour;
         playButton.enabled = true;
   
+
+    }
+
+    public void EnableStartButton()
+    {
+    
+        canStart = true;
+        playWidget.ResetLabel();
+        playButtonImage.color = activeColour;
+        playButton.enabled = true;
+
 
     }
 }

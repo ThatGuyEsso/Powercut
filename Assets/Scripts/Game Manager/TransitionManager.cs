@@ -60,20 +60,80 @@ public class TransitionManager : MonoBehaviour
     }
 
 
-
-    public void LoadLevel(SceneIndex newScene,bool shouldFade)
+    public void LoadLevel(SceneIndex newScene)
     {
-        if (shouldFade) LoadingScreen.instance.BeginFade(true);
-        sceneLoading.Add(SceneManager.UnloadSceneAsync((int)currentLevel));
-        sceneLoading.Add(SceneManager.LoadSceneAsync((int)newScene, LoadSceneMode.Additive));
+
+        StartCoroutine(LoadNewLevel(newScene));
+    }
+    private IEnumerator LoadNewLevel(SceneIndex newScene)
+    {
+        isLoading = true;
+        LoadingScreen.instance.BeginFade(true);
+        isFading = true;
+
+        //wait till fade end before initialising level
+
+        while (isFading)
+        {
+            yield return null;
+        }
+
+        //get all currently loaded scenes
+        Scene[] loadedScenes = GetAllActiveScenes();
+
+        //add and unload operations
+        foreach (Scene scene in loadedScenes)
+        {
+            if (scene.buildIndex != (int)SceneIndex.ManagerScene)
+                sceneLoading.Add(SceneManager.UnloadSceneAsync(scene));
+        }
+
+        //wait until every scene has unloaded
+        for (int i = 0; i < sceneLoading.Count; i++)
+        {
+            while (!sceneLoading[i].isDone)
+            {
+                yield return null;
+            }
+        }
+
+        //clear scenes loading
+        sceneLoading.Clear();
+
+        AsyncOperation level = SceneManager.LoadSceneAsync((int)newScene, LoadSceneMode.Additive);
+
+
+        while (!level.isDone)
+        {
+            yield return null;
+
+        }
+        InitStateManager.instance.BeginNewState(InitStates.LevelLoaded);
         currentLevel = newScene;
-        StartCoroutine(GetSceneLoadProgress());
+        //loadUi
+        AsyncOperation componentScene = SceneManager.LoadSceneAsync((int)SceneIndex.UIscene, LoadSceneMode.Additive);
+        while (!componentScene.isDone)
+        {
+            yield return null;
+        }
+        InitStateManager.instance.BeginNewState(InitStates.UISceneLoaded);
+        //load in player scene
+        componentScene = (SceneManager.LoadSceneAsync((int)SceneIndex.PlayerScene, LoadSceneMode.Additive));
+        while (!componentScene.isDone)
+        {
+            yield return null;
+        }
+        InitStateManager.instance.BeginNewState(InitStates.PlayerSceneLoaded);
+
+        isLoading = false;
     }
 
     public void StartLevel(SceneIndex newLevel)
     {
         StartCoroutine(BeginGameLoad(newLevel));
-   
+ 
+
+
     }
 
 

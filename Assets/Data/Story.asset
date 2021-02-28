@@ -21,6 +21,8 @@ MonoBehaviour:
 '
     id: 1
     targetBeatID: 2
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 0
     isClientBeat: 0
@@ -29,6 +31,8 @@ MonoBehaviour:
     text: Oh yeah!
     id: 2
     targetBeatID: 3
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 1.5
     isClientBeat: 1
@@ -37,6 +41,8 @@ MonoBehaviour:
     text: So, so sorry here it is...
     id: 3
     targetBeatID: 4
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 1
     isClientBeat: 1
@@ -56,6 +62,8 @@ MonoBehaviour:
       just check your phone if you forget! [ESC To Check]'
     id: 4
     targetBeatID: 4
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 3
     isClientBeat: 1
@@ -64,6 +72,8 @@ MonoBehaviour:
     text: Did you choose that password?
     id: 5
     targetBeatID: 6
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 0
     isClientBeat: 0
@@ -72,6 +82,8 @@ MonoBehaviour:
     text: Hahaha sadly no wish I was that creative Xx
     id: 6
     targetBeatID: 7
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 1.5
     isClientBeat: 1
@@ -80,6 +92,8 @@ MonoBehaviour:
     text: By the way? are you not scared of the bugs?
     id: 7
     targetBeatID: 8
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 1
     isClientBeat: 1
@@ -100,6 +114,8 @@ MonoBehaviour:
     text: ' Won''t they make your job much harder once you turn off the main power?'
     id: 8
     targetBeatID: 9
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 1
     isClientBeat: 1
@@ -110,6 +126,8 @@ MonoBehaviour:
       I have tools for each part of my trade,'
     id: 9
     targetBeatID: 10
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 0
     isClientBeat: 0
@@ -118,6 +136,8 @@ MonoBehaviour:
     text: Wow that's such as bad ass response haha
     id: 10
     targetBeatID: 11
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 1
     isClientBeat: 1
@@ -126,6 +146,8 @@ MonoBehaviour:
     text: Well good luck then! xx
     id: 11
     targetBeatID: 0
+    targetScene: 0
+    hasScene: 0
     endBeat: 1
     typeTime: 1
     isClientBeat: 1
@@ -134,6 +156,8 @@ MonoBehaviour:
     text: Thanks I will get on with it now.
     id: 12
     targetBeatID: 13
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 0
     isClientBeat: 0
@@ -142,6 +166,8 @@ MonoBehaviour:
     text: Wait I have some questions!
     id: 13
     targetBeatID: 14
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 1
     isClientBeat: 1
@@ -150,6 +176,8 @@ MonoBehaviour:
     text: Aren't you just an electrician how are you going to manage all the bugs?
     id: 14
     targetBeatID: 15
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 1
     isClientBeat: 1
@@ -164,6 +192,8 @@ MonoBehaviour:
     text: Like aren't they going to jump out once it gets dark?
     id: 15
     targetBeatID: 16
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 0.8
     isClientBeat: 1
@@ -173,6 +203,8 @@ MonoBehaviour:
       to deal with.
     id: 16
     targetBeatID: 17
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 0
     isClientBeat: 0
@@ -181,6 +213,8 @@ MonoBehaviour:
     text: Oh yeah didn't think of that. Guess it's not a big deal then!
     id: 17
     targetBeatID: 11
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 1
     isClientBeat: 1
@@ -189,6 +223,8 @@ MonoBehaviour:
     text: Back, home we couldn't afford professionals to deal with the bugs.
     id: 18
     targetBeatID: 19
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 0
     isClientBeat: 0
@@ -197,6 +233,8 @@ MonoBehaviour:
     text: So I have gotten  quite proficient at dealing with them.
     id: 19
     targetBeatID: 20
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 0
     isClientBeat: 0
@@ -206,6 +244,8 @@ MonoBehaviour:
       then!
     id: 20
     targetBeatID: 21
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 1.5
     isClientBeat: 1
@@ -214,6 +254,8 @@ MonoBehaviour:
     text: Stay safe and good luck with the job
     id: 21
     targetBeatID: 21
+    targetScene: 0
+    hasScene: 0
     endBeat: 1
     typeTime: 1
     isClientBeat: 1
@@ -222,6 +264,8 @@ MonoBehaviour:
     text: I have a degree in electrical and mechanical engineering but...
     id: 22
     targetBeatID: 27
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 0
     isClientBeat: 0
@@ -230,6 +274,8 @@ MonoBehaviour:
     text: Back, home we couldn't afford professionals to deal with the bugs.
     id: 23
     targetBeatID: 24
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 0
     isClientBeat: 0
@@ -238,6 +284,8 @@ MonoBehaviour:
     text: So I have gotten  quite proficient at dealing with them.
     id: 24
     targetBeatID: 25
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 0
     isClientBeat: 0
@@ -247,6 +295,8 @@ MonoBehaviour:
       then!
     id: 25
     targetBeatID: 26
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 1
     isClientBeat: 1
@@ -255,6 +305,8 @@ MonoBehaviour:
     text: Stay safe and good luck with the job
     id: 26
     targetBeatID: 26
+    targetScene: 0
+    hasScene: 0
     endBeat: 1
     typeTime: 1
     isClientBeat: 1
@@ -263,6 +315,8 @@ MonoBehaviour:
     text: But I have life experience dealing with these insects
     id: 27
     targetBeatID: 28
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 0
     isClientBeat: 0
@@ -271,6 +325,8 @@ MonoBehaviour:
     text: So don't worry about me, this is why you pay me
     id: 28
     targetBeatID: 29
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 0
     isClientBeat: 0
@@ -279,6 +335,8 @@ MonoBehaviour:
     text: Wow you are so smart!
     id: 29
     targetBeatID: 30
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 0.5
     isClientBeat: 1
@@ -287,6 +345,8 @@ MonoBehaviour:
     text: For all you do I think we pay you way too little then hahaha
     id: 30
     targetBeatID: 31
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 1
     isClientBeat: 1
@@ -295,6 +355,8 @@ MonoBehaviour:
     text: But that's just capitalism for ya!
     id: 31
     targetBeatID: 32
+    targetScene: 0
+    hasScene: 0
     endBeat: 0
     typeTime: 0.75
     isClientBeat: 1
@@ -305,6 +367,20 @@ MonoBehaviour:
 '
     id: 32
     targetBeatID: 32
+    targetScene: 0
+    hasScene: 0
+    endBeat: 1
+    typeTime: 1.2
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: 'Test beat
+
+'
+    id: 33
+    targetBeatID: 32
+    targetScene: 5
+    hasScene: 1
     endBeat: 1
     typeTime: 1.2
     isClientBeat: 1

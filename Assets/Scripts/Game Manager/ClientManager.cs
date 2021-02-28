@@ -32,7 +32,7 @@ public class ClientManager : MonoBehaviour,IInitialisable
         bool hasMessages = false;
         foreach (Client client in clients)
         {
-            if (client.PointToNewBeat(SceneIndex.Tutorial)) hasMessages=true;
+            if (client.PointToNewBeat(previousLevelScene)) hasMessages=true;
         }
 
         if (hasMessages) TabletMenuManager.instance.ToggleSmsAlert();

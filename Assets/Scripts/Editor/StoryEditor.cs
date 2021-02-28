@@ -101,6 +101,7 @@ public class StoryEditor : EditorWindow
         SerializedProperty clientBeat = arrayElement.FindPropertyRelative("isClientBeat");
         SerializedProperty chains = arrayElement.FindPropertyRelative("isBeatChain");
         SerializedProperty targetID = arrayElement.FindPropertyRelative("targetBeatID");
+        SerializedProperty HasScene = arrayElement.FindPropertyRelative("hasScene");
         //To easily toggle if beat leads to a transition
         SerializedProperty isEnd = arrayElement.FindPropertyRelative("endBeat");
 
@@ -115,14 +116,28 @@ public class StoryEditor : EditorWindow
 
         isEnd.boolValue = GUILayout.Toggle(isEnd.boolValue, "Is story beat end");//if the dialogue chain is finished after this beat
 
-        clientBeat.boolValue= GUILayout.Toggle(clientBeat.boolValue," Beat belongs to client");//if the dialogue chain is finished after this beat
+        clientBeat.boolValue= GUILayout.Toggle(clientBeat.boolValue,"Beat belongs to client");//if the dialogue chain is finished after this beat
+
+
+        HasScene.boolValue = GUILayout.Toggle(HasScene.boolValue, "Has Target Scene");//if the dialogue chain is finished after this beat
         EditorGUILayout.EndHorizontal();
 
         EditorGUILayout.BeginVertical();
+
+
         GUILayout.Label("Beat Typing time:");
       
         typingTime.floatValue= EditorGUILayout.FloatField(typingTime.floatValue, GUILayout.Height(15), GUILayout.Width(40));
 
+        if (HasScene.boolValue)
+        {
+            SerializedProperty targetScene = arrayElement.FindPropertyRelative("targetScene");
+
+            GUILayout.Label("Target Scene");
+            targetScene.enumValueIndex = EditorGUILayout.Popup(targetScene.enumValueIndex, targetScene.enumDisplayNames, GUILayout.Width(100f));
+            //targetScen
+
+        }
        
         if(chains.boolValue= GUILayout.Toggle(chains.boolValue, "Chains To beats"))
         {
@@ -133,6 +148,7 @@ public class StoryEditor : EditorWindow
 
         OnGUI_BeatViewDecision(choiceList, beatList);
 
+       
         EditorGUILayout.EndVertical();
 
         if (GUILayout.Button("Return to Beat List", GUILayout.Height(50)))

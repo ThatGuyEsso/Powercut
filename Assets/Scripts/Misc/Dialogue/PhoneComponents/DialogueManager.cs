@@ -60,11 +60,18 @@ public class DialogueManager : MonoBehaviour
         {
             phoneAnim.enabled = true;
             phoneAnim.Play("ActivatePlayButton");
-            FindObjectOfType<PhoneButtons>().EnableStartButton(SceneIndex.Tutorial);
+            if (beat.HasScene)
+            {
+                FindObjectOfType<PhoneButtons>().EnableStartButton(beat.TargetScene);
+            }
+            FindObjectOfType<PhoneButtons>().EnableStartButton();
         }
+
+
+   
         //if beat doesn't end dialogue
         //evaluate next dialogue beats
-        else
+                else
         {
             //if dialogue has choices
             if (beat.GetChoices().Count > 0){

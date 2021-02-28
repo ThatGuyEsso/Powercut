@@ -30,7 +30,7 @@ public class PhoneVibration : MonoBehaviour
 ;
 
 
-
+        _currentVibrateTime = _vibrateTime;
         _initialOffset = rt.position;
     }
 

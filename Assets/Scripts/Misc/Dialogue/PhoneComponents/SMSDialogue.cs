@@ -251,9 +251,9 @@ public class SMSDialogue : MonoBehaviour
                 newBubble.transform.position = pos + new Vector2(bubbleWidth/2,-(bubbleHeight/2) * EssoUtility.GetAspectRatio());
                 previousBubble = newBubble;
 
-                smsBubbles.Add(previousBubble);
                 vibrationController.BeginViewBob();
                 AudioManager.instance.PlayAtRandomPitch("PhoneVibrateSFX");
+                smsBubbles.Add(previousBubble);
                 break;
 
             //calculate position at the top of the screen in the mc case
