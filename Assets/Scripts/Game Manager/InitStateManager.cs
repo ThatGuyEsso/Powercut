@@ -34,7 +34,7 @@ public enum InitStates
 public class InitStateManager : MonoBehaviour
 {
     public static InitStateManager instance;
-    public GameObject audioManager, transitionManager,objectPoolManager;
+    public GameObject audioManager, transitionManager,objectPoolManager,clientManager;
     public static InitStates currInitState;
     public static GameModes currGameMode;
     [SerializeField] private RunTimeData runTimeData;
@@ -68,11 +68,12 @@ public class InitStateManager : MonoBehaviour
         Instantiate(audioManager, Vector3.zero, Quaternion.identity);
         Instantiate(transitionManager, Vector3.zero, Quaternion.identity);
         Instantiate(objectPoolManager, Vector3.zero, Quaternion.identity);
+        Instantiate(clientManager, Vector3.zero, Quaternion.identity);
 
         AudioManager.instance.BindToInitManager();
         TransitionManager.instance.BindToInitManager();
         ObjectPoolManager._instance.BindToInitManager();
-
+        clientManager.GetComponent<IInitialisable>().Init();
         OnStateChange?.Invoke(currInitState);
 
     }
@@ -107,6 +108,13 @@ public class InitStateManager : MonoBehaviour
                 currInitState = newState;
                 OnStateChange?.Invoke(currInitState);
                 GameStateManager.instance.BindToInitManager();
+
+                break;
+
+            case InitStates.LevelClear:
+
+                currInitState = newState;
+                OnStateChange?.Invoke(currInitState);
 
                 break;
             case InitStates.ExitLevel:

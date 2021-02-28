@@ -147,6 +147,7 @@ public class GameStateManager : MonoBehaviour, IInitialisable
 
             case GameStates.LevelClear:
                 currentGameState = newGameState;
+                InitStateManager.instance.BeginNewState(InitStates.LevelClear);
                 OnGameStateChange?.Invoke(newGameState);
   
 

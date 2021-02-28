@@ -34,7 +34,7 @@ public class DialogueManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        dialogueMenu = FindObjectOfType<SMSDialogue>();
+
         dialogueMenu.OnBeatDisplayed += EvaluateBeat;
         dialogueMenu.Init(Speaker.Client);
         if(dialogueMenu.gameObject.activeSelf)
@@ -121,6 +121,12 @@ public class DialogueManager : MonoBehaviour
     {
         nextBeat = id;
         nextSpeaker = speaker;
+  
+    }
+
+    public void SetUpPortrait(Sprite portrait)
+    {
+        dialogueMenu.DisplayClientImage(portrait);
     }
     public void OnDestroy()
     {

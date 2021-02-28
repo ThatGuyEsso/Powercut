@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beats:
   - dialogueChoices: []
-    text: 'Hi, I''m here never.
+    text: 'Hi, I''m here.
 
       You never sent me the key code.
 

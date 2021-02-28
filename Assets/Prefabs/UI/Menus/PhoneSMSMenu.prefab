@@ -1112,7 +1112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clientImage: {fileID: 8296264912914453960}
   mcImage: {fileID: 8296264913099075563}
-  storyData: {fileID: 0}
+  storyData: {fileID: 11400000, guid: 4a94eff66b835bf41946ae2581ad9f93, type: 2}
   dialogueOptions:
   - {fileID: 8296264914552901922}
   - {fileID: 8296264912612412158}

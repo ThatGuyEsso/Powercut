@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Robin The Red Head
+  m_text: Robin the Red Head
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c3c2818c9a2dd604c956c443d5a59c7a, type: 2}
   m_sharedMaterial: {fileID: -934980620308237954, guid: c3c2818c9a2dd604c956c443d5a59c7a, type: 2}
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
-  m_wordSpacing: 0
+  m_wordSpacing: -11.79
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
@@ -347,6 +347,7 @@ MonoBehaviour:
   contactImage: {fileID: 4244204313365855010}
   contactName: {fileID: 2463019292071634155}
   alertIcon: {fileID: 313544521190143388}
+  UIDclient: RRH
 --- !u!1 &4243041326762740648
 GameObject:
   m_ObjectHideFlags: 0

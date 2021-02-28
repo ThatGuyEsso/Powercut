@@ -271,4 +271,6 @@ public class TransitionManager : MonoBehaviour
         return loadedScenes;
     }
 
+
+    public SceneIndex GetCurrentLevel() { return currentLevel; }
 }
