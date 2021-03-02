@@ -5,7 +5,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class KillBulletFlashVFX : MonoBehaviour
 {
-    public float timeToDim;
+
     private ParticleSystem ps;
     private bool isDead;
 
@@ -13,6 +13,13 @@ public class KillBulletFlashVFX : MonoBehaviour
     {
         ps = gameObject.GetComponent<ParticleSystem>();
    
+    }
+
+    private void OnEnable()
+    {
+        isDead = false;
+        ps.Simulate(0.0f, true, true);
+        ps.Play();
     }
     void Update()
     {
@@ -22,11 +29,9 @@ public class KillBulletFlashVFX : MonoBehaviour
         }
         if (isDead)
         {
-            //flash.intensity = Mathf.Lerp(flash.intensity, 0f, timeToDim);
-            //if (flash.intensity <= 0f)
-            //{
-                ObjectPoolManager.Recycle(gameObject);
-            //}
+            ps.Simulate(0.0f, true, true);
+            ObjectPoolManager.Recycle(gameObject);
+          
         }
     }
 

@@ -9,8 +9,15 @@ public class FlashBang : MonoBehaviour
     public float timeBeforeExplosion;
 
     public float shakeMag, ShakeDur, ShakeIn, ShakeOut;
-    
-    private void FixedUpdate()
+
+    [SerializeField] private LayerMask reflectionLayers;
+
+    Rigidbody2D rb;
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+    private void Update()
     {
         if (timeBeforeExplosion <= 0)
         {
@@ -22,9 +29,25 @@ public class FlashBang : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (((1 << other.gameObject.layer) & reflectionLayers) != 0)
+        {
+           ContactPoint2D contactPoint = other.GetContact(0);
+            Vector2 dir = Vector2.Reflect(rb.velocity.normalized, contactPoint.normal);
+            PerformBounce(dir);
+        }
+    }
+
+    private void PerformBounce(Vector2 dir)
+    {
+        float speed = rb.velocity.magnitude;
+     
+        rb.velocity = dir * speed;
+    }
     private void Explode()
     {
-        Instantiate(flashZonePrefab, transform.position, transform.rotation);
+        FindObjectOfType<FlashZone>().Flash(transform.position, transform.up);
         CamShake.instance.DoScreenShake(ShakeDur, shakeMag, ShakeIn, ShakeOut);
         Destroy(gameObject);
     }

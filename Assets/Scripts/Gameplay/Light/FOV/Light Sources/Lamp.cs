@@ -162,7 +162,8 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
         lightRef.ToggleLight(true);
         isLampWorking = true;
         currentHealth = lightRef.lampSettings.maxLightHealth;
-     
+        fuseIcon.color = Color.white;
+
     }
     //Light fixing 
     public void FixLamp(float heal)

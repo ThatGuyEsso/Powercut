@@ -405,6 +405,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1234439865125165329, guid: ac41f65ede8619a4b93788c99d5dddaa, type: 3}
+      propertyPath: m_SortingOrder
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 1234439865125165330, guid: ac41f65ede8619a4b93788c99d5dddaa, type: 3}
       propertyPath: m_Name
       value: LevelClearScreens

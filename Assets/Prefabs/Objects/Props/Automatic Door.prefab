@@ -204,6 +204,10 @@ MonoBehaviour:
   rightDoorTransform: {fileID: 4568173749626408255}
   moveAxis: {x: 1, y: 0}
   resultName: 
+  leftClosedPosition: {x: 0, y: 0}
+  rightClosedPosition: {x: 0, y: 0}
+  leftOpenPosition: {x: -1.5, y: 0}
+  rightOpenPosition: {x: 1.5, y: 0}
 --- !u!1 &4568173749626408252
 GameObject:
   m_ObjectHideFlags: 0

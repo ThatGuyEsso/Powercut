@@ -53,6 +53,11 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     private Vector2 moveDir;
     private Controls input;
     private int equippedIndex;
+    private float smoothAX;
+    private float smoothAY;
+    private float smoothDX;
+    private float smoothDY;
+
     public void Init()
     {
         //Cache
@@ -129,7 +134,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
                 //If idle keep players speed 0, unless knock back is applied
                 if (knockBack.magnitude>0)
                 {
-                    rb.velocity = knockBack;
+                
                     //knockback eventually falls off
                     knockBack = Vector2.Lerp(knockBack, Vector2.zero, knockBackFallOff);
                     if (knockBack.magnitude < 0.5f)
@@ -137,10 +142,9 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
                         knockBack = Vector2.zero;
                     }
                 }
-                else{
-                    rb.velocity = Vector2.zero;
+              
+                SmoothDecelerate(0.0f);
 
-                }
                 break;
 
             case MovementStates.Walking:
@@ -227,7 +231,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
             {
 
                 CycleBetweenGuns();
-
+         
             }
             
         }
@@ -248,7 +252,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
                     {
                         numberOfPrimaryGadget--;
                         WeaponManager.instance.UsePrimaryGadget(numberOfPrimaryGadget, transform.up, throwingPoint.position);
-
+                        
                     }
 
                 }
@@ -331,12 +335,34 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     {
         if (isInitialised)
         {
-             rb.velocity =  (moveDir.normalized * settings.maxSpeed * Time.deltaTime)+knockBack;
+            Vector2 targetVel = Vector2.zero;
+
+            targetVel.x = Mathf.SmoothDamp(rb.velocity.x, settings.maxSpeed * moveDir.normalized.x , ref smoothAX, settings.timeZeroToMax);
+            targetVel.y = Mathf.SmoothDamp(rb.velocity.y, settings.maxSpeed * moveDir.normalized.y , ref smoothAY, settings.timeZeroToMax);
+            rb.velocity = targetVel * Time.deltaTime  /*(moveDir.normalized * settings.maxSpeed * Time.deltaTime)*/+ knockBack;
             
         }
     }
 
+    virtual protected void SmoothDecelerate(float minSpeed)
+    {
+        Vector2 targetVelocity = Vector2.zero;
 
+        if (rb.velocity.magnitude <= 0.1f)
+        {
+            smoothAX = 0f;
+            smoothAY = 0f;
+            smoothDX = 0f;
+            smoothDY = 0f;
+        }
+        else
+        {
+            targetVelocity.x = Mathf.SmoothDamp(rb.velocity.x, minSpeed, ref smoothDX, settings.timeMaxToZero);
+            targetVelocity.y = Mathf.SmoothDamp(rb.velocity.y, minSpeed, ref smoothDY, settings.timeMaxToZero);
+        }
+  
+        rb.velocity = targetVelocity*Time.deltaTime + knockBack;
+    }
     public void SetMovementState(MovementStates newState)
     {
         currMoveState = newState;

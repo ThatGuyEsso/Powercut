@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class TriggerEnemies : MonoBehaviour
 {
-    private void Awake()
-    {
-        Invoke("BeginRecycle", 0.15f);
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -17,8 +13,20 @@ public class TriggerEnemies : MonoBehaviour
         }
     }
 
-    public void BeginRecycle()
+    private void OnEnable()
     {
+        StartCoroutine(BeginRecycle());
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+    private IEnumerator BeginRecycle()
+    {
+        yield return new WaitForSeconds(3.0f);
         ObjectPoolManager.Recycle(gameObject);
     }
+
+  
 }

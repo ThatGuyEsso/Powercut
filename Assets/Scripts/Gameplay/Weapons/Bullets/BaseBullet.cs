@@ -25,8 +25,10 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable,IAudio
             IAudio audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position).GetComponent<IAudio>();
             audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("BulletCollisionSFX"));
             audioPlayer.PlayAtRandomPitch();
-  
-            ObjectPoolManager.Spawn(sparkPrefab, transform.position, transform.rotation);
+
+            Vector2 backDir = rb.velocity.normalized * -1;
+            Vector2 pos = rb.position + backDir*0.6f;
+            ObjectPoolManager.Spawn(sparkPrefab, pos, transform.rotation);
             //SetupAndPlayBulletSound("BulletCollisionSFX");
 
             ObjectPoolManager.Recycle(gameObject);
@@ -70,6 +72,21 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable,IAudio
         source.Play();
 
         
+    }
+
+    private void OnEnable()
+    {
+        StartCoroutine(RecycleAfterTime());
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+    }
+    private IEnumerator RecycleAfterTime()
+    {
+        yield return new WaitForSeconds(3.0f);
+        ObjectPoolManager.Recycle(gameObject);
     }
 
     public void SetUpAudioSource(Sound sound)

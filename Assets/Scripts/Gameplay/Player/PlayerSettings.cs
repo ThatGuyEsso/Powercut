@@ -7,8 +7,8 @@ public class PlayerSettings : ScriptableObject
 {
     [Header("Movement Settings")]
     public float maxSpeed; //Max movement speed;
-    //public float timeZeroToMax; //How fast player accelerate    
-    //public float timeMaxToZero; //How fast player decellerate
+    public float timeZeroToMax; //How fast player accelerate    
+    public float timeMaxToZero; //How fast player decellerate
     public float rotationSpeed; // how fast player rotates about it's axis
     public float walkSensitivity;
 

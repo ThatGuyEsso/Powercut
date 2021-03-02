@@ -155,6 +155,7 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
 
     void OnDestroy()
     {
+
         input.Disable();
     }
 

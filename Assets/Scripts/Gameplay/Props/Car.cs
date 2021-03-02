@@ -72,7 +72,7 @@ public class Car : MonoBehaviour, Controls.IInteractionsActions,IAudio
             audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("CarEngineSFX"));
             audioPlayer.Play();
 
-            InitStateManager.instance.BeginNewState(InitStates.LoadTitleScreen);
+            InitStateManager.instance.BeginNewState(InitStates.LoadMainMenu);
             InGamePrompt.instance.HidePrompt();
             InGamePrompt.instance.ShowPrompt();
             hasActivated = true;

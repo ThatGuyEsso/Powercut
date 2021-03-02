@@ -6,7 +6,7 @@ public class LightSettings : ScriptableObject
 {
     public float lightRadius;
     public int rayCount;
-    [Range(0, 360)]
+    [Range(0, 390)]
     public float lightAngle = 90f;
     public LayerMask lightBlockingLayers;
     public LayerMask enemyLayer;

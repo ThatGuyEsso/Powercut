@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be90e647707ccf24688e9d3cc0e975d4, type: 3}
   m_Name: RunTimeData
   m_EditorClassIdentifier: 
-  firstBoot: 1
+  firstBoot: 0
+  isTutoiralFinished: 0

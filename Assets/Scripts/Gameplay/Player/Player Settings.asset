@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd0db553b7d6ffc41a993de5f9249f09, type: 3}
   m_Name: Player Settings
   m_EditorClassIdentifier: 
-  maxSpeed: 350
+  maxSpeed: 2200
+  timeZeroToMax: 0.13
+  timeMaxToZero: 0.1
   rotationSpeed: 0.1
   walkSensitivity: 0
   maxHealth: 100

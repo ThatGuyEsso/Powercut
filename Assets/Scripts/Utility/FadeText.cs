@@ -89,7 +89,11 @@ public class FadeText : MonoBehaviour
 
     public void AddScreenElements(List<TextMeshProUGUI> list)
     {
-        UITexts = list;
+        for(int i=0; i < list.Count; i++)
+        {
+            UITexts.Add(list[i]);
+        }
+   
     }
 
     public void ClearList() { UITexts.Clear(); }

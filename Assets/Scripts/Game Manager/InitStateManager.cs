@@ -52,7 +52,7 @@ public class InitStateManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        runTimeData.firstBoot = true;
+        runTimeData.firstBoot = false;
         DontDestroyOnLoad(gameObject);
     }
     private void Start()

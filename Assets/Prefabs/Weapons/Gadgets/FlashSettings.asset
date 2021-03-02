@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a887470a0693fb047b19a31b0fdec0b5, type: 3}
+  m_Name: FlashSettings
+  m_EditorClassIdentifier: 
+  lightRadius: 2.81
+  rayCount: 180
+  lightAngle: 390
+  lightBlockingLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  maxCharge: 0
+  dischargeRate: 0
+  chargeRate: 0
+  rechargeAmount: 0
+  disChargeAmount: 0
+  maxIntensity: 0
