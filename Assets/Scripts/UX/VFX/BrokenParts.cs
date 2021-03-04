@@ -6,11 +6,32 @@ using UnityEngine;
 public class BrokenParts : MonoBehaviour,IBreakVFX
 {
     Rigidbody2D rb;
+    [SerializeField] private float stopRate;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
+
+    private void Update()
+    {
+     
+
+        rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, Time.deltaTime * stopRate);
+
+        if (rb.velocity.magnitude <= 0.01f)
+        {
+            rb.velocity = Vector2.zero;
+            enabled = false;
+        }
+
+    }
+
+
+    private void OnEnable()
+    {
+        enabled = true;
+    }
     public void Break(Vector2 dir, float force)
     {
         throw new System.NotImplementedException();

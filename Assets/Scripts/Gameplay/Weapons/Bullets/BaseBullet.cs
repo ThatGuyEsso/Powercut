@@ -45,6 +45,7 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable,IAudio
             ObjectPoolManager.Recycle(gameObject);
         }
 
+
     }
 
     void IShootable.SetUpBullet(float knockBack, float damage)

@@ -5,9 +5,8 @@ using UnityEngine;
 public class Destructables : MonoBehaviour,IBreakVFX,IHurtable
 {
     private int nBrokenParts;
-    [SerializeField] private List<GameObject> brokenPartTypes = new List<GameObject>();
-    [SerializeField] private List<int> brokenPartsWeight = new List<int>();
-    [SerializeField] private List<IBreakVFX> attachedPartedParts= new List<IBreakVFX>();
+    [SerializeField] private List<GameObject> brokenParts = new List<GameObject>();
+
     [SerializeField] private float spread;
     [SerializeField] private float spreadAngle;
 
@@ -15,80 +14,37 @@ public class Destructables : MonoBehaviour,IBreakVFX,IHurtable
 
     private float knockBack;
     private Vector3 direction;
-    private void Awake()
-    {
-        IBreakVFX[] breakables = gameObject.GetComponentsInChildren<IBreakVFX>();
-        GetSumOfBrokenParts();
-        GetAllBreakableChildren(breakables);
+    bool isBroken = false;
 
-    }
-    private void GetSumOfBrokenParts()
-    {
-        int sum=0;
-        for(int i = 0; i < brokenPartsWeight.Count; i++)
-        {
-            sum += brokenPartsWeight[i];
-        }
-        nBrokenParts = sum;
-    }
     public void Break(Vector2 dir, float force)
     {
-        Vector3[] partDir = GetVectorsInArc(dir);
-        for (int i= 0; i< brokenPartTypes.Count; i++)
+        Vector3[] partDir = EssoUtility.GetVectorsInArc(dir, brokenParts.Count, spreadAngle, spread);
+        for (int i= 0; i< brokenParts.Count; i++)
         {
-            for(int k = 0; k < brokenPartsWeight[i]; k++)
-            {
-                GameObject part =ObjectPoolManager.Spawn(brokenPartTypes[i],transform.position);
+         
+          
+                GameObject part =ObjectPoolManager.Spawn(brokenParts[i],transform.position);
                 part.GetComponent<IBreakVFX>().AddBreakForce(partDir[i], force);
-            }
+
+            Debug.DrawRay(transform.position, partDir[i], Color.yellow, 10f);
+            
         }
 
-        if (attachedPartedParts.Count > 0)
-        {
-            foreach(IBreakVFX part in attachedPartedParts)
-            {
-                part.Break(dir, force);
-            }
-        }
         Destroy(gameObject);
     }
 
     public void Damage(float damage, Vector3 knockBackDir, float knockBack)
     {
         health -= damage;
-        if(health <= 0)
+        if(health <= 0&&!isBroken)
         {
+            isBroken = true;
             Break(knockBackDir, knockBack);
         }
     }
 
-    private void GetAllBreakableChildren(IBreakVFX[] breakables)
-    {
-        if (breakables.Length > 0)
-        {
+   
 
-            for(int i=0; i < breakables.Length; i++)
-            {
-                attachedPartedParts.Add(breakables[i]);
-            }
-        }
-    }
-
-
-    private Vector3[] GetVectorsInArc(Vector3 dir)
-    {
-        Vector3[] partDir = new Vector3[nBrokenParts];
-
-        for (int i = 0; i < partDir.Length; i++)
-        {
-            float startingAngle = (EssoUtility.GetAngleFromVector(dir) - spreadAngle / 2);
-            float randOffset = Random.Range(-spread, spread);
-
-            partDir[i] = EssoUtility.GetVectorFromAngle(randOffset + startingAngle + spreadAngle);
-        }
-
-        return partDir;
-    }
 
     public void AddBreakForce(Vector2 dir, float force)
     {

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1806427279521341346}
   - component: {fileID: 1806427279521341349}
   - component: {fileID: 1806427279521341348}
-  m_Layer: 18
+  - component: {fileID: 1670541121217032294}
+  m_Layer: 19
   m_Name: BrokenPaper2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1806427279521341351}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.16760212, y: -0.86305475, z: -9.956583}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 1806427279822350280}
   m_Father: {fileID: 0}
@@ -61,15 +62,28 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_Mass: 4
+  m_LinearDrag: 0.2
+  m_AngularDrag: 20
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &1670541121217032294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1806427279521341351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4529b2c530a6cd142a7cc4871fc0da79, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopRate: 0.5
 --- !u!1 &1806427279822350283
 GameObject:
   m_ObjectHideFlags: 0
@@ -80,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1806427279822350280}
   - component: {fileID: 1806427279822350281}
-  m_Layer: 18
+  m_Layer: 19
   m_Name: Paper
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -40,6 +40,9 @@ public class EssoUtility : MonoBehaviour
         for (int i = 0; i < vectors.Length; i++)
         {
             float startingAngle = (GetAngleFromVector(dir) - arc / 2);
+            startingAngle -= 90f;
+
+
             float randOffset = Random.Range(-spread, spread);
 
             vectors[i] = GetVectorFromAngle(randOffset + startingAngle + arc);
