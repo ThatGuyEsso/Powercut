@@ -233,6 +233,18 @@ TextureImporter:
   - first:
       213: 5874145721486602313
     second: Wall TileSheet Upgraded_39
+  - first:
+      213: -4537484266645945810
+    second: Wall TileSheet Upgraded_37
+  - first:
+      213: 8035638291832304859
+    second: Wall TileSheet Upgraded_38
+  - first:
+      213: 2820142600269401285
+    second: Wall TileSheet Upgraded_39
+  - first:
+      213: -4700779678054262476
+    second: Wall TileSheet Upgraded_40
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -1262,10 +1274,11 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -16, y: 16}
-        - {x: -16, y: 8}
-        - {x: 16, y: 8}
-        - {x: 16, y: 16}
+      - - {x: -16, y: -16}
+        - {x: -8, y: -16}
+        - {x: -8, y: -9}
+        - {x: -8, y: -8}
+        - {x: -16, y: -8}
       tessellationDetail: 0
       bones: []
       spriteID: 360b848eb5021a910800000000000000
@@ -1287,14 +1300,15 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: -16}
-        - {x: -8, y: 16}
-        - {x: -16, y: 16}
-        - {x: -16, y: -16}
+      - - {x: 8, y: -10}
+        - {x: 8, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: -8}
+        - {x: 8, y: -8}
       tessellationDetail: 0
       bones: []
-      spriteID: 32610cbebb4362610800000000000000
-      internalID: 1596021099668182563
+      spriteID: e2205a0a91e9701c0800000000000000
+      internalID: -4537484266645945810
       vertices: []
       indices: 
       edges: []
@@ -1313,13 +1327,14 @@ TextureImporter:
       outline: []
       physicsShape:
       - - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: -8}
+        - {x: -8, y: -16}
+        - {x: -8, y: -11}
+        - {x: -8, y: -8}
         - {x: -16, y: -8}
       tessellationDetail: 0
       bones: []
-      spriteID: 4a5d9607b1307a6b0800000000000000
-      internalID: -5285252221311003228
+      spriteID: bd4f038a372548f60800000000000000
+      internalID: 8035638291832304859
       vertices: []
       indices: 
       edges: []
@@ -1337,14 +1352,42 @@ TextureImporter:
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape:
-      - - {x: -8, y: -16}
-        - {x: -8, y: 16}
-        - {x: -16, y: 16}
-        - {x: -16, y: -16}
+      - - {x: 6, y: -8}
+        - {x: 6, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: -6}
+        - {x: 8, y: -6}
       tessellationDetail: 0
       bones: []
-      spriteID: 940f6104968258150800000000000000
-      internalID: 5874145721486602313
+      spriteID: 5cc0101d0c8232720800000000000000
+      internalID: 2820142600269401285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Wall TileSheet Upgraded_40
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 8, y: 16}
+        - {x: 8, y: -8}
+        - {x: -16, y: -8}
+        - {x: -16, y: -16}
+        - {x: 16, y: -16}
+        - {x: 16, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4395332e9c973ceb0800000000000000
+      internalID: -4700779678054262476
       vertices: []
       indices: 
       edges: []

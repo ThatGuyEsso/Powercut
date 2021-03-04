@@ -1,0 +1,542 @@
+fileFormatVersion: 2
+guid: ff53fe1bd2727994087dfbb31c74710a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8469257943685415520
+    second: FenceTileMap_0
+  - first:
+      213: -6420670618163797599
+    second: FenceTileMap_1
+  - first:
+      213: 8409469778590807275
+    second: FenceTileMap_2
+  - first:
+      213: -294138891637779527
+    second: FenceTileMap_3
+  - first:
+      213: -7250793392775256548
+    second: FenceTileMap_4
+  - first:
+      213: 8612558765535198619
+    second: FenceTileMap_5
+  - first:
+      213: -2634914281847260948
+    second: FenceTileMap_6
+  - first:
+      213: -1146040133759731558
+    second: FenceTileMap_7
+  - first:
+      213: 5380814729168701002
+    second: FenceTileMap_8
+  - first:
+      213: -8132170974131881244
+    second: FenceTileMap_9
+  - first:
+      213: 155298362407646256
+    second: FenceTileMap_10
+  - first:
+      213: -4370326033423284478
+    second: FenceTileMap_11
+  - first:
+      213: -7920137908845342091
+    second: FenceTileMap_12
+  - first:
+      213: -3478601432975337234
+    second: FenceTileMap_13
+  - first:
+      213: -5429260334863181199
+    second: FenceTileMap_0
+  - first:
+      213: -1790997981241821786
+    second: FenceTileMap_1
+  - first:
+      213: 8990695466922816618
+    second: FenceTileMap_2
+  - first:
+      213: 3858772453233713294
+    second: FenceTileMap_3
+  - first:
+      213: 6913288219698169332
+    second: FenceTileMap_4
+  - first:
+      213: 8756164390699648657
+    second: FenceTileMap_5
+  - first:
+      213: -5422907500840974028
+    second: FenceTileMap_6
+  - first:
+      213: -1924705528848306448
+    second: FenceTileMap_7
+  - first:
+      213: -3605475595117065824
+    second: FenceTileMap_8
+  - first:
+      213: -7410848497010404198
+    second: FenceTileMap_9
+  - first:
+      213: 7524907838545754437
+    second: FenceTileMap_10
+  - first:
+      213: -1332049400144300680
+    second: FenceTileMap_11
+  - first:
+      213: 5701189947330853387
+    second: FenceTileMap_12
+  - first:
+      213: 6550917600507664312
+    second: FenceTileMap_13
+  - first:
+      213: 1500573281577049806
+    second: FenceTileMap_14
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FenceTileMap_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: 16}
+        - {x: -16, y: -16}
+        - {x: -6, y: -16}
+        - {x: -6, y: 15}
+        - {x: -7, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17a9c5bad7467a4b0800000000000000
+      internalID: -5429260334863181199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceTileMap_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a5b3ae33d81527e0800000000000000
+      internalID: -1790997981241821786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceTileMap_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6436a574ed55cc70800000000000000
+      internalID: 8990695466922816618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceTileMap_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e80ee000a1d1d8530800000000000000
+      internalID: 3858772453233713294
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceTileMap_4
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4f58005f10fe0ff50800000000000000
+      internalID: 6913288219698169332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceTileMap_5
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 196c3960f15248970800000000000000
+      internalID: 8756164390699648657
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceTileMap_6
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 439829a1c56fdb4b0800000000000000
+      internalID: -5422907500840974028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceTileMap_7
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0fe24cfd4821a45e0800000000000000
+      internalID: -1924705528848306448
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceTileMap_8
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a905b28c07c6fdc0800000000000000
+      internalID: -3605475595117065824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceTileMap_9
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a94157b6e80672990800000000000000
+      internalID: -7410848497010404198
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceTileMap_10
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 549721c7fc7dd6860800000000000000
+      internalID: 7524907838545754437
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceTileMap_11
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: 10, y: 16}
+        - {x: 10, y: 13}
+        - {x: 12, y: 11}
+        - {x: 16, y: 11}
+        - {x: 16, y: 15}
+        - {x: 14, y: 15}
+        - {x: 14, y: 16}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8757029c02c938de0800000000000000
+      internalID: -1332049400144300680
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceTileMap_12
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12, y: 15}
+        - {x: -16, y: 15}
+        - {x: -16, y: 11}
+        - {x: -14, y: 11}
+        - {x: -14, y: -16}
+        - {x: -10, y: -16}
+        - {x: -10, y: 13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0afea70d02be1f40800000000000000
+      internalID: 5701189947330853387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceTileMap_13
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -12, y: 15}
+        - {x: -16, y: 15}
+        - {x: -16, y: -16}
+        - {x: -7, y: -16}
+        - {x: -6, y: -15}
+        - {x: -6, y: 9}
+        - {x: -7, y: 13}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b71d1379d889ea50800000000000000
+      internalID: 6550917600507664312
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FenceTileMap_14
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape:
+      - - {x: -16, y: -11}
+        - {x: -16, y: -14}
+        - {x: -15, y: -15}
+        - {x: -14, y: -16}
+        - {x: -10, y: -16}
+        - {x: -10, y: -12}
+        - {x: -12, y: -12}
+        - {x: -12, y: -11}
+      tessellationDetail: 0
+      bones: []
+      spriteID: ece97dff27b13d410800000000000000
+      internalID: 1500573281577049806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
