@@ -5,8 +5,8 @@ public enum SceneIndex
     PlayerScene =1,
     UIscene = 2,
     TitleScreen =3,
-    Tutorial =4,
-    PhoneScene = 5,
-    LevelOne= 5,
-    TabletMenu=6
+    TabletMenu=4,
+    Tutorial =5,
+    TheLab = 6,
+    WareHouse =7,
 };

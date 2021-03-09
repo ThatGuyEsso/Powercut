@@ -38,7 +38,7 @@ public class ShadowCrawler : BaseEnemy
     }
     protected override void ProcessAI()
     {
-       
+
         switch (currentState)
         {
             case EnemyStates.Idle:
@@ -69,7 +69,7 @@ public class ShadowCrawler : BaseEnemy
                 {
                     navAgent.enabled = true;
                     EvaluateInRange();
-             
+
                     if (target != null && navAgent.enabled)
                     {
                         navAgent.SetDestination(target.position);
@@ -81,8 +81,8 @@ public class ShadowCrawler : BaseEnemy
                     ResolveTargetType();
                     animController.PlayAnim("Walk");
                 }
-       
-              
+
+
                 break;
 
             case EnemyStates.Wander:
@@ -94,6 +94,8 @@ public class ShadowCrawler : BaseEnemy
     {
         base.Update();
 
+
+      
         switch (currentState)
         {
             case EnemyStates.Idle:

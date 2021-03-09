@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 3033590110127998135}
   - component: {fileID: 2495972566266676414}
   - component: {fileID: 4925735417108048515}
+  - component: {fileID: 6085631721542834096}
   m_Layer: 11
   m_Name: Crate
-  m_TagString: Untagged
+  m_TagString: PhysicsObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,3 +110,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
+--- !u!114 &6085631721542834096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322805888035725206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e41dd31ea0248f4db01ea24cf615044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brokenParts:
+  - {fileID: 1806427279521341351, guid: 8c79a1508fb7ba54a86adaca82a69ad1, type: 3}
+  - {fileID: 1806427279521341351, guid: a9378f40f833b6041a26091249513d85, type: 3}
+  - {fileID: 1806427279521341351, guid: a9378f40f833b6041a26091249513d85, type: 3}
+  - {fileID: 1806427279521341351, guid: 9abca015681da7446874050e89bc0f02, type: 3}
+  - {fileID: 1806427279521341351, guid: 3ebe950852e410a4a9b8e6ea40d32fc2, type: 3}
+  spread: 80
+  spreadAngle: 180
+  health: 25
