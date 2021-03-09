@@ -374,14 +374,528 @@ MonoBehaviour:
     isClientBeat: 1
     isBeatChain: 0
   - dialogueChoices: []
-    text: 'Test beat
+    text: "Hi Osakpolor, \r\nWe received the payment from your new client 'Johnson's
+      Counseling group'\r\nOnce the agency has taken its cut we will send you, your
+      share.  "
+    id: 33
+    targetBeatID: 34
+    targetScene: 5
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: You must have impressed the office administrator, as they want to sign
+      a long-term contract.
+    id: 34
+    targetBeatID: 35
+    targetScene: 5
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: Thank you Robin, always so professional.
+      targetBeatID: 36
+      resultName: 
+    - text: "Oh her last name was Blake? \nI Just saved it as Red Head."
+      targetBeatID: 48
+      resultName: 
+    text: Her name is Robin Blake, it should already have been added to your contacts.
+    id: 35
+    targetBeatID: 36
+    targetScene: 5
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.75
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: Thank you Robin, always so professional.
+    id: 36
+    targetBeatID: 37
+    targetScene: 5
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: 'Yes.
+
+      I expect you to bring the same level of professionalism with
+      you on this new job.  '
+    id: 37
+    targetBeatID: 38
+    targetScene: 5
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.5
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: Thanks Robin where what is it?
+      targetBeatID: 39
+      resultName: 
+    - text: 'The margins on those contracts are so poor Robin.
+
+        I need you
+        to focus on getting longer term contracts.'
+      targetBeatID: 44
+      resultName: 
+    text: This job is a one-time contract.
+    id: 38
+    targetBeatID: 39
+    targetScene: 5
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.5
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: Thanks Robin,  what is it?
+    id: 39
+    targetBeatID: 40
+    targetScene: 5
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.5
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Phil's Pharmaceuticals needs you to go to their lab and fix their equipment
+    id: 40
+    targetBeatID: 41
+    targetScene: 5
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: I will send you the tasks
+    id: 41
+    targetBeatID: 42
+    targetScene: 5
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.25
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: By the way your patent on your odd device has been approved.
+    id: 42
+    targetBeatID: 43
+    targetScene: 5
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.2
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: The prototype should  arrive in 3-5 business days
+    id: 43
+    targetBeatID: 43
+    targetScene: 6
+    hasScene: 1
+    endBeat: 1
+    typeTime: 0.8
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: 'The margins on those contracts are so poor Robin.
+
+      I need you to
+      focus on getting longer term contracts.'
+    id: 44
+    targetBeatID: 45
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: Good point... So what is the job again?
+      targetBeatID: 46
+      resultName: 
+    - text: "You're right, so poor right now I can't even afford to lose you. \r\nWhat's
+        the job then?"
+      targetBeatID: 47
+      resultName: 
+    text: Yes, I understand but you also have long term debts and if you don't take
+      this one you can not afford my agent fee...
+    id: 45
+    targetBeatID: 45
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.5
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Good point... So what is the job again?
+    id: 46
+    targetBeatID: 30
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 40
+    isClientBeat: 0
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: "You're right, so poor right now I can't even afford to lose you. \r\nWhat's
+      the job then?"
+    id: 47
+    targetBeatID: 40
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: "Oh her last name was Blake? \nI Just saved it as Red Head."
+    id: 48
+    targetBeatID: 49
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: "You should really treat the clients with more respect. \nYou do not want
+      to get blacklisted "
+    id: 49
+    targetBeatID: 50
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.25
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: A lack of clients can also result in failure so...
+      targetBeatID: 51
+      resultName: 
+    - text: Well your job is to ensure I don't get blacklisted...
+      targetBeatID: 54
+      resultName: 
+    text: "60% of new business fail after 3 years. \nYou are not even through your
+      first year. "
+    id: 50
+    targetBeatID: 51
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: A lack of clients can also result in failure so
+    id: 51
+    targetBeatID: 52
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Any jobs?
+    id: 52
+    targetBeatID: 53
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Yes one
+    id: 53
+    targetBeatID: 40
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.25
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Well your job is to ensure I don't get blacklisted..
+    id: 54
+    targetBeatID: 55
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: It's a partnership, if I fail you fail.
+    id: 55
+    targetBeatID: 56
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: 'This is why I, your agent has secured you another job.
 
 '
-    id: 33
-    targetBeatID: 32
-    targetScene: 5
+    id: 56
+    targetBeatID: 40
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: No it's Osakpolor Osatowie from Osas Services.
+      targetBeatID: 58
+      resultName: 
+    - text: If you mean Osakpolar Osatowie, Yes it is me
+      targetBeatID: 67
+      resultName: 
+    - text: No...
+      targetBeatID: 68
+      resultName: 
+    text: "Is this Osacpilar Ostoe?\n From Osas Services??"
+    id: 57
+    targetBeatID: 0
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: No it's Osakpolor Osatowie from Osas Services.
+    id: 58
+    targetBeatID: 59
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: No, but doesn't matter
+      targetBeatID: 61
+      resultName: 
+    - text: It's really not. it's just different
+      targetBeatID: 60
+      resultName: 
+    text: 'Oh, sorry about that lad.
+
+      Not really my fault though your name
+      is a bit weird innit.'
+    id: 59
+    targetBeatID: 0
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.2
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: It's really not. it's just different
+    id: 60
+    targetBeatID: 62
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: No, but it doesn't matter
+    id: 61
+    targetBeatID: 62
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: But Why are you texting me.
+    id: 62
+    targetBeatID: 63
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Alright Osas, I am the foreman at Quick Storage and shipping.
+    id: 63
+    targetBeatID: 64
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: 'But everything has chosen to cock up at the same time, '
+    id: 64
+    targetBeatID: 65
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.9
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Getting an electrician, pest control specialist, and mechanic is out of
+      this quarters budget
+    id: 65
+    targetBeatID: 66
+    targetScene: 6
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.2
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: So I hope you aren't one of those foreign scammers and can help me out.
+    id: 66
+    targetBeatID: 1
+    targetScene: 7
     hasScene: 1
     endBeat: 1
     typeTime: 1.2
     isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: 'If you mean Osakpolar Osatowie.
+
+      Yes it is me'
+    id: 67
+    targetBeatID: 60
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: No...
+    id: 68
+    targetBeatID: 69
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: "The way you butchered my name is rude.\r..\n"
+      targetBeatID: 70
+      resultName: 
+    - text: Alright, just so you know my name is Osakpolar, just call me Osas in...
+      targetBeatID: 76
+      resultName: 
+    text: "Nah mate I'm 99% sure it is you. \nI need help and we pay well so stop
+      being rude to a paying customer."
+    id: 69
+    targetBeatID: 70
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 2
+    isClientBeat: 1
     isBeatChain: 0
+  - dialogueChoices: []
+    text: 'The way you butchered my name is rude.
+
+      You can just copy and paste
+      it you know?'
+    id: 70
+    targetBeatID: 71
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: 'Sorry, didn''t realise you were one of those sensitive types. '
+    id: 71
+    targetBeatID: 72
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.5
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: Osas, since that was the only thing you didn't misspell.
+      targetBeatID: 73
+      resultName: 
+    - text: 'Doesn''t matter as long as you pay well.
+
+        What do you need
+        help with?'
+      targetBeatID: 74
+      resultName: 
+    text: What do I call you then?
+    id: 72
+    targetBeatID: 73
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: Osas, since that was the only thing you didn't misspell
+    id: 73
+    targetBeatID: 64
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: 'Doesn''t matter as long as you pay well.
+
+      What do you need help
+      with?'
+    id: 74
+    targetBeatID: 75
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 2
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Alright mate, I am the foreman at Quick Storage and shipping.
+    id: 75
+    targetBeatID: 65
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.2
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Alright, just so you know my name is Osakpolar, just call me Osas in...
+    id: 76
+    targetBeatID: 64
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
