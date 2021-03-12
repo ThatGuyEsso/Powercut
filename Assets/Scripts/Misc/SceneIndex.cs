@@ -9,4 +9,6 @@ public enum SceneIndex
     Tutorial =5,
     TheLab = 6,
     WareHouse =7,
+    OfficeHQ = 8,
+    IceRink = 9
 };

@@ -843,8 +843,8 @@ MonoBehaviour:
       resultName: 
     - text: 'Doesn''t matter as long as you pay well.
 
-        What do you need
-        help with?'
+        What do you need help
+        with?'
       targetBeatID: 74
       resultName: 
     text: What do I call you then?
@@ -898,4 +898,711 @@ MonoBehaviour:
     endBeat: 0
     typeTime: 0
     isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: I am good how about you
+      targetBeatID: 78
+      resultName: 
+    - text: Fine just taking each day as they come.
+      targetBeatID: 88
+      resultName: 
+    - text: Business is growing, so feeling blessed
+      targetBeatID: 80
+      resultName: 
+    text: Hey how are you!
+    id: 77
+    targetBeatID: 78
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: I am good how about you
+    id: 78
+    targetBeatID: 87
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: I am about to make you feel EVEN better
+    id: 79
+    targetBeatID: 85
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Business is growing, so feeling blessed.
+    id: 80
+    targetBeatID: 81
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: NICE, you're about to feel a whole lot more blessed!
+    id: 81
+    targetBeatID: 82
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.5
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Our CFO was really impressed by your quality, and that PRICE is great.
+    id: 82
+    targetBeatID: 83
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.9
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: 'Our firm has been looking for a maintenance agency for a while now.
+
+      So,
+      I spoke to that that blonde woman  who stole my name. About entering  a longer
+      term partnership.
+
+'
+    id: 83
+    targetBeatID: 84
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.5
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: My Assistant
+      targetBeatID: 91
+      resultName: 
+    - text: My Agent
+      targetBeatID: 92
+      resultName: 
+    - text: My Boss
+      targetBeatID: 95
+      resultName: 
+    text: BTW what is that Woman to you anyways?
+    id: 84
+    targetBeatID: 83
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.9
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: 'As office adminstrator I have been looking for a high quality maintenance
+      team for a while now.
+
+      and the company really appreciate your work quality'
+    id: 85
+    targetBeatID: 86
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.5
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: 'So, I spoke to that that blonde woman  who stole my name. About entering 
+      a longer term partnership.
+
+'
+    id: 86
+    targetBeatID: 85
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.5
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Good good, I am also really good. Xx
+    id: 87
+    targetBeatID: 80
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.5
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Fine just taking each day as they come.
+    id: 88
+    targetBeatID: 89
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Good that they keep coming then!
+    id: 89
+    targetBeatID: 90
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Anyways
+    id: 90
+    targetBeatID: 83
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.35
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: My Assistant
+    id: 91
+    targetBeatID: 94
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: My Agent
+    id: 92
+    targetBeatID: 93
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.35
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: So... about this partnership?
+      targetBeatID: 97
+      resultName: 
+    - text: Does that mean you have a job for me?
+      targetBeatID: 97
+      resultName: 
+    - text: Is that all?
+      targetBeatID: 97
+      resultName: 
+    text: Ahh!!! That makes sense.
+    id: 93
+    targetBeatID: 83
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices:
+    - text: So.. About this partnership?
+      targetBeatID: 97
+      resultName: 
+    - text: Does that mean you have a job for me?
+      targetBeatID: 97
+      resultName: 
+    - text: Is that all?
+      targetBeatID: 97
+      resultName: 
+    text: 'Really? she is definitely a very proactive.
+
+      You must pay her well'
+    id: 94
+    targetBeatID: 83
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: My Boss
+    id: 95
+    targetBeatID: 96
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: So... about this partnership?
+      targetBeatID: 97
+      resultName: 
+    - text: Does that mean you have a job for me?
+      targetBeatID: 97
+      resultName: 
+    - text: Is that all?
+      targetBeatID: 97
+      resultName: 
+    text: 'I can see that. She has that scary boss vibe.
+
+      Definitely a Scorpio'
+    id: 96
+    targetBeatID: 83
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.25
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: OH YEAH
+    id: 97
+    targetBeatID: 98
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.5
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: lol
+    id: 98
+    targetBeatID: 99
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.3
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Basically, the head offices has been having all sorts of issues for a while.
+    id: 99
+    targetBeatID: 83
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: 'The other robin will send you the jobs. '
+    id: 100
+    targetBeatID: 101
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.75
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Have fun! Xxx
+    id: 101
+    targetBeatID: 83
+    targetScene: 8
+    hasScene: 1
+    endBeat: 1
+    typeTime: 1
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices:
+    - text: Yes I how can I help you?
+      targetBeatID: 103
+      resultName: 
+    text: Is this Osakpolor Osatowie, of Osas Services?
+    id: 102
+    targetBeatID: 83
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: Yes I how can I help you?
+    id: 103
+    targetBeatID: 104
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: "Okay... My client don't usually go straight to me.\n I'm going to need
+        some verification."
+      targetBeatID: 105
+      resultName: 
+    - text: Sorry buddy, I am going to need some more info before I can help you.
+      targetBeatID: 106
+      resultName: 
+    text: "I'm the owner of the local Roller Skate Rink. \nI need specialist help"
+    id: 104
+    targetBeatID: 83
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.4
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: "Okay... My client don't usually go straight to me.\n I'm going to need
+      some verification."
+    id: 105
+    targetBeatID: 107
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Sorry buddy, I am going to need some more info before I can help you.
+    id: 106
+    targetBeatID: 108
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: Robin the Blonde
+      targetBeatID: 109
+      resultName: 
+    - text: Red Head Robin?
+      targetBeatID: 110
+      resultName: 
+    text: 'Don''t worry mate, I spoke with a woman called Robin and she gave me your
+      details. '
+    id: 107
+    targetBeatID: 83
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.8
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices:
+    - text: Robin the Blonde?
+      targetBeatID: 109
+      resultName: 
+    - text: Red Head Robin?
+      targetBeatID: 110
+      resultName: 
+    text: 'I have already passed my details to that Robin lass.
+
+      She may have
+      forgotten to pass them along. '
+    id: 108
+    targetBeatID: 109
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.8
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: Robin the Blonde?
+    id: 109
+    targetBeatID: 111
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Red Head Robin?
+    id: 110
+    targetBeatID: 113
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: Alright seems we are on the same page.
+      targetBeatID: 112
+      resultName: 
+    text: Yeah fairly certain it was blonde mate.
+    id: 111
+    targetBeatID: 113
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.5
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: Alright seems we are on the same page.
+    id: 112
+    targetBeatID: 114
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: Alright seems we are on the same page.
+      targetBeatID: 112
+      resultName: 
+    text: Ehm I believe it was blonde, might had been strawberry
+    id: 113
+    targetBeatID: 109
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.2
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: Good
+    id: 114
+    targetBeatID: 115
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.25
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: "Since she clearly forgot to tell you about this.\n I am going to personally
+      text you the job details."
+    id: 115
+    targetBeatID: 116
+    targetScene: 7
+    hasScene: 0
+    endBeat: 0
+    typeTime: 2
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: 'I have a minor bug infestation problem you see. '
+    id: 116
+    targetBeatID: 116
+    targetScene: 9
+    hasScene: 1
+    endBeat: 1
+    typeTime: 1
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: Robin, whoever the Roller Skate Owner is blacklist him!
+    id: 117
+    targetBeatID: 118
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: 'He falsely reported the size of this infestation. '
+      targetBeatID: 119
+      resultName: 
+    - text: How could you not have double checked whether this job was safe or not
+      targetBeatID: 123
+      resultName: 
+    - text: 'I could have died. '
+      targetBeatID: 125
+      resultName: 
+    text: Wait... what do you mean?
+    id: 118
+    targetBeatID: 119
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.5
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: He falsely reported the size of his infestation!
+    id: 119
+    targetBeatID: 120
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: We should sue!
+    id: 120
+    targetBeatID: 121
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: A man who said he had spoken with you hired me to clear the bug infestation
+        in the rink.
+      targetBeatID: 122
+      resultName: 
+    text: 'What are you talking about?
+
+      I haven''t had any ''rink owner'' report
+      anything'
+    id: 121
+    targetBeatID: 119
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.5
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: A man who said he had spoken with you hired me to clear the bug infestation
+      in the rink.
+    id: 122
+    targetBeatID: 129
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: How could you not have double checked whether this job was safe or not?
+    id: 123
+    targetBeatID: 124
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: A man who said he had spoken with you hired me to clear the bug infestation
+        in the rink.
+      targetBeatID: 122
+      resultName: 
+    text: "Osas... \r\nI swear on my professional pride I have no idea what you're
+      talking about"
+    id: 124
+    targetBeatID: 124
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 2
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: 'I could have died. '
+    id: 125
+    targetBeatID: 126
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: Never seen such a large and wild infestation.
+    id: 126
+    targetBeatID: 127
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Thank god you're safe.
+    id: 127
+    targetBeatID: 128
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.75
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices:
+    - text: A man who said he had spoken with you hired me to clear the bug infestation
+        in the rink.
+      targetBeatID: 122
+      resultName: 
+    text: But I honestly don't know whom or what you're talking about.
+    id: 128
+    targetBeatID: 122
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1.24
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices:
+    - text: The rink was filled with crawlers, some not event native to this continent
+      targetBeatID: 131
+      resultName: 
+    - text: The whole rink was a nest...
+      targetBeatID: 132
+      resultName: 
+    text: What happened?
+    id: 129
+    targetBeatID: 130
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.75
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: New Story Beat
+    id: 130
+    targetBeatID: 128
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.75
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: The rink was filled with crawlers, some not event native to this continent
+    id: 131
+    targetBeatID: 132
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: 'Do you think... '
+    id: 132
+    targetBeatID: 133
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.5
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Someone planted them there?
+    id: 133
+    targetBeatID: 134
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.75
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Do you have the owners details?
+    id: 134
+    targetBeatID: 134
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1
+    isClientBeat: 1
     isBeatChain: 1
