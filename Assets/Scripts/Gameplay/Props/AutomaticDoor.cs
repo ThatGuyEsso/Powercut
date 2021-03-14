@@ -48,8 +48,12 @@ public class AutomaticDoor : MonoBehaviour
     {
         if (isLocked)
         {
-            DialogueManager.instance.GetResultByName(resultName).OnTriggerResult += UnlockDoor;
-            isBound = true;
+            if (DialogueManager.instance != false)
+            {
+                DialogueManager.instance.GetResultByName(resultName).OnTriggerResult += UnlockDoor;
+                isBound = true;
+            }
+        
         }
     }
 

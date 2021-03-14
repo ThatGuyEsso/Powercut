@@ -8,7 +8,8 @@ public enum GameModes
 {
     Menu,
     Powercut,
-    Dialogue
+    Dialogue,
+    Debug,
 };
 public enum InitStates
 {

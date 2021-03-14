@@ -5,10 +5,7 @@ using UnityEngine.InputSystem;
 
 public class AirConditionTask : BaseTask, IFixable
 {
-    [SerializeField] private Color fixedColor;
-    [SerializeField] private Color fixingColor;
-    [SerializeField] private ChargingCable fixingCable;
-    private Transform playerTransform;
+   
     override protected void EvaluateSpriteDisplay()
     {
         if (isFixed) gfx.sprite = stateSprites[0];
@@ -16,29 +13,7 @@ public class AirConditionTask : BaseTask, IFixable
         else gfx.sprite = stateSprites[2];
     }
 
-    protected override void OnTriggerEnter2D(Collider2D other)
-    {
-        base.OnTriggerEnter2D(other);
-        if (other.gameObject.CompareTag("Player") && !isFixed)
-        {
-            fixingCable.ChangeColour(fixingColor);
-            playerTransform = other.transform;
-            player = other.gameObject;
-        }
-    }
 
-    protected override void OnTriggerExit2D(Collider2D other)
-    {
-        base.OnTriggerExit2D(other);
-        if (other.gameObject.CompareTag("Player") && fixingCable.isDrawing) fixingCable.StopDrawingRope();
-        playerTransform = null;
-     
-        if (player != false)
-        {
-            player.GetComponent<IFixable>().NotFixing();
-            player = null;
-        }
-    }
 
 
     protected override void Update()

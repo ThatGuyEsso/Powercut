@@ -35,7 +35,11 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
     protected bool isFixing;
     protected bool isRecorded =false;
 
-
+    
+    [SerializeField] protected Color fixedColor;
+    [SerializeField] protected Color fixingColor;
+    [SerializeField] protected ChargingCable fixingCable;
+    protected Transform playerTransform;
     public void Init()
     {
         //Inputs
@@ -83,16 +87,17 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
 
     virtual protected void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !isFixed)
         {
-            if (!isFixed)
-            {
+         
                 inRange = true;
                 InGamePrompt.instance.ChangePrompt(playerPrompt);
                 InGamePrompt.instance.ShowPrompt();
                 player = other.gameObject;
-            }
-          
+                fixingCable.ChangeColour(fixingColor);
+                playerTransform = other.transform;
+                player = other.gameObject;
+            
 
         }
 
@@ -100,10 +105,11 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
 
     virtual protected void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && fixingCable.isDrawing) fixingCable.StopDrawingRope();
         {
             inRange = false;
             isFixing = false;
+            playerTransform = null;
             InGamePrompt.instance.HidePrompt();
 
             if (player != false)
@@ -113,7 +119,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
             }
         }
 
-
+    
     }
     //---------------------------------------------------------
     //Input actions

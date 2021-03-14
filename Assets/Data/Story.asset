@@ -538,13 +538,13 @@ MonoBehaviour:
   - dialogueChoices: []
     text: Good point... So what is the job again?
     id: 46
-    targetBeatID: 30
+    targetBeatID: 40
     targetScene: 6
     hasScene: 0
     endBeat: 0
     typeTime: 40
     isClientBeat: 0
-    isBeatChain: 0
+    isBeatChain: 1
   - dialogueChoices: []
     text: "You're right, so poor right now I can't even afford to lose you. \r\nWhat's
       the job then?"
@@ -1545,7 +1545,7 @@ MonoBehaviour:
       targetBeatID: 131
       resultName: 
     - text: The whole rink was a nest...
-      targetBeatID: 132
+      targetBeatID: 130
       resultName: 
     text: What happened?
     id: 129
@@ -1557,14 +1557,14 @@ MonoBehaviour:
     isClientBeat: 1
     isBeatChain: 0
   - dialogueChoices: []
-    text: New Story Beat
+    text: The whole rink was a nest...
     id: 130
-    targetBeatID: 128
+    targetBeatID: 135
     targetScene: 9
     hasScene: 0
     endBeat: 0
-    typeTime: 0.75
-    isClientBeat: 1
+    typeTime: 0
+    isClientBeat: 0
     isBeatChain: 1
   - dialogueChoices: []
     text: The rink was filled with crawlers, some not event native to this continent
@@ -1596,7 +1596,13 @@ MonoBehaviour:
     typeTime: 0.75
     isClientBeat: 1
     isBeatChain: 1
-  - dialogueChoices: []
+  - dialogueChoices:
+    - text: No he said he spoke to you
+      targetBeatID: 138
+      resultName: 
+    - text: He said you'd have them
+      targetBeatID: 144
+      resultName: 
     text: Do you have the owners details?
     id: 134
     targetBeatID: 134
@@ -1604,5 +1610,115 @@ MonoBehaviour:
     hasScene: 0
     endBeat: 0
     typeTime: 1
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: Someone must had been insanely negligent for something like that to happen.
+    id: 135
+    targetBeatID: 136
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Or...
+    id: 136
+    targetBeatID: 137
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.25
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Someone planned it...
+    id: 137
+    targetBeatID: 134
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.8
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: No he said he spoke to you.
+    id: 138
+    targetBeatID: 139
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.8
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: He didn't...
+    id: 139
+    targetBeatID: 140
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.4
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Osakpolor
+    id: 140
+    targetBeatID: 141
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.25
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: I think you got set up.
+    id: 141
+    targetBeatID: 141
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 1
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: And who ever did it.
+    id: 142
+    targetBeatID: 143
+    targetScene: 9
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.5
+    isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Might want you dead..
+    id: 143
+    targetBeatID: 143
+    targetScene: 3
+    hasScene: 1
+    endBeat: 1
+    typeTime: 1
+    isClientBeat: 1
+    isBeatChain: 0
+  - dialogueChoices: []
+    text: He said you'd have them
+    id: 144
+    targetBeatID: 145
+    targetScene: 3
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: I don't..
+    id: 145
+    targetBeatID: 140
+    targetScene: 3
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0.5
     isClientBeat: 1
     isBeatChain: 1

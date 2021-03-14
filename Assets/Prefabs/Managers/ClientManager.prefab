@@ -48,11 +48,23 @@ MonoBehaviour:
     UID: RB
     hasMessage: 1
     clientSprite: {fileID: 21300000, guid: 3ce0e464990dce04cbd6d4e83f542ee6, type: 3}
-    levelTriggers: 04000000
+    levelTriggers: 05000000
     beats: 21000000
   - clientName: Robin the Red Head
     UID: RRH
     hasMessage: 0
     clientSprite: {fileID: 21300000, guid: cbc1a3112212fcb4c80df27afa0a7904, type: 3}
-    levelTriggers: 
-    beats: 
+    levelTriggers: 07000000
+    beats: 4d000000
+  - clientName: Franklyn the Foreman
+    UID: FF
+    hasMessage: 0
+    clientSprite: {fileID: 21300000, guid: cbc1a3112212fcb4c80df27afa0a7904, type: 3}
+    levelTriggers: 06000000
+    beats: 39000000
+  - clientName: No Caller ID
+    UID: NCI
+    hasMessage: 0
+    clientSprite: {fileID: 21300000, guid: cbc1a3112212fcb4c80df27afa0a7904, type: 3}
+    levelTriggers: 08000000
+    beats: 66000000
