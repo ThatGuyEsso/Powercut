@@ -11,7 +11,16 @@ public class InGamePrompt : MonoBehaviour, IInitialisable
     public Vector3 offset;
     private void Init()
     {
-        instance = this;
+        if (instance == false)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         promptText = gameObject.GetComponent<TextMeshPro>();
         playerTrans = FindObjectOfType<PlayerBehaviour>().transform;
         HidePrompt();

@@ -45,10 +45,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxAmmo: 20
   maxClip: 10
+  gunPortrait: {fileID: 0}
+  shootSFX: 
+  reloadSFX: 
+  muzzleFlashSFX: {fileID: 0}
+  flashDuration: 0.2
   reloadTime: 1.5
   maxTimeBetweenShots: 0.4
   bulletPrefab: {fileID: 5927806012387839767, guid: 935114ad378a131468db129ec7cee3b7, type: 3}
-  shotForce: 100
+  shotForce: 70
   knockBack: 40
   minDamage: 45
   maxDamage: 55

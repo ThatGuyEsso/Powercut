@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6927186522031857627}
   - component: {fileID: 7723317332832559124}
   - component: {fileID: 1817511210637275141}
+  - component: {fileID: 3481966272762438779}
   m_Layer: 11
   m_Name: CouchChair
   m_TagString: PhysicsObject
@@ -75,6 +76,28 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &3481966272762438779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7086891915147569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e41dd31ea0248f4db01ea24cf615044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brokenParts:
+  - {fileID: 1806427279521341351, guid: f3e5e78f6baac81429c1879ef29caf3a, type: 3}
+  - {fileID: 1806427279521341351, guid: c1b63a8acbc24ee4782aa0393650d0a3, type: 3}
+  - {fileID: 1806427279521341351, guid: 97791c2ba1497ca418d4540173f9e065, type: 3}
+  spread: 360
+  spreadAngle: 0
+  maxhHalth: 20
+  gfxs: []
+  colliders: []
+  pieces: []
 --- !u!1 &5598433143612769506
 GameObject:
   m_ObjectHideFlags: 0

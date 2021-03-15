@@ -12,6 +12,7 @@ public class FlashZone : FieldOfView,IHurtable
         meshRenderer = gameObject.GetComponent<MeshRenderer>();
         GetComponent<MeshFilter>().mesh = mesh;
         polyCollider = GetComponent<PolygonCollider2D>();
+        polyCollider.enabled = false;
         SetUpLight();
         lightIsOn = false;
     }
@@ -115,7 +116,7 @@ public class FlashZone : FieldOfView,IHurtable
     {
         ToggleLight(false);
         polyCollider.enabled = false;
-        Debug.LogError("WAit");
+
         lightIsOn = false;
     }
 

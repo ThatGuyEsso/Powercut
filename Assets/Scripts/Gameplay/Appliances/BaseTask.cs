@@ -14,10 +14,13 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
     public string taskName;//Task Settings
     public string taskDescription;
 
+
+
     [SerializeField] private SpriteRenderer icon;
     [SerializeField] private Sprite BrokenSprite;
     [SerializeField] private Sprite FixedSprite;
     [SerializeField] protected string playerPrompt;
+    [SerializeField] protected Color inRangePromptColour = Color.white;
     [SerializeField] protected string powerStillOnPrompt;
     [SerializeField] protected string fixingPrompt;
     public Sprite[] stateSprites;//0 should be fixed max should be max broken
@@ -27,7 +30,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
     protected Controls input;
 
     //Component
-    protected SpriteRenderer gfx;
+    [SerializeField] protected SpriteRenderer gfx;
 
     //object states
     protected bool inRange;
@@ -40,17 +43,19 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
     [SerializeField] protected Color fixingColor;
     [SerializeField] protected ChargingCable fixingCable;
     protected Transform playerTransform;
+    protected bool isInitialised;
     public void Init()
     {
         //Inputs
         input = new Controls();
         input.Interactions.SetCallbacks(this);
         input.Enable();
+        isInitialised = true;
         //Set initial variables
         currHealth = 0f;
         isFixed = false;
         inRange = false;
-        gfx = gameObject.GetComponentInChildren<SpriteRenderer>();
+      
         UpdateDamageDisplay();
         icon.transform.rotation = Quaternion.Euler(Vector2.up);
     }
@@ -91,6 +96,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
         {
          
                 inRange = true;
+                InGamePrompt.instance.SetColor(inRangePromptColour);
                 InGamePrompt.instance.ChangePrompt(playerPrompt);
                 InGamePrompt.instance.ShowPrompt();
                 player = other.gameObject;
@@ -128,9 +134,9 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
     {
         if (context.performed && inRange)
         {
-            //Get current state
             switch (GameStateManager.instance.GetCurrentGameState())
             {
+
                 //If Main power is of player can begin to fix 
                 case GameStates.MainPowerOff:
                     //Begin fixing
@@ -140,25 +146,28 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
                         {
                             if (player.GetComponent<IFixable>().CanFix())
                             {
-                                isFixing = true;
 
+                                isFixing = true;
                                 Debug.Log("Should begin fixing");
                                 InGamePrompt.instance.SetColor(Color.green);
                                 InGamePrompt.instance.ShowPromptTimer(fixingPrompt, 5.0f);
+
+                                if (playerTransform != false) fixingCable.StartDrawingRope(playerTransform);
                             }
                         }
-                  
                     }
+
                     break;
 
                 default:
                     InGamePrompt.instance.SetColor(Color.red);
-                    InGamePrompt.instance.ShowPromptTimer(powerStillOnPrompt,5.0f);
-                   
+                    InGamePrompt.instance.ShowPromptTimer(powerStillOnPrompt, 5.0f);
+
                     break;
             }
         }
     }
+
     //---------------------------------------------------------
     //Interfaces
     //---------------------------------------------------------
@@ -265,7 +274,8 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
     }
     void OnDestroy()
     {
-        input.Disable();
+        if(isInitialised)
+            input.Disable();
     }
 
     public bool CanFix()

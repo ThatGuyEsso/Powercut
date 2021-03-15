@@ -388,7 +388,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cad9df637d1d944fbaa4fd48a280277, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: -2}
+  offset: {x: 0, y: -15}
   taskTemplatePrefab: {fileID: 738896866122340008, guid: ae0ea3b7ab3848b4393a35749fd71817, type: 3}
   nTypesOfTasks: 0
   taskArea: {fileID: 2038546239501120762}

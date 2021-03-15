@@ -71,7 +71,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
 
 
 
-        InvokeRepeating("ProcessAi", 0.0f, settings.aiTickrate);
+        InvokeRepeating("ProcessAI", 0.0f, settings.aiTickrate);
 
     }
 

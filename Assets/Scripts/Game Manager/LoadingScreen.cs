@@ -74,7 +74,7 @@ public class LoadingScreen : MonoBehaviour
 
     private IEnumerator FadeOut()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.5f);
         float oppacity = 1;
         cam.SetActive(true);
         loadingScreen.SetActive(true);

@@ -2266,6 +2266,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 843761264}
     m_Modifications:
+    - target: {fileID: 7537634374695135511, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7537634375423800455, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.751679
@@ -2313,6 +2317,10 @@ PrefabInstance:
     - target: {fileID: 7537634375423800474, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
       propertyPath: m_Name
       value: Cabinet (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7537634375423800474, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
@@ -2364,6 +2372,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 843761264}
     m_Modifications:
+    - target: {fileID: 7537634374695135511, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7537634375423800455, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.751679
@@ -2411,6 +2423,10 @@ PrefabInstance:
     - target: {fileID: 7537634375423800474, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
       propertyPath: m_Name
       value: Cabinet (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7537634375423800474, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
@@ -22853,6 +22869,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 843761264}
     m_Modifications:
+    - target: {fileID: 7537634374695135511, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7537634375423800455, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.50167894
@@ -22900,6 +22920,10 @@ PrefabInstance:
     - target: {fileID: 7537634375423800474, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
       propertyPath: m_Name
       value: Cabinet (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7537634375423800474, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
@@ -23683,6 +23707,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 843761264}
     m_Modifications:
+    - target: {fileID: 7537634374695135511, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7537634375423800455, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.50167894
@@ -23730,6 +23758,10 @@ PrefabInstance:
     - target: {fileID: 7537634375423800474, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
       propertyPath: m_Name
       value: Cabinet (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7537634375423800474, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
@@ -23967,6 +23999,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 843761264}
     m_Modifications:
+    - target: {fileID: 7537634374695135511, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7537634375423800455, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.751679
@@ -24014,6 +24050,10 @@ PrefabInstance:
     - target: {fileID: 7537634375423800474, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
       propertyPath: m_Name
       value: Cabinet (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7537634375423800474, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
@@ -25329,6 +25369,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 843761264}
     m_Modifications:
+    - target: {fileID: 7537634374695135511, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 7537634375423800455, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.50167847
@@ -25376,6 +25420,10 @@ PrefabInstance:
     - target: {fileID: 7537634375423800474, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
       propertyPath: m_Name
       value: Cabinet
+      objectReference: {fileID: 0}
+    - target: {fileID: 7537634375423800474, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3cac8cdbda8e9e042b137d0a80ae0dd8, type: 3}

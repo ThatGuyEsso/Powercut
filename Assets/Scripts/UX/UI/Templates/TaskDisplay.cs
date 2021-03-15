@@ -50,7 +50,7 @@ public class TaskDisplay : MonoBehaviour
         {
             float newHeight = newTaskTransfrom.rect.height;
             float prevHeight = prevousTaskTransform.rect.height;
-            newTaskTransfrom.position = new Vector2(prevousTaskTransform.position.x, taskStartPositon.position.y - newHeight / 2- prevHeight/2) + offset;
+            newTaskTransfrom.position = new Vector2(prevousTaskTransform.position.x, prevousTaskTransform.position.y - (newHeight/2) - (prevHeight)) + offset;
             prevousTaskTransform = newTaskTransfrom;
 
         }

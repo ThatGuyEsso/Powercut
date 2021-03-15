@@ -21,9 +21,12 @@ public class DebugController : MonoBehaviour {
         inputAction.Console.Return.performed += OnReturn;
         CLEAR_LEVEL = new DebugCommand("/Clear_Level", "Clears currently active level","/Clear_Level", () =>
          GameStateManager.instance.ClearLevel());
+
+        Kill_PlAYER = new DebugCommand("/Kill_Player", "Kills player if they exist","/Kill_Player",() => KillPlayer());
         commandList = new List<object>
         {
-            CLEAR_LEVEL
+            CLEAR_LEVEL,
+            Kill_PlAYER
         };
     }
 
@@ -82,7 +85,14 @@ public class DebugController : MonoBehaviour {
         }
     }
 
-
+    public void KillPlayer()
+    {
+        PlayerBehaviour player;
+        if((player=FindObjectOfType<PlayerBehaviour>())!= false)
+        {
+            player.PlayerDie();
+        }
+    }
     private void OnDestroy()
     {
         inputAction.Console.ToggleConsole.performed -= ToggleConsole;

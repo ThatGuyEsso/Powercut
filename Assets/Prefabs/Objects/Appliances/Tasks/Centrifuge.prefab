@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 5635669836704020089}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5354, y: 1.5354, z: 1.5354}
   m_Children: []
   m_Father: {fileID: 5635669837455637104}
   m_RootOrder: 0
@@ -92,6 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5635669837455637104}
   - component: {fileID: 5635669837455637107}
+  - component: {fileID: 196196247801926675}
   m_Layer: 0
   m_Name: Centrifuge
   m_TagString: Untagged
@@ -137,6 +138,7 @@ MonoBehaviour:
   BrokenSprite: {fileID: 21300000, guid: fc88cae930e3cb84780c38d57b03c1f4, type: 3}
   FixedSprite: {fileID: 21300000, guid: 0520d7eab3f2eb64c91f4d881bf20a26, type: 3}
   playerPrompt: '[E] To fix Centrifuge'
+  inRangePromptColour: {r: 0, g: 0, b: 0, a: 1}
   powerStillOnPrompt: Can't fix appliances while the main power is sitll on
   fixingPrompt: FIXING!
   stateSprites:
@@ -145,9 +147,36 @@ MonoBehaviour:
   - {fileID: 5197677635513086774, guid: 8e80cc1fee38fd9419fe8401a9b19ac0, type: 3}
   - {fileID: -3669559761183478251, guid: 8e80cc1fee38fd9419fe8401a9b19ac0, type: 3}
   fixVFX: {fileID: 0}
+  gfx: {fileID: 5635669838844343661}
   fixedColor: {r: 0.101960786, g: 1, b: 0, a: 1}
   fixingColor: {r: 1, g: 0.827451, b: 0, a: 1}
   fixingCable: {fileID: 5635669837904257252}
+--- !u!61 &196196247801926675
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5635669837455637106}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3}
+  m_EdgeRadius: 0
 --- !u!1 &5635669837904257255
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17e2e8137ea093442b79ca274fe0f2c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  origin: {fileID: 0}
+  origin: {fileID: 5635669837455637104}
   isDrawing: 0
   lineVelocity: 20
   lineQuality: 20
@@ -342,7 +371,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5635669838844343660}
   - component: {fileID: 5635669838844343661}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: CentrifugeGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -402,7 +431,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -91943695
   m_SortingLayer: 5
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_Sprite: {fileID: -7848427641544575926, guid: 8e80cc1fee38fd9419fe8401a9b19ac0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

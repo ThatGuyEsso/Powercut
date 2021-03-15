@@ -6,7 +6,7 @@ public class MainMenu : MonoBehaviour
 {
     public void Play()
     {
-        TransitionManager.instance.StartLevel(SceneIndex.Tutorial);
+        TransitionManager.instance.StartLevel(SceneIndex.TheLab);
         AudioManager.instance.PlayAtRandomPitch("ClickSFX");
     }
 

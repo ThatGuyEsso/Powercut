@@ -19,7 +19,7 @@ public class BrokenParts : MonoBehaviour,IBreakVFX
 
         rb.velocity = Vector2.Lerp(rb.velocity, Vector2.zero, Time.deltaTime * stopRate);
 
-        if (rb.velocity.magnitude <= 0.01f)
+        if (rb.velocity.magnitude <= 1f)
         {
             rb.velocity = Vector2.zero;
             enabled = false;

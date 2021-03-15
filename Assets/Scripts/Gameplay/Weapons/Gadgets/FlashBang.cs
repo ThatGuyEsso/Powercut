@@ -31,12 +31,16 @@ public class FlashBang : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (((1 << other.gameObject.layer) & reflectionLayers) != 0)
+        if (other.gameObject.CompareTag("Enemy")){
+            rb.velocity = Vector2.zero;
+        }
+        else if (((1 << other.gameObject.layer) & reflectionLayers) != 0)
         {
            ContactPoint2D contactPoint = other.GetContact(0);
             Vector2 dir = Vector2.Reflect(rb.velocity.normalized, contactPoint.normal);
             PerformBounce(dir);
         }
+     
     }
 
     private void PerformBounce(Vector2 dir)

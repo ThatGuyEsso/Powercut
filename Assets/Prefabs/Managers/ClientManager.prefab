@@ -58,7 +58,7 @@ MonoBehaviour:
     beats: 4d000000
   - clientName: Franklyn the Foreman
     UID: FF
-    hasMessage: 0
+    hasMessage: 1
     clientSprite: {fileID: 21300000, guid: cbc1a3112212fcb4c80df27afa0a7904, type: 3}
     levelTriggers: 06000000
     beats: 39000000

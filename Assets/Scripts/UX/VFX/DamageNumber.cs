@@ -99,7 +99,14 @@ public class DamageNumber : MonoBehaviour
         }
     }
 
-
+    public void OnEnable()
+    {
+        timeBeforeShrink = Random.Range(minTimeBeforeShrink, maxTimeBeforeShrink);
+        finalSize = false;
+        shouldShrink = false;
+        traveldDistance = Random.Range(minTravelDistance, maxTravelDistance);
+        speed = Random.Range(minSpeed, maxSpeed);
+    }
 
     private void DisplayDamage(float damageAmount)
     {

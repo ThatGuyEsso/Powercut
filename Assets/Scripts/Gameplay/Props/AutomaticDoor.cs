@@ -93,8 +93,8 @@ public class AutomaticDoor : MonoBehaviour
 
                 rightDoorTransform.position += (Vector3)(moveAxis * transitionTime * Time.deltaTime);
 
-                if (Vector2.Distance(rightDoorTransform.position,rightOpenPosition) <= 0.01f
-                    || (Vector2.Distance(leftDoorTransform.position, leftOpenPosition) <= 0.01f)){
+                if (Vector2.Distance(rightDoorTransform.position,rightOpenPosition) <= 0.005f
+                    || (Vector2.Distance(leftDoorTransform.position, leftOpenPosition) <= 0.005f)){
                     state = DoorState.Open;
                 }
 
@@ -104,8 +104,8 @@ public class AutomaticDoor : MonoBehaviour
 
                 rightDoorTransform.position += (Vector3)(-moveAxis * transitionTime * Time.deltaTime);
 
-                if (Vector2.Distance(rightDoorTransform.position, rightClosedPosition) <= 0.01f
-                    || (Vector2.Distance(leftDoorTransform.position, leftClosedPosition) <= 0.01f))
+                if (Vector2.Distance(rightDoorTransform.position, rightClosedPosition) <= 0.005f
+                    || (Vector2.Distance(leftDoorTransform.position, leftClosedPosition) <= 0.005f))
                 {
                     state = DoorState.Closed;
                 }

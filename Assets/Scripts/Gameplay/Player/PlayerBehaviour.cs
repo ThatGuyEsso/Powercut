@@ -375,7 +375,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         animControl.StopWalkAnim();
     }
 
-    private void PlayerDie()
+    public void PlayerDie()
     {
         input.Disable();
         SetMovementState(MovementStates.Idle);

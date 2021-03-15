@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2495972566266676414}
   - component: {fileID: 4925735417108048515}
   - component: {fileID: 6085631721542834096}
+  - component: {fileID: 1514910768081776506}
   m_Layer: 11
   m_Name: Crate
   m_TagString: PhysicsObject
@@ -101,7 +102,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -131,3 +132,19 @@ MonoBehaviour:
   spread: 80
   spreadAngle: 180
   health: 25
+--- !u!208 &1514910768081776506
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322805888035725206}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.1}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
