@@ -233,7 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1147476285664716123}
   - component: {fileID: 1147476285664716120}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: ClosedGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1147476286743089748}
   - component: {fileID: 1147476286743089749}
-  m_Layer: 5
+  m_Layer: 13
   m_Name: OpenGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

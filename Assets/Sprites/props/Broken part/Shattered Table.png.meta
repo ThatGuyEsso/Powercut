@@ -1,16 +1,19 @@
 fileFormatVersion: 2
-guid: d6ae08ed6a23b9849bf276037e687442
+guid: 9d4060776fd317e4b8cc8165469f2ccf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2234179612133391537
-    second: BrokenKeyboard_0
+      213: -2192729182581326452
+    second: Shattered Table_0
   - first:
-      213: 6653014338121276998
-    second: BrokenKeyboard_1
+      213: -310023083856062052
+    second: Shattered Table_1
   - first:
-      213: 3283202640203981287
-    second: BrokenKeyboard_2
+      213: 6714463475096236060
+    second: Shattered Table_2
+  - first:
+      213: 7206474217775526144
+    second: Shattered Table_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -98,7 +101,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BrokenKeyboard_0
+      name: Shattered Table_0
       rect:
         serializedVersion: 2
         x: 0
@@ -112,14 +115,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1bc71a12586610f10800000000000000
-      internalID: 2234179612133391537
+      spriteID: c8d7b9f0d6cd191e0800000000000000
+      internalID: -2192729182581326452
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BrokenKeyboard_1
+      name: Shattered Table_1
       rect:
         serializedVersion: 2
         x: 32
@@ -133,14 +136,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64e9c459a41445c50800000000000000
-      internalID: 6653014338121276998
+      spriteID: c999696d5a392bbf0800000000000000
+      internalID: -310023083856062052
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BrokenKeyboard_2
+      name: Shattered Table_2
       rect:
         serializedVersion: 2
         x: 64
@@ -154,8 +157,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e1abf6f767409d20800000000000000
-      internalID: 3283202640203981287
+      spriteID: c103272b4f09e2d50800000000000000
+      internalID: 6714463475096236060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shattered Table_3
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 00175899e1a820460800000000000000
+      internalID: 7206474217775526144
       vertices: []
       indices: 
       edges: []

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1806427279521341348}
   - component: {fileID: 1670541121217032294}
   - component: {fileID: 5973026425810103421}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LabTable 2
   m_TagString: PhysicsObject
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1806427279822350280}
   - component: {fileID: 1806427279822350281}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

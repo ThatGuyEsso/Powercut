@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1370769539131952595}
   - component: {fileID: 8447860601665685775}
   - component: {fileID: 7892408019324684695}
-  m_Layer: 10
+  m_Layer: 9
   m_Name: FlashZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,16 +1,16 @@
 fileFormatVersion: 2
-guid: d6ae08ed6a23b9849bf276037e687442
+guid: 18d172319c625a343abc554c75d79c86
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2234179612133391537
-    second: BrokenKeyboard_0
+      213: -1106202880094442937
+    second: ForkLift_0
   - first:
-      213: 6653014338121276998
-    second: BrokenKeyboard_1
+      213: -8431039658457657952
+    second: ForkLift_1
   - first:
-      213: 3283202640203981287
-    second: BrokenKeyboard_2
+      213: -4333118217957978999
+    second: ForkLift_2
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -98,13 +98,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BrokenKeyboard_0
+      name: ForkLift_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 96
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,20 +112,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1bc71a12586610f10800000000000000
-      internalID: 2234179612133391537
+      spriteID: 74ae47a675af5a0f0800000000000000
+      internalID: -1106202880094442937
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BrokenKeyboard_1
+      name: ForkLift_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 96
         y: 0
-        width: 32
-        height: 32
+        width: 96
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -133,20 +133,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 64e9c459a41445c50800000000000000
-      internalID: 6653014338121276998
+      spriteID: 0ad8666a91eeefa80800000000000000
+      internalID: -8431039658457657952
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BrokenKeyboard_2
+      name: ForkLift_2
       rect:
         serializedVersion: 2
-        x: 64
+        x: 192
         y: 0
-        width: 32
-        height: 32
+        width: 96
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,8 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7e1abf6f767409d20800000000000000
-      internalID: 3283202640203981287
+      spriteID: 98c47d840fbadd3c0800000000000000
+      internalID: -4333118217957978999
       vertices: []
       indices: 
       edges: []
