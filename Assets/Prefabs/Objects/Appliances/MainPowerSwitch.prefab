@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 405930405}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: RespawnSpawnPoint
   m_TagString: Untagged
   m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 729288133624023870}
   - component: {fileID: 5571205255804497495}
-  m_Layer: 18
+  m_Layer: 11
   m_Name: MainPowerIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8988654751105601890}
   - component: {fileID: 8988654751105601891}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: MainPowerSwitchGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 8988654751713701572}
   - component: {fileID: 8988654751713701575}
   - component: {fileID: 8988654751713701574}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: MainPowerSwitch
   m_TagString: Untagged
   m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
@@ -257,7 +257,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.020267963, y: 0.16822338}
+  m_Offset: {x: 0.03791237, y: 0.22904718}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -268,7 +268,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.77299976, y: 0.66355324}
+  m_Size: {x: 0.74126816, y: 0.54190564}
   m_EdgeRadius: 0
 --- !u!61 &8988654751713701575
 BoxCollider2D:
@@ -283,7 +283,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.20632839}
+  m_Offset: {x: 0.06323075, y: -0.41182673}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -294,7 +294,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5893164, y: 1.4473248}
+  m_Size: {x: 1.7157779, y: 1.8583214}
   m_EdgeRadius: 0
 --- !u!114 &8988654751713701574
 MonoBehaviour:

@@ -52,7 +52,7 @@ MonoBehaviour:
     beats: 21000000
   - clientName: Robin the Red Head
     UID: RRH
-    hasMessage: 0
+    hasMessage: 1
     clientSprite: {fileID: 21300000, guid: cbc1a3112212fcb4c80df27afa0a7904, type: 3}
     levelTriggers: 07000000
     beats: 4d000000

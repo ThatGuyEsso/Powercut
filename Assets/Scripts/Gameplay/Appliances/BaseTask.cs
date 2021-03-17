@@ -213,6 +213,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
         if (isFixed )
         {
             gfx.sprite = stateSprites[0];
+      
         }
         else
         {
@@ -244,6 +245,10 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
         {
             isFixed = true;
             icon.sprite = FixedSprite;
+                  if (fixingCable.isDrawing)
+            {
+                fixingCable.ChangeColour(fixedColor);
+            }
             if (isRecorded == false)
             {
 

@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   fixTickRate: 0.5
-  fixAmountPerTick: 25
+  fixAmountPerTick: 10
   taskName: Fix Centrifuge(s)
   taskDescription: Centrifuge
   icon: {fileID: 5635669836704020095}

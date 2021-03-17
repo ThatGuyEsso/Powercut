@@ -6,10 +6,12 @@ using UnityEngine;
 public class BrokenParts : MonoBehaviour,IBreakVFX
 {
     Rigidbody2D rb;
+    Collider2D collider;
     [SerializeField] private float stopRate;
     private void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        collider = gameObject.GetComponent<Collider2D>();
     }
 
 

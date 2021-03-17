@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4042175881204466370}
   - component: {fileID: 209334133964293315}
+  - component: {fileID: 2059494226810978318}
   m_Layer: 15
   m_Name: Ware House Shelf
   m_TagString: Untagged
@@ -58,6 +59,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 8}
   m_EdgeRadius: 0
+--- !u!208 &2059494226810978318
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2995070157340292411}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.005, y: 4, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &6568224453653152483
 GameObject:
   m_ObjectHideFlags: 0

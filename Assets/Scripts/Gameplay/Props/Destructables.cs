@@ -171,4 +171,12 @@ public class Destructables : MonoBehaviour, IBreakVFX, IHurtable
         health = maxhHalth;
         isBroken = false;
     }
+
+    private void OnDestroy()
+    {
+        if (isBroken)
+        {
+            RecyclePieces();
+        }
+    }
 }

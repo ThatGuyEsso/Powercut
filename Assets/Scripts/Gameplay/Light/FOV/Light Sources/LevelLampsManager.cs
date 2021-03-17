@@ -153,6 +153,14 @@ public class LevelLampsManager : MonoBehaviour, IInitialisable
         return nearestFuseTransform;
     }
 
+
+    public Transform GetRandomLamp()
+    {
+        int randInt = Random.Range(0, levelLamps.Count - 1);
+        if (levelLamps[randInt].isLampWorking) return levelLamps[randInt].transform;
+        else return null;
+    }
+
     //Gets a random working lamp and breaks it
     private void BreakRandomLamp()
     {
