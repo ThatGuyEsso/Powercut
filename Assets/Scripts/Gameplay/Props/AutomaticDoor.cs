@@ -99,6 +99,8 @@ public class AutomaticDoor : MonoBehaviour
                 }
 
                 break;
+
+         
             case DoorState.Closing:
                 leftDoorTransform.position += (Vector3)(moveAxis * transitionTime * Time.deltaTime);
 

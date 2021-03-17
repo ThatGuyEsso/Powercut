@@ -54,7 +54,7 @@ public class ShadowCrawler : BaseEnemy
 
                 animController.PlayAnim("Walk");
                 EvaluateOutOfRange();
-                FaceTarget();
+              
                 break;
 
             case EnemyStates.Destroy:
@@ -62,7 +62,7 @@ public class ShadowCrawler : BaseEnemy
                 animController.PlayAnim("Break");
                 BreakAppliance();
                 EvaluateOutOfRange();
-                FaceTarget();
+         
                 break;
 
             case EnemyStates.Chase:
@@ -123,7 +123,7 @@ public class ShadowCrawler : BaseEnemy
 
                 if (!isHurt)
                 {
-                    //FaceTarget();
+                    FaceTarget();
                     //Attack player
                     ChargePlayer();
 
@@ -132,11 +132,12 @@ public class ShadowCrawler : BaseEnemy
                 break;
             case EnemyStates.Destroy:
 
-             
+                FaceTarget();
                 SmoothDecelerate(0f, settings.timeMaxToZero);
                 break;
 
             case EnemyStates.Chase:
+
                 FaceMovementDirection();
                 break;
 

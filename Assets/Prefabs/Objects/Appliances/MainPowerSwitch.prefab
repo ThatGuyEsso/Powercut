@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 729288133624023870}
   - component: {fileID: 5571205255804497495}
-  m_Layer: 11
+  m_Layer: 18
   m_Name: MainPowerIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

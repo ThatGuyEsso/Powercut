@@ -1091,13 +1091,13 @@ MonoBehaviour:
     isBeatChain: 1
   - dialogueChoices:
     - text: So... about this partnership?
-      targetBeatID: 97
+      targetBeatID: 146
       resultName: 
     - text: Does that mean you have a job for me?
-      targetBeatID: 97
+      targetBeatID: 147
       resultName: 
     - text: Is that all?
-      targetBeatID: 97
+      targetBeatID: 148
       resultName: 
     text: Ahh!!! That makes sense.
     id: 93
@@ -1110,13 +1110,13 @@ MonoBehaviour:
     isBeatChain: 0
   - dialogueChoices:
     - text: So.. About this partnership?
-      targetBeatID: 97
+      targetBeatID: 146
       resultName: 
     - text: Does that mean you have a job for me?
-      targetBeatID: 97
+      targetBeatID: 147
       resultName: 
     - text: Is that all?
-      targetBeatID: 97
+      targetBeatID: 146
       resultName: 
     text: 'Really? she is definitely a very proactive.
 
@@ -1141,13 +1141,13 @@ MonoBehaviour:
     isBeatChain: 1
   - dialogueChoices:
     - text: So... about this partnership?
-      targetBeatID: 97
+      targetBeatID: 146
       resultName: 
     - text: Does that mean you have a job for me?
-      targetBeatID: 97
+      targetBeatID: 147
       resultName: 
     - text: Is that all?
-      targetBeatID: 97
+      targetBeatID: 148
       resultName: 
     text: 'I can see that. She has that scary boss vibe.
 
@@ -1721,4 +1721,34 @@ MonoBehaviour:
     endBeat: 0
     typeTime: 0.5
     isClientBeat: 1
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: So.. About the partnership
+    id: 146
+    targetBeatID: 97
+    targetScene: 3
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Does that mean you have a job for me?
+    id: 147
+    targetBeatID: 97
+    targetScene: 3
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
+    isBeatChain: 1
+  - dialogueChoices: []
+    text: Is that all?
+    id: 148
+    targetBeatID: 97
+    targetScene: 3
+    hasScene: 0
+    endBeat: 0
+    typeTime: 0
+    isClientBeat: 0
     isBeatChain: 1

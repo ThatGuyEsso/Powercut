@@ -69,9 +69,9 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         currTimeBeforeInvulnerable = settings.timeBeforeInvulnerable;
         BindToInitManager();
 
+        float invokeStartTime = Random.Range(0.0f, 0.5f);
 
-
-        InvokeRepeating("ProcessAI", 0.0f, settings.aiTickrate);
+        InvokeRepeating("ProcessAI", invokeStartTime, settings.aiTickrate);
 
     }
 
