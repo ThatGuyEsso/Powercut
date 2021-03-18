@@ -7,6 +7,7 @@ public class TabletMenuManager : MonoBehaviour
     [SerializeField] private GameObject smsMenu;
     [SerializeField] private SmsButton smsButton;
     [SerializeField] private GameObject contactsMenu;
+
     public static TabletMenuManager instance;
 
     GraphicRaycaster raycaster;
@@ -35,6 +36,18 @@ public class TabletMenuManager : MonoBehaviour
 
     }
 
+
+    public void OpenSettings()
+    {
+        raycaster.enabled = false;
+        SettingsMenu.instance.ToggleSettings(true, true);
+        SettingsMenu.instance.gameObject.GetComponent<PhoneAnimEventListener>().phoneHidden += HideSettings;
+    }
+    public void HideSettings()
+    {
+        raycaster.enabled = true;
+        SettingsMenu.instance.gameObject.GetComponent<PhoneAnimEventListener>().phoneHidden -= HideSettings;
+    }
 
     public void ReturnToContacts()
     {

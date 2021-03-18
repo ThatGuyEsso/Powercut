@@ -15,7 +15,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private SMSBubble bubblePrefab;
     [SerializeField] private SMSDialogue dialogueMenu;
     [SerializeField] private Animator phoneAnim;
-
+    [SerializeField] private PhoneAnimEventListener animEvents;
     //beat to send to
     public static int nextBeat;
     //beat to send to
@@ -35,10 +35,20 @@ public class DialogueManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+
         dialogueMenu.OnBeatDisplayed += EvaluateBeat;
         dialogueMenu.Init(Speaker.Client);
-        if(dialogueMenu.gameObject.activeSelf)
+
+        if (phoneAnim != false)
+        {
+            animEvents.phoneHidden += DisplayBeat;
+            animEvents.phoneShown += PhoneScreenHidden;
+        }
+   
+
+        if (dialogueMenu.gameObject.activeSelf)
             dialogueMenu.gameObject.SetActive(false);
+
     }
 
 
@@ -138,6 +148,8 @@ public class DialogueManager : MonoBehaviour
     public void OnDestroy()
     {
         dialogueMenu.OnBeatDisplayed -= EvaluateBeat;
+        animEvents.phoneHidden -= DisplayBeat;
+        animEvents.phoneShown -= PhoneScreenHidden;
     }
 
     public void ToggleDialogueScreen(bool isShown, bool isAnimated)

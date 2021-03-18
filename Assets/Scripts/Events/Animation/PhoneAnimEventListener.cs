@@ -6,6 +6,9 @@ public class PhoneAnimEventListener : MonoBehaviour
 {
     private Animator anim;
 
+    public delegate void PhoneAnimDelegate();
+    public event PhoneAnimDelegate phoneShown;
+    public event PhoneAnimDelegate phoneHidden;
     private void Awake()
     {
         anim = gameObject.GetComponent<Animator>();
@@ -13,14 +16,15 @@ public class PhoneAnimEventListener : MonoBehaviour
 
     public void OnPopUpAnimationEnd()
     {
-        DialogueManager.instance.DisplayBeat();
-       
+     
+ 
+        phoneShown?.Invoke();
     }
 
     public void OnPopDownAnimationEnd()
     {
-        DialogueManager.instance.PhoneScreenHidden();
 
+        phoneHidden?.Invoke();
     }
 
     public void OnPlayButtonAnimEnd()

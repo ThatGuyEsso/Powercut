@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour
     public void Settings()
     {
         AudioManager.instance.PlayAtRandomPitch("ClickSFX");
+        SettingsMenu.instance.ToggleSettings(true, true);
     }
     public void Credits()
     {
