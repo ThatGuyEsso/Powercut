@@ -8,6 +8,7 @@ public class ClientManager : MonoBehaviour,IInitialisable
     public List<Client> clients = new List<Client>();
     private SceneIndex previousLevelScene;
     public static ClientManager instance;
+    private Client activeClient;
     public void BindToInitManager()
     {
         InitStateManager.instance.OnStateChange += EvaluateNewState;
@@ -43,7 +44,8 @@ public class ClientManager : MonoBehaviour,IInitialisable
     {
         foreach(Client client in clients)
         {
-            for(int i =0; i< client.LevelTriggers.Count; i++)
+            client.ClearMessage();
+            for (int i =0; i< client.LevelTriggers.Count; i++)
             {
                 if(i < client.Beats.Count)
                 {
@@ -76,4 +78,11 @@ public class ClientManager : MonoBehaviour,IInitialisable
     {
         return clients.Find(client => client.ClientID == UID);
     }
+
+    public void SetActiveClient(Client client)
+    {
+        activeClient = client;
+    }
+    public Client GetActiveClient() { return activeClient; }
+ 
 }

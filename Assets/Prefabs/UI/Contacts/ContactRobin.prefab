@@ -151,7 +151,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3806034543623944948
 RectTransform:
   m_ObjectHideFlags: 0
@@ -344,10 +344,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c3e571da30b2394ca8dca81396d4420, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  contactImage: {fileID: 4244204313365855010}
+  contactImage: {fileID: 8938473942115447185}
   contactName: {fileID: 2463019292071634155}
   alertIcon: {fileID: 313544521190143388}
+  background: {fileID: 5544638838912672582}
   UIDclient: RRH
+  isVisible: 1
 --- !u!1 &4243041326762740648
 GameObject:
   m_ObjectHideFlags: 0

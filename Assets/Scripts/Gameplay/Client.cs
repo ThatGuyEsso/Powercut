@@ -43,6 +43,9 @@ public class Client
             return false;
         }
     }
-
+    public void ClearMessage()
+    {
+        hasMessage = false;
+    }
     
 }

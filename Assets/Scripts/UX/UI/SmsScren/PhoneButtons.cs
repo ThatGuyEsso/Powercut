@@ -42,6 +42,7 @@ public class PhoneButtons : MonoBehaviour
                 {
                     case GameModes.Menu:
                         TransitionManager.instance.LoadLevel(targetScene);
+                        ClientManager.instance.GetActiveClient().ClearMessage();
                         break;
                     case GameModes.Dialogue:
                         DialogueManager.instance.ToggleDialogueScreen(false, true);

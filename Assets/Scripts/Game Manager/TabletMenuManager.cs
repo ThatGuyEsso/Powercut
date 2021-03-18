@@ -35,6 +35,16 @@ public class TabletMenuManager : MonoBehaviour
 
     }
 
+
+    public void ReturnToContacts()
+    {
+        raycaster.enabled = false;
+        contactsMenu.SetActive(true);
+        smsMenu.SetActive(false);
+
+    }
+
+
     public void ToggleSmsAlert()
     {
         smsButton.ToggleAlert();

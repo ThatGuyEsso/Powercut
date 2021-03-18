@@ -137,14 +137,17 @@ public class Destructables : MonoBehaviour, IBreakVFX, IHurtable
         {
             foreach (Collider2D collider in colliders)
             {
-                collider.enabled = true;
+             
+                if(collider == true)
+                    collider.enabled = true;
             }
 
             if (gfxs.Count > 0)
             {
                 foreach (SpriteRenderer sprite in gfxs)
                 {
-                    sprite.enabled = true;
+                    if (sprite == true)
+                        sprite.enabled = true;
                 }
 
 
