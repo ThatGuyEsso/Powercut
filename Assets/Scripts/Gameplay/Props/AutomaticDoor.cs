@@ -7,6 +7,8 @@ public class AutomaticDoor : MonoBehaviour
     [SerializeField] protected bool isLocked;
     [SerializeField] protected float transitionTime;
 
+    [SerializeField] protected Animator animator;
+
     [SerializeField] protected Transform leftDoorTransform;
     [SerializeField] protected Transform rightDoorTransform;
     [SerializeField] protected Vector2 moveAxis;
@@ -40,8 +42,9 @@ public class AutomaticDoor : MonoBehaviour
             rightOpenPosition = (Vector2)rightDoorTransform.position + moveAxis;
 
         }
+        animator = GetComponent<Animator>();
         state = DoorState.Closed;
-
+        animator.enabled = false;
     }
 
     protected void Start()
@@ -64,7 +67,13 @@ public class AutomaticDoor : MonoBehaviour
             nEntities++;
             if (!isLocked&&state != DoorState.Open && nEntities > 0)
             {
-                state = DoorState.Opening;
+                if (state!= DoorState.Opening)
+                {
+                    animator.enabled = true;
+                    animator.Play("Open");
+                    state = DoorState.Opening;
+                }
+               
             }
         }
     }
@@ -77,43 +86,26 @@ public class AutomaticDoor : MonoBehaviour
             nEntities--;
             if (state != DoorState.Closed && nEntities <= 0)
             {
-                state = DoorState.Closing;
+                if (state != DoorState.Closing)
+                {
+                    animator.enabled = true;
+                    animator.Play("Close");
+                    state = DoorState.Closing;
+                }
             }
         }
     }
 
-
-    virtual protected void Update()
+    public void OnOpen()
     {
-        switch (state)
-        {
-           
-            case DoorState.Opening:
-                leftDoorTransform.position += (Vector3)(-moveAxis * transitionTime*Time.deltaTime);
+        animator.enabled = false;
+        state = DoorState.Open;
+    }
 
-                rightDoorTransform.position += (Vector3)(moveAxis * transitionTime * Time.deltaTime);
-
-                if (Vector2.Distance(rightDoorTransform.position,rightOpenPosition) <= 0.005f
-                    || (Vector2.Distance(leftDoorTransform.position, leftOpenPosition) <= 0.005f)){
-                    state = DoorState.Open;
-                }
-
-                break;
-
-         
-            case DoorState.Closing:
-                leftDoorTransform.position += (Vector3)(moveAxis * transitionTime * Time.deltaTime);
-
-                rightDoorTransform.position += (Vector3)(-moveAxis * transitionTime * Time.deltaTime);
-
-                if (Vector2.Distance(rightDoorTransform.position, rightClosedPosition) <= 0.005f
-                    || (Vector2.Distance(leftDoorTransform.position, leftClosedPosition) <= 0.005f))
-                {
-                    state = DoorState.Closed;
-                }
-
-                break;
-        }
+    public void OnClose()
+    {
+        animator.enabled = false;
+        state = DoorState.Closed;
     }
 
 
@@ -133,7 +125,12 @@ public class AutomaticDoor : MonoBehaviour
             yield return null;
         }
         if (nEntities > 0)
+        {
+            animator.enabled = true;
             state = DoorState.Opening;
+            animator.Play("Open");
+        }
+      
     }
 
 

@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 4568173748380410728}
   - component: {fileID: 4568173748380410731}
   - component: {fileID: 4568173748380410730}
+  - component: {fileID: 6552603908665598285}
   m_Layer: 2
   m_Name: Automatic Door
   m_TagString: Untagged
@@ -204,10 +205,25 @@ MonoBehaviour:
   rightDoorTransform: {fileID: 4568173749626408255}
   moveAxis: {x: 1, y: 0}
   resultName: 
-  leftClosedPosition: {x: 0, y: 0}
-  rightClosedPosition: {x: 0, y: 0}
-  leftOpenPosition: {x: -1.5, y: 0}
-  rightOpenPosition: {x: 1.5, y: 0}
+--- !u!95 &6552603908665598285
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4568173748380410729}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8fbae9a725017ad4f99c24661741678b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &4568173749626408252
 GameObject:
   m_ObjectHideFlags: 0
