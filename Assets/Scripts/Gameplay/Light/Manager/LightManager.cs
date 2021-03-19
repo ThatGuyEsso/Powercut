@@ -50,7 +50,7 @@ public class LightManager : MonoBehaviour
         batterySlider = UIManager.instance.batteryDisplay;
         batterySlider.InitSlider(settings.maxCharge);
         isInitialised = true;
-        fieldViewCone.ToggleLight(false);
+        fieldViewCone.ToggleLight(true);
         batterySlider.UpdateSlider(currentCharge);
     }
 
@@ -72,31 +72,35 @@ public class LightManager : MonoBehaviour
     //Increase decrease current charge
     private void Discharge()
     {
-        if (isInitialised&&fieldViewCone.GetLightIsOn())
+        if(GameStateManager.instance.GetCurrentGameState() == GameStates.MainPowerOff|| GameStateManager.instance.GetCurrentGameState() == GameStates.TasksCompleted)
         {
-            if (dischargeRate > 0)
+            if (isInitialised && fieldViewCone.GetLightIsOn())
             {
-                dischargeRate -= Time.deltaTime;
-            }
-            else
-            {
-                dischargeRate = settings.dischargeRate;
-                currentCharge -= settings.disChargeAmount;
-                if (currentCharge <= 0)
+                if (dischargeRate > 0)
                 {
-                    currentCharge = 0;
+                    dischargeRate -= Time.deltaTime;
                 }
-                batterySlider.UpdateSlider(currentCharge);
-            }
+                else
+                {
+                    dischargeRate = settings.dischargeRate;
+                    currentCharge -= settings.disChargeAmount;
+                    if (currentCharge <= 0)
+                    {
+                        currentCharge = 0;
+                    }
+                    batterySlider.UpdateSlider(currentCharge);
+                }
 
-            //If there is no charge turn off light if it is on
-            if (currentCharge <= 0 && fieldViewCone.GetLightIsOn())
-            {
-                fieldViewCone.ToggleLight(false);
-                SetChargeState(ChargeStates.StandBy);
-                OnChargeDepleted?.Invoke();
+                //If there is no charge turn off light if it is on
+                if (currentCharge <= 0 && fieldViewCone.GetLightIsOn())
+                {
+                    fieldViewCone.ToggleLight(false);
+                    SetChargeState(ChargeStates.StandBy);
+                    OnChargeDepleted?.Invoke();
+                }
             }
         }
+  
      
     }
 

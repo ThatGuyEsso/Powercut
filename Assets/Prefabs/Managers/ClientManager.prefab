@@ -46,7 +46,7 @@ MonoBehaviour:
   clients:
   - clientName: Robin the Blonde
     UID: RB
-    hasMessage: 1
+    hasMessage: 0
     clientSprite: {fileID: 21300000, guid: 3ce0e464990dce04cbd6d4e83f542ee6, type: 3}
     levelTriggers: 05000000
     beats: 21000000
