@@ -25987,6 +25987,10 @@ PrefabInstance:
       propertyPath: itemsToInit.Array.data[3]
       value: 
       objectReference: {fileID: 689427838}
+    - target: {fileID: 2509627842064437754, guid: c3c6ae6fbb8d0fe42828bc4c3ebe275b, type: 3}
+      propertyPath: record
+      value: 
+      objectReference: {fileID: 11400000, guid: 2859af531563c7f4cb4a6add65b69f4f, type: 2}
     - target: {fileID: 2509627842064437755, guid: c3c6ae6fbb8d0fe42828bc4c3ebe275b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.4165945

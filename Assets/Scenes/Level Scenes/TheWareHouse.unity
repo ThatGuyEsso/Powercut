@@ -19539,6 +19539,14 @@ PrefabInstance:
       propertyPath: itemsToInit.Array.data[3]
       value: 
       objectReference: {fileID: 52975495}
+    - target: {fileID: 2509627842064437754, guid: c3c6ae6fbb8d0fe42828bc4c3ebe275b, type: 3}
+      propertyPath: record
+      value: 
+      objectReference: {fileID: 11400000, guid: 134b6fb743177b745b56c19e3447db8d, type: 2}
+    - target: {fileID: 2509627842064437754, guid: c3c6ae6fbb8d0fe42828bc4c3ebe275b, type: 3}
+      propertyPath: canShowTutorial
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2509627842064437755, guid: c3c6ae6fbb8d0fe42828bc4c3ebe275b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.717197
@@ -21104,7 +21112,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.06666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: efdfad2f30480194faf15a7ff2a82bc9, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 7db1393373da3aa478b6f9c5f6a51785, type: 2}
 --- !u!4 &1816636367
 Transform:
   m_ObjectHideFlags: 0

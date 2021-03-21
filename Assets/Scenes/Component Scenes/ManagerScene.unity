@@ -440,7 +440,7 @@ MonoBehaviour:
   transitionManager: {fileID: 1239431896879086905, guid: 1b31d858234fc48499cc95936a765fef, type: 3}
   objectPoolManager: {fileID: 4843924930161013370, guid: dc6f9526c7a658745ad4aeb00ea6831c, type: 3}
   clientManager: {fileID: 2171194204851745726, guid: 0efbbc52239b19c458c6f461d79eda74, type: 3}
-  musicManager: {fileID: 1239431896879086905, guid: 1b31d858234fc48499cc95936a765fef, type: 3}
+  musicManager: {fileID: 4845965226160805303, guid: f5bd14daa1838264590f3edc46f5dbdf, type: 3}
   runTimeData: {fileID: 11400000, guid: 4ea2dd1b21a7c2547bf6145914c27a6f, type: 2}
 --- !u!4 &1503789066
 Transform:

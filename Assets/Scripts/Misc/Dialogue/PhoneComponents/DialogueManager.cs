@@ -41,8 +41,8 @@ public class DialogueManager : MonoBehaviour
 
         if (phoneAnim != false)
         {
-            animEvents.phoneHidden += DisplayBeat;
-            animEvents.phoneShown += PhoneScreenHidden;
+            animEvents.phoneHidden += PhoneScreenHidden; 
+            animEvents.phoneShown += DisplayBeat;
         }
    
 

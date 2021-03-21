@@ -12,3 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb7e9c87c5455064da8c1eaa9b250bcc, type: 3}
   m_Name: Tutorial Record
   m_EditorClassIdentifier: 
+  records:
+  - minTimeBtwnTrack: 10
+    maxTimeBtwnTrack: 15
+    trackList:
+    - name: OfficeTheme
+      clip: {fileID: 8300000, guid: 54d03bf4a9f6d0442a6aba170100c8e0, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+      mixerGroup: {fileID: 24300002, guid: a67ac9f29fa12da4a94527b1b13b7ef5, type: 2}
+    - name: AggroFill
+      clip: {fileID: 8300000, guid: b01af0d46f82271429d3bf3af3dbf57d, type: 3}
+      volume: 1
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+      mixerGroup: {fileID: 24300002, guid: a67ac9f29fa12da4a94527b1b13b7ef5, type: 2}

@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class MusicManager : MonoBehaviour, IInitialisable
+public class MusicManager : MonoBehaviour
 {
     public static MusicManager instance;
-    private Record currentRecord;
+    [SerializeField] private Record currentRecord;
     private int currrentTrackList;
     [SerializeField] private AudioSource primarySource;
     [SerializeField] private AudioSource secondarySource;
 
     [SerializeField] private float crossFadeRate;
     [SerializeField] private float fadeAmount;
-    public void Init()
+
+    private bool isAwake;
+
+    public void Awake()
     {
+
+        currentRecord = InitStateManager.instance.GetRecord();
         if (instance == false)
         {
             instance = this;
@@ -26,17 +31,20 @@ public class MusicManager : MonoBehaviour, IInitialisable
         }
         DontDestroyOnLoad(gameObject);
 
+        primarySource.clip = null;
+        secondarySource.clip = null;
+        primarySource.Stop();
+        secondarySource.Stop();
         //Initialise variables
         currrentTrackList = 0;
- 
+
         //Subscribe to intiation manager
         BindToInitManager();
+        isAwake = true;
 
-        currentRecord = InitStateManager.instance.GetRecord();
-  
+    
 
     }
-
 
     public void StopCurrentSong()
     {
@@ -56,6 +64,32 @@ public class MusicManager : MonoBehaviour, IInitialisable
         }
     }
 
+    public void PlayFirstTrack()
+    {
+      
+
+        if (!primarySource.isPlaying)
+        {
+            Sound newSong = currentRecord.records[currrentTrackList].StartTrackList();
+            primarySource.outputAudioMixerGroup = newSong.mixerGroup;
+            primarySource.volume = newSong.volume;
+            primarySource.clip = newSong.clip;
+            primarySource.pitch = newSong.pitch;
+            primarySource.enabled = true;
+            primarySource.Play();
+            StopAllCoroutines();
+            BeginFadeIn();
+            StartCoroutine(ListenForSongEnd());
+            Debug.Log("Play");
+
+        }
+        else
+        {
+            StopAllCoroutines();
+            BeginCrossFade();
+        }
+       
+    }
     public void PlayNextTrack(bool fadeIn)
     {
         if (!primarySource.isPlaying)
@@ -67,13 +101,18 @@ public class MusicManager : MonoBehaviour, IInitialisable
             primarySource.pitch = newSong.pitch;
             primarySource.enabled = true;
             primarySource.Play();
-            if (fadeIn) BeginFadeIn();
+            if (fadeIn)
+            {
+                StopAllCoroutines();
+                BeginFadeIn();
+            }
+            StartCoroutine(ListenForSongEnd());
 
 
         }
         else
         {
-         
+            StopAllCoroutines();
             BeginCrossFade();
         }
     } 
@@ -104,11 +143,11 @@ public class MusicManager : MonoBehaviour, IInitialisable
 
     public void BeginFadeOut()
     {
-
+        StartCoroutine(FadeOut());
     }
     public void BeginFadeIn()
     {
-
+        StartCoroutine(FadeIn());
     }
 
     private IEnumerator FadeIn()
@@ -116,7 +155,7 @@ public class MusicManager : MonoBehaviour, IInitialisable
        
         float maxVolume = primarySource.volume;
         primarySource.volume = 0f;
-  
+        yield return new WaitForSeconds(1.0f);
    
         while (primarySource.volume < maxVolume)
         {
@@ -128,6 +167,23 @@ public class MusicManager : MonoBehaviour, IInitialisable
         }
         primarySource.volume = maxVolume;
     }
+    private IEnumerator FadeOut()
+    {
+
+        float maxVolume = primarySource.volume;
+        primarySource.volume = 0f;
+
+
+        while (primarySource.volume > 0.0f)
+        {
+            yield return new WaitForSeconds(crossFadeRate);
+
+            primarySource.volume -= fadeAmount;
+
+
+        }
+        primarySource.Stop();
+    }
     public void BeginCrossFade()
     {
         StopAllCoroutines();
@@ -137,7 +193,7 @@ public class MusicManager : MonoBehaviour, IInitialisable
     {
         Sound newSong = currentRecord.records[currrentTrackList].GetNextTrack();
         float maxVolume = newSong.volume;
-        primarySource.outputAudioMixerGroup = newSong.mixerGroup;
+        secondarySource.outputAudioMixerGroup = newSong.mixerGroup;
         secondarySource.volume = 0f;
         secondarySource.clip = newSong.clip;
         secondarySource.pitch = newSong.pitch;
@@ -146,14 +202,15 @@ public class MusicManager : MonoBehaviour, IInitialisable
         {
             yield return new WaitForSeconds(crossFadeRate);
 
-            primarySource.volume -= fadeAmount;
+            primarySource.volume -= fadeAmount*1.5f;
             secondarySource.volume += fadeAmount;
 
 
         }
         secondarySource.volume = maxVolume;
         primarySource = secondarySource;
-        secondarySource.Stop();
+        secondarySource.clip = null;
+
         currentRecord.records[currrentTrackList].IncrementTrackIndex();
         StartCoroutine(ListenForSongEnd());
     }
@@ -166,23 +223,80 @@ public class MusicManager : MonoBehaviour, IInitialisable
     {
         switch (newState)
         {
+            case InitStates.LoadTitleScreen:
+                if (isAwake)
+                {
+                    BeginFadeOut();
+                }
+           
+                break;
 
-            case InitStates.Init:
-        
+            case InitStates.LoadMainMenu:
+                if (isAwake)
+                {
+                    BeginFadeOut();
+                }
+
                 break;
             case InitStates.TitleScreen:
-                PlayNextTrack(false);
+                if (isAwake)
+                {
+                    currentRecord = InitStateManager.instance.GetRecord();
+                    PlayFirstTrack();
+                }
                 break;
-            case InitStates.LoadMainMenu:
-              
+            case InitStates.MainMenu:
+                if (isAwake)
+                {
+                    currentRecord = InitStateManager.instance.GetRecord();
+                    PlayFirstTrack();
+                }
                 break;
             case InitStates.LevelLoaded:
-
+                if (isAwake)
+                {
+                    StopAllCoroutines();
+                    currentRecord = GameStateManager.instance.GetRecord();
+                    BindToGameState();
+                }
                 break;
                 
             case InitStates.PlayerDead:
-                
+                if (isAwake)
+                {
+                    BeginFadeOut();
+                }
                 break;
+            case InitStates.RespawnPlayer:
+                if (isAwake)
+                {
+                    PlayNextTrack(true);
+                }
+                break;
+
+            case InitStates.ExitLevel:
+                BeginFadeOut();
+                break;
+        }
+    }
+
+    public void BindToGameState()
+    {
+        GameStateManager.instance.OnGameStateChange += OnNewGameState;
+    }
+
+    public void OnNewGameState(GameStates newstate)
+    {
+        switch (newstate)
+        {
+            case GameStates.LevelClear:
+                GameStateManager.instance.OnGameStateChange -= OnNewGameState;
+                break;
+
+            case GameStates.MainPowerOff:
+                PlayNextTrack(true);
+                break;
+
         }
     }
 

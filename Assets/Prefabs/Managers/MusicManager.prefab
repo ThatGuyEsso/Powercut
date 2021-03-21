@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4845965226160805291}
   - component: {fileID: 4845965226160805300}
-  - component: {fileID: 4845965226160805301}
   - component: {fileID: 4845965226160805302}
+  - component: {fileID: 1399432569888085472}
   m_Layer: 0
   m_Name: MusicManager
   m_TagString: Untagged
@@ -129,22 +129,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &4845965226160805301
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4845965226160805303}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22a288bbd1a22d147925ef28acd7f902, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  primarySource: {fileID: 4845965226160805300}
-  secondarySource: {fileID: 4845965226160805302}
-  crossFadeRate: 0.1
-  fadeAmount: 0.05
 --- !u!82 &4845965226160805302
 AudioSource:
   m_ObjectHideFlags: 0
@@ -241,3 +225,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1399432569888085472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4845965226160805303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a288bbd1a22d147925ef28acd7f902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRecord: {fileID: 0}
+  primarySource: {fileID: 4845965226160805300}
+  secondarySource: {fileID: 4845965226160805302}
+  crossFadeRate: 0.1
+  fadeAmount: 0.05

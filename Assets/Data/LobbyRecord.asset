@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: LobbyRecord
   m_EditorClassIdentifier: 
   records:
-  - minTimeBtwnTrack: 8
-    maxTimeBtwnTrack: 20
+  - minTimeBtwnTrack: 5
+    maxTimeBtwnTrack: 10
     trackList:
     - name: BassLobby
       clip: {fileID: 8300000, guid: 8391c02224755634da1777020a907073, type: 3}

@@ -76,7 +76,7 @@ public class InitStateManager : MonoBehaviour
         TransitionManager.instance.BindToInitManager();
         ObjectPoolManager._instance.BindToInitManager();
         clientManager.GetComponent<IInitialisable>().Init();
-        musicManager.GetComponent<IInitialisable>().Init();
+
         OnStateChange?.Invoke(currInitState);
 
     }
@@ -109,8 +109,8 @@ public class InitStateManager : MonoBehaviour
             case InitStates.LevelLoaded:
 
                 currInitState = newState;
-                OnStateChange?.Invoke(currInitState);
                 GameStateManager.instance.BindToInitManager();
+                OnStateChange?.Invoke(currInitState);
 
                 break;
 
