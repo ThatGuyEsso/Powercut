@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class AutomaticDoor : MonoBehaviour
 {
     [SerializeField] protected bool isLocked;
     [SerializeField] protected float transitionTime;
-
+    protected AudioSource audioSource;
     [SerializeField] protected Animator animator;
 
     [SerializeField] protected Transform leftDoorTransform;
@@ -45,6 +46,15 @@ public class AutomaticDoor : MonoBehaviour
         animator = GetComponent<Animator>();
         state = DoorState.Closed;
         animator.enabled = false;
+        audioSource = gameObject.GetComponent<AudioSource>();
+        if (audioSource)
+        {
+            Sound sound = AudioManager.instance.GetSound("DoorOpen");
+            audioSource.clip = sound.clip;
+            audioSource.volume = sound.volume;
+            audioSource.pitch = sound.pitch;
+        }
+   
     }
 
     protected void Start()
@@ -72,6 +82,7 @@ public class AutomaticDoor : MonoBehaviour
                     animator.enabled = true;
                     animator.Play("Open");
                     state = DoorState.Opening;
+                    if (!audioSource.isPlaying) audioSource.Play();
                 }
                
             }
@@ -91,6 +102,8 @@ public class AutomaticDoor : MonoBehaviour
                     animator.enabled = true;
                     animator.Play("Close");
                     state = DoorState.Closing;
+                    if(!audioSource.isPlaying) audioSource.Play();
+
                 }
             }
         }
@@ -129,6 +142,7 @@ public class AutomaticDoor : MonoBehaviour
             animator.enabled = true;
             state = DoorState.Opening;
             animator.Play("Open");
+            audioSource.Play();
         }
       
     }

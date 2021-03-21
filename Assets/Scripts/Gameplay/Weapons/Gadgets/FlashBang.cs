@@ -53,6 +53,7 @@ public class FlashBang : MonoBehaviour
     {
         FindObjectOfType<FlashZone>().Flash(transform.position, transform.up);
         CamShake.instance.DoScreenShake(ShakeDur, shakeMag, ShakeIn, ShakeOut);
+        AudioManager.instance.Play("FlashBangSFX");
         Destroy(gameObject);
     }
 

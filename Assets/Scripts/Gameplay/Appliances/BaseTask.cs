@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+[RequireComponent(typeof(AudioSource))]
 public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable,IFixable
 {
     [Header("Settings")]
@@ -37,8 +37,8 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
     protected bool isFixed;
     protected bool isFixing;
     protected bool isRecorded =false;
+    protected AudioSource audioSource;
 
-    
     [SerializeField] protected Color fixedColor;
     [SerializeField] protected Color fixingColor;
     [SerializeField] protected ChargingCable fixingCable;
@@ -58,6 +58,14 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
       
         UpdateDamageDisplay();
         icon.transform.rotation = Quaternion.Euler(Vector2.up);
+        audioSource = gameObject.GetComponent<AudioSource>();
+        if (audioSource)
+        {
+            Sound sound = AudioManager.instance.GetSound("DeployCableSFX");
+            audioSource.clip = sound.clip;
+            audioSource.volume = sound.volume;
+            audioSource.pitch = sound.pitch;
+        }
     }
 
     virtual protected void Update()
@@ -111,8 +119,9 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
 
     virtual protected void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player") && fixingCable.isDrawing) fixingCable.StopDrawingRope();
+        if (other.gameObject.CompareTag("Player") && fixingCable.isDrawing)
         {
+            fixingCable.StopDrawingRope();
             inRange = false;
             isFixing = false;
             playerTransform = null;
@@ -153,6 +162,7 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
                                 InGamePrompt.instance.ShowPromptTimer(fixingPrompt, 5.0f);
 
                                 if (playerTransform != false) fixingCable.StartDrawingRope(playerTransform);
+                                audioSource.Play();
                             }
                         }
                     }

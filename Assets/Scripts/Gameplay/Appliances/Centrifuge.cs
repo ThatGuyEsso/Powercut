@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Centrifuge : BaseTask, IFixable
 {
+    
     override  protected void EvaluateSpriteDisplay()
     {
         float percentageHealth = currHealth / maxHealth;

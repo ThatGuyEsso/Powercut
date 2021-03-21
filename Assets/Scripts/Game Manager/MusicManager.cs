@@ -13,7 +13,7 @@ public class MusicManager : MonoBehaviour
 
     [SerializeField] private float crossFadeRate;
     [SerializeField] private float fadeAmount;
-
+ 
     private bool isAwake;
 
     public void Awake()
@@ -256,6 +256,7 @@ public class MusicManager : MonoBehaviour
                 if (isAwake)
                 {
                     StopAllCoroutines();
+                    BeginFadeOut();
                     currentRecord = GameStateManager.instance.GetRecord();
                     BindToGameState();
                 }
@@ -290,11 +291,17 @@ public class MusicManager : MonoBehaviour
         switch (newstate)
         {
             case GameStates.LevelClear:
+                StopAllCoroutines();
                 GameStateManager.instance.OnGameStateChange -= OnNewGameState;
                 break;
 
             case GameStates.MainPowerOff:
-                PlayNextTrack(true);
+                if (!primarySource.isPlaying)
+                {
+                    StopAllCoroutines();
+                    PlayNextTrack(true);
+                }
+             
                 break;
 
         }

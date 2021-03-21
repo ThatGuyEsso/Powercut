@@ -18,14 +18,14 @@ MonoBehaviour:
     trackList:
     - name: OfficeTheme
       clip: {fileID: 8300000, guid: 54d03bf4a9f6d0442a6aba170100c8e0, type: 3}
-      volume: 1
+      volume: 0.3
       pitch: 1
       loop: 0
       source: {fileID: 0}
       mixerGroup: {fileID: 24300002, guid: a67ac9f29fa12da4a94527b1b13b7ef5, type: 2}
     - name: AggroFill
       clip: {fileID: 8300000, guid: b01af0d46f82271429d3bf3af3dbf57d, type: 3}
-      volume: 1
+      volume: 0.3
       pitch: 1
       loop: 0
       source: {fileID: 0}

@@ -33,20 +33,28 @@ public class TabletMenuManager : MonoBehaviour
         raycaster.enabled = false;
         contactsMenu.SetActive(true);
         contactsMenu.GetComponent<Animator>().Play("PhonePopUP");
+        AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
 
     }
 
+    public void TitleScreeen()
+    {
+        AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
+        TransitionManager.instance.ReturnToTitleScreen();
+    }
 
     public void OpenSettings()
     {
         raycaster.enabled = false;
         SettingsMenu.instance.ToggleSettings(true, true);
         SettingsMenu.instance.gameObject.GetComponent<PhoneAnimEventListener>().phoneHidden += HideSettings;
+        AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
     }
     public void HideSettings()
     {
         raycaster.enabled = true;
         SettingsMenu.instance.gameObject.GetComponent<PhoneAnimEventListener>().phoneHidden -= HideSettings;
+        AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
     }
 
     public void ReturnToContacts()
@@ -54,6 +62,7 @@ public class TabletMenuManager : MonoBehaviour
         raycaster.enabled = false;
         contactsMenu.SetActive(true);
         smsMenu.SetActive(false);
+        AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
 
     }
 
@@ -61,6 +70,7 @@ public class TabletMenuManager : MonoBehaviour
     public void ToggleSmsAlert()
     {
         smsButton.ToggleAlert();
+        AudioManager.instance.Play("MailSFX");
     }
 
 
@@ -72,4 +82,11 @@ public class TabletMenuManager : MonoBehaviour
         DialogueManager.instance.SetUpNextBeat(beatID, Speaker.Client);
         DialogueManager.instance.DisplayBeat();
     }
+
+    public void Quit()
+    {
+        AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
+        Application.Quit();
+    }
+
 }

@@ -32,7 +32,8 @@ public class DialgoueOption : MonoBehaviour
 
     public void SelectDialgoue()
     {
-        if(choice!=null)
+        AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
+        if (choice!=null)
         DialogueManager.instance.GetResultByName(choice.ChoiceResult).TriggerResult();
         choice = null;
         DialogueManager.instance.DisplayDialogueChoice(targetBeatIndex);

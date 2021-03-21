@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1826522401}
   - component: {fileID: 1826522402}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DropShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

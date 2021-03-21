@@ -393,7 +393,7 @@ MonoBehaviour:
     targetScene: 5
     hasScene: 0
     endBeat: 0
-    typeTime: 1
+    typeTime: 2.5
     isClientBeat: 1
     isBeatChain: 1
   - dialogueChoices:
@@ -409,7 +409,7 @@ MonoBehaviour:
     targetScene: 5
     hasScene: 0
     endBeat: 0
-    typeTime: 0.75
+    typeTime: 1.5
     isClientBeat: 1
     isBeatChain: 0
   - dialogueChoices: []
@@ -461,7 +461,7 @@ MonoBehaviour:
     targetScene: 5
     hasScene: 0
     endBeat: 0
-    typeTime: 0.5
+    typeTime: 0
     isClientBeat: 0
     isBeatChain: 1
   - dialogueChoices: []
@@ -471,7 +471,7 @@ MonoBehaviour:
     targetScene: 5
     hasScene: 0
     endBeat: 0
-    typeTime: 1
+    typeTime: 1.5
     isClientBeat: 1
     isBeatChain: 1
   - dialogueChoices: []
@@ -481,7 +481,7 @@ MonoBehaviour:
     targetScene: 5
     hasScene: 0
     endBeat: 0
-    typeTime: 0.25
+    typeTime: 1.25
     isClientBeat: 1
     isBeatChain: 1
   - dialogueChoices: []
@@ -491,7 +491,7 @@ MonoBehaviour:
     targetScene: 5
     hasScene: 0
     endBeat: 0
-    typeTime: 1.2
+    typeTime: 1.5
     isClientBeat: 1
     isBeatChain: 1
   - dialogueChoices: []
@@ -591,7 +591,7 @@ MonoBehaviour:
     targetScene: 6
     hasScene: 0
     endBeat: 0
-    typeTime: 1
+    typeTime: 2
     isClientBeat: 1
     isBeatChain: 1
   - dialogueChoices: []
@@ -653,7 +653,7 @@ MonoBehaviour:
     targetScene: 6
     hasScene: 0
     endBeat: 0
-    typeTime: 1
+    typeTime: 1.75
     isClientBeat: 1
     isBeatChain: 1
   - dialogueChoices:

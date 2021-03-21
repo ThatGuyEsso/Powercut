@@ -14,7 +14,7 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
     public float currentTimeToFix;
     private Controls input;
     private GameObject player;
-  
+    protected AudioSource audioSource;
     private void Awake()
     {
         parentLamp = transform.parent.GetComponent<Lamp>();
@@ -24,6 +24,14 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
         input = new Controls();
         input.Interactions.SetCallbacks(this);
         input.Enable();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        if (audioSource)
+        {
+            Sound sound = AudioManager.instance.GetSound("DeployCableSFX");
+            audioSource.clip = sound.clip;
+            audioSource.volume = sound.volume;
+            audioSource.pitch = sound.pitch;
+        }
     }
 
     private void Update()
@@ -132,7 +140,7 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
                     if (targetTrans != null)
                     {
                         fixingCable.StartDrawingRope(targetTrans);
-
+                        audioSource.Play();
                     }
                 }
             }

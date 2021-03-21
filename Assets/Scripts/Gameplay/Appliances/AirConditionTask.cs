@@ -45,7 +45,11 @@ public class AirConditionTask : BaseTask, IFixable
                                 InGamePrompt.instance.SetColor(Color.green);
                                 InGamePrompt.instance.ShowPromptTimer(fixingPrompt, 5.0f);
 
-                                if (playerTransform != false) fixingCable.StartDrawingRope(playerTransform);
+                                if (playerTransform != false)
+                                {
+                                    fixingCable.StartDrawingRope(playerTransform);
+                                    audioSource.Play();
+                                }
                             }
                         }
                     }

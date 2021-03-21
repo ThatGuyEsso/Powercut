@@ -26379,7 +26379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4568173748380410730, guid: e87b75abb437ec845be8c90d145bcca5, type: 3}
       propertyPath: isLocked
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4568173748380410730, guid: e87b75abb437ec845be8c90d145bcca5, type: 3}
       propertyPath: transitionTime

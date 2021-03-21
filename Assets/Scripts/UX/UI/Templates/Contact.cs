@@ -24,7 +24,7 @@ public class Contact : MonoBehaviour
 
     public void OpenContact()
     {
-
+        AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
         if (hasAlert)
         {
             TabletMenuManager.instance.StartDialogue(beat, client.ClientImage);

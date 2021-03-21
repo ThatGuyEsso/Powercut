@@ -32,6 +32,7 @@ public class PhoneButtons : MonoBehaviour
     }
     public void StartLevel()
     {
+        AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
         if (canStart)
         {
             playWidget.ResetLabel();
@@ -59,6 +60,7 @@ public class PhoneButtons : MonoBehaviour
 
     public void TitleScreen()
     {
+        AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
         if (isTitleButtonActive)
         {
 
@@ -75,6 +77,7 @@ public class PhoneButtons : MonoBehaviour
 
     public void ReturnToMenus()
     {
+        AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
         if (isMenuButtonActive)
         {
             InitStateManager.instance.BeginNewState(InitStates.LoadTitleScreen);

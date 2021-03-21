@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+[RequireComponent(typeof(AudioSource))]
 public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
 {
     private Controls input;
     private bool inRange;
     private bool hasActivated;
+    private AudioSource aSource;
     [SerializeField] private Transform respawnPoint;
     private void Awake()
     {
@@ -14,6 +17,14 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
         input = new Controls();
         input.Interactions.SetCallbacks(this);
         input.Enable();
+        aSource = GetComponent<AudioSource>();
+        if (aSource)
+        {
+            Sound sound = AudioManager.instance.GetSound("SwitchOffSFX");
+            aSource.clip = sound.clip;
+            aSource.volume = sound.volume;
+            aSource.pitch = sound.pitch;
+        }
     }
 
 
@@ -71,6 +82,8 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
                         InGamePrompt.instance.SetColor(Color.red);
                         InGamePrompt.instance.ChangePrompt("Main Power Disabled");
                         hasActivated = true;
+                        AudioManager.instance.Play("AmbientLampsSFX");
+                        aSource.Play();
 
                     }
                     break;
@@ -80,7 +93,7 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
                     if (LevelLampsManager.instance.GetAllSceneLampsWork())
                     {
                         GameStateManager.instance.BeginNewGameState(GameStates.LevelClear);
-
+                        aSource.Play();
                     }
                     else
                     {
@@ -91,6 +104,8 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
                 case GameStates.MainPowerOff:
                     InGamePrompt.instance.SetColor(Color.red);
                     InGamePrompt.instance.ChangePrompt("Can't turn power back on until all tasks are completed");
+                    aSource.Play();
+                    AudioManager.instance.Stop("AmbientLampsSFX");
                     break;
 
             }
