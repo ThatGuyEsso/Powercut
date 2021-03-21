@@ -303,6 +303,7 @@ public class TransitionManager : MonoBehaviour
         }
         LoadingScreen.instance.BeginFade(false);
         sceneLoading.Clear();
+        InitStateManager.instance.BeginNewState(InitStates.TitleScreen);
 
 
     }

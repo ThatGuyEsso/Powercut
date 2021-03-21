@@ -71,49 +71,49 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
-    mixerGroup: {fileID: 24300002, guid: 3525846a8c6c0554ca016fe884c13243, type: 2}
+    mixerGroup: {fileID: 0}
   - name: PistolReloadSFX
     clip: {fileID: 8300000, guid: 80763c1b03fb76a4280bb7496b8c1dec, type: 3}
     volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
-    mixerGroup: {fileID: 24300002, guid: 3525846a8c6c0554ca016fe884c13243, type: 2}
+    mixerGroup: {fileID: 0}
   - name: ShotGunReloadSFX
     clip: {fileID: 8300000, guid: 8fd94f8163f19e84d9f89642f3a79480, type: 3}
     volume: 0.3
     pitch: 1
     loop: 0
     source: {fileID: 0}
-    mixerGroup: {fileID: 24300002, guid: 3525846a8c6c0554ca016fe884c13243, type: 2}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
   - name: PhoneVibrateSFX
     clip: {fileID: 8300000, guid: 213ed70b69e004f4fabe8f4dd802bb24, type: 3}
     volume: 0.2
     pitch: 1
     loop: 0
     source: {fileID: 0}
-    mixerGroup: {fileID: 24300002, guid: 3525846a8c6c0554ca016fe884c13243, type: 2}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
   - name: OutOfAmmoSFX
     clip: {fileID: 8300000, guid: afe7c98636c91014d86cff55003cb4a5, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
-    mixerGroup: {fileID: 24300002, guid: 3525846a8c6c0554ca016fe884c13243, type: 2}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
   - name: CarEngineSFX
     clip: {fileID: 8300000, guid: adf0908902b4476498b11c6f75513093, type: 3}
     volume: 1
     pitch: 1
     loop: 0
     source: {fileID: 0}
-    mixerGroup: {fileID: 24300002, guid: 3525846a8c6c0554ca016fe884c13243, type: 2}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
   - name: PhonePullOutSFX
     clip: {fileID: 8300000, guid: cf2c61e5c897dcf4ab16664f8b15d6d1, type: 3}
     volume: 0.4
     pitch: 1
     loop: 0
     source: {fileID: 0}
-    mixerGroup: {fileID: 24300002, guid: 3525846a8c6c0554ca016fe884c13243, type: 2}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
   soundGroups:
   - name: CharacterStepsSFX
     clips:

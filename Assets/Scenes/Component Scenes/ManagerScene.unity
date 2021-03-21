@@ -435,10 +435,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0484248a85f6bb140818e42c1f3a90b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  record: {fileID: 11400000, guid: 2ebd75061de0d954287f363baea78b52, type: 2}
   audioManager: {fileID: 8508617408298378890, guid: 90f8ef9e1567501429c209814d4bcfc2, type: 3}
   transitionManager: {fileID: 1239431896879086905, guid: 1b31d858234fc48499cc95936a765fef, type: 3}
   objectPoolManager: {fileID: 4843924930161013370, guid: dc6f9526c7a658745ad4aeb00ea6831c, type: 3}
   clientManager: {fileID: 2171194204851745726, guid: 0efbbc52239b19c458c6f461d79eda74, type: 3}
+  musicManager: {fileID: 1239431896879086905, guid: 1b31d858234fc48499cc95936a765fef, type: 3}
   runTimeData: {fileID: 11400000, guid: 4ea2dd1b21a7c2547bf6145914c27a6f, type: 2}
 --- !u!4 &1503789066
 Transform:

@@ -16,6 +16,7 @@ public class GameStateManager : MonoBehaviour, IInitialisable
     public static GameStateManager instance;
     public static bool isGamePaused = false;
     public RunTimeData runTimeData;
+    [SerializeField] private Record record;
     [SerializeField] private bool canShowTutorial=true;
     [SerializeField] private TutorialManager tutorialManager;
     public GameObject[] itemsToInit;
@@ -178,4 +179,6 @@ public class GameStateManager : MonoBehaviour, IInitialisable
         InitStateManager.instance.OnStateChange -= EvaluateNewState;
 
     }
+
+    public Record GetRecord() { return record; }
 }

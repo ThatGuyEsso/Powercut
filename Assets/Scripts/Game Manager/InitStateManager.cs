@@ -35,7 +35,8 @@ public enum InitStates
 public class InitStateManager : MonoBehaviour
 {
     public static InitStateManager instance;
-    public GameObject audioManager, transitionManager,objectPoolManager,clientManager;
+    [SerializeField] Record record;
+    public GameObject audioManager, transitionManager,objectPoolManager,clientManager,musicManager;
     public static InitStates currInitState;
     public static GameModes currGameMode;
     [SerializeField] private RunTimeData runTimeData;
@@ -70,11 +71,12 @@ public class InitStateManager : MonoBehaviour
         Instantiate(transitionManager, Vector3.zero, Quaternion.identity);
         Instantiate(objectPoolManager, Vector3.zero, Quaternion.identity);
         Instantiate(clientManager, Vector3.zero, Quaternion.identity);
-
+        Instantiate(musicManager, Vector3.zero, Quaternion.identity);
         AudioManager.instance.BindToInitManager();
         TransitionManager.instance.BindToInitManager();
         ObjectPoolManager._instance.BindToInitManager();
         clientManager.GetComponent<IInitialisable>().Init();
+        musicManager.GetComponent<IInitialisable>().Init();
         OnStateChange?.Invoke(currInitState);
 
     }
@@ -192,4 +194,6 @@ public class InitStateManager : MonoBehaviour
                 break;
         }
     }
+
+    public Record GetRecord() { return record; }
 }
