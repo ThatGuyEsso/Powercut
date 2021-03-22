@@ -147,8 +147,8 @@ public class FieldOfView : MonoBehaviour, ILightWeakness
         lightIsOn = isOn;
         if (lightIsOn)
         {
-            
-            meshRenderer.enabled = true;
+            if(meshRenderer)
+                meshRenderer.enabled = true;
         }
         else
         {

@@ -7,7 +7,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
 {
     //Light it should reference
     private BaseLampLight lightRef;
-    private LightFuse fuseRef;
+    [SerializeField] private LightFuse fuseRef;
     public float lightDistanceModifier = 0;//Increases or decreases light distance to allow differenct sized light sources.
     private float currentHealth;
     public bool isLampWorking;
@@ -21,10 +21,19 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
     private float timeToNextFlciker;
     private float currFlickerTime;
     [SerializeField] private SpriteRenderer fuseIcon;
-    private void Awake()
+    protected AudioSource audioSource;
+    public void Init()
     {
-        fuseRef = gameObject.GetComponentInChildren<LightFuse>();
+
         enemySpawner= gameObject.GetComponentInChildren<EnemySpawner>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        if (audioSource)
+        {
+            Sound sound = AudioManager.instance.GetSound("LightFailingSFX");
+            audioSource.clip = sound.clip;
+            audioSource.volume = sound.volume;
+            audioSource.pitch = sound.pitch;
+        }
     }
 
     
@@ -84,6 +93,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
                     if (lightRef.GetLightIsOn()) lightRef.ToggleLight(false);
                     else lightRef.ToggleLight(true);
                     timeToNextFlciker = Random.Range(minFlickerRate,maxFlickerRate);
+                    audioSource.Stop();
                 }
                 else
                 {
@@ -162,7 +172,11 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
         lightRef.ToggleLight(true);
         isLampWorking = true;
         currentHealth = lightRef.lampSettings.maxLightHealth;
-        fuseIcon.color = Color.white;
+        if (fuseIcon)
+            fuseIcon.color = Color.white;
+        else
+            Debug.Log("No Icon");
+             Debug.Log(gameObject);
 
     }
     //Light fixing 
@@ -242,5 +256,6 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
     {
         currFlickerTime = Random.Range(minFlickerTime, maxFlickerTime);
         isFlickering = true;
+        audioSource.Play();
     }
 }

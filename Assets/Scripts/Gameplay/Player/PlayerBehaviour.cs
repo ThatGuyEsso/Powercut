@@ -448,6 +448,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
                 break;
             case InitStates.PlayerRespawned:
                 ResetCharacter();
+
      
                 break;
         }

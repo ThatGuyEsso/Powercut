@@ -119,9 +119,9 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
 
     virtual protected void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player") && fixingCable.isDrawing)
+        if (other.gameObject.CompareTag("Player") && fixingCable.isDrawing) fixingCable.StopDrawingRope();
         {
-            fixingCable.StopDrawingRope();
+       
             inRange = false;
             isFixing = false;
             playerTransform = null;

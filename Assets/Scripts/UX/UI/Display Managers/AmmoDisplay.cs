@@ -45,7 +45,7 @@ public class AmmoDisplay : MonoBehaviour
             }
             else
             {
-                clipDisplay.text = "00";
+                ammoDisplay.text = "00";
             }
         }
         else

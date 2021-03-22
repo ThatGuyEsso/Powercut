@@ -6,7 +6,7 @@ public class LevelLampsManager : MonoBehaviour, IInitialisable
 {
     [SerializeField] private LevelDifficultyData difficultySettings;
     public static LevelLampsManager instance;//Sets up for singleton class (one per level)
-    private List<Lamp> levelLamps = new List<Lamp>();
+    [SerializeField] private List<Lamp> levelLamps = new List<Lamp>();
     public GameObject lampLightPrefab;
 
     //Disable lights mechanism (should be moved into a scriptable object to allow for difficulty easy difficulty scaling)
@@ -30,11 +30,11 @@ public class LevelLampsManager : MonoBehaviour, IInitialisable
             Destroy(gameObject);
             return;
         }
-
+        levelLamps.Clear();
         GetNewBreakLampTime();
         BindToInitManager();
         GetAllSceneLamps();
-        SetUpSceneLamps();
+ 
         targetLightWorkingPercent = 1 - difficultySettings.targetPercentBrokenLamps;
     }
 
@@ -71,25 +71,36 @@ public class LevelLampsManager : MonoBehaviour, IInitialisable
         //Assign each lamp in scene to levelLamps list
         for (int i = 0; i < lamps.Length; i++)
         {
-            levelLamps.Add(lamps[i]);
+            if(lamps[i])
+                levelLamps.Add(lamps[i]);
             //Debug.Log("Level Lamp #" + i + " Has been added");
         }
+        SetUpSceneLamps();
     }
 
     public void FixAllSceneLamps() {
         //if any lamp is broken return false
         foreach (Lamp lamp in levelLamps)
         {
+            if (!lamp) Debug.Break();
+
+
             lamp.InstantFixLamp();
         }
+           
     }
     private void SetUpSceneLamps()
     {
         //Spawns in a light source for each scene lamp. (Should be updated to object pooling)
         foreach (Lamp lamp in levelLamps)
         {
-            BaseLampLight lampLight = Instantiate(lampLightPrefab, Vector3.zero, Quaternion.identity).GetComponent<BaseLampLight>();
-            lamp.InitialiseLamp(lampLight);
+            if (lamp)
+            {
+                lamp.Init();
+                BaseLampLight lampLight = Instantiate(lampLightPrefab, Vector3.zero, Quaternion.identity).GetComponent<BaseLampLight>();
+                lamp.InitialiseLamp(lampLight);
+            }
+        
         }
     }
 
