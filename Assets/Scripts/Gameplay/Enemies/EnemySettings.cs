@@ -6,7 +6,8 @@ using UnityEngine;
 public class EnemySettings : ScriptableObject
 {
     [Header("Movement Settings")]
-    public float maxSpeed; //Max movement speed;
+    public float maxNavSpeed; //Max movement when using navMesh speed;
+    public float maxMovementSpeed; //Max movement speed;
     public float timeZeroToMax; //How fast player accelerate    
     public float timeMaxToZero; //How fast player decellerate
     public float rotationSpeed; // how fast player rotates about it's axis

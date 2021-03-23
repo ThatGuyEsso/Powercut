@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 public enum EnemyStates
 {
     Wander,
@@ -21,7 +22,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     protected bool isTargetHuman;
     protected bool canDestroy;
     protected bool canBeHurt;
-    protected bool isSquadLeader=true;
+    [SerializeField] protected bool isSquadLeader=true;
     //Timers
     protected float currTimeToDestroy;
     protected float currTimeToAttack;
@@ -35,6 +36,10 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     //Component refs
     protected Rigidbody2D rb;
     protected NavMeshPathfinding navComp;
+    protected SteeringManager movementManager;
+
+    [SerializeField] protected IBoid leader;
+    [SerializeField] protected GameObject debugLeader;
     //VFX
     [SerializeField]
     protected GameObject hurtNumber;
@@ -73,7 +78,8 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         float invokeStartTime = Random.Range(0.0f, 0.5f);
 
         InvokeRepeating("ProcessAI", invokeStartTime, settings.aiTickrate);
-
+        if(!isSquadLeader)
+            leader = debugLeader.GetComponent<IBoid>();
     }
 
 
@@ -116,11 +122,21 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     }
 
     abstract protected void OnStateChange(EnemyStates newState);
-    virtual protected void FaceMovementDirection()
+    virtual protected void FaceNavMovementDirection()
     {
       
         float targetAngle = EssoUtility.GetAngleFromVector((navComp.navAgent.velocity.normalized));
        /// turn offset -Due to converting between forward vector and up vector
+        if (targetAngle < 0) targetAngle += 360f;
+        float angle = Mathf.SmoothDampAngle(transform.eulerAngles.z, targetAngle, ref smoothRot, settings.rotationSpeed);//rotate player smoothly to target angle
+        transform.rotation = Quaternion.Euler(0f, 0f, angle);//update angle
+        //fovObject.SetAimDirection((-1)*fovObject.GetVectorFromAngle(angle));
+    }
+    virtual protected void FaceMovementDirection()
+    {
+
+        float targetAngle = EssoUtility.GetAngleFromVector((rb.velocity.normalized));
+        /// turn offset -Due to converting between forward vector and up vector
         if (targetAngle < 0) targetAngle += 360f;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.z, targetAngle, ref smoothRot, settings.rotationSpeed);//rotate player smoothly to target angle
         transform.rotation = Quaternion.Euler(0f, 0f, angle);//update angle

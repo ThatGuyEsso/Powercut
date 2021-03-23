@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShadowCrawler : BaseEnemy
+public class ShadowCrawler : BaseEnemy, IBoid
 {
-    private float maxDamage;
-    private float minDamage;
-    private float maxSpeed;
+    protected float maxDamage;
+    protected float minDamage;
+    protected float maxNavSpeed;
+    protected float maxSpeed;
+  
     [SerializeField] private float chargeSpeed;
 
     public float maxScaleMultiplier;
-    private BaseEnemyAnimController animController;
+    protected BaseEnemyAnimController animController;
 
     protected override void Awake()
     {
@@ -19,12 +21,12 @@ public class ShadowCrawler : BaseEnemy
         //Set initial variables need to define own variables to change them
         maxDamage = settings.maxDamage;
         minDamage = settings.minDamage;
-        maxSpeed = settings.maxSpeed;
-
+        maxSpeed = settings.maxMovementSpeed;
+        maxNavSpeed = settings.maxNavSpeed;
 
         navComp.Init();
-        if (isSquadLeader) navComp.enabled = true;
-        else navComp.enabled = false;
+        movementManager = GetComponent<SteeringManager>();
+      
 
         animController = gameObject.GetComponent<BaseEnemyAnimController>();
         animController.Init();
@@ -32,7 +34,22 @@ public class ShadowCrawler : BaseEnemy
         //Initiate mutation of base character
         RandomStatMutation();
 
-  
+
+        if (isSquadLeader)
+        {
+            navComp.enabled = true;
+            movementManager.Init(maxSpeed, false);
+            movementManager.enabled = false;
+        }
+        else
+        {
+            navComp.enabled = false;
+            movementManager.Init(maxSpeed, true);
+            movementManager.enabled = true;
+        }
+    
+
+
 
     }
 
@@ -119,7 +136,10 @@ public class ShadowCrawler : BaseEnemy
             case EnemyStates.Chase:
                 if (!isHurt)
                 {
-                    FaceMovementDirection();
+                    if (isSquadLeader)
+                        FaceNavMovementDirection();
+                    else
+                        FaceMovementDirection();
                 }
                 break;
 
@@ -138,6 +158,7 @@ public class ShadowCrawler : BaseEnemy
 
                 }
                 animController.PlayAnim("Idle");
+
                 break;
             case EnemyStates.Chase:
                 if (isSquadLeader)
@@ -148,6 +169,10 @@ public class ShadowCrawler : BaseEnemy
                         navComp.StartAgent(target);
                      
                     }
+                }
+                else
+                {
+                    movementManager.BeginFollowLeader(leader,settings.attackRange);
                 }
                 animController.PlayAnim("Walk");
                 ResolveTargetType();
@@ -161,6 +186,10 @@ public class ShadowCrawler : BaseEnemy
                     animController.PlayAnim("Walk");
 
                 }
+                else
+                {
+                    movementManager.DeactivateAll();
+                }
                 break;
            
             case EnemyStates.Destroy:
@@ -169,6 +198,10 @@ public class ShadowCrawler : BaseEnemy
                     navComp.Stop();
                     navComp.enabled = false;
 
+                }
+                else
+                {
+                    movementManager.DeactivateAll();
                 }
                 animController.PlayAnim("Break");
                 break;
@@ -185,9 +218,10 @@ public class ShadowCrawler : BaseEnemy
        
 
         //scale base stats by mutation
-        maxSpeed *= (1-(mutationMultipler-1));
+        maxNavSpeed *= (1-(mutationMultipler-1));
+        maxSpeed *= (1 - (mutationMultipler - 1));
         chargeSpeed *= ((mutationMultipler-1));
-        navComp.navAgent.speed = maxSpeed;
+        navComp.navAgent.speed = maxNavSpeed;
         maxDamage *= mutationMultipler;
         minDamage *= mutationMultipler;
 
@@ -214,4 +248,32 @@ public class ShadowCrawler : BaseEnemy
         }
     }
 
+    public Transform GetTarget()
+    {
+        return target;
+    }
+
+    public Vector2 GetPosition()
+    {
+        return rb.position;
+    }
+    public Vector2 GetVelocity()
+    {
+        return rb.velocity;
+    }
+
+    public IBoid GetLeader()
+    {
+        return leader;
+    }
+
+    public float GetArrivalRadius()
+    {
+        return settings.attackRange;
+    }
+
+    public SteeringManager GetMovementManager()
+    {
+        return movementManager;
+    }
 }
