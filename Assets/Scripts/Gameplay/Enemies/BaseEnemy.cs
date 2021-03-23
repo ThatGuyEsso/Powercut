@@ -20,6 +20,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     protected bool isTargetHuman;
     protected bool canDestroy;
     protected bool canBeHurt;
+    protected bool isSquadLeader=true;
     //Timers
     protected float currTimeToDestroy;
     protected float currTimeToAttack;
@@ -32,7 +33,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
 
     //Component refs
     protected Rigidbody2D rb;
-    protected NavMeshAgent navAgent;
+    protected NavMeshPathfinding navComp;
     //VFX
     [SerializeField]
     protected GameObject hurtNumber;
@@ -58,12 +59,10 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         rb = gameObject.GetComponent<Rigidbody2D>();
         currentHealth = settings.maxHealth;
         //cache navigation 
-        navAgent = gameObject.GetComponent<NavMeshAgent>();
+    
         hurtVFX = gameObject.GetComponentInChildren<MultiSpriteHurtFlash>();
+        navComp = gameObject.GetComponentInChildren<NavMeshPathfinding>();
 
-        //navmesh2D values
-        navAgent.updateRotation = false;
-        navAgent.updateUpAxis = false;
         //initial values
         currHurtTime = settings.hurtTime;
         currTimeBeforeInvulnerable = settings.timeBeforeInvulnerable;
@@ -114,10 +113,11 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         rb.velocity = targetVelocity + knockBack;
     }
 
+    abstract protected void OnStateChange(EnemyStates newState);
     virtual protected void FaceMovementDirection()
     {
       
-        float targetAngle = EssoUtility.GetAngleFromVector((navAgent.velocity.normalized));
+        float targetAngle = EssoUtility.GetAngleFromVector((navComp.navAgent.velocity.normalized));
        /// turn offset -Due to converting between forward vector and up vector
         if (targetAngle < 0) targetAngle += 360f;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.z, targetAngle, ref smoothRot, settings.rotationSpeed);//rotate player smoothly to target angle
@@ -233,12 +233,14 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     public void SetTarget(Transform newTarget)
     {
         target = newTarget;
+        OnStateChange(currentState);
     }
 
     //Set state 
     public void SetEnemyState(EnemyStates newState)
     {
         currentState = newState;
+        OnStateChange(currentState);
     }
     //# End of Setters#
 
@@ -341,7 +343,11 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
 
             if (canBeHurt)
             {
-                navAgent.enabled = false;
+                if (navComp.enabled)
+                {
+                    navComp.Stop();
+                    navComp.enabled = false;
+                }
                 canBeHurt = false;
                 isHurt = true;
                 hurtVFX.BeginFlash();
@@ -389,7 +395,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     {
         InitStateManager.instance.OnStateChange += EvaluateNewState;
     }
-    private void EvaluateNewState(InitStates newState)
+    virtual protected void EvaluateNewState(InitStates newState)
     {
         switch (newState)
         {
@@ -423,6 +429,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         {
             if (distance <= settings.attackRange)
             {
+                
                 SetEnemyState(EnemyStates.Attack);
             }
         }

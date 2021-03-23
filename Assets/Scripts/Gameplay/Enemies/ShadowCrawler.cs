@@ -20,11 +20,19 @@ public class ShadowCrawler : BaseEnemy
         maxDamage = settings.maxDamage;
         minDamage = settings.minDamage;
         maxSpeed = settings.maxSpeed;
-        //Initiate mutation of base character
-        RandomStatMutation();
+
+
+        navComp.Init();
+        if (isSquadLeader) navComp.enabled = true;
+        else navComp.enabled = false;
+
         animController = gameObject.GetComponent<BaseEnemyAnimController>();
         animController.Init();
-    
+
+        //Initiate mutation of base character
+        RandomStatMutation();
+
+  
 
     }
 
@@ -42,24 +50,18 @@ public class ShadowCrawler : BaseEnemy
         switch (currentState)
         {
             case EnemyStates.Idle:
-                //Do nohing basically
-                animController.PlayAnim("Idle");
+ 
                 SmoothDecelerate(0f, settings.timeMaxToZero);
                 break;
 
             case EnemyStates.Attack:
-                //Don't use navigation when charging
-                navAgent.enabled = false;
-
-
-                animController.PlayAnim("Walk");
                 EvaluateOutOfRange();
               
                 break;
 
             case EnemyStates.Destroy:
                 //Destroy mechanics
-                animController.PlayAnim("Break");
+            
                 BreakAppliance();
                 EvaluateOutOfRange();
          
@@ -69,33 +71,9 @@ public class ShadowCrawler : BaseEnemy
                 //use navigation
                 if (!isHurt)
                 {
-                    navAgent.enabled = true;
+
                     EvaluateInRange();
-
                   
-                    //set a new destination if it can
-                    if (target != false && navAgent.enabled)
-                    {
-                        navAgent.SetDestination(target.position);
-                    }
-                  
-                    //if it has a path
-                    else
-                    {
-                        //check if it actually has a yatget
-                        if (target == false && navAgent.enabled)
-                        {
-                            navAgent.ResetPath();//if it doesn't have a path, clear it 
-                         
-                        }
-                    }
-                  
-                    //check if in range
-
-
-                    //Move to target position
-                    ResolveTargetType();
-                    animController.PlayAnim("Walk");
                 }
 
 
@@ -109,8 +87,6 @@ public class ShadowCrawler : BaseEnemy
     protected override void Update()
     {
         base.Update();
-
-
       
         switch (currentState)
         {
@@ -132,21 +108,74 @@ public class ShadowCrawler : BaseEnemy
                 break;
             case EnemyStates.Destroy:
 
-                FaceTarget();
-                SmoothDecelerate(0f, settings.timeMaxToZero);
+                if (!isHurt)
+                {
+
+                    FaceTarget();
+                    SmoothDecelerate(0f, settings.timeMaxToZero);
+                }
                 break;
 
             case EnemyStates.Chase:
-
-                FaceMovementDirection();
+                if (!isHurt)
+                {
+                    FaceMovementDirection();
+                }
                 break;
 
         }
     }
 
+    override protected void OnStateChange(EnemyStates newState)
+    {
+        switch (newState)
+        {
+            case EnemyStates.Idle:
+                if (isSquadLeader)
+                {
+                    navComp.Stop();
+                    navComp.enabled = false;
+
+                }
+                animController.PlayAnim("Idle");
+                break;
+            case EnemyStates.Chase:
+                if (isSquadLeader)
+                {
+                    if (target)
+                    {
+                        navComp.enabled = true;
+                        navComp.StartAgent(target);
+                     
+                    }
+                }
+                animController.PlayAnim("Walk");
+                ResolveTargetType();
+         
+                break;
+            case EnemyStates.Attack:
+                if (isSquadLeader)
+                { 
+                        navComp.Stop();
+                        navComp.enabled = false;
+                    animController.PlayAnim("Walk");
+
+                }
+                break;
+           
+            case EnemyStates.Destroy:
+                if (isSquadLeader)
+                {
+                    navComp.Stop();
+                    navComp.enabled = false;
+
+                }
+                animController.PlayAnim("Break");
+                break;
+        }
+    }
 
 
-    
     public void RandomStatMutation()
     {
         float mutationMultipler = Random.Range(1f, maxScaleMultiplier);//Get multplier in range of current scale to max scale
@@ -158,7 +187,7 @@ public class ShadowCrawler : BaseEnemy
         //scale base stats by mutation
         maxSpeed *= (1-(mutationMultipler-1));
         chargeSpeed *= ((mutationMultipler-1));
-        navAgent.speed = maxSpeed;
+        navComp.navAgent.speed = maxSpeed;
         maxDamage *= mutationMultipler;
         minDamage *= mutationMultipler;
 
@@ -169,8 +198,6 @@ public class ShadowCrawler : BaseEnemy
         moveDirection = target.position - transform.position;
         SmoothAccelerate(moveDirection, chargeSpeed, settings.timeZeroToMax);
     }
-
-
 
     override protected void BreakAppliance()
     {
