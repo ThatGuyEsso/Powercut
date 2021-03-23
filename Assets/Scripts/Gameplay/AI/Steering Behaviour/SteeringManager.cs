@@ -5,6 +5,8 @@ using UnityEngine;
 public class SteeringManager : MonoBehaviour
 {
     private bool useSteering = false;
+    [SerializeField] private bool useAvoidance = false;
+    [SerializeField] private float maxEvadeForce;
     IBoid parent;
    public List<BaseSteering> steeringBehaviours = new List<BaseSteering>();
     Vector2 netForce;
@@ -17,16 +19,19 @@ public class SteeringManager : MonoBehaviour
         for(int i=0; i< steerings.Length; i++)
         {
             steeringBehaviours.Add(steerings[i]);
-            steerings[i].Init(maxSpeed);
+            steerings[i].Init(maxSpeed,this);
         }
         rb = GetComponent<Rigidbody2D>();
         parent = gameObject.GetComponent<IBoid>();
         this.useSteering =useSteering;
+
+        EnableAvoidance(useAvoidance);
     }
 
     public void BeginSeek()
     {
         DeactivateAll();
+        EnableAvoidance(useAvoidance);
         foreach (Seek steering in steeringBehaviours)
         {
             if (steering)
@@ -39,6 +44,7 @@ public class SteeringManager : MonoBehaviour
 
     public void EndSeek()
     {
+
         foreach (Seek steering in steeringBehaviours)
         {
             if (steering)
@@ -51,6 +57,7 @@ public class SteeringManager : MonoBehaviour
     public void BeginArrival(float arrivalRadius)
     {
         DeactivateAll();
+        EnableAvoidance(useAvoidance);
         foreach (Arrive steering in steeringBehaviours)
         {
             if (steering)
@@ -76,6 +83,7 @@ public class SteeringManager : MonoBehaviour
     public void BeginFollowLeader(IBoid leader, float arrivalRadius)
     {
         DeactivateAll();
+        EnableAvoidance(useAvoidance);
         foreach (BaseSteering steering  in steeringBehaviours)
         {
             if (steering as FollowLeader)
@@ -108,6 +116,7 @@ public class SteeringManager : MonoBehaviour
         {
             steering.SetActive(false);
         }
+      
     }
 
     private void Update()
@@ -127,5 +136,27 @@ public class SteeringManager : MonoBehaviour
         rb.velocity += netForce;
     }
 
+    public float GetMaxEvadeForce() { return maxEvadeForce; }
+
+    public void USeAvoidance(bool useAvoidance)
+    {
+        this.useAvoidance = useAvoidance;
+        EnableAvoidance(useAvoidance);
+    }
+
+    public void EnableAvoidance(bool isEnabled)
+    {
+
+        foreach (BaseSteering steering in steeringBehaviours)
+        {
+            if (steering as CollisionAvoidance)
+            {
+                CollisionAvoidance newSteer = steering as CollisionAvoidance;
+                newSteer.SetActive(isEnabled);
+
+
+            }
+        }
+    }
 
 }

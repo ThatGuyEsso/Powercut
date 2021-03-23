@@ -6,7 +6,7 @@ public class DebugTask : MonoBehaviour,IBreakable
 {
     public void Damage(float damage, BaseEnemy interfacingEnemy)
     {
-        Debug.Log("Taking Damage");
+
     }
 
     public void ObjectIsBroken()

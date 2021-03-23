@@ -132,10 +132,10 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         transform.rotation = Quaternion.Euler(0f, 0f, angle);//update angle
         //fovObject.SetAimDirection((-1)*fovObject.GetVectorFromAngle(angle));
     }
-    virtual protected void FaceMovementDirection()
+    virtual protected void FaceMovementDirection(Vector2 dir)
     {
 
-        float targetAngle = EssoUtility.GetAngleFromVector((rb.velocity.normalized));
+        float targetAngle = EssoUtility.GetAngleFromVector((dir.normalized));
         /// turn offset -Due to converting between forward vector and up vector
         if (targetAngle < 0) targetAngle += 360f;
         float angle = Mathf.SmoothDampAngle(transform.eulerAngles.z, targetAngle, ref smoothRot, settings.rotationSpeed);//rotate player smoothly to target angle
@@ -273,7 +273,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
             else
             {
                 isTargetHuman = false;
-                Debug.Log("Is Object");
+
             }
 
         }

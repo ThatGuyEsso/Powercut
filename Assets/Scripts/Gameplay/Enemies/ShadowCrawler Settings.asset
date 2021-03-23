@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: ShadowCrawler Settings
   m_EditorClassIdentifier: 
   maxNavSpeed: 3
-  maxMovementSpeed: 80
+  maxMovementSpeed: 200
   timeZeroToMax: 0.05
   timeMaxToZero: 0.05
-  rotationSpeed: 0.01
+  rotationSpeed: 0.1
   navAgentSpeedScalar: 0.006
   maxHealth: 50
   maxDamage: 12
@@ -32,3 +32,6 @@ MonoBehaviour:
   destroyRange: 1
   destroyRate: 0.5
   attackRate: 0
+  followRadius: 1
+  sightLength: 5
+  behindLength: 2

@@ -4,21 +4,19 @@ using UnityEngine;
 
 public class FollowLeader : Arrive
 {
-    [SerializeField] protected float leaderBehindDistance =1.25f;
-    [SerializeField] protected float separationRadius = 1;
+
+    [SerializeField] protected float separationRadius = 1.0f;
     [SerializeField] protected float maxSeparation = 1.5f;
-    [SerializeField] protected float leaderSight = 10.0f;
-    [SerializeField] protected float leaderRadius = 1.0f;
-    [SerializeField] protected float evadeForce = 50.0f;
+
     [SerializeField] protected IBoid leader;
   
     List<Transform> neighbours = new List<Transform>();
     Vector2 behindPoint;
     public Vector2 CalculateBehind()
     {
-        Vector2 targetVel = leader.GetVelocity() * -1;
+        Vector2 targetVel = leader.GeRightVector() * -1;
 
-        targetVel = targetVel.normalized * leaderBehindDistance;
+        targetVel = targetVel.normalized * leader.GetBehindLength();
 
         return leader.GetPosition() + targetVel;
 
@@ -41,12 +39,12 @@ public class FollowLeader : Arrive
         {
             if (IsOnLeaderLineOfSight(CalculateAhead()))
             {
-                netForce += EvadeLeader();
+                netForce += Evade(leader.GetPosition(), leader.GetVelocity(), leader.GetMaxSpeed());
             }
 
             behindPoint = CalculateBehind();
-            netForce += CalculateArrivalForce() + Separation();
-
+            netForce += CalculateArrivalForce();
+            netForce += SeparationForce();
             return netForce;
         }
   
@@ -75,7 +73,7 @@ public class FollowLeader : Arrive
     }
 
 
-    public Vector2 Separation()
+    public Vector2 SeparationForce()
     {
         Vector2 force = Vector2.zero;
 
@@ -92,24 +90,19 @@ public class FollowLeader : Arrive
         {
             force /= neighbours.Count;
             force *= -1;
-            return force.normalized * maxSeparation;
+         
         }
 
-
+        force= force.normalized * maxSeparation*Time.deltaTime;
         return force;
     }
-    public Vector2 EvadeLeader()
-    {
-        Vector2 avoidance = rb.position - leader.GetPosition();
-
-       return avoidance = avoidance.normalized * evadeForce*Time.deltaTime;
-    }
+  
     public Vector2 CalculateAhead()
     {
 
-        Vector2 targetVel = leader.GetVelocity();
+        Vector2 targetVel = leader.GeRightVector();
 
-        targetVel = targetVel.normalized * leaderSight;
+        targetVel = targetVel.normalized * leader.GetSightLength();
 
         return leader.GetPosition() + targetVel;
     }
@@ -132,9 +125,9 @@ public class FollowLeader : Arrive
 
     public bool IsOnLeaderLineOfSight(Vector2 ahead)
     {
-        if ((Vector2.Distance(ahead, rb.position) <= leaderSight))
+        if (Vector2.Distance(ahead, rb.position) <= leader.GetSightLength())
             return true;
-        else if (Vector2.Distance(leader.GetPosition(), rb.position) <= leaderRadius) 
+        else if (Vector2.Distance(leader.GetPosition(), rb.position) <= leader.GetRadius()) 
             return true;
         else
             return false;

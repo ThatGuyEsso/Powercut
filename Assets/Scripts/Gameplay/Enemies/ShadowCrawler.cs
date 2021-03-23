@@ -137,9 +137,9 @@ public class ShadowCrawler : BaseEnemy, IBoid
                 if (!isHurt)
                 {
                     if (isSquadLeader)
-                        FaceNavMovementDirection();
+                        FaceMovementDirection(navComp.navAgent.velocity);
                     else
-                        FaceMovementDirection();
+                        FaceMovementDirection(rb.velocity);
                 }
                 break;
 
@@ -242,7 +242,7 @@ public class ShadowCrawler : BaseEnemy, IBoid
             IBreakable appliance = target.GetComponent<IBreakable>();
             if (appliance != null)
             {
-                Debug.Log("Attacking");
+
                 appliance.Damage(dmg,this);
             }
         }
@@ -275,5 +275,30 @@ public class ShadowCrawler : BaseEnemy, IBoid
     public SteeringManager GetMovementManager()
     {
         return movementManager;
+    }
+
+    public float GetRadius()
+    {
+        return settings.followRadius;
+    }
+
+    public float GetSightLength()
+    {
+        return settings.sightLength;
+    }
+
+    public float GetBehindLength()
+    {
+        return settings.behindLength;
+    }
+
+    public float GetMaxSpeed()
+    {
+        return maxSpeed;
+    }
+
+    public Vector3 GeRightVector()
+    {
+        return transform.right;
     }
 }

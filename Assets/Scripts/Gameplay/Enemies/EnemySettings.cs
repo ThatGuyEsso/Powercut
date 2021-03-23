@@ -32,5 +32,8 @@ public class EnemySettings : ScriptableObject
     public float destroyRange;
     public float destroyRate;
     public float attackRate;
+    public float followRadius;
+    public float sightLength;
+    public float behindLength;
 }
 
