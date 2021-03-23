@@ -10,6 +10,8 @@ public class Client
     [SerializeField] private string UID;
     private int nextDialogue;
     public bool hasMessage;
+    public bool unlocked;
+
     [SerializeField] private Sprite clientSprite;
     [SerializeField] private List<SceneIndex> levelTriggers;
     [SerializeField] private List<int> beats;
@@ -46,6 +48,7 @@ public class Client
     public void ClearMessage()
     {
         hasMessage = false;
+      
     }
     
 }

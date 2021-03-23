@@ -965,7 +965,7 @@ MonoBehaviour:
     targetScene: 7
     hasScene: 0
     endBeat: 0
-    typeTime: 0.9
+    typeTime: 2
     isClientBeat: 1
     isBeatChain: 1
   - dialogueChoices: []
@@ -1013,7 +1013,7 @@ MonoBehaviour:
     targetScene: 7
     hasScene: 0
     endBeat: 0
-    typeTime: 1.5
+    typeTime: 3
     isClientBeat: 1
     isBeatChain: 1
   - dialogueChoices: []
@@ -1183,17 +1183,17 @@ MonoBehaviour:
   - dialogueChoices: []
     text: Basically, the head offices has been having all sorts of issues for a while.
     id: 99
-    targetBeatID: 83
+    targetBeatID: 101
     targetScene: 7
     hasScene: 0
     endBeat: 0
-    typeTime: 1
+    typeTime: 2
     isClientBeat: 1
-    isBeatChain: 0
+    isBeatChain: 1
   - dialogueChoices: []
     text: 'The other robin will send you the jobs. '
     id: 100
-    targetBeatID: 101
+    targetBeatID: 102
     targetScene: 7
     hasScene: 0
     endBeat: 0

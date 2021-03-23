@@ -13,7 +13,7 @@ public class Contact : MonoBehaviour
     private Client client;
     private bool hasAlert=false;
     private int beat;
-    [SerializeField] private bool isVisible;
+
 
 
     public void SetUpMessage(int beat)
@@ -41,8 +41,10 @@ public class Contact : MonoBehaviour
             hasAlert = client.hasMessage;
             if (hasAlert)
             {
-                isVisible = hasAlert;
-                ToggleVisibility(isVisible);
+             
+                client.unlocked = true;
+                alertIcon.SetActive(hasAlert);
+                ToggleVisibility(client.unlocked);
                 SetUpMessage(client.DialogueBeat);
                 
             }
@@ -55,11 +57,11 @@ public class Contact : MonoBehaviour
         {
             alertIcon.SetActive(false);
         }
-        if (!isVisible)
-        {
-            ToggleVisibility(isVisible);
+    
+        ToggleVisibility(client.unlocked);
 
-        }
+  
+
     }
 
 
@@ -73,7 +75,7 @@ public class Contact : MonoBehaviour
     {
         contactImage.gameObject.SetActive(isVisible);
         contactName.enabled = isVisible;
-        alertIcon.SetActive( isVisible);
+ 
         background.enabled = isVisible;
     }
 

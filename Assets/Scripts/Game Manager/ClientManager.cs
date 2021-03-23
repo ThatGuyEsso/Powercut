@@ -56,7 +56,14 @@ public class ClientManager : MonoBehaviour,IInitialisable
                     Debug.LogError(" triggers out of range of Beats");
                 }
             }
+
+            if (client.unlocked && client.ClientID == "FF") client.unlocked = false;
+
+
+            if (client.unlocked && client.ClientID == "NCI") client.unlocked = false;
+
         }
+  
     }
     public void Init()
     {
