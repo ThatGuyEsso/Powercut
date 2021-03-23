@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(AudioSource))]
 public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, IBreakable,IFixable
 {
+   
     [Header("Settings")]
     public float maxHealth;
     protected float currHealth;
@@ -44,6 +45,8 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
     [SerializeField] protected ChargingCable fixingCable;
     protected Transform playerTransform;
     protected bool isInitialised;
+
+
     public void Init()
     {
         //Inputs

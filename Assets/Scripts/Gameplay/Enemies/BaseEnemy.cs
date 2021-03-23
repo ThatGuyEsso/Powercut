@@ -14,6 +14,7 @@ public enum EnemyStates
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWeakness
 {
+    [SerializeField] GameModes gameMode = GameModes.Powercut;
     //States
     protected EnemyStates currentState;
     protected bool isHurt;
@@ -66,7 +67,8 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         //initial values
         currHurtTime = settings.hurtTime;
         currTimeBeforeInvulnerable = settings.timeBeforeInvulnerable;
-        BindToInitManager();
+        if(gameMode!=GameModes.Debug)
+            BindToInitManager();
 
         float invokeStartTime = Random.Range(0.0f, 0.5f);
 
@@ -255,6 +257,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
             else
             {
                 isTargetHuman = false;
+                Debug.Log("Is Object");
             }
 
         }
@@ -393,7 +396,8 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
 
     public void BindToInitManager()
     {
-        InitStateManager.instance.OnStateChange += EvaluateNewState;
+        if (gameMode != GameModes.Debug)
+            InitStateManager.instance.OnStateChange += EvaluateNewState;
     }
     virtual protected void EvaluateNewState(InitStates newState)
     {
@@ -464,11 +468,13 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
 
     virtual protected void OnDisable()
     {
-        InitStateManager.instance.OnStateChange -= EvaluateNewState;
+        if (gameMode != GameModes.Debug)
+            InitStateManager.instance.OnStateChange -= EvaluateNewState;
     }
     virtual protected void OnEnable()
     {
-        InitStateManager.instance.OnStateChange += EvaluateNewState;
+        if (gameMode != GameModes.Debug)
+            InitStateManager.instance.OnStateChange += EvaluateNewState;
     }
 
 

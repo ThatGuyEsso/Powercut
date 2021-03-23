@@ -208,6 +208,7 @@ public class ShadowCrawler : BaseEnemy
             IBreakable appliance = target.GetComponent<IBreakable>();
             if (appliance != null)
             {
+                Debug.Log("Attacking");
                 appliance.Damage(dmg,this);
             }
         }
