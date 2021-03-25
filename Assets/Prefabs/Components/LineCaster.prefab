@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4778922723363290265}
   - component: {fileID: 4778922723363290271}
   - component: {fileID: 4778922723363290270}
-  m_Layer: 13
+  m_Layer: 9
   m_Name: LineCaster
   m_TagString: Untagged
   m_Icon: {fileID: 0}

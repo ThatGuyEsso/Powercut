@@ -163,6 +163,27 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
     mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: ObjectSmash
+    clip: {fileID: 8300000, guid: 58573e7493c1c824fb02cc32b8181c94, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: BugsCrawling
+    clip: {fileID: 8300000, guid: 77d6735ced09bea438e79ffcd52c90e9, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: BugsSplat
+    clip: {fileID: 8300000, guid: 38c1422b405ea2846a9c4b6a519202e1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
   soundGroups:
   - name: CharacterStepsSFX
     clips:

@@ -20041,7 +20041,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7664576234845236382, guid: 3522048e80f9e2c4c8a483d910b84ce1, type: 3}
       propertyPath: m_Layer
-      value: 11
+      value: 18
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3522048e80f9e2c4c8a483d910b84ce1, type: 3}
@@ -20581,11 +20581,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8599252770362277145, guid: c4a422e01c18c2a48b8507ce6a75659c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 37.3
+      value: 38.47
       objectReference: {fileID: 0}
     - target: {fileID: 8599252770362277145, guid: c4a422e01c18c2a48b8507ce6a75659c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.7
+      value: -6.48
       objectReference: {fileID: 0}
     - target: {fileID: 8599252770362277145, guid: c4a422e01c18c2a48b8507ce6a75659c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20625,11 +20625,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8599252770362277145, guid: c4a422e01c18c2a48b8507ce6a75659c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 100
+      value: 46.29094
       objectReference: {fileID: 0}
     - target: {fileID: 8599252770362277145, guid: c4a422e01c18c2a48b8507ce6a75659c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100
+      value: 44.03463
       objectReference: {fileID: 0}
     - target: {fileID: 8599252770362277151, guid: c4a422e01c18c2a48b8507ce6a75659c, type: 3}
       propertyPath: m_Name
@@ -21137,7 +21137,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816636365}
   m_LocalRotation: {x: -0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 38.9, y: -9.7, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -21960,6 +21960,10 @@ PrefabInstance:
     - target: {fileID: 2683723831692607601, guid: 244eaa95ee421754196dca3f05d7625f, type: 3}
       propertyPath: fixingColor.g
       value: 0.9968063
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683723831692607601, guid: 244eaa95ee421754196dca3f05d7625f, type: 3}
+      propertyPath: fixAmountPerTick
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2810717445722735374, guid: 244eaa95ee421754196dca3f05d7625f, type: 3}
       propertyPath: m_Offset.x

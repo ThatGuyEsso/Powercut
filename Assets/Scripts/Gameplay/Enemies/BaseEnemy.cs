@@ -11,8 +11,7 @@ public enum EnemyStates
     Attack,
     Destroy,
     Idle,
-    FollowLeader,
-    Arrive,
+
 
 };
 
@@ -20,14 +19,14 @@ public enum EnemyStates
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWeakness
 {
-    [SerializeField] GameModes gameMode = GameModes.Powercut;
+
     //States
     protected EnemyStates currentState;
     protected bool isHurt;
     protected bool isTargetHuman;
     protected bool canDestroy;
     protected bool canBeHurt;
-    [SerializeField] protected bool isSquadLeader=true;
+    
     //Timers
     protected float currTimeToDestroy;
     protected float currTimeToAttack;
@@ -37,14 +36,11 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     public EnemySettings settings;
     protected float smoothRot;
     protected Vector2 knockBack;
-
+    [SerializeField] protected AudioPlayer audioPlayerPrefab;
     //Component refs
     protected Rigidbody2D rb;
     protected NavMeshPathfinding navComp;
-    protected SteeringManager movementManager;
-    protected List<BaseEnemy> followers = new List<BaseEnemy>();
-    [SerializeField] protected IBoid leader;
-    [SerializeField] protected GameObject debugLeader;
+    protected AudioSource aSource;
     //VFX
     [SerializeField]
     protected GameObject hurtNumber;
@@ -64,10 +60,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     //VFx
     public GameObject deathVFX;
 
-    //Delegates
-    public Action<Transform> AttackTarget;
-    public Action<IBoid> NewLeader;
-    public Action SquadMove;
+
     virtual protected void Awake()
     {
         //cache component references
@@ -77,18 +70,17 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     
         hurtVFX = gameObject.GetComponentInChildren<MultiSpriteHurtFlash>();
         navComp = gameObject.GetComponentInChildren<NavMeshPathfinding>();
-
+        aSource = GetComponent<AudioSource>();
         //initial values
         currHurtTime = settings.hurtTime;
         currTimeBeforeInvulnerable = settings.timeBeforeInvulnerable;
-        if(gameMode!=GameModes.Debug)
+
             BindToInitManager();
 
         float invokeStartTime = UnityEngine.Random.Range(0.0f, 0.5f);
 
         InvokeRepeating("ProcessAI", invokeStartTime, settings.aiTickrate);
-        if(!isSquadLeader)
-            leader = debugLeader.GetComponent<IBoid>();
+     
     }
 
 
@@ -127,7 +119,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
             targetVelocity.y = Mathf.SmoothDamp(rb.velocity.y, minSpeed, ref smoothDY, rate);
         }
         CalculateKnockBack();
-        rb.velocity = targetVelocity + knockBack;
+        rb.velocity = targetVelocity + knockBack*Time.deltaTime;
     }
 
     abstract protected void OnStateChange(EnemyStates newState);
@@ -322,15 +314,10 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
 
     virtual public void ObjectIsBroken()
     {
-        if (isSquadLeader)
-        {
-            FindNewTarget();
+ 
+        FindNewTarget();
 
-        }
-        else
-        {
-            if (leader != null) leader.FollowerDestroyedTarget();
-        }
+      
     }
 
     void IHurtable.Damage(float damage, Vector3 knockBackDir, float knockBack)
@@ -382,11 +369,23 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     }
     protected void KillEnemy()
     {
+       
+    
         ObjectPoolManager.Spawn(deathVFX, transform.position, transform.rotation);
+        IAudio player =ObjectPoolManager.Spawn(audioPlayerPrefab.gameObject, transform.position, transform.rotation).GetComponent<IAudio>();
+        player.SetUpAudioSource(AudioManager.instance.GetSound("BugsSplat"));
+        player.PlayAtRandomPitch();
         InitStateManager.instance.OnStateChange -= EvaluateNewState;
         if (GameIntensityManager.instance != false) GameIntensityManager.instance.DecrementNumberOfCrawlers();
 
-        if (isSquadLeader) AppointNewLeader();
+        if (navComp.enabled)
+        {
+            navComp.Stop();
+            navComp.enabled = false;
+        }
+
+
+       
         ObjectPoolManager.Recycle(gameObject);
     }
 
@@ -405,8 +404,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
 
     public void BindToInitManager()
     {
-        if (gameMode != GameModes.Debug)
-            InitStateManager.instance.OnStateChange += EvaluateNewState;
+        InitStateManager.instance.OnStateChange += EvaluateNewState;
     }
     virtual protected void EvaluateNewState(InitStates newState)
     {
@@ -435,59 +433,38 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
 
     virtual protected void FindNewTarget()
     {
-        if (isSquadLeader)
+
+        Transform lightTarget = LevelLampsManager.instance.GetNearestFuseLightFuse(transform);
+        Transform taskTarget = TaskManager.instance.GetNearestTask(transform);
+
+        //if(Vector2.Distance(transform.position,taskTarget.position) < Vector2.Distance(transform.position, taskTarget.position))
+        if (lightTarget != false && taskTarget != false)
         {
-            if (gameMode != GameModes.Debug)
+            if (Vector2.Distance(transform.position, taskTarget.position) <= Vector2.Distance(transform.position, taskTarget.position))
             {
-                Transform lightTarget = LevelLampsManager.instance.GetNearestFuseLightFuse(transform);
-                Transform taskTarget = TaskManager.instance.GetNearestTask(transform);
-
-                //if(Vector2.Distance(transform.position,taskTarget.position) < Vector2.Distance(transform.position, taskTarget.position))
-                if (lightTarget != false && taskTarget != false)
-                {
-                    if (Vector2.Distance(transform.position, taskTarget.position) <= Vector2.Distance(transform.position, taskTarget.position))
-                    {
-                        SetTarget(taskTarget);
-                    }
-                    else
-                    {
-                        SetTarget(lightTarget);
-                    }
-
-                }
-                else if (lightTarget != false && taskTarget == false)
-                {
-                    SetTarget(lightTarget);
-                }
-                else if (lightTarget == false && taskTarget != false)
-                {
-                    SetTarget(taskTarget);
-                }
-                else
-                {
-                    target = FindObjectOfType<PlayerBehaviour>().transform;
-                }
-
+                SetTarget(taskTarget);
             }
             else
             {
-                DebugTask[] testTasks = FindObjectsOfType<DebugTask>();
-
-                for(int i = 0; i < testTasks.Length; i++)
-                {
-                    if (target.gameObject != testTasks[i].gameObject) target = testTasks[i].transform;
-                }
-                SquadMove?.Invoke();
+                SetTarget(lightTarget);
             }
 
-
-            SetEnemyState(EnemyStates.Chase);
-
+        }
+        else if (lightTarget != false && taskTarget == false)
+        {
+            SetTarget(lightTarget);
+        }
+        else if (lightTarget == false && taskTarget != false)
+        {
+            SetTarget(taskTarget);
         }
         else
         {
-            SetEnemyState(EnemyStates.Idle);
+            target = FindObjectOfType<PlayerBehaviour>().transform;
         }
+
+
+        SetEnemyState(EnemyStates.Chase);
 
     }
     //check if target is in range
@@ -526,20 +503,18 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
             {
                 if (distance > settings.attackRange)
                 {
-                    if (isSquadLeader)
-                        SetEnemyState(EnemyStates.Chase);
-                    else
-                        SetEnemyState(EnemyStates.Arrive);
+               
+                    SetEnemyState(EnemyStates.Chase);
+                
                 }
             }
             else//otherwise it is an object so destroy its
             {
                 if (distance > settings.destroyRange)
                 {
-                    if (isSquadLeader)
-                        SetEnemyState(EnemyStates.Chase);
-                    else
-                        SetEnemyState(EnemyStates.Arrive);
+              
+                    SetEnemyState(EnemyStates.Chase);
+             
                 }
             }
         }
@@ -552,44 +527,24 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
 
     virtual protected void OnDisable()
     {
-        if (gameMode != GameModes.Debug)
-            InitStateManager.instance.OnStateChange -= EvaluateNewState;
+  
+        InitStateManager.instance.OnStateChange -= EvaluateNewState;
     }
     virtual protected void OnEnable()
     {
-        if (gameMode != GameModes.Debug)
-            InitStateManager.instance.OnStateChange += EvaluateNewState;
+
+        InitStateManager.instance.OnStateChange += EvaluateNewState;
     }
 
-    public void SetSquadLeader(bool isLeader)
+    protected void ChangeSFX(string sfxName)
     {
-        isSquadLeader= isLeader;
+        Sound sound = AudioManager.instance.GetSound(sfxName);
+
+        aSource.clip = sound.clip;
+        aSource.outputAudioMixerGroup = sound.mixerGroup;
+        aSource.volume = sound.volume;
+        aSource.pitch = sound.pitch;
+        aSource.loop = sound.loop;
     }
-    public bool IsSquadLeader()
-    {
-        return isSquadLeader;
-    }
-    public void AppointNewLeader()
-    {
-        if (followers.Count > 0)
-        {
-            float currScale = 0;
-            BaseEnemy potentialLeader = followers[0];
-            foreach (BaseEnemy follower in followers)
-            {
-                if (follower.transform.localScale.sqrMagnitude > currScale)
-                {
-                    currScale = follower.transform.localScale.sqrMagnitude;
-                    potentialLeader = follower;
-                }
-            }
-
-            potentialLeader.SetSquadLeader(true);
-            potentialLeader.SetTarget(target);
-            NewLeader?.Invoke(potentialLeader.GetComponent<IBoid>());
-
-        };
-
-
-    }
+   
 }

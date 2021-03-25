@@ -43,10 +43,9 @@ public class EnemySpawner : MonoBehaviour,IEnemySpawnable
     {
         if (canSpawn)
         {
-            List<BaseEnemy> enemies = new List<BaseEnemy>();
             canSpawn = false;
             Transform target = LevelLampsManager.instance.GetNearestFuseLightFuse(transform);
-            if (target == false)
+            if (target == null)
             {
                 target = FindObjectOfType<PlayerBehaviour>().transform;
             }
@@ -70,8 +69,7 @@ public class EnemySpawner : MonoBehaviour,IEnemySpawnable
 
                     BaseEnemy currEnemy = ObjectPoolManager.Spawn(settings.enemyTypes[rand],
                         (Random.insideUnitCircle*settings.spawnRadius+(Vector2)transform.position),Quaternion.identity).GetComponent<BaseEnemy>();
-                    enemies.Add(currEnemy);
-         
+                    currEnemy.SetTarget(target);
                     GameIntensityManager.instance.IncrementNumberOfCrawlers();
 
                 }
@@ -80,9 +78,6 @@ public class EnemySpawner : MonoBehaviour,IEnemySpawnable
                     break;
                 }
             }
-
-            if(enemies.Count>0)
-                AppointLeader(target, enemies);
         }
     }
 
@@ -91,39 +86,7 @@ public class EnemySpawner : MonoBehaviour,IEnemySpawnable
         currTimeBeforeSpawn = Random.Range(settings.minTimeBeforeSpawn, settings.maxTimeBeforeSpawn);
     }
 
-    protected void AppointLeader(Transform target, List<BaseEnemy> enemies)
-    {
-        if(enemies.Count > 1) {
 
-            float currScale = 0;
-            BaseEnemy potentialLeader = enemies[0];
-            foreach (BaseEnemy enemy in enemies)
-            {
-                if (enemy.transform.localScale.sqrMagnitude > currScale)
-                {
-                    currScale = enemy.transform.localScale.sqrMagnitude;
-                    potentialLeader = enemy;
-                }
-            }
-
-            potentialLeader.SetSquadLeader(true);
-            potentialLeader.SetTarget(target);
-            foreach (BaseEnemy enemy in enemies)
-            {
-                if (!enemy.IsSquadLeader())
-                {
-                    enemy.SetSquadLeader(potentialLeader);
-                }
-            }
-
-        }
-        else
-        {
-            enemies[0].SetTarget(target);
-            enemies[0].SetSquadLeader(true);
-        }
-
-    }
 
     //Spawnable Interface
     void IEnemySpawnable.LampInDarkness()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class Destructables : MonoBehaviour, IBreakVFX, IHurtable
 {
     private int nBrokenParts;
@@ -12,7 +13,7 @@ public class Destructables : MonoBehaviour, IBreakVFX, IHurtable
 
     private float health;
     [SerializeField] private float maxhHalth = 20.0f;
-
+    protected AudioSource aSource;
     [SerializeField] private List<SpriteRenderer> gfxs;
     [SerializeField] private List<Collider2D> colliders;
     [SerializeField] private List<GameObject> pieces;
@@ -25,6 +26,14 @@ public class Destructables : MonoBehaviour, IBreakVFX, IHurtable
         GetAllColliders();
         GetAllGFXs();
         health = maxhHalth;
+        aSource = GetComponent<AudioSource>();
+        Sound sound = AudioManager.instance.GetSound("ObjectSmash");
+
+        aSource.clip = sound.clip;
+        aSource.outputAudioMixerGroup = sound.mixerGroup;
+        aSource.volume = sound.volume;
+        aSource.pitch = sound.pitch;
+        aSource.loop = sound.loop;
     }
     public void Break(Vector2 dir, float force)
     {
@@ -37,10 +46,10 @@ public class Destructables : MonoBehaviour, IBreakVFX, IHurtable
             pieces.Add(part);
             part.GetComponent<IBreakVFX>().AddBreakForce(partDir[i], force);
 
-            Debug.DrawRay(transform.position, partDir[i], Color.yellow, 10f);
+           
 
         }
-
+        aSource.Play();
         DisableObject();
     }
 
