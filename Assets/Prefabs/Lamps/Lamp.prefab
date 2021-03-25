@@ -150,6 +150,7 @@ MonoBehaviour:
   fuseSettings: {fileID: 11400000, guid: 0f1bea56218fa454c981679e8627d555, type: 2}
   fixingCableColour: {r: 1, g: 0.67510533, b: 0, a: 1}
   currentTimeToFix: 0
+  audioPlayerPrefab: {fileID: 3912195020010027157, guid: bd5d0c2d9dcef8b44bc27c081b8263e3, type: 3}
 --- !u!120 &7434350382917992640
 LineRenderer:
   m_ObjectHideFlags: 0

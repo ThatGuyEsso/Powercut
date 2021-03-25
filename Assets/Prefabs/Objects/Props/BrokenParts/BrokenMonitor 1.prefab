@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3496916160781167705}
   m_Layer: 11
   m_Name: BrokenMonitor 1
-  m_TagString: PhysicsObject
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

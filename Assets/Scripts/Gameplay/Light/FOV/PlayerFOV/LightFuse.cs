@@ -15,6 +15,9 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
     private Controls input;
     private GameObject player;
     protected AudioSource audioSource;
+    [SerializeField] protected GameObject audioPlayerPrefab;
+    protected AudioPlayer audioPlayer;
+
     private void Awake()
     {
         parentLamp = transform.parent.GetComponent<Lamp>();
@@ -57,6 +60,13 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
                 player.GetComponent<IFixable>().NotFixing();
                 fixingCable.ChangeColour(Color.green);
                 isFixing = false;
+                if (audioPlayer != false)
+                {
+
+                    audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("ObjectFixed"));
+                    audioPlayer.Play();
+                    audioPlayer = null;
+                }
             }
             
            
@@ -121,7 +131,13 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
                     player.GetComponent<IFixable>().NotFixing();
                     player = null;
                 }
+                if (audioPlayer != false)
+                {
+                    audioPlayer.KillAudio();
+                    audioPlayer = null;
+                }
            
+
             }
         }
     }
@@ -141,6 +157,9 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
                     {
                         fixingCable.StartDrawingRope(targetTrans);
                         audioSource.Play();
+                        audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position, Quaternion.identity).GetComponent<AudioPlayer>();
+                        audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("ChargingCableSFX"));
+                        audioPlayer.Play();
                     }
                 }
             }

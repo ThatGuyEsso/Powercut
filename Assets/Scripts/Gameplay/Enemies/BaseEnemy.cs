@@ -345,6 +345,11 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
                     navComp.Stop();
                     navComp.enabled = false;
                 }
+                rb.AddForce(knockBackDir * knockBack, ForceMode2D.Impulse);
+                ObjectPoolManager.Spawn(deathVFX, transform.position, transform.rotation);
+                IAudio player = ObjectPoolManager.Spawn(audioPlayerPrefab.gameObject, transform.position, transform.rotation).GetComponent<IAudio>();
+                player.SetUpAudioSource(AudioManager.instance.GetSound("BugHurt"));
+                player.PlayAtRandomPitch();
                 canBeHurt = false;
                 isHurt = true;
                 hurtVFX.BeginFlash();

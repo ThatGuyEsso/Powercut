@@ -8,9 +8,13 @@ public class RechargeStationBehaviour : MonoBehaviour
     private LightManager lightManger;
     private ChargingCable chargeCable;
     public Color ChargingColour;
+    [SerializeField] protected GameObject audioPlayerPrefab;
+    protected AudioPlayer audioPlayer;
+
     private void Awake()
     {
         chargeCable = gameObject.GetComponentInChildren<ChargingCable>();
+
     }
 
     public void OnTriggerEnter2D(Collider2D other)
@@ -25,6 +29,14 @@ public class RechargeStationBehaviour : MonoBehaviour
             chargeCable.StartDrawingRope(playerTrans);
             chargeCable.ChangeColour(ChargingColour);
 
+            audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position, Quaternion.identity).GetComponent<AudioPlayer>();
+            if (audioPlayer)
+            {
+                audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("ChargingCableSFX"));
+                audioPlayer.Play();
+            }
+    
+
         }
     }
 
@@ -34,8 +46,19 @@ public class RechargeStationBehaviour : MonoBehaviour
         {
             if (lightManger != null)
             {
+              
                 if (lightManger.GetIsFullyCharged())
                 {
+                    if (lightManger.GetChargeState() != ChargeStates.StandBy)
+                    {
+                        if (audioPlayer)
+                        {
+                            audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("ObjectFixed"));
+                            audioPlayer.Play();
+                            audioPlayer = null;
+                        }
+                     
+                    }
                     chargeCable.ChangeColour(Color.green);
                     lightManger.SetChargeState(ChargeStates.StandBy);
                 }
@@ -59,6 +82,11 @@ public class RechargeStationBehaviour : MonoBehaviour
             playerTrans = null;
 
            chargeCable.StopDrawingRope();
+            if (audioPlayer != false)
+            {
+                audioPlayer.KillAudio();
+                audioPlayer = null;
+            }
         }
 
     }

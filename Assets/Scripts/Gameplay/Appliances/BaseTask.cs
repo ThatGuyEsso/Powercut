@@ -14,12 +14,16 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
     private float currFixTime;
     public string taskName;//Task Settings
     public string taskDescription;
+    [SerializeField] protected GameObject audioPlayerPrefab;
+
+
+    protected AudioPlayer audioPlayer;
 
 
 
-    [SerializeField] private SpriteRenderer icon;
-    [SerializeField] private Sprite BrokenSprite;
-    [SerializeField] private Sprite FixedSprite;
+    [SerializeField] protected SpriteRenderer icon;
+    [SerializeField] protected Sprite BrokenSprite;
+    [SerializeField] protected Sprite FixedSprite;
     [SerializeField] protected string playerPrompt;
     [SerializeField] protected Color inRangePromptColour = Color.white;
     [SerializeField] protected string powerStillOnPrompt;
@@ -96,6 +100,13 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
                 if(player!=false)
                     player.GetComponent<IFixable>().NotFixing();
                 UIManager.instance.eventDisplay.CreateEvent(taskDescription + " Fixed", Color.green);
+                if (audioPlayer != false)
+                {
+                   
+                    audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("ObjectFixed"));
+                    audioPlayer.Play();
+                    audioPlayer = null;
+                }
             }
            
         }
@@ -135,6 +146,11 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
                 player.GetComponent<IFixable>().NotFixing();
                 player = null;
             }
+            if (audioPlayer != false)
+            {
+                audioPlayer.KillAudio();
+                audioPlayer = null;
+            }
         }
 
     
@@ -166,6 +182,10 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
 
                                 if (playerTransform != false) fixingCable.StartDrawingRope(playerTransform);
                                 audioSource.Play();
+
+                                audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position,Quaternion.identity).GetComponent<AudioPlayer>();
+                                audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("ChargingCableSFX"));
+                                audioPlayer.Play();
                             }
                         }
                     }

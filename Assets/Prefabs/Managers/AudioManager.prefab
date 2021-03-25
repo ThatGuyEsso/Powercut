@@ -184,6 +184,34 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
     mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: ObjectSmashedSolid
+    clip: {fileID: 8300000, guid: 6705bc6d0bd7da049be1be60c1b4af9a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: ChargingCableSFX
+    clip: {fileID: 8300000, guid: 8c0e67cd63613ab4db46525f727336cd, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: ObjectFixed
+    clip: {fileID: 8300000, guid: d6281f240a210074eb04f2f6d6163825, type: 3}
+    volume: 0.9
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: BugHurt
+    clip: {fileID: 8300000, guid: 48ea6aa21ff5c5f4eb632d3f33922f28, type: 3}
+    volume: 0.9
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
   soundGroups:
   - name: CharacterStepsSFX
     clips:

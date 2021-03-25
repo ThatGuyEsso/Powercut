@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1753397796343497290}
   - component: {fileID: 1753397796343497291}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,9 +150,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -91943695
-  m_SortingLayer: 5
-  m_SortingOrder: 0
+  m_SortingLayerID: 1187340155
+  m_SortingLayer: 4
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7635285909952806010, guid: 377a2550b9118aa46a41d1300c8544cb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 1753397796571687987}
   - component: {fileID: 1753397796571687984}
   - component: {fileID: 3071078350378001782}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Recharging Station
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,6 +240,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChargingColour: {r: 0.31439927, g: 0.20392154, b: 0.7372549, a: 1}
+  audioPlayerPrefab: {fileID: 3912195020010027157, guid: bd5d0c2d9dcef8b44bc27c081b8263e3, type: 3}
 --- !u!58 &3071078350378001782
 CircleCollider2D:
   m_ObjectHideFlags: 0

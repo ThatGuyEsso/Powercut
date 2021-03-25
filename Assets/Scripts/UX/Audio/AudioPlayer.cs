@@ -28,6 +28,12 @@ public class AudioPlayer : MonoBehaviour, IAudio
         StartCoroutine(ListiningToFinish());
     }
 
+    public void KillAudio()
+    {
+        StopAllCoroutines();
+        source.Stop();
+        ObjectPoolManager.Recycle(gameObject);
+    }
 
     public void PlayAtRandomPitch()
     {

@@ -48,7 +48,13 @@ public class AirConditionTask : BaseTask, IFixable
                                 if (playerTransform != false)
                                 {
                                     fixingCable.StartDrawingRope(playerTransform);
-                                    audioSource.Play();
+                                    audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position, Quaternion.identity).GetComponent<AudioPlayer>();
+                                    if (audioPlayer)
+                                    {
+                                        audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("ChargingCableSFX"));
+                                        audioPlayer.Play();
+                                    }
+                            
                                 }
                             }
                         }

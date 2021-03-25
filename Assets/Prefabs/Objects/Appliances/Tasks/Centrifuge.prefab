@@ -136,6 +136,7 @@ MonoBehaviour:
   fixAmountPerTick: 10
   taskName: Fix Centrifuge(s)
   taskDescription: Centrifuge
+  audioPlayerPrefab: {fileID: 3912195020010027157, guid: bd5d0c2d9dcef8b44bc27c081b8263e3, type: 3}
   icon: {fileID: 5635669836704020095}
   BrokenSprite: {fileID: 21300000, guid: fc88cae930e3cb84780c38d57b03c1f4, type: 3}
   FixedSprite: {fileID: 21300000, guid: 0520d7eab3f2eb64c91f4d881bf20a26, type: 3}
