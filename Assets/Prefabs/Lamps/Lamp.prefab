@@ -151,6 +151,8 @@ MonoBehaviour:
   fixingCableColour: {r: 1, g: 0.67510533, b: 0, a: 1}
   currentTimeToFix: 0
   audioPlayerPrefab: {fileID: 3912195020010027157, guid: bd5d0c2d9dcef8b44bc27c081b8263e3, type: 3}
+  damageVFX: {fileID: 8904727168001106372, guid: c080d62faf984b54e8d518d59c03ebee, type: 3}
+  cablePoint: {fileID: 5965045241559176876}
 --- !u!120 &7434350382917992640
 LineRenderer:
   m_ObjectHideFlags: 0

@@ -232,6 +232,7 @@ public class LevelLampsManager : MonoBehaviour, IInitialisable
            
             case InitStates.PlayerRespawned:
                 FixAllSceneLamps();
+                shouldBreakLights = true;
                 break;
 
             case InitStates.ExitLevel:

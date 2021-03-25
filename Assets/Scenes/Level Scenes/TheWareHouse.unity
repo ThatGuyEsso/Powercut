@@ -21965,6 +21965,10 @@ PrefabInstance:
       propertyPath: fixAmountPerTick
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 2683723831692607601, guid: 244eaa95ee421754196dca3f05d7625f, type: 3}
+      propertyPath: fixVFX
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2810717445722735374, guid: 244eaa95ee421754196dca3f05d7625f, type: 3}
       propertyPath: m_Offset.x
       value: -0.33141708

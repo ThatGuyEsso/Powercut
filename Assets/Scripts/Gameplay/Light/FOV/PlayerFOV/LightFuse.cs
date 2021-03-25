@@ -17,7 +17,8 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
     protected AudioSource audioSource;
     [SerializeField] protected GameObject audioPlayerPrefab;
     protected AudioPlayer audioPlayer;
-
+    [SerializeField] protected GameObject damageVFX;
+    private Transform cablePoint;
     private void Awake()
     {
         parentLamp = transform.parent.GetComponent<Lamp>();
@@ -169,12 +170,22 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
     void IBreakable.Damage(float damage,BaseEnemy interfacingEnemy)
     {
         parentLamp.DamageLamp(damage);
+        if (damageVFX)
+            SpawnDamgeVFX(interfacingEnemy.transform);
         if (!parentLamp.GetIsLampWorking())
         {
             interfacingEnemy.GetComponent<IBreakable>().ObjectIsBroken();
         }
     }
+    public void SpawnDamgeVFX(Transform attacker)
+    {
+        Vector3 right = attacker.right * -1.0f;
 
+        Quaternion rotation = Quaternion.Euler(right.x, right.y, right.z);
+
+        ObjectPoolManager.Spawn(damageVFX, cablePoint.position, rotation);
+
+    }
     void IBreakable.ObjectIsBroken()
     {
 

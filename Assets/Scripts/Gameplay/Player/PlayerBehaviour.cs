@@ -35,11 +35,11 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     private int numberOfPrimaryGadget;
     private int numberOfSecondaryGadget;
     private bool canAttack;
-
+    [SerializeField] private GameObject audioPlayerPrefab;
     //Timers
     private float currHealth;
     private float currHurtTime;
-    [SerializeField]
+
     private float maxTimeBtwnSteps;
     private float currTimeBetwenSteps;
     //States
@@ -252,7 +252,12 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
                     {
                         numberOfPrimaryGadget--;
                         WeaponManager.instance.UsePrimaryGadget(numberOfPrimaryGadget, transform.up, throwingPoint.position);
-                        
+                        AudioPlayer aPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position, Quaternion.identity)
+                            .GetComponent<AudioPlayer>();
+                        aPlayer.SetUpAudioSource(AudioManager.instance.GetSound("Throw"));
+                        aPlayer.Play();
+
+
                     }
 
                 }

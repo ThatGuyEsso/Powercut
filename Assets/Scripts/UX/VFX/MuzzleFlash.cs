@@ -14,7 +14,7 @@ public class MuzzleFlash : MonoBehaviour
 
     public void BeginMuzzleFash(float flashDur, Transform flashPoint)
     {
-        transform.position = flashPoint.position;
+        transform.position = flashPoint.position+flashPoint.up*0.2f;
         muzzleSFX.enabled = true;
         Invoke("EndFlash", flashDur);
     }

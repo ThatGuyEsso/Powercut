@@ -278,6 +278,7 @@ MonoBehaviour:
   - {fileID: -5217091099418834317, guid: 715f4a3b7f18da1468a8f2ee377aebb4, type: 3}
   - {fileID: -8720240186763310259, guid: 715f4a3b7f18da1468a8f2ee377aebb4, type: 3}
   fixVFX: {fileID: 0}
+  damageVFX: {fileID: 8904727168001106372, guid: c080d62faf984b54e8d518d59c03ebee, type: 3}
   gfx: {fileID: 4477824901512771649}
   fixedColor: {r: 0, g: 1, b: 0, a: 1}
   fixingColor: {r: 1, g: 0.94655716, b: 0, a: 1}

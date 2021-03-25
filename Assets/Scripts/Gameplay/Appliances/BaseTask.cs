@@ -29,7 +29,8 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
     [SerializeField] protected string powerStillOnPrompt;
     [SerializeField] protected string fixingPrompt;
     public Sprite[] stateSprites;//0 should be fixed max should be max broken
-    public GameObject fixVFX;
+    [SerializeField] protected GameObject fixVFX;
+    [SerializeField] protected GameObject damageVFX;
     protected GameObject player;
     //input
     protected Controls input;
@@ -208,6 +209,8 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
     {
 
         DamageTask(damage);
+        if (damageVFX)
+            SpawnDamgeVFX(interfacingEnemy.transform);
         if (!isFixed)
         {
             interfacingEnemy.GetComponent<IBreakable>().ObjectIsBroken();
@@ -216,6 +219,16 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
 
     void IBreakable.ObjectIsBroken()
     {
+
+    }
+
+    public void SpawnDamgeVFX(Transform attacker)
+    {
+        Vector3 right = attacker.right*-1.0f;
+
+        Quaternion rotation = Quaternion.Euler(right.x, right.y, right.z);
+   
+        ObjectPoolManager.Spawn(damageVFX, transform.position, rotation);
 
     }
 

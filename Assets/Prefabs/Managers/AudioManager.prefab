@@ -212,6 +212,13 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
     mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: Throw
+    clip: {fileID: 8300000, guid: 399f3b56a650d0c4fa7d05193d3d7742, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
   soundGroups:
   - name: CharacterStepsSFX
     clips:

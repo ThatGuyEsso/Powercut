@@ -588,7 +588,7 @@ MonoBehaviour:
   activeCamera: {fileID: 0}
   fieldOfView: {fileID: 0}
   throwingPoint: {fileID: 5190417104141410156}
-  maxTimeBtwnSteps: 0.5
+  audioPlayerPrefab: {fileID: 3912195020010027157, guid: bd5d0c2d9dcef8b44bc27c081b8263e3, type: 3}
 --- !u!50 &5706933382755762388
 Rigidbody2D:
   serializedVersion: 4
