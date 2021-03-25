@@ -7,10 +7,10 @@ public class FollowLeader : Arrive
 
     [SerializeField] protected float separationRadius = 1.0f;
     [SerializeField] protected float maxSeparation = 1.5f;
-
+    [SerializeField] protected float maxQueueAheadRadius = 1.0f;
     [SerializeField] protected IBoid leader;
   
-    List<Transform> neighbours = new List<Transform>();
+   
     Vector2 behindPoint;
     public Vector2 CalculateBehind()
     {
@@ -45,6 +45,7 @@ public class FollowLeader : Arrive
             behindPoint = CalculateBehind();
             netForce += CalculateArrivalForce();
             netForce += SeparationForce();
+            netForce += CalulateQueueForce(netForce);
             return netForce;
         }
   
@@ -55,7 +56,7 @@ public class FollowLeader : Arrive
 
     override public Vector2 CalculateArrivalForce()
     {
-        if (!target) return Vector2.zero;
+        if (leader==null) return Vector2.zero;
         Vector2 desiredVel = (behindPoint - rb.position);
         float distance = Vector2.Distance(behindPoint, rb.position);
 
@@ -80,7 +81,7 @@ public class FollowLeader : Arrive
         for( int i=0;i< neighbours.Count; i++)
         {
             Vector2 currNeightPos = neighbours[i].position;
-            if(Vector2.Distance(rb.position,currNeightPos)<= separationRadius)
+            if(Vector2.Distance(rb.position,currNeightPos)<= separationRadius&& neighbours[i].gameObject!=leader.GetGameObjectRef())
             {
                 force += (currNeightPos - rb.position);
             }
@@ -107,21 +108,6 @@ public class FollowLeader : Arrive
         return leader.GetPosition() + targetVel;
     }
 
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            neighbours.Add(other.transform);
-        }
-    }
-
-    public void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            neighbours.Remove(other.transform);
-        }
-    }
 
     public bool IsOnLeaderLineOfSight(Vector2 ahead)
     {
@@ -131,6 +117,39 @@ public class FollowLeader : Arrive
             return true;
         else
             return false;
+    }
+
+    public Transform GetNeighbourAhead()
+    {
+        Vector2 aheadPoint = rb.position+ (Vector2)(transform.right.normalized * maxQueueAheadRadius);
+        for (int i = 0; i < neighbours.Count; i++)
+        {
+            Vector2 currNeightPos = neighbours[i].position;
+            if (Vector2.Distance(currNeightPos, aheadPoint) <= maxQueueAheadRadius
+                && neighbours[i].gameObject != leader.GetGameObjectRef().gameObject)
+            {
+               return neighbours[i];
+            }
+        }
+
+        return null;
+    }
+
+
+    public Vector2 CalulateQueueForce(Vector2 currNetForce)
+    {
+        Transform neighbour = GetNeighbourAhead();
+
+        if (neighbour)
+        {
+            Vector2 brakeForce = -currNetForce * 0.8f;
+            Vector2 vel = rb.velocity * -1.0f;
+            return brakeForce + vel;
+        }
+        else
+        {
+            return Vector2.zero;
+        }
     }
 
 }

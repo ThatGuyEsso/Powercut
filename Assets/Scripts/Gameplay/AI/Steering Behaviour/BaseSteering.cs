@@ -12,6 +12,7 @@ public abstract class BaseSteering : MonoBehaviour
     protected Vector2 resultantForce = Vector2.zero;
     protected IBoid self;
     protected SteeringManager steeringManager;
+    protected List<Transform> neighbours = new List<Transform>();
     virtual public void Init(float maxSpeed, SteeringManager manager)
     {
   
@@ -57,6 +58,23 @@ public abstract class BaseSteering : MonoBehaviour
     public Vector2 PredictTargetPosition(Vector2 targetPosition,Vector2 targetVelocity, float updatesAhead)
     {
         return targetPosition + (targetVelocity * updatesAhead);
-    } 
+    }
+
+
+    virtual protected void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            neighbours.Add(other.transform);
+        }
+    }
+
+    virtual protected void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            neighbours.Remove(other.transform);
+        }
+    }
 
 }

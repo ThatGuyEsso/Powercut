@@ -13,11 +13,11 @@ public class ShadowCrawler : BaseEnemy, IBoid
 
     public float maxScaleMultiplier;
     protected BaseEnemyAnimController animController;
-
+ 
     protected override void Awake()
     {
         base.Awake();
-
+       
         //Set initial variables need to define own variables to change them
         maxDamage = settings.maxDamage;
         minDamage = settings.minDamage;
@@ -40,6 +40,7 @@ public class ShadowCrawler : BaseEnemy, IBoid
             navComp.enabled = true;
             movementManager.Init(maxSpeed, false);
             movementManager.enabled = false;
+           
         }
         else
         {
@@ -55,10 +56,24 @@ public class ShadowCrawler : BaseEnemy, IBoid
 
     private void Start()
     {
-        if (target != null)
+        if (isSquadLeader&& target!=false)
         {
             SetEnemyState(EnemyStates.Chase);
-          
+
+        }
+        else
+        {
+            if (leader != null)
+            {
+                SetEnemyState(EnemyStates.FollowLeader);
+                leader.GetGameObjectRef().AttackTarget += AttackLeaderTarget;
+                leader.GetGameObjectRef().SquadMove += FollowLeaderAgain;
+                leader.GetGameObjectRef().NewLeader += ResolveNewLeader;
+
+            }
+            else SetEnemyState(EnemyStates.Idle);
+
+
         }
     }
     protected override void ProcessAI()
@@ -92,13 +107,10 @@ public class ShadowCrawler : BaseEnemy, IBoid
                     EvaluateInRange();
                   
                 }
-
-
                 break;
 
-            case EnemyStates.Wander:
-                //Move around randomly 
-                break;
+
+   
         }
     }
     protected override void Update()
@@ -142,7 +154,10 @@ public class ShadowCrawler : BaseEnemy, IBoid
                         FaceMovementDirection(rb.velocity);
                 }
                 break;
-
+            case EnemyStates.FollowLeader:
+                FaceMovementDirection(rb.velocity);
+                break;
+        
         }
     }
 
@@ -161,51 +176,63 @@ public class ShadowCrawler : BaseEnemy, IBoid
 
                 break;
             case EnemyStates.Chase:
-                if (isSquadLeader)
+
+                if (target)
                 {
-                    if (target)
-                    {
-                        navComp.enabled = true;
-                        navComp.StartAgent(target);
-                     
-                    }
+                    navComp.enabled = true;
+                    navComp.StartAgent(target);
+                    animController.PlayAnim("Walk");
+                    ResolveTargetType();
                 }
-                else
-                {
-                    movementManager.BeginFollowLeader(leader,settings.attackRange);
-                }
-                animController.PlayAnim("Walk");
-                ResolveTargetType();
-         
+
+
+
                 break;
             case EnemyStates.Attack:
                 if (isSquadLeader)
-                { 
-                        navComp.Stop();
-                        navComp.enabled = false;
-                    animController.PlayAnim("Walk");
-
-                }
-                else
-                {
-                    movementManager.DeactivateAll();
-                }
-                break;
-           
-            case EnemyStates.Destroy:
-                if (isSquadLeader)
+                    AttackTarget?.Invoke(target);
+                if (navComp.enabled)
                 {
                     navComp.Stop();
                     navComp.enabled = false;
 
+
+                }
+
+                animController.PlayAnim("Walk");
+                movementManager.DeactivateAll();
+
+                break;
+
+            case EnemyStates.Destroy:
+                if (isSquadLeader)
+                    AttackTarget?.Invoke(target);
+
+                if (navComp.enabled)
+                {
+                    navComp.Stop();
+                    navComp.enabled = false;
+
+
+                }
+                movementManager.DeactivateAll();
+
+                animController.PlayAnim("Break");
+                break;
+
+            case EnemyStates.FollowLeader:
+                if (!isSquadLeader)
+                {
+                    movementManager.BeginFollowLeader(leader, leader.GetRadius());
+                    animController.PlayAnim("Walk");
                 }
                 else
                 {
-                    movementManager.DeactivateAll();
+                    SetEnemyState(EnemyStates.Chase);
                 }
-                animController.PlayAnim("Break");
                 break;
         }
+       
     }
 
 
@@ -219,7 +246,7 @@ public class ShadowCrawler : BaseEnemy, IBoid
 
         //scale base stats by mutation
         maxNavSpeed *= (1-(mutationMultipler-1));
-        maxSpeed *= (1 - (mutationMultipler - 1));
+        //maxSpeed *= (1 - (mutationMultipler - 1));
         chargeSpeed *= ((mutationMultipler-1));
         navComp.navAgent.speed = maxNavSpeed;
         maxDamage *= mutationMultipler;
@@ -229,13 +256,17 @@ public class ShadowCrawler : BaseEnemy, IBoid
 
     public void ChargePlayer()
     {
-        moveDirection = target.position - transform.position;
-        SmoothAccelerate(moveDirection, chargeSpeed, settings.timeZeroToMax);
+        if (target)
+        {
+            moveDirection = target.position - transform.position;
+            SmoothAccelerate(moveDirection, chargeSpeed, settings.timeZeroToMax);
+        }
+
     }
 
     override protected void BreakAppliance()
     {
-        if (canDestroy)
+        if (canDestroy&&target)
         {
             canDestroy = false;
             float dmg = Random.Range(minDamage,maxDamage);
@@ -246,8 +277,16 @@ public class ShadowCrawler : BaseEnemy, IBoid
                 appliance.Damage(dmg,this);
             }
         }
+        else if(!target&&isSquadLeader)
+        {
+            ObjectIsBroken();
+        }
     }
 
+    public override void ObjectIsBroken()
+    {
+        base.ObjectIsBroken();
+    }
     public Transform GetTarget()
     {
         return target;
@@ -301,4 +340,63 @@ public class ShadowCrawler : BaseEnemy, IBoid
     {
         return transform.right;
     }
+
+    public BaseEnemy GetGameObjectRef()
+    {
+        return this;
+    }
+
+    public void AttackLeaderTarget(Transform target)
+    {
+        this.target = target;
+        ResolveTargetType();
+
+        SetEnemyState(EnemyStates.Chase);
+    }
+    public void FollowLeaderAgain()
+    {
+       
+        if (navComp.enabled)
+        {
+            navComp.Stop();
+            navComp.enabled = false;
+
+        }
+        target = null;
+        SetEnemyState(EnemyStates.FollowLeader);
+    }
+
+    public void AddFollower(BaseEnemy newFollower)
+    {
+        if (isSquadLeader)
+            followers.Add(newFollower);
+    }
+
+
+    public void FollowerDestroyedTarget()
+    {
+        if (isSquadLeader)
+        {
+            FindNewTarget();
+        }
+    }
+
+    public void FolowerDied(BaseEnemy follower)
+    {
+        if (isSquadLeader)
+            followers.Remove(follower);
+    }
+
+    protected void ResolveNewLeader(IBoid newLeader)
+    {
+        leader.GetGameObjectRef().AttackTarget -= AttackLeaderTarget;
+        leader.GetGameObjectRef().SquadMove -= FollowLeaderAgain;
+        leader.GetGameObjectRef().NewLeader -= ResolveNewLeader;
+
+        leader = newLeader;
+        leader.GetGameObjectRef().AttackTarget += AttackLeaderTarget;
+        leader.GetGameObjectRef().SquadMove += FollowLeaderAgain;
+        leader.GetGameObjectRef().NewLeader += ResolveNewLeader;
+    }
+    
 }

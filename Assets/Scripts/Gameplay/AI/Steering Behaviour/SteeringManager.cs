@@ -58,13 +58,13 @@ public class SteeringManager : MonoBehaviour
     {
         DeactivateAll();
         EnableAvoidance(useAvoidance);
-        foreach (Arrive steering in steeringBehaviours)
+        foreach (BaseSteering steering in steeringBehaviours)
         {
-            if (steering)
+            if (steering as Arrive)
             {
-              
-                steering.SetActive(true);
-                steering.SetSlowingRadius(arrivalRadius);
+                Arrive newSteer = steering as Arrive;
+                newSteer.SetActive(true);
+                newSteer.SetSlowingRadius(arrivalRadius);
             }
         }
     }
@@ -127,7 +127,6 @@ public class SteeringManager : MonoBehaviour
         {
             if (steering.IsActive())
             {
-                steering.SetTarget(parent.GetTarget());
                 netForce += steering.CalculateResultantForce();
             }
         

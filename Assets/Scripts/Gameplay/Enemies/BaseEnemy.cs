@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-
+using System;
 
 public enum EnemyStates
 {
@@ -10,8 +10,13 @@ public enum EnemyStates
     Chase,
     Attack,
     Destroy,
-    Idle
+    Idle,
+    FollowLeader,
+    Arrive,
+
 };
+
+
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWeakness
 {
@@ -37,7 +42,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     protected Rigidbody2D rb;
     protected NavMeshPathfinding navComp;
     protected SteeringManager movementManager;
-
+    protected List<BaseEnemy> followers = new List<BaseEnemy>();
     [SerializeField] protected IBoid leader;
     [SerializeField] protected GameObject debugLeader;
     //VFX
@@ -59,6 +64,10 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     //VFx
     public GameObject deathVFX;
 
+    //Delegates
+    public Action<Transform> AttackTarget;
+    public Action<IBoid> NewLeader;
+    public Action SquadMove;
     virtual protected void Awake()
     {
         //cache component references
@@ -75,7 +84,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         if(gameMode!=GameModes.Debug)
             BindToInitManager();
 
-        float invokeStartTime = Random.Range(0.0f, 0.5f);
+        float invokeStartTime = UnityEngine.Random.Range(0.0f, 0.5f);
 
         InvokeRepeating("ProcessAI", invokeStartTime, settings.aiTickrate);
         if(!isSquadLeader)
@@ -149,8 +158,8 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         {
             if (currentState == EnemyStates.Attack)
             {
-                float dmg = Random.Range(settings.minDamage, settings.maxDamage);
-                float knockBack = Random.Range(settings.minKnockBack, settings.maxKnockBack);
+                float dmg = UnityEngine.Random.Range(settings.minDamage, settings.maxDamage);
+                float knockBack = UnityEngine.Random.Range(settings.minKnockBack, settings.maxKnockBack);
                 other.gameObject.GetComponent<IHurtable>().Damage(dmg, rb.velocity.normalized, knockBack);
 
             }
@@ -162,8 +171,8 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         {
             if (currentState == EnemyStates.Attack)
             {
-                float dmg = Random.Range(settings.minDamage, settings.maxDamage);
-                float knockBack = Random.Range(settings.minKnockBack, settings.maxKnockBack);
+                float dmg = UnityEngine.Random.Range(settings.minDamage, settings.maxDamage);
+                float knockBack = UnityEngine.Random.Range(settings.minKnockBack, settings.maxKnockBack);
                 other.gameObject.GetComponent<IHurtable>().Damage(dmg, rb.velocity.normalized, knockBack);
             }
 
@@ -302,7 +311,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         if (canDestroy)
         {
             canDestroy = false;
-            float dmg = Random.Range(settings.minDamage, settings.maxDamage);
+            float dmg = UnityEngine.Random.Range(settings.minDamage, settings.maxDamage);
             LightFuse fuse = target.GetComponent<LightFuse>();
             if (fuse != null)
             {
@@ -311,35 +320,17 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         }
     }
 
-    void IBreakable.ObjectIsBroken()
+    virtual public void ObjectIsBroken()
     {
-        Transform lightTarget = LevelLampsManager.instance.GetNearestFuseLightFuse(transform);
-        Transform taskTarget = TaskManager.instance.GetNearestTask(transform);
+        if (isSquadLeader)
+        {
+            FindNewTarget();
 
-        //if(Vector2.Distance(transform.position,taskTarget.position) < Vector2.Distance(transform.position, taskTarget.position))
-        if (lightTarget != false && taskTarget!=false)
-        {
-            if (Vector2.Distance(transform.position, taskTarget.position) <= Vector2.Distance(transform.position, taskTarget.position))
-            {
-                SetTarget(taskTarget);
-            }
-            else
-            {
-                SetTarget(lightTarget);
-            }
-               
-        }else if(lightTarget != false && taskTarget == false)
-        {
-            SetTarget(lightTarget);
-        }else if(lightTarget == false && taskTarget != false)
-        {
-            SetTarget(taskTarget);
         }
         else
         {
-            target = FindObjectOfType<PlayerBehaviour>().transform;
+            if (leader != null) leader.FollowerDestroyedTarget();
         }
-        SetEnemyState(EnemyStates.Chase);
     }
 
     void IHurtable.Damage(float damage, Vector3 knockBackDir, float knockBack)
@@ -394,6 +385,8 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         ObjectPoolManager.Spawn(deathVFX, transform.position, transform.rotation);
         InitStateManager.instance.OnStateChange -= EvaluateNewState;
         if (GameIntensityManager.instance != false) GameIntensityManager.instance.DecrementNumberOfCrawlers();
+
+        if (isSquadLeader) AppointNewLeader();
         ObjectPoolManager.Recycle(gameObject);
     }
 
@@ -440,46 +433,121 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         }
     }
 
+    virtual protected void FindNewTarget()
+    {
+        if (isSquadLeader)
+        {
+            if (gameMode != GameModes.Debug)
+            {
+                Transform lightTarget = LevelLampsManager.instance.GetNearestFuseLightFuse(transform);
+                Transform taskTarget = TaskManager.instance.GetNearestTask(transform);
+
+                //if(Vector2.Distance(transform.position,taskTarget.position) < Vector2.Distance(transform.position, taskTarget.position))
+                if (lightTarget != false && taskTarget != false)
+                {
+                    if (Vector2.Distance(transform.position, taskTarget.position) <= Vector2.Distance(transform.position, taskTarget.position))
+                    {
+                        SetTarget(taskTarget);
+                    }
+                    else
+                    {
+                        SetTarget(lightTarget);
+                    }
+
+                }
+                else if (lightTarget != false && taskTarget == false)
+                {
+                    SetTarget(lightTarget);
+                }
+                else if (lightTarget == false && taskTarget != false)
+                {
+                    SetTarget(taskTarget);
+                }
+                else
+                {
+                    target = FindObjectOfType<PlayerBehaviour>().transform;
+                }
+
+            }
+            else
+            {
+                DebugTask[] testTasks = FindObjectsOfType<DebugTask>();
+
+                for(int i = 0; i < testTasks.Length; i++)
+                {
+                    if (target.gameObject != testTasks[i].gameObject) target = testTasks[i].transform;
+                }
+                SquadMove?.Invoke();
+            }
+
+
+            SetEnemyState(EnemyStates.Chase);
+
+        }
+        else
+        {
+            SetEnemyState(EnemyStates.Idle);
+        }
+
+    }
     //check if target is in range
     virtual protected void EvaluateInRange()
     {
         //get distance
-        float distance = Vector3.Distance(transform.position, target.transform.position);
-        if (isTargetHuman)//if human attack if in range
+        if (target)
         {
-            if (distance <= settings.attackRange)
+            float distance = Vector3.Distance(transform.position, target.transform.position);
+            if (isTargetHuman)//if human attack if in range
             {
-                
-                SetEnemyState(EnemyStates.Attack);
+                if (distance <= settings.attackRange)
+                {
+
+                    SetEnemyState(EnemyStates.Attack);
+                }
+            }
+            else//otherwise it is an object so destroy its
+            {
+                if (distance <= settings.destroyRange)
+                {
+                    SetEnemyState(EnemyStates.Destroy);
+                }
             }
         }
-        else//otherwise it is an object so destroy its
-        {
-            if (distance <= settings.destroyRange)
-            {
-                SetEnemyState(EnemyStates.Destroy);
-            }
-        }
+
     }
 
     virtual protected void EvaluateOutOfRange()
     {
-        //get distance
-        float distance = Vector3.Distance(transform.position, target.transform.position);
-        if (isTargetHuman)//if human attack if in range
+        if (target)
         {
-            if (distance > settings.attackRange)
+            //get distance
+            float distance = Vector3.Distance(transform.position, target.transform.position);
+            if (isTargetHuman)//if human attack if in range
             {
-                SetEnemyState(EnemyStates.Chase);
+                if (distance > settings.attackRange)
+                {
+                    if (isSquadLeader)
+                        SetEnemyState(EnemyStates.Chase);
+                    else
+                        SetEnemyState(EnemyStates.Arrive);
+                }
+            }
+            else//otherwise it is an object so destroy its
+            {
+                if (distance > settings.destroyRange)
+                {
+                    if (isSquadLeader)
+                        SetEnemyState(EnemyStates.Chase);
+                    else
+                        SetEnemyState(EnemyStates.Arrive);
+                }
             }
         }
-        else//otherwise it is an object so destroy its
+        else
         {
-            if (distance >= settings.destroyRange)
-            {
-                SetEnemyState(EnemyStates.Chase);
-            }
+            
         }
+    
     }
 
     virtual protected void OnDisable()
@@ -493,5 +561,35 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
             InitStateManager.instance.OnStateChange += EvaluateNewState;
     }
 
+    public void SetSquadLeader(bool isLeader)
+    {
+        isSquadLeader= isLeader;
+    }
+    public bool IsSquadLeader()
+    {
+        return isSquadLeader;
+    }
+    public void AppointNewLeader()
+    {
+        if (followers.Count > 0)
+        {
+            float currScale = 0;
+            BaseEnemy potentialLeader = followers[0];
+            foreach (BaseEnemy follower in followers)
+            {
+                if (follower.transform.localScale.sqrMagnitude > currScale)
+                {
+                    currScale = follower.transform.localScale.sqrMagnitude;
+                    potentialLeader = follower;
+                }
+            }
 
+            potentialLeader.SetSquadLeader(true);
+            potentialLeader.SetTarget(target);
+            NewLeader?.Invoke(potentialLeader.GetComponent<IBoid>());
+
+        };
+
+
+    }
 }
