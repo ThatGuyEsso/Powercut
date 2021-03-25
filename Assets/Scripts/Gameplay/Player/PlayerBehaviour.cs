@@ -11,7 +11,7 @@ public enum MovementStates
 };
 
 //Manages player behaviour (walking, input, health)
-public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControlsActions,IPlayerComponents, IFixable
+public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControlsActions,IPlayerComponents, IFixable,IPickUp
 {
    
 
@@ -514,5 +514,17 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         isFixing = false;
     }
 
+    public void PickUpHealth(float health)
+    {
+        currHealth += health;
+        if (currHealth > settings.maxHealth) currHealth = settings.maxHealth;
+        UIManager.instance.healthBarDisplay.UpdateSlider(currHealth);
+        AudioManager.instance.PlayIfFree("Relief");
+    }
 
+    public void PickUpAmmo()
+    {
+        WeaponManager.instance.RefreshWeaponAmmo();
+        
+    }
 }

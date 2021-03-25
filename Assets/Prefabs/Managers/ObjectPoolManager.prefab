@@ -97,3 +97,7 @@ MonoBehaviour:
     prefab: {fileID: 1806427279521341351, guid: e21611b893747ee40a1b08493478a1d7, type: 3}
   - size: 10
     prefab: {fileID: 8904727168001106372, guid: c080d62faf984b54e8d518d59c03ebee, type: 3}
+  - size: 10
+    prefab: {fileID: 4188992437063955373, guid: 31dc60a192553784b977fcb3115f28d5, type: 3}
+  - size: 10
+    prefab: {fileID: 5979457517947137470, guid: c0ac57e6e2a54c64e8a8825e58771993, type: 3}

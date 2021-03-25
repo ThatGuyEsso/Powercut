@@ -132,6 +132,7 @@ MonoBehaviour:
   - {fileID: 1806427279521341351, guid: 3ebe950852e410a4a9b8e6ea40d32fc2, type: 3}
   spread: 80
   spreadAngle: 180
+  table: {fileID: 11400000, guid: 755ce341bbdb0f24e88b5b6e2b7dbda3, type: 2}
   maxhHalth: 20
   gfxs: []
   colliders: []

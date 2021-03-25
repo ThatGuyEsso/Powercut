@@ -216,4 +216,16 @@ public class WeaponManager : MonoBehaviour
             return activeGunIndex + 1;
         }
     }
+
+
+    public void RefreshWeaponAmmo() {
+        foreach(BaseGun gun in gunsCarried)
+        {
+            gun.ResetGun();
+        }
+        UIManager.instance.ammoDisplay.SetClipCount(gunsCarried[activeGunIndex].GetCurrentClip());
+        //updates  only ammo reserve display of respective gun
+        UIManager.instance.ammoDisplay.SetAmmoCount(gunsCarried[activeGunIndex].GetCurrentAmmo(), gunsCarried[activeGunIndex].HasInifiniteBullets());
+        gunsCarried[activeGunIndex].PlayReloadSFX();
+    }
 }

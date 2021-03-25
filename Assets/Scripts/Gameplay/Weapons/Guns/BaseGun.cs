@@ -210,4 +210,9 @@ public abstract class BaseGun : MonoBehaviour, IShootable
         //returns type of the gun
         return gunType;
     }
+
+    public void PlayReloadSFX()
+    {
+        AudioManager.instance.PlayAtRandomPitch(reloadSFX);
+    }
 }

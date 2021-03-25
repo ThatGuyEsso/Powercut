@@ -81,6 +81,22 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayIfFree(string name)
+    {
+        Sound currentSound = Array.Find(sounds, sound => sound.name == name);
+        if (currentSound != null)
+        {
+
+            if (!currentSound.source.isPlaying) currentSound.source.Play();
+
+
+        }
+        else
+        {
+            Debug.Log("Sound of name:" + name + " was not found");
+        }
+    }
+
 
     //Play sound of at random pitch 
     public void PlayAtRandomPitch(string name)

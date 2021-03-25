@@ -18,7 +18,7 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
     [SerializeField] protected GameObject audioPlayerPrefab;
     protected AudioPlayer audioPlayer;
     [SerializeField] protected GameObject damageVFX;
-    private Transform cablePoint;
+    [SerializeField] private Transform cablePoint;
     private void Awake()
     {
         parentLamp = transform.parent.GetComponent<Lamp>();

@@ -10,7 +10,7 @@ public class Destructables : MonoBehaviour, IBreakVFX, IHurtable
 
     [SerializeField] private float spread;
     [SerializeField] private float spreadAngle;
-
+    [SerializeField] private LootTable table;
     private float health;
     [SerializeField] private float maxhHalth = 20.0f;
     protected AudioSource aSource;
@@ -38,6 +38,7 @@ public class Destructables : MonoBehaviour, IBreakVFX, IHurtable
     public void Break(Vector2 dir, float force)
     {
         Vector3[] partDir = EssoUtility.GetVectorsInArc(dir, brokenParts.Count, spreadAngle, spread);
+
         for (int i = 0; i < brokenParts.Count; i++)
         {
 
@@ -49,6 +50,17 @@ public class Destructables : MonoBehaviour, IBreakVFX, IHurtable
            
 
         }
+        if (table)
+        {
+            GameObject loot = table.ReturnLoot();
+            if (loot)
+            {
+                Vector3 randPosition = transform.position + Random.insideUnitSphere * 0.5f;
+                ObjectPoolManager.Spawn(loot, randPosition, transform.rotation).GetComponent<IBreakVFX>().AddBreakForce(dir, force);
+            }
+        }
+         
+
         aSource.Play();
         DisableObject();
     }

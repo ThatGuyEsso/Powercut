@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1806427279521341348}
   - component: {fileID: 1670541121217032294}
   - component: {fileID: 3496916160781167705}
-  m_Layer: 11
+  m_Layer: 19
   m_Name: BrokenTable 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1806427279822350280}
   - component: {fileID: 1806427279822350281}
-  m_Layer: 11
+  m_Layer: 19
   m_Name: GFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

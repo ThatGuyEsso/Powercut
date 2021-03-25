@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5651619840418655568}
   - component: {fileID: 5651619840418655571}
   - component: {fileID: 5958348052588955279}
-  m_Layer: 11
+  m_Layer: 19
   m_Name: BrokenPaper1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5651619841676981368}
   - component: {fileID: 5651619841676981369}
-  m_Layer: 11
+  m_Layer: 19
   m_Name: Paper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
