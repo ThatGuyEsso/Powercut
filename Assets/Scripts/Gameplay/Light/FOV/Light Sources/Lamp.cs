@@ -84,6 +84,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
             {
                 isFlickering = false;
                 InstantBreakLamp();
+                audioSource.Stop();
             }
             else
             {
@@ -93,7 +94,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
                     if (lightRef.GetLightIsOn()) lightRef.ToggleLight(false);
                     else lightRef.ToggleLight(true);
                     timeToNextFlciker = Random.Range(minFlickerRate,maxFlickerRate);
-                    audioSource.Stop();
+                    
                 }
                 else
                 {

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6144a192abca0146abe310bcadca4ac, type: 3}
   m_Name: OfficeHQ
   m_EditorClassIdentifier: 
-  maxNumberCrawlers: 12
-  targetPercentBrokenLamps: 5
-  minLampBreakTime: 6
-  maxLampBreakTime: 12
+  maxNumberCrawlers: 8
+  targetPercentBrokenLamps: 0.5
+  minLampBreakTime: 2
+  maxLampBreakTime: 8

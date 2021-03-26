@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
+   
+
+    private void Awake()
+    {
+
+         PointerManager.instance.SwitchToPointer();
+    }
     public void Play()
     {
         MusicManager.instance.BeginFadeOut();

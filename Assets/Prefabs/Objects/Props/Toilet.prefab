@@ -93,6 +93,7 @@ GameObject:
   - component: {fileID: 6160488679700219717}
   - component: {fileID: 6543855107346013788}
   - component: {fileID: 2097414103253928554}
+  - component: {fileID: 5093163780361822020}
   m_Layer: 0
   m_Name: Toilet
   m_TagString: Untagged
@@ -237,3 +238,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5093163780361822020
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4995442731469290502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e41dd31ea0248f4db01ea24cf615044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brokenParts:
+  - {fileID: 1806427279521341351, guid: cf509e1c282ae2d42b86e483d69e00d4, type: 3}
+  - {fileID: 1806427279521341351, guid: 7ee7e6cb2445c7f42ac6a03a8c696ae2, type: 3}
+  - {fileID: 1806427279521341351, guid: cae57a8ef2835bc49a0904c39983518e, type: 3}
+  spread: 30
+  spreadAngle: 90
+  table: {fileID: 11400000, guid: 755ce341bbdb0f24e88b5b6e2b7dbda3, type: 2}
+  maxhHalth: 50
+  gfxs: []
+  colliders: []
+  pieces: []

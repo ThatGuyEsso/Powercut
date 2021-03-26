@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5162288170216355847}
   - component: {fileID: 5369799882955227912}
   - component: {fileID: 3201330273258999263}
+  - component: {fileID: 7279653092570435289}
   m_Layer: 0
   m_Name: Sink
   m_TagString: Untagged
@@ -155,6 +156,29 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7279653092570435289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6403802844419006635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e41dd31ea0248f4db01ea24cf615044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brokenParts:
+  - {fileID: 1806427279521341351, guid: a8d4f73d3bee4924f950ffd928ce18c8, type: 3}
+  - {fileID: 1806427279521341351, guid: d660769e48f7e894ab8d79a5a6f8470c, type: 3}
+  - {fileID: 1806427279521341351, guid: 84f4f8101a94f5043833b98737c30eaf, type: 3}
+  spread: 50
+  spreadAngle: 120
+  table: {fileID: 0}
+  maxhHalth: 50
+  gfxs: []
+  colliders: []
+  pieces: []
 --- !u!1 &7796964826519965170
 GameObject:
   m_ObjectHideFlags: 0

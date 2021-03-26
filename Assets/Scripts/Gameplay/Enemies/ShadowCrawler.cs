@@ -12,7 +12,7 @@ public class ShadowCrawler : BaseEnemy
     [SerializeField] private float chargeSpeed;
 
     public float maxScaleMultiplier;
-    protected BaseEnemyAnimController animController;
+  
  
     protected override void Awake()
     {
@@ -31,13 +31,6 @@ public class ShadowCrawler : BaseEnemy
 
         //Initiate mutation of base character
         RandomStatMutation();
-
-
-     
-       
-    
-
-
 
     }
 
@@ -61,7 +54,7 @@ public class ShadowCrawler : BaseEnemy
         {
             case EnemyStates.Idle:
  
-                SmoothDecelerate(0f, settings.timeMaxToZero);
+           
                 break;
 
             case EnemyStates.Attack:
@@ -110,8 +103,8 @@ public class ShadowCrawler : BaseEnemy
                     //Attack player
                     ChargePlayer();
 
+                    SmoothDecelerate(0f, settings.timeMaxToZero);
                 }
-                SmoothDecelerate(0f, settings.timeMaxToZero);
 
                 break;
             case EnemyStates.Destroy:
@@ -121,8 +114,8 @@ public class ShadowCrawler : BaseEnemy
 
                     FaceTarget();
                   
+                    SmoothDecelerate(0f, settings.timeMaxToZero);
                 }
-                SmoothDecelerate(0f, settings.timeMaxToZero);
                 break;
 
             case EnemyStates.Chase:
@@ -131,11 +124,9 @@ public class ShadowCrawler : BaseEnemy
               
                     FaceMovementDirection(navComp.navAgent.velocity);
 
-                }
-                else
-                {
                     SmoothDecelerate(0f, settings.timeMaxToZero);
                 }
+             
                 break;
     
         }

@@ -19,6 +19,7 @@ public class CamShake : MonoBehaviour
     //Component of shake noise
     private CinemachineBasicMultiChannelPerlin shakeNoise;
 
+    public CinemachineConfiner bounds;
     public static CamShake instance;
     public void Awake()
     {
@@ -26,6 +27,7 @@ public class CamShake : MonoBehaviour
         vCamera = gameObject.GetComponent<CinemachineVirtualCamera>();
         startIntensity = vCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>().m_AmplitudeGain;
         shakeNoise = vCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        bounds = gameObject.GetComponent<CinemachineConfiner>();
         instance = this;
     }
 

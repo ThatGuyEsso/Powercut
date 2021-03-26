@@ -159,7 +159,7 @@ public class InitStateManager : MonoBehaviour
                 break;
             case InitStates.PlayerSceneLoaded:
                 OnStateChange?.Invoke(newState);
-              
+                PointerManager.instance.SwitchToCrossHair();
                 WeaponManager.instance.BindToInitManager();
                 FindObjectOfType<LightManager>().BindToInitManager();
                 FindObjectOfType<PlayerBehaviour>().BindToInitManager();

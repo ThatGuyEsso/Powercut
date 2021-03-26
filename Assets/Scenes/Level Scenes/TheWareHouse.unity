@@ -735,6 +735,69 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6927186522031857627, guid: 5ba21251cb179644e807fde95f92464d, type: 3}
   m_PrefabInstance: {fileID: 158234685}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &166697740
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 166697742}
+  - component: {fileID: 166697741}
+  m_Layer: 0
+  m_Name: CameraBounds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!60 &166697741
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166697740}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -13.586292, y: 4.0141783}
+      - {x: -13.573186, y: -11.01036}
+      - {x: -13.561292, y: -20.97829}
+      - {x: 13.3852215, y: -20.97857}
+      - {x: 13.431515, y: 1.9787918}
+      - {x: 10.425968, y: 1.9671268}
+      - {x: 10.4206, y: 3.9938128}
+--- !u!4 &166697742
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 166697740}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 39.58, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &176306352
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19547,6 +19610,10 @@ PrefabInstance:
       propertyPath: canShowTutorial
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2509627842064437754, guid: c3c6ae6fbb8d0fe42828bc4c3ebe275b, type: 3}
+      propertyPath: levelBounds
+      value: 
+      objectReference: {fileID: 166697741}
     - target: {fileID: 2509627842064437755, guid: c3c6ae6fbb8d0fe42828bc4c3ebe275b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.717197
@@ -21126,7 +21193,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.06666667
+  m_VoxelSize: 0.07666667
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 7db1393373da3aa478b6f9c5f6a51785, type: 2}
 --- !u!4 &1816636367

@@ -74,7 +74,7 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
             {
                 //If Main power is on
                 case GameStates.MainPowerOn:
-
+                   
                     //Switch it off
                     if (hasActivated == false)
                     {
@@ -102,6 +102,7 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
                     }
                     break;
                 case GameStates.MainPowerOff:
+                   
                     InGamePrompt.instance.SetColor(Color.red);
                     InGamePrompt.instance.ChangePrompt("Can't turn power back on until all tasks are completed");
                     aSource.Play();

@@ -17,6 +17,7 @@ public enum EnemyStates
 
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(NavMeshPathfinding))]
 public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWeakness
 {
 
@@ -41,6 +42,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     protected Rigidbody2D rb;
     protected NavMeshPathfinding navComp;
     protected AudioSource aSource;
+    protected BaseEnemyAnimController animController;
     //VFX
     [SerializeField]
     protected GameObject hurtNumber;
@@ -388,9 +390,9 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
             navComp.Stop();
             navComp.enabled = false;
         }
+        aSource.Stop();
 
 
-       
         ObjectPoolManager.Recycle(gameObject);
     }
 

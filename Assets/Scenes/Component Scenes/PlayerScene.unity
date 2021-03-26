@@ -546,6 +546,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 934309837, guid: caf93677370986d449f40f1bfe520e86, type: 3}
+      propertyPath: m_Damping
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6767289178656551598, guid: caf93677370986d449f40f1bfe520e86, type: 3}
       propertyPath: m_Name
       value: CM vcam1

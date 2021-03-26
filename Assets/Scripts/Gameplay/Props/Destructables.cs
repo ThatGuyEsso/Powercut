@@ -17,6 +17,10 @@ public class Destructables : MonoBehaviour, IBreakVFX, IHurtable
     [SerializeField] private List<SpriteRenderer> gfxs;
     [SerializeField] private List<Collider2D> colliders;
     [SerializeField] private List<GameObject> pieces;
+    [SerializeField] private string smashSFX = "ObjectSmash";
+
+    [SerializeField] private GameObject smashVFX;
+  
     private float knockBack;
     private Vector3 direction;
     bool isBroken = false;
@@ -27,7 +31,7 @@ public class Destructables : MonoBehaviour, IBreakVFX, IHurtable
         GetAllGFXs();
         health = maxhHalth;
         aSource = GetComponent<AudioSource>();
-        Sound sound = AudioManager.instance.GetSound("ObjectSmash");
+        Sound sound = AudioManager.instance.GetSound(smashSFX);
 
         aSource.clip = sound.clip;
         aSource.outputAudioMixerGroup = sound.mixerGroup;
@@ -37,6 +41,8 @@ public class Destructables : MonoBehaviour, IBreakVFX, IHurtable
     }
     public void Break(Vector2 dir, float force)
     {
+        if (smashVFX)
+            ObjectPoolManager.Spawn(smashVFX, transform.position, transform.rotation);
         Vector3[] partDir = EssoUtility.GetVectorsInArc(dir, brokenParts.Count, spreadAngle, spread);
 
         for (int i = 0; i < brokenParts.Count; i++)
@@ -44,6 +50,8 @@ public class Destructables : MonoBehaviour, IBreakVFX, IHurtable
 
             Vector3 randPosition = transform.position + Random.insideUnitSphere * 0.5f;
             GameObject part = ObjectPoolManager.Spawn(brokenParts[i], randPosition, transform.rotation);
+           
+
             pieces.Add(part);
             part.GetComponent<IBreakVFX>().AddBreakForce(partDir[i], force);
 

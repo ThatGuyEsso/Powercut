@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxNumberCrawlers: 8
   targetPercentBrokenLamps: 0.3
-  minLampBreakTime: 4
-  maxLampBreakTime: 12
+  minLampBreakTime: 2
+  maxLampBreakTime: 10

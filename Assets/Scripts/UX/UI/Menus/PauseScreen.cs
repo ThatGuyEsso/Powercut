@@ -32,6 +32,7 @@ public class PauseScreen : MonoBehaviour
             GameStateManager.instance.PauseGame();
             OnPause?.Invoke();
             InitStateManager.currGameMode = GameModes.Menu;
+        
         }
     }
     public void Resume()
@@ -44,6 +45,7 @@ public class PauseScreen : MonoBehaviour
             GameStateManager.instance.ResumeGame();
             OnResume?.Invoke();
             InitStateManager.currGameMode = GameModes.Powercut;
+          
         }
     }
     public void ReturnToTitleScreen()

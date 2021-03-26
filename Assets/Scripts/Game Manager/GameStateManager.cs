@@ -28,6 +28,8 @@ public class GameStateManager : MonoBehaviour, IInitialisable
     private  GameStates currentGameState;
     public event NewGameStateDelegate OnGameStateChange;
     public delegate void NewGameStateDelegate(GameStates newState);
+
+    [SerializeField] private PolygonCollider2D levelBounds;
     private void Awake()
     {
         
@@ -59,6 +61,7 @@ public class GameStateManager : MonoBehaviour, IInitialisable
         {
             case InitStates.SpawnPlayer:
                 SpawnPlayer();
+                CamShake.instance.bounds.m_BoundingShape2D = levelBounds;
                 break;
             case InitStates.RespawnPlayer:
                 RespawnPlayer();
@@ -119,6 +122,7 @@ public class GameStateManager : MonoBehaviour, IInitialisable
         {
             isGamePaused = true;
             Time.timeScale = 0f;
+            PointerManager.instance.SwitchToPointer();
         }
     }
     public void ResumeGame()
@@ -127,6 +131,7 @@ public class GameStateManager : MonoBehaviour, IInitialisable
         {
             isGamePaused = false;
             Time.timeScale = 1f;
+            PointerManager.instance.SwitchToCrossHair();
         }
     }
 

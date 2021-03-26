@@ -25,6 +25,8 @@ public class TabletMenuManager : MonoBehaviour
         raycaster = gameObject.GetComponent<GraphicRaycaster>();
         if (contactsMenu.activeSelf) contactsMenu.SetActive(false);
         if (smsMenu.activeSelf) smsMenu.SetActive(false);
+
+        PointerManager.instance.SwitchToPointer();
     }
 
 
