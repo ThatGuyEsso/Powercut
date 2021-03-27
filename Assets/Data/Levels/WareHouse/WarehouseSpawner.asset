@@ -12,9 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a96d6a0a807ebfd47802c531e6f71349, type: 3}
   m_Name: WarehouseSpawner
   m_EditorClassIdentifier: 
-  enemyTypes: []
-  maxTimeBeforeSpawn: 0
-  minTimeBeforeSpawn: 0
-  maxNumberSpawned: 0
-  minNumberSpawned: 0
-  spawnRadius: 0
+  enemyTypes:
+  - {fileID: 2019876214155700689, guid: 9870201f63f67904f8d179e40237bdcc, type: 3}
+  - {fileID: 8721458964809571201, guid: 7ba5b5c5caa72374e853483ee4ed3176, type: 3}
+  - {fileID: 8721458964809571201, guid: 7ba5b5c5caa72374e853483ee4ed3176, type: 3}
+  - {fileID: 8721458964809571201, guid: 7ba5b5c5caa72374e853483ee4ed3176, type: 3}
+  maxTimeBeforeSpawn: 8
+  minTimeBeforeSpawn: 2
+  maxNumberSpawned: 4
+  minNumberSpawned: 2
+  spawnRadius: 2

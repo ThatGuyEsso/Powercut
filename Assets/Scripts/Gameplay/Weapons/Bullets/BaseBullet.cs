@@ -8,17 +8,19 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable,IAudio
 
     public GameObject sparkPrefab;
     public GameObject triggerEnemyPrefab;
-    private float damage;
-    private float knockBack;
-    private Rigidbody2D rb;
-    private AudioSource source;
+    protected float damage;
+    protected float knockBack;
+    protected float shotForce;
+    protected Rigidbody2D rb;
+    protected AudioSource source;
     [SerializeField] protected GameObject audioPlayerPrefab;
-    private void Awake()
+    [SerializeField] protected string targetTag;
+    virtual protected void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         source = gameObject.GetComponent<AudioSource>();
     }
-    public void OnTriggerEnter2D(Collider2D other)
+    virtual protected void OnTriggerEnter2D(Collider2D other)
     {
         if(((1 << other.gameObject.layer) & collisionLayers) != 0)
         {
@@ -33,7 +35,7 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable,IAudio
 
             ObjectPoolManager.Recycle(gameObject);
         }
-        if (other.gameObject.CompareTag("Enemy")|| other.gameObject.CompareTag("PhysicsObject"))
+        if (other.gameObject.CompareTag(targetTag) || other.gameObject.CompareTag("PhysicsObject"))
         {
             if (other.GetComponent<IHurtable>() != null)
             {
@@ -41,20 +43,21 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable,IAudio
 
             }
             ObjectPoolManager.Spawn(sparkPrefab, transform.position, transform.rotation);
-            ObjectPoolManager.Spawn(triggerEnemyPrefab, transform.position, Quaternion.identity);
+            if(triggerEnemyPrefab)
+                ObjectPoolManager.Spawn(triggerEnemyPrefab, transform.position, Quaternion.identity);
             ObjectPoolManager.Recycle(gameObject);
         }
 
 
     }
 
-    void IShootable.SetUpBullet(float knockBack, float damage)
+    virtual public void SetUpBullet(float knockBack, float damage)
     {
         this.damage = damage;
         this.knockBack = knockBack;
     }
 
-    void IHurtable.Damage(float damage, Vector3 knockBackDir, float knockBack)
+    public void Damage(float damage, Vector3 knockBackDir, float knockBack)
     {
         //blank just needs to interface with enemy
     }
@@ -75,33 +78,44 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable,IAudio
         
     }
 
-    private void OnEnable()
+    virtual public void OnEnable()
     {
         StartCoroutine(RecycleAfterTime());
     }
 
-    private void OnDisable()
+    virtual public void OnDisable()
     {
         StopAllCoroutines();
     }
-    private IEnumerator RecycleAfterTime()
+    virtual public IEnumerator RecycleAfterTime()
     {
         yield return new WaitForSeconds(3.0f);
         ObjectPoolManager.Recycle(gameObject);
     }
 
-    public void SetUpAudioSource(Sound sound)
+    virtual public void SetUpAudioSource(Sound sound)
     {
         throw new System.NotImplementedException();
     }
 
-    public void Play()
+    virtual public void Play()
     {
         throw new System.NotImplementedException();
     }
 
-    public void PlayAtRandomPitch()
+    virtual public void PlayAtRandomPitch()
     {
         throw new System.NotImplementedException();
+    }
+
+    virtual public void Push(Vector3 knockBackDir, float knockBack)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Shoot(Vector2 dir, float force)
+    {
+        rb.AddForce(dir * force, ForceMode2D.Impulse);
+        shotForce = force;
     }
 }

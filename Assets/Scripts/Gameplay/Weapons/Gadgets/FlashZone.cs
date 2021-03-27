@@ -130,4 +130,9 @@ public class FlashZone : FieldOfView,IHurtable
             collision.gameObject.GetComponent<IHurtable>().Damage(200f, dir.normalized, 2000f);
         }
     }
+
+    public void Push(Vector3 knockBackDir, float knockBack)
+    {
+        throw new System.NotImplementedException();
+    }
 }

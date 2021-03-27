@@ -527,4 +527,9 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         WeaponManager.instance.RefreshWeaponAmmo();
         
     }
+
+    public void Push(Vector3 knockBackDir, float knockBack)
+    {
+        rb.AddForce(knockBackDir * knockBack, ForceMode2D.Impulse);
+    }
 }

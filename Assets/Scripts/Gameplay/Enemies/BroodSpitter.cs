@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class BroodSpitter : BaseEnemy
 {
-
+    [SerializeField] protected LayerMask blockingLayers;
     [SerializeField] protected Transform firePoint;
-    [SerializeField] protected float ShotCooldown;
-   
-    [SerializeField] protected float shotForce;
     protected bool canAttack = true;
+    [SerializeField] protected float viewDistance = 10.0f;
+    [SerializeField] protected float shootForce = 10.0f;
+    [SerializeField] protected GameObject projectilePrefab;
+    [SerializeField] protected List<GameObject> slimeFragmentsPrefabs = new List<GameObject>();
+
+    [SerializeField] protected int fragmentCounts;
     protected override void Awake()
     {
         base.Awake();
@@ -19,9 +22,10 @@ public class BroodSpitter : BaseEnemy
 
         animController = gameObject.GetComponent<BaseEnemyAnimController>();
         animController.Init();
+        canAttack = false;
 
-        //Initiate mutation of base character
-  
+        Invoke("ResetShotTime", settings.attackRate);
+
 
     }
     private void Start()
@@ -53,17 +57,21 @@ public class BroodSpitter : BaseEnemy
 
                 if (!isHurt)
                 {
-                    SmoothDecelerate(0f, settings.timeMaxToZero);
+                    
                     FaceTarget();
                     //Attack player
 
                     if (canAttack)
                     {
                         if (ClearShot()) FireProjectile();
+                        else {
+                            canAttack = false;
+                            Invoke("ResetShotTime", settings.attackRate);
+                        }
                     }
                   
                 }
-               
+                SmoothDecelerate(0f, settings.timeMaxToZero);
 
                 break;
             case EnemyStates.Destroy:
@@ -73,8 +81,9 @@ public class BroodSpitter : BaseEnemy
 
                     FaceTarget();
 
-                    SmoothDecelerate(0f, settings.timeMaxToZero);
+                    
                 }
+                SmoothDecelerate(0f, settings.timeMaxToZero);
                 break;
 
             case EnemyStates.Chase:
@@ -131,13 +140,41 @@ public class BroodSpitter : BaseEnemy
 
         }
     }
+
+    override protected void KillEnemy()
+    {
+
+
+        ObjectPoolManager.Spawn(deathVFX, transform.position, transform.rotation);
+        IAudio player = ObjectPoolManager.Spawn(audioPlayerPrefab.gameObject, transform.position, transform.rotation).GetComponent<IAudio>();
+        player.SetUpAudioSource(AudioManager.instance.GetSound("BugsSplat"));
+        player.PlayAtRandomPitch();
+        InitStateManager.instance.OnStateChange -= EvaluateNewState;
+        if (GameIntensityManager.instance != false) GameIntensityManager.instance.DecrementNumberOfCrawlers();
+
+        if (navComp.enabled)
+        {
+            navComp.Stop();
+            navComp.enabled = false;
+        }
+        aSource.Stop();
+        SpawnFragments();
+
+        ObjectPoolManager.Recycle(gameObject);
+    }
     override protected void OnStateChange(EnemyStates newState)
     {
         switch (newState)
         {
             case EnemyStates.Idle:
 
+                if (navComp.enabled)
+                {
+                    navComp.Stop();
+                    navComp.enabled = false;
 
+
+                }
                 navComp.Stop();
                 navComp.enabled = false;
 
@@ -187,18 +224,77 @@ public class BroodSpitter : BaseEnemy
 
     }
 
+    override protected void OnCollisionEnter2D(Collision2D other)
+    {
+       
+    }
+    override protected void OnCollisionStay2D(Collision2D other)
+    {
+     
+    }
     private bool ClearShot()
     {
-        return true;
+        if (target)
+        {
+  
+            RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, transform.right, viewDistance, blockingLayers);
+            if (hitInfo)
+            {
+                return (hitInfo.collider.CompareTag("Player"));
+            }
+        }
+           
+        return false;
     }
 
     private void FireProjectile()
     {
-        
+        GameObject bullet = ObjectPoolManager.Spawn(projectilePrefab, firePoint.position, firePoint.rotation);
+        IShootable shot = bullet.GetComponent<IShootable>();
+        float dmg = Random.Range(settings.minDamage, settings.maxDamage);
+        float kBack = Random.Range(settings.minKnockBack, settings.minKnockBack);
+        shot.SetUpBullet(kBack, dmg);
+        shot.Shoot(firePoint.up, shootForce);
+        canAttack = false;
+        Invoke("ResetShotTime", settings.attackRate);
     }
 
     private void ResetShotTime()
     {
+
         canAttack = true;
+    }
+
+    override public void SetTarget(Transform newTarget)
+    {
+        target = newTarget;
+        ResolveTargetType();
+        if (!isTargetHuman)
+        {
+            target = FindObjectOfType<PlayerBehaviour>().transform;
+        }
+    
+        OnStateChange(currentState);
+    }
+
+    public void SpawnFragments()
+    {
+        float angleIncrement = 360f / fragmentCounts;
+        float currentAngle = 0f;
+        GameObject currentFragment;
+        float dmg = Random.Range(settings.minDamage, settings.maxDamage);
+        float kBack = Random.Range(settings.minKnockBack, settings.minKnockBack);
+        for (int i = 0; i < fragmentCounts; i++)
+        {
+            int rand = Random.Range(0, slimeFragmentsPrefabs.Count);
+            currentFragment = ObjectPoolManager.Spawn(slimeFragmentsPrefabs[rand], transform.position);
+
+            Vector3 dir = EssoUtility.GetVectorFromAngle(currentAngle).normalized;
+            currentFragment.transform.up = dir;
+            IShootable frag = currentFragment.GetComponent<IShootable>();
+            frag.SetUpBullet(kBack / fragmentCounts, dmg / fragmentCounts);
+            frag.Shoot(dir, shootForce * 0.8f);
+            currentAngle += angleIncrement;
+        }
     }
 }

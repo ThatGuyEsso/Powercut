@@ -15,4 +15,9 @@ public class Door : MonoBehaviour, IHurtable
     {
         doorRB.AddForce(knockBackDir * knockBack, ForceMode2D.Impulse);
     }
+
+    public void Push(Vector3 knockBackDir, float knockBack)
+    {
+        throw new System.NotImplementedException();
+    }
 }

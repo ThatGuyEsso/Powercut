@@ -9,7 +9,7 @@ public enum GunTypes
     AutoRifle
 };
 
-public abstract class BaseGun : MonoBehaviour, IShootable
+public abstract class BaseGun : MonoBehaviour
 {
     protected GunTypes gunType;
     [Header("Gun Settings")]
@@ -187,10 +187,6 @@ public abstract class BaseGun : MonoBehaviour, IShootable
         }
 
         muzzleFlash.BeginMuzzleFash(flashDuration, firePoint);
-    }
-    void IShootable.SetUpBullet(float knockBack, float damage)
-    {
-
     }
 
     public bool HasInifiniteBullets()

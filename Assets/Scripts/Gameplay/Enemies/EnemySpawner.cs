@@ -57,15 +57,8 @@ public class EnemySpawner : MonoBehaviour,IEnemySpawnable
                 {
 
                     int rand;
-                    if (settings.enemyTypes.Count > 1)
-                    {
-                     rand = Random.Range(0, settings.enemyTypes.Count - 1);
-
-                    }
-                    else
-                    {
-                        rand = 0;
-                    }
+                  
+                    rand = Random.Range(0, settings.enemyTypes.Count);
 
                     BaseEnemy currEnemy = ObjectPoolManager.Spawn(settings.enemyTypes[rand],
                         (Random.insideUnitCircle*settings.spawnRadius+(Vector2)transform.position),Quaternion.identity).GetComponent<BaseEnemy>();

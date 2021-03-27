@@ -211,4 +211,9 @@ public class Destructables : MonoBehaviour, IBreakVFX, IHurtable
             RecyclePieces();
         }
     }
+
+    public void Push(Vector3 knockBackDir, float knockBack)
+    {
+        throw new System.NotImplementedException();
+    }
 }

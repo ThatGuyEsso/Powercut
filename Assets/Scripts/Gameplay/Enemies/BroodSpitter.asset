@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6abb1b7d78d3b1429e23334a66afcc9, type: 3}
+  m_Name: BroodSpitter
+  m_EditorClassIdentifier: 
+  maxNavSpeed: 1.5
+  maxMovementSpeed: 250
+  timeZeroToMax: 0.1
+  timeMaxToZero: 0.05
+  rotationSpeed: 0.1
+  maxHealth: 150
+  maxDamage: 25
+  minDamage: 15
+  minKnockBack: 40
+  maxKnockBack: 50
+  knockBackFallOff: 0.1
+  hurtTime: 0.5
+  timeBeforeInvulnerable: 0.5
+  aiTickrate: 0.4
+  attackRange: 6
+  destroyRange: 4
+  destroyRate: 0.5
+  attackRate: 3

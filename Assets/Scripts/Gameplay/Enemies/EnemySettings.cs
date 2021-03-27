@@ -11,7 +11,7 @@ public class EnemySettings : ScriptableObject
     public float timeZeroToMax; //How fast player accelerate    
     public float timeMaxToZero; //How fast player decellerate
     public float rotationSpeed; // how fast player rotates about it's axis
-    public float navAgentSpeedScalar;
+
     [Header("Stats Settings")]
     public float maxHealth;
     public float maxDamage;
@@ -27,13 +27,10 @@ public class EnemySettings : ScriptableObject
 
     [Header("AI Settings")]
     public float aiTickrate;
-    public float nextWaypointDistance;
     public float attackRange;
     public float destroyRange;
     public float destroyRate;
     public float attackRate;
-    public float followRadius;
-    public float sightLength;
-    public float behindLength;
+
 }
 

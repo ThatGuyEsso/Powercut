@@ -47,7 +47,7 @@ MonoBehaviour:
   startupPools:
   - size: 50
     prefab: {fileID: 5927806012387839767, guid: 935114ad378a131468db129ec7cee3b7, type: 3}
-  - size: 30
+  - size: 8
     prefab: {fileID: 8721458964809571201, guid: 7ba5b5c5caa72374e853483ee4ed3176, type: 3}
   - size: 10
     prefab: {fileID: 7152689479093340677, guid: e2c021df58a3bbf4d9284bfcec171352, type: 3}
@@ -101,3 +101,15 @@ MonoBehaviour:
     prefab: {fileID: 4188992437063955373, guid: 31dc60a192553784b977fcb3115f28d5, type: 3}
   - size: 10
     prefab: {fileID: 5979457517947137470, guid: c0ac57e6e2a54c64e8a8825e58771993, type: 3}
+  - size: 8
+    prefab: {fileID: 2019876214155700689, guid: 9870201f63f67904f8d179e40237bdcc, type: 3}
+  - size: 4
+    prefab: {fileID: 5927806012387839767, guid: 9e1c261501e4e5a4782ca81e8b1d5917, type: 3}
+  - size: 6
+    prefab: {fileID: 5927806012387839767, guid: 494eb0ecb1dcd0f48898e3c88d9bc8d8, type: 3}
+  - size: 6
+    prefab: {fileID: 5927806012387839767, guid: 64fc8ac7463c7fb419faf924fb4eed53, type: 3}
+  - size: 6
+    prefab: {fileID: 5927806012387839767, guid: 445a6f5dbdb17f64685cd7136aba7897, type: 3}
+  - size: 6
+    prefab: {fileID: 5927806012387839767, guid: 1114c59237031a1448a2bb81ee260334, type: 3}

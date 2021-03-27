@@ -101,7 +101,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         targetVelocity.y = Mathf.SmoothDamp(rb.velocity.y, maxSpeed * direction.y, ref smoothAY, rate);
 
         CalculateKnockBack();
-        rb.velocity = targetVelocity*Time.deltaTime+ knockBack;
+        rb.velocity = targetVelocity*Time.deltaTime;
     }
 
     virtual protected void SmoothDecelerate(float minSpeed, float rate)
@@ -120,8 +120,8 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
             targetVelocity.x = Mathf.SmoothDamp(rb.velocity.x, minSpeed, ref smoothDX, rate);
             targetVelocity.y = Mathf.SmoothDamp(rb.velocity.y, minSpeed, ref smoothDY, rate);
         }
-        CalculateKnockBack();
-        rb.velocity = targetVelocity + knockBack*Time.deltaTime;
+    
+        rb.velocity = targetVelocity*Time.deltaTime;
     }
 
     abstract protected void OnStateChange(EnemyStates newState);
@@ -146,7 +146,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         //fovObject.SetAimDirection((-1)*fovObject.GetVectorFromAngle(angle));
     }
 
-    protected void OnCollisionEnter2D(Collision2D other)
+   virtual protected void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -159,7 +159,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
             }
         }
     }
-    protected void OnCollisionStay2D(Collision2D other)
+    virtual protected void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -251,7 +251,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
 
     //#Setters#
     //Set target of enemy
-    public void SetTarget(Transform newTarget)
+    virtual public void SetTarget(Transform newTarget)
     {
         target = newTarget;
         OnStateChange(currentState);
@@ -374,7 +374,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
             }
         }
     }
-    protected void KillEnemy()
+    virtual protected void KillEnemy()
     {
        
     
@@ -553,5 +553,9 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         aSource.pitch = sound.pitch;
         aSource.loop = sound.loop;
     }
-   
+
+    public void Push(Vector3 knockBackDir, float knockBack)
+    {
+        rb.AddForce(knockBackDir * knockBack, ForceMode2D.Impulse);
+    }
 }
