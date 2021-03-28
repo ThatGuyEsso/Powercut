@@ -22,8 +22,8 @@ public class GameStateManager : MonoBehaviour, IInitialisable
     public GameObject[] itemsToInit;
 
     Transform initSpawnPoint;
-    Transform respawnPoint;
-    [SerializeField]
+    [SerializeField] private Transform respawnPoint;
+    [SerializeField] private bool resetLevelOnRespawn = false;
     Transform playerTransform;
     private  GameStates currentGameState;
     public event NewGameStateDelegate OnGameStateChange;
@@ -68,8 +68,10 @@ public class GameStateManager : MonoBehaviour, IInitialisable
 
                 break;
             case InitStates.PlayerRespawned:
-                BeginNewGameState(GameStates.MainPowerOff);
-
+                if (!resetLevelOnRespawn)
+                    BeginNewGameState(GameStates.MainPowerOff);
+                else
+                    BeginNewGameState(GameStates.MainPowerOn);
                 break;
             case InitStates.PlayerSceneLoaded:
                 playerTransform = FindObjectOfType<PlayerBehaviour>().transform;
@@ -84,7 +86,19 @@ public class GameStateManager : MonoBehaviour, IInitialisable
     }
     private void RespawnPlayer()
     {
-        FindObjectOfType<PlayerBehaviour>().transform.position = respawnPoint.position;
+        if (!resetLevelOnRespawn)
+            if(playerTransform)
+                playerTransform.position = respawnPoint.position;
+            else
+                 FindObjectOfType<PlayerBehaviour>().transform.position = respawnPoint.position;
+        else
+            if (playerTransform)
+                playerTransform.position = initSpawnPoint.position;
+            else
+                FindObjectOfType<PlayerBehaviour>().transform.position = initSpawnPoint.position;
+
+
+
         InitStateManager.instance.BeginNewState(InitStates.PlayerRespawned);
     }
 
@@ -174,7 +188,8 @@ public class GameStateManager : MonoBehaviour, IInitialisable
     private void GetSpawns()
     {
         initSpawnPoint = FindObjectOfType<Car>().GetSpawn();
-        respawnPoint = FindObjectOfType<MainPowerSwitch>().GetRespawn();
+        if(!resetLevelOnRespawn)
+            respawnPoint = FindObjectOfType<MainPowerSwitch>().GetRespawn();
     }
 
     private void OnDestroy()

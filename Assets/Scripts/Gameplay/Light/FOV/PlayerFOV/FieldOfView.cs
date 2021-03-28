@@ -154,7 +154,7 @@ public class FieldOfView : MonoBehaviour, ILightWeakness
         {
             meshRenderer.enabled = false;
         }
-        LevelLampsManager.instance.DetermineShouldBreakLight();
+  
     }
 
     //Returns value of LightIsOn

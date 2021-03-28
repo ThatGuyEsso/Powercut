@@ -7,6 +7,7 @@ public class CamShake : MonoBehaviour
 {
 
     private CinemachineVirtualCamera vCamera;//Virtual camera
+    public CinemachineBrain brain;//Virtual camera
     //Time variables
     private float shakeTime;
     private float timeIn;

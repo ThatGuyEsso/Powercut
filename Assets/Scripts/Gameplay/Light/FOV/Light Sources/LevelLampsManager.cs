@@ -186,6 +186,7 @@ public class LevelLampsManager : MonoBehaviour, IInitialisable
 
         workingLamps[rand].BeginLampFlicker();
         OnLampBroke?.Invoke();
+        DetermineShouldBreakLight();
     }
 
     //Get percent of lamps working in level

@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Lamp : MonoBehaviour, IEnemySpawnable
+public class Lamp : MonoBehaviour, IEnemySpawnable,IInitialisable
 {
     //Light it should reference
-    private BaseLampLight lightRef;
+    [SerializeField] protected BaseLampLight lightRef;
     [SerializeField] private LightFuse fuseRef;
     public float lightDistanceModifier = 0;//Increases or decreases light distance to allow differenct sized light sources.
-    private float currentHealth;
+    protected float currentHealth;
     public bool isLampWorking;
-    private IEnemySpawnable enemySpawner;
+    protected IEnemySpawnable enemySpawner;
 
-    private bool isFlickering = false;
+    protected bool isFlickering = false;
     [SerializeField] private float maxFlickerTime;
     [SerializeField] private float minFlickerTime;
     [SerializeField] private float minFlickerRate;
     [SerializeField] private float maxFlickerRate;
-    private float timeToNextFlciker;
-    private float currFlickerTime;
+    protected float timeToNextFlciker;
+    protected float currFlickerTime;
     [SerializeField] private SpriteRenderer fuseIcon;
     protected AudioSource audioSource;
-    public void Init()
+    virtual public void Init()
     {
 
         enemySpawner= gameObject.GetComponentInChildren<EnemySpawner>();
@@ -38,7 +38,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
 
     
 
-    private void OnTriggerEnter2D(Collider2D other)
+   virtual protected void OnTriggerEnter2D(Collider2D other)
     {
         //if lamp is broken and player enters stop spawning/due to player light
         if (other.gameObject.CompareTag("Player")){
@@ -49,8 +49,8 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
         }
 
     }
-  
-    private void OnTriggerStay2D(Collider2D other)
+
+    virtual protected void OnTriggerStay2D(Collider2D other)
     {
         //if lamp is broken and player enters stop spawning/due to player light
         if (other.gameObject.CompareTag("Player"))
@@ -63,7 +63,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
 
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    virtual protected void OnTriggerExit2D(Collider2D other)
     {
         //if lamp is broken and player leaves start spawning/due to player leaving with light
         if (other.gameObject.CompareTag("Player"))
@@ -76,7 +76,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
 
     }
 
-    private void Update()
+    virtual protected void Update()
     {
         if (isFlickering)
         {
@@ -107,7 +107,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
         }
     }
 
-    public void InitialiseLamp(BaseLampLight newLightRef)
+    virtual public void InitialiseLamp(BaseLampLight newLightRef)
     {
         lightRef = newLightRef;
         currentHealth = lightRef.lampSettings.maxLightHealth;
@@ -136,7 +136,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
     }
 
     //Light hurting 
-    public void DamageLamp(float Damage)
+    virtual public void DamageLamp(float Damage)
     {
         //Check if lamp is working before damaging lamp
         if (isLampWorking)
@@ -146,7 +146,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
             //Check wether the lamp is still has health left if not it must not be working
             if (currentHealth <= 0)
             {
-
+                LevelLampsManager.instance.DetermineShouldBreakLight();
                 fuseIcon.color = Color.red;
                 isLampWorking = false;
                 currentHealth = 0;
@@ -156,10 +156,11 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
             lightRef.ToggleLight(isLampWorking);
         }
     }
-    public void InstantBreakLamp()
+    virtual public void InstantBreakLamp()
     {
         if (isLampWorking)
         {
+            LevelLampsManager.instance.DetermineShouldBreakLight();
             fuseIcon.color = Color.red;
             lightRef.ToggleLight(false);
             isLampWorking = false;
@@ -167,9 +168,9 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
             enemySpawner.Spawn();
         }
     }
-    public void InstantFixLamp()
+    virtual public void InstantFixLamp()
     {
-   
+        
         lightRef.ToggleLight(true);
         isLampWorking = true;
         currentHealth = lightRef.lampSettings.maxLightHealth;
@@ -181,7 +182,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
 
     }
     //Light fixing 
-    public void FixLamp(float heal)
+    virtual public void FixLamp(float heal)
     {
         //You can only fix broken lamps
         if (!isLampWorking)
@@ -202,15 +203,15 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
         }
     }
 
-   
+
 
 
     //Setters
 
     //#End of setters#
 
-        //Getters
-    public bool GetIsLampWorking()
+    //Getters
+    virtual public bool GetIsLampWorking()
     {
         return isLampWorking;
     }
@@ -253,7 +254,7 @@ public class Lamp : MonoBehaviour, IEnemySpawnable
         throw new System.NotImplementedException();
     }
 
-    public void BeginLampFlicker()
+    virtual public void BeginLampFlicker()
     {
         currFlickerTime = Random.Range(minFlickerTime, maxFlickerTime);
         isFlickering = true;
