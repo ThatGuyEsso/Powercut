@@ -34,14 +34,25 @@ public class TabletMenuManager : MonoBehaviour
     {
         raycaster.enabled = false;
         contactsMenu.SetActive(true);
+        contactsMenu.GetComponent<Animator>().enabled=true;
         contactsMenu.GetComponent<Animator>().Play("PhonePopUP");
+        AudioManager.instance.PlayAtRandomPitch("PhonePullOutSFX");
         AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
+        contactsMenu.GetComponent<PhoneAnimEventListener>().phoneHidden += ContactsClosed;
+
+    }
+    public void ContactsClosed()
+    {
+        raycaster.enabled = true;
+        contactsMenu.SetActive(false);
+        contactsMenu.GetComponent<PhoneAnimEventListener>().phoneHidden -= ContactsClosed;
 
     }
 
     public void TitleScreeen()
     {
         AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
+
         TransitionManager.instance.ReturnToTitleScreen();
     }
 
@@ -51,12 +62,14 @@ public class TabletMenuManager : MonoBehaviour
         SettingsMenu.instance.ToggleSettings(true, true);
         SettingsMenu.instance.gameObject.GetComponent<PhoneAnimEventListener>().phoneHidden += HideSettings;
         AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
+        AudioManager.instance.PlayAtRandomPitch("PhonePullOutSFX");
     }
     public void HideSettings()
     {
         raycaster.enabled = true;
         SettingsMenu.instance.gameObject.GetComponent<PhoneAnimEventListener>().phoneHidden -= HideSettings;
         AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
+        AudioManager.instance.PlayAtRandomPitch("PhonePullOutSFX");
     }
 
     public void ReturnToContacts()

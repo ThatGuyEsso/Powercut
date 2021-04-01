@@ -118,7 +118,8 @@ public class SMSDialogue : MonoBehaviour
 
     public void DisplayChoice(int choiceIndex, string text,int targetBeatID,ChoiceData choice)
     {
-       
+
+        
         if (choiceIndex < dialogueOptions.Count)
         {
             dialogueOptions[choiceIndex].gameObject.SetActive(true);
@@ -126,6 +127,9 @@ public class SMSDialogue : MonoBehaviour
             if(choice.ChoiceResult != string.Empty)
             dialogueOptions[choiceIndex].SetUpDialogue(text, targetBeatID, choice);
             else dialogueOptions[choiceIndex].SetUpDialogue(text, targetBeatID);
+
+
+            
         }
     }
     public void DisplayClientBeat(int id, float typingTime, Speaker newSpeaker)

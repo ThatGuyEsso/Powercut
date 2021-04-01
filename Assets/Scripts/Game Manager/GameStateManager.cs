@@ -163,7 +163,7 @@ public class GameStateManager : MonoBehaviour, IInitialisable
          
                 currentGameState = newGameState;
                 OnGameStateChange?.Invoke(newGameState);
-
+             
                 break;
 
             case GameStates.LevelClear:

@@ -2991,6 +2991,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7580082973922330716, guid: 13c507b9c6d60174d9737d223cd46034, type: 3}
+      propertyPath: isActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8296264913084456664, guid: 13c507b9c6d60174d9737d223cd46034, type: 3}
       propertyPath: m_Name
       value: PhoneSMSMenu
@@ -25182,7 +25186,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.06666667
+  m_VoxelSize: 0.07666667
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 1336a0b7053e2374da8d9ecd7475f67f, type: 2}
 --- !u!4 &1847595597

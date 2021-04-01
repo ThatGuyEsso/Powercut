@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     public void Play()
     {
         MusicManager.instance.BeginFadeOut();
-        TransitionManager.instance.StartLevel(SceneIndex.IceRink);
+        TransitionManager.instance.StartLevel(SceneIndex.Tutorial);
         AudioManager.instance.PlayAtRandomPitch("ClickSFX");
     }
 

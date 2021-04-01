@@ -81,7 +81,7 @@ public class DialogueManager : MonoBehaviour
    
         //if beat doesn't end dialogue
         //evaluate next dialogue beats
-                else
+        else
         {
             //if dialogue has choices
             if (beat.GetChoices().Count > 0){
@@ -91,7 +91,9 @@ public class DialogueManager : MonoBehaviour
                 //generate a choice display for each choice
                 for (int i =0; i < beat.GetChoices().Count; i++)
                 {
+                   
                     dialogueMenu.DisplayChoice(i, choices[i].DisplayText, choices[i].NextID,choices[i]);
+                  
                 }
             }
             else

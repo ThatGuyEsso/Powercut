@@ -42,12 +42,11 @@ public class LevelLampsManager : MonoBehaviour, IInitialisable
 
     private void Update()
     {
-        switch (currentGameState)
+        if(currentGameState == GameStates.MainPowerOff)
         {
-            case GameStates.MainPowerOff:
             if (shouldBreakLights)
             {
-                if(currentTimeBeforeLightBreak <= 0)
+                if (currentTimeBeforeLightBreak <= 0)
                 {
                     BreakRandomLamp();
 
@@ -58,10 +57,9 @@ public class LevelLampsManager : MonoBehaviour, IInitialisable
                     currentTimeBeforeLightBreak -= Time.deltaTime;
                 }
             }
-            break;
-           
-
         }
+          
+   
     }
     //Gets all lamps in scene and stores then in list
     public void GetAllSceneLamps()
@@ -251,6 +249,7 @@ public class LevelLampsManager : MonoBehaviour, IInitialisable
                 break;
             case GameStates.MainPowerOff:
                 currentGameState = newState;
+                DetermineShouldBreakLight();
                 break;
             case GameStates.TasksCompleted:
                 currentGameState = newState;

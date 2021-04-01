@@ -15,9 +15,9 @@ public class PhoneButtons : MonoBehaviour
     bool canStart =false;
 
 
-    [SerializeField] private PhoneButtonWidget playWidget, menuWidget, titleWidget;
+    [SerializeField] private PhoneButtonWidget playWidget, menuWidget;
 
-    [SerializeField] private bool isTitleButtonActive =true, isPlayButtonActive=true, isMenuButtonActive=true;
+    [SerializeField] private bool isPlayButtonActive=true, isMenuButtonActive=true;
     private void Awake()
     {
   
@@ -26,9 +26,13 @@ public class PhoneButtons : MonoBehaviour
     }
     public void Init()
     {
-        playButton.enabled = false;
-        playWidget.UpdateLabel("Can't do that right now", Color.red);
-        playButtonImage.color = inactiveColourButton;
+        if (playButton)
+        {
+            playButton.enabled = false;
+            playWidget.UpdateLabel("Can't do that right now", Color.red);
+            playButtonImage.color = inactiveColourButton;
+        }
+         
     }
     public void StartLevel()
     {
@@ -58,39 +62,6 @@ public class PhoneButtons : MonoBehaviour
 
     }
 
-    public void TitleScreen()
-    {
-        AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
-        if (isTitleButtonActive)
-        {
-
-            InitStateManager.instance.BeginNewState(InitStates.LoadTitleScreen);
-        }
-        else
-        {
-            if (titleWidget.gameObject.activeSelf)
-            {
-                titleWidget.UpdateLabel("can't do that right now", Color.red);
-            }
-        }
-    }
-
-    public void ReturnToMenus()
-    {
-        AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
-        if (isMenuButtonActive)
-        {
-            InitStateManager.instance.BeginNewState(InitStates.LoadTitleScreen);
-
-        }
-        else
-        {
-            if (menuWidget.gameObject.activeSelf)
-            {
-                menuWidget.UpdateLabel("Can't do that right now", Color.red);
-            }
-        }
-    }
 
 
     public void EnableStartButton(SceneIndex scene)

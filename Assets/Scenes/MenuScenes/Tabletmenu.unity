@@ -798,11 +798,6 @@ MonoBehaviour:
   smsMenu: {fileID: 731482148}
   smsButton: {fileID: 1870324126}
   contactsMenu: {fileID: 764630307}
---- !u!1 &1083741228 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 523051514326512813, guid: e2438025aaca5ca4f82a8f6aff620f9a, type: 3}
-  m_PrefabInstance: {fileID: 1287746477}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1277098013
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,14 +947,14 @@ PrefabInstance:
     - target: {fileID: 5712185108613900294, guid: e2438025aaca5ca4f82a8f6aff620f9a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1683592354}
+      objectReference: {fileID: 1287746478}
     - target: {fileID: 5712185108613900294, guid: e2438025aaca5ca4f82a8f6aff620f9a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: HideMenu
+      value: BeginHidePhone
       objectReference: {fileID: 0}
     - target: {fileID: 5712185108613900294, guid: e2438025aaca5ca4f82a8f6aff620f9a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: SettingsMenu, Assembly-CSharp
+      value: HidePhone, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5712185109879062218, guid: e2438025aaca5ca4f82a8f6aff620f9a, type: 3}
       propertyPath: m_SortingOrder
@@ -1053,6 +1048,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 5712185109879062223, guid: e2438025aaca5ca4f82a8f6aff620f9a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6299260050913211467, guid: e2438025aaca5ca4f82a8f6aff620f9a, type: 3}
       propertyPath: m_AnchorMin.x
       value: 1
@@ -1065,8 +1064,34 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8118186441593694053, guid: e2438025aaca5ca4f82a8f6aff620f9a, type: 3}
+      propertyPath: Widget
+      value: 
+      objectReference: {fileID: 1287746479}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2438025aaca5ca4f82a8f6aff620f9a, type: 3}
+--- !u!114 &1287746478 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8118186441593694053, guid: e2438025aaca5ca4f82a8f6aff620f9a, type: 3}
+  m_PrefabInstance: {fileID: 1287746477}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b23c1222468e64bb7c3d2579b6eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1287746479 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7093433358692070039, guid: e2438025aaca5ca4f82a8f6aff620f9a, type: 3}
+  m_PrefabInstance: {fileID: 1287746477}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88e236a04c9bb749a54eaf67737c352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1374898019
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1166,7 +1191,20 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8296264914331715601, guid: 13c507b9c6d60174d9737d223cd46034, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 961482009}
+    - target: {fileID: 8296264914331715601, guid: 13c507b9c6d60174d9737d223cd46034, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ReturnToContacts
+      objectReference: {fileID: 0}
+    - target: {fileID: 8296264914331715601, guid: 13c507b9c6d60174d9737d223cd46034, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TabletMenuManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7580082973922330716, guid: 13c507b9c6d60174d9737d223cd46034, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 13c507b9c6d60174d9737d223cd46034, type: 3}
 --- !u!1 &1457110895
 GameObject:
@@ -1291,24 +1329,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1683592353 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5712185109879062223, guid: e2438025aaca5ca4f82a8f6aff620f9a, type: 3}
-  m_PrefabInstance: {fileID: 1287746477}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1683592354
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1683592353}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d07578f1dfacf4499f76baa79e5828d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  phone: {fileID: 1083741228}
 --- !u!1 &1759762478
 GameObject:
   m_ObjectHideFlags: 0
@@ -2037,6 +2057,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5712185108613900294, guid: 4ea13db569dfcc54785ed9e393d47ebb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 6514935430612715366}
+    - target: {fileID: 5712185108613900294, guid: 4ea13db569dfcc54785ed9e393d47ebb, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BeginHidePhone
+      objectReference: {fileID: 0}
     - target: {fileID: 5712185109879062219, guid: 4ea13db569dfcc54785ed9e393d47ebb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2129,5 +2157,35 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6514935430612715367, guid: 4ea13db569dfcc54785ed9e393d47ebb, type: 3}
+      propertyPath: Widget
+      value: 
+      objectReference: {fileID: 6514935430612715365}
+    - target: {fileID: 6514935430612715367, guid: 4ea13db569dfcc54785ed9e393d47ebb, type: 3}
+      propertyPath: bindToHiddenEvent
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ea13db569dfcc54785ed9e393d47ebb, type: 3}
+--- !u!114 &6514935430612715365 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7093433358692070039, guid: 4ea13db569dfcc54785ed9e393d47ebb, type: 3}
+  m_PrefabInstance: {fileID: 6514935430612715364}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c88e236a04c9bb749a54eaf67737c352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6514935430612715366 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6514935430612715367, guid: 4ea13db569dfcc54785ed9e393d47ebb, type: 3}
+  m_PrefabInstance: {fileID: 6514935430612715364}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b23c1222468e64bb7c3d2579b6eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -15759,6 +15759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cinematicCamera: {fileID: 1411519410}
+  track: {fileID: 0}
 --- !u!4 &1271043375
 Transform:
   m_ObjectHideFlags: 0

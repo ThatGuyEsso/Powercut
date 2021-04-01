@@ -8,6 +8,7 @@ public class SettingsMenu : MonoBehaviour
     Animator phoneAnim;
     PhoneAnimEventListener animEvents;
     public static SettingsMenu instance;
+
     [SerializeField] private GameObject phone;
     private void Awake()
     {
@@ -45,7 +46,8 @@ public class SettingsMenu : MonoBehaviour
         if (isShown)
         {
             prevMode = InitStateManager.currGameMode;
-            InitStateManager.currGameMode = GameModes.Menu;
+            if(prevMode != GameModes.Menu)
+                InitStateManager.currGameMode = GameModes.Menu;
 
         }
 
@@ -77,5 +79,11 @@ public class SettingsMenu : MonoBehaviour
     private void OnDestroy()
     {
         animEvents.phoneHidden -= ReturnToPrevGameMode;
+    }
+
+
+    public bool IsVisible()
+    {
+        return phone.activeSelf;
     }
 }
