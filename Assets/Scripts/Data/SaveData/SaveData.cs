@@ -31,7 +31,7 @@ public class SaveData
     }
 
     public SessionData lastSession;
-
+ 
     public List<ContactData> clientsData;
 
 
@@ -84,6 +84,7 @@ public class SaveData
 
     public ContactData LoadContactData(string clientID)
     {
+        if (clientsData == null) clientsData = new List<ContactData>();
         //if there are existing entries
         if (clientsData.Count > 0)
         {

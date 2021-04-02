@@ -14,7 +14,15 @@ public class ClientManager : MonoBehaviour,IInitialisable
         InitStateManager.instance.OnStateChange += EvaluateNewState;
         InitStateManager.instance.OnContinue  += LoadClientSaves;
     }
+ 
+    private void AddClientsToSaveData()
+    {
+        foreach (Client client in clients)
+        {
+            ContactData data = new ContactData(client.ClientID);
 
+        }
+    }
     private void LoadClientSaves()
     {
         foreach (Client client in clients)
@@ -29,6 +37,7 @@ public class ClientManager : MonoBehaviour,IInitialisable
     private void Awake()
     {
         previousLevelScene = SaveData.current.lastSession.lastLevel;
+        AddClientsToSaveData();
     }
 
     private void EvaluateNewState(InitStates newState)

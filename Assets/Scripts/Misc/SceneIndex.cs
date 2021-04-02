@@ -1,4 +1,5 @@
 ﻿
+[System.Serializable]
 public enum SceneIndex 
 { 
     ManagerScene =0,

@@ -80,7 +80,7 @@ public class Contact : MonoBehaviour
         background.enabled = isVisible;
 
         SaveData.current.SaveContactData(isVisible, client.ClientID);
-        SaveData.current = (SaveData)SerialisationManager.Load(Application.persistentDataPath + "/Saves" + InitStateManager.SaveName + ".save");
+  
     }
 
 
