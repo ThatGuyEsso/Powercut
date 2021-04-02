@@ -32,6 +32,7 @@ public class LightManager : MonoBehaviour
     public delegate void ChargeDelegate();
     public event ChargeDelegate OnChargeDepleted;
     public event ChargeDelegate OnFullyCharged;
+
     public void Init()
     {
         if (instance == false)
@@ -49,25 +50,30 @@ public class LightManager : MonoBehaviour
         fieldViewCone = gameObject.GetComponent<FieldOfView>();
         batterySlider = UIManager.instance.batteryDisplay;
         batterySlider.InitSlider(settings.maxCharge);
-        isInitialised = true;
         fieldViewCone.ToggleLight(true);
+        chargeState = ChargeStates.StandBy;
         batterySlider.UpdateSlider(currentCharge);
+        isInitialised = true;
     }
 
     public void Update()
     {
-        //Switch between charging states
-        switch (chargeState)
+        if (isInitialised)
         {
-            case ChargeStates.Charging:
-                Charge();
-                break;
-            case ChargeStates.Discharging:
-                Discharge();
-                break;
-            case ChargeStates.StandBy:
-                break;
+            //Switch between charging states
+            switch (chargeState)
+            {
+                case ChargeStates.Charging:
+                    Charge();
+                    break;
+                case ChargeStates.Discharging:
+                    Discharge();
+                    break;
+                case ChargeStates.StandBy:
+                    break;
+            }
         }
+      
     }
     //Increase decrease current charge
     private void Discharge()

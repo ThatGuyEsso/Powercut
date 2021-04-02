@@ -40,9 +40,14 @@ public class InitStateManager : MonoBehaviour
     public static InitStates currInitState;
     public static GameModes currGameMode;
     [SerializeField] private RunTimeData runTimeData;
+
     public event NewInitStateDelegate OnStateChange;
     public delegate void NewInitStateDelegate(InitStates newState);
-   
+
+    public static string SaveName = "/Powercut";
+    public Action OnContinue;
+
+    public void ContinueGame() { OnContinue?.Invoke(); }
     private void Awake()
     {
         if (instance == false)
@@ -59,6 +64,7 @@ public class InitStateManager : MonoBehaviour
     }
     private void Start()
     {
+        SaveData.current = (SaveData)SerialisationManager.Load(Application.persistentDataPath + "/Saves" + SaveName + ".save");
         Init();
     }
 
@@ -110,13 +116,14 @@ public class InitStateManager : MonoBehaviour
 
                 currInitState = newState;
                 GameStateManager.instance.BindToInitManager();
+                SerialisationManager.Save(SaveName, SaveData.current);
                 OnStateChange?.Invoke(currInitState);
-
                 break;
 
             case InitStates.LevelClear:
 
                 currInitState = newState;
+                SerialisationManager.Save(SaveName, SaveData.current);
                 OnStateChange?.Invoke(currInitState);
 
                 break;
@@ -124,13 +131,14 @@ public class InitStateManager : MonoBehaviour
 
                 LoadingScreen.instance.ToggleScreen(true);
                 currInitState = newState;
+                SerialisationManager.Save(SaveName, SaveData.current);
                 OnStateChange?.Invoke(currInitState);
-
                 break;
             case InitStates.LoadTitleScreen:
 
-           
+
                 currInitState = newState;
+                SerialisationManager.Save(SaveName, SaveData.current);
                 OnStateChange?.Invoke(currInitState);
 
                 break;
@@ -153,9 +161,10 @@ public class InitStateManager : MonoBehaviour
 
                 LoadingScreen.instance.BeginFade(false);
                 currInitState = newState;
-                OnStateChange?.Invoke(currInitState);
                 currGameMode = GameModes.Menu;
-
+                SerialisationManager.Save(SaveName, SaveData.current);
+                OnStateChange?.Invoke(currInitState);
+    
                 break;
             case InitStates.PlayerSceneLoaded:
                 OnStateChange?.Invoke(newState);

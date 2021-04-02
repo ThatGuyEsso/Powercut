@@ -108,8 +108,10 @@ public class TransitionManager : MonoBehaviour
             yield return null;
 
         }
-        InitStateManager.instance.BeginNewState(InitStates.LevelLoaded);
         currentLevel = newScene;
+        SaveData.current.lastSession.lastLevel = currentLevel;
+        InitStateManager.instance.BeginNewState(InitStates.LevelLoaded);
+
         //loadUi
         AsyncOperation componentScene = SceneManager.LoadSceneAsync((int)SceneIndex.UIscene, LoadSceneMode.Additive);
         while (!componentScene.isDone)
@@ -163,6 +165,7 @@ public class TransitionManager : MonoBehaviour
             yield return null;
         }
         currentLevel = newLevel; // once done current level is new level
+        SaveData.current.lastSession.lastLevel = currentLevel;
         InitStateManager.instance.BeginNewState(InitStates.LevelLoaded);
         //loadUi
         sceneLoad = SceneManager.LoadSceneAsync((int)SceneIndex.UIscene, LoadSceneMode.Additive);
@@ -180,7 +183,7 @@ public class TransitionManager : MonoBehaviour
         InitStateManager.instance.BeginNewState(InitStates.PlayerSceneLoaded);
 
         isLoading = false;
-
+  
     }
 
     private IEnumerator LoadTitle()
@@ -273,9 +276,10 @@ public class TransitionManager : MonoBehaviour
             yield return null;
 
         }
-        InitStateManager.instance.BeginNewState(InitStates.MainMenu);
         currentLevel = SceneIndex.TabletMenu;
-    
+        SaveData.current.lastSession.lastLevel = currentLevel;
+        InitStateManager.instance.BeginNewState(InitStates.MainMenu);
+
     }
     public IEnumerator GetSceneLoadProgress()
     {

@@ -14,7 +14,7 @@ public class Contact : MonoBehaviour
     private bool hasAlert=false;
     private int beat;
 
-
+ 
 
     public void SetUpMessage(int beat)
     {
@@ -36,6 +36,7 @@ public class Contact : MonoBehaviour
     {
   
         client = ClientManager.instance.GetClient(UIDclient);
+        
         if (client != null )
         {
             hasAlert = client.hasMessage;
@@ -77,6 +78,9 @@ public class Contact : MonoBehaviour
         contactName.enabled = isVisible;
  
         background.enabled = isVisible;
+
+        SaveData.current.SaveContactData(isVisible, client.ClientID);
+        SaveData.current = (SaveData)SerialisationManager.Load(Application.persistentDataPath + "/Saves" + InitStateManager.SaveName + ".save");
     }
 
 

@@ -12,6 +12,23 @@ public class ClientManager : MonoBehaviour,IInitialisable
     public void BindToInitManager()
     {
         InitStateManager.instance.OnStateChange += EvaluateNewState;
+        InitStateManager.instance.OnContinue  += LoadClientSaves;
+    }
+
+    private void LoadClientSaves()
+    {
+        foreach (Client client in clients)
+        {
+           ContactData data= SaveData.current.LoadContactData(client.ClientID);
+            if (data != null)
+            {
+                client.unlocked = data.isUnlocked;
+            }
+        }
+    }
+    private void Awake()
+    {
+        previousLevelScene = SaveData.current.lastSession.lastLevel;
     }
 
     private void EvaluateNewState(InitStates newState)
@@ -91,5 +108,9 @@ public class ClientManager : MonoBehaviour,IInitialisable
         activeClient = client;
     }
     public Client GetActiveClient() { return activeClient; }
- 
+    private void OnDestroy()
+    {
+        InitStateManager.instance.OnContinue  -= LoadClientSaves;
+        InitStateManager.instance.OnStateChange -= EvaluateNewState;
+    }
 }

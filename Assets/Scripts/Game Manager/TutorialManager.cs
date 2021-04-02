@@ -197,7 +197,8 @@ public class TutorialManager : MonoBehaviour
         nTutorialsLeft--;
         if(nTutorialsLeft <= 0)
         {
-            GameStateManager.instance.runTimeData.isTutoiralFinished = true;
+            SaveData.current.lastSession.tutorialCompleted = true;
+            SerialisationManager.Save(InitStateManager.SaveName, SaveData.current);
             Destroy(gameObject);
         }
     }
@@ -220,6 +221,8 @@ public class TutorialManager : MonoBehaviour
     {
         InitStateManager.instance.OnStateChange -= EvaluateInitState;
         GameStateManager.instance.OnGameStateChange -= EvaluateGameState;
+        SaveData.current.lastSession.tutorialCompleted = true;
+        SerialisationManager.Save(InitStateManager.SaveName, SaveData.current);
     }
 
     public void ClearActivePrompts()

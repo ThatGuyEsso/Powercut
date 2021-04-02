@@ -71,7 +71,7 @@ public class PauseScreen : MonoBehaviour
         AudioManager.instance.PlayAtRandomPitch("ClickSFX");
         GameStateManager.instance.ResumeGame();
         pauseScreen.SetActive(false);
-
+        SerialisationManager.Save(InitStateManager.SaveName, SaveData.current);
         InitStateManager.instance.BeginNewState(InitStates.LoadTitleScreen);
       
     }

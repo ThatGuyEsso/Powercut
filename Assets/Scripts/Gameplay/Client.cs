@@ -38,6 +38,8 @@ public class Client
         {
             nextDialogue = id;
             hasMessage = true;
+ 
+        
             return true;
         }
         else
@@ -48,7 +50,8 @@ public class Client
     public void ClearMessage()
     {
         hasMessage = false;
-      
+
+    
     }
     
 }

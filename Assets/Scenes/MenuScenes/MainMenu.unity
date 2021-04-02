@@ -460,10 +460,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 7113168152778649598, guid: df12da44496186946ac4fbf6d47acf74, type: 3}
-      propertyPath: menuCamera
-      value: 
-      objectReference: {fileID: 1717090693}
+    - target: {fileID: 3505554319993875276, guid: df12da44496186946ac4fbf6d47acf74, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 217.7998
+      objectReference: {fileID: 0}
+    - target: {fileID: 4107193574663568083, guid: df12da44496186946ac4fbf6d47acf74, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 217.7998
+      objectReference: {fileID: 0}
     - target: {fileID: 7455128570697080968, guid: df12da44496186946ac4fbf6d47acf74, type: 3}
       propertyPath: m_Name
       value: MainMenu_UI
