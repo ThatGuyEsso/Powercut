@@ -7,7 +7,7 @@ public class TabletMenuManager : MonoBehaviour
     [SerializeField] private GameObject smsMenu;
     [SerializeField] private SmsButton smsButton;
     [SerializeField] private GameObject contactsMenu;
-
+    [SerializeField] private CreditsManager creditManager;
     public static TabletMenuManager instance;
 
     GraphicRaycaster raycaster;
@@ -96,6 +96,13 @@ public class TabletMenuManager : MonoBehaviour
         DialogueManager.instance.SetUpPortrait(image);
         DialogueManager.instance.SetUpNextBeat(beatID, Speaker.Client);
         DialogueManager.instance.DisplayBeat();
+    }
+
+    public void Credits()
+    {
+        creditManager.ShowPhone();
+        AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
+
     }
 
     public void Quit()

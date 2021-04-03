@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 164829888630608342}
   - component: {fileID: 164829888630608337}
   m_Layer: 5
-  m_Name: SMS bubble
+  m_Name: CreditBubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 106.8, y: 416}
-  m_SizeDelta: {x: 290.13757, y: 57.913208}
+  m_AnchoredPosition: {x: 149.7, y: 416}
+  m_SizeDelta: {x: 375.9469, y: 57.913208}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &164829888630608337
 MonoBehaviour:
@@ -89,8 +89,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 143.66, y: -27.34}
-  m_SizeDelta: {x: 261.56207, y: 32.583023}
+  m_AnchoredPosition: {x: 186.56, y: -27.34}
+  m_SizeDelta: {x: 347.37152, y: 32.583023}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &164829889397252801
 CanvasRenderer:

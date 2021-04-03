@@ -46,7 +46,7 @@ MonoBehaviour:
   clients:
   - clientName: Robin the Blonde
     UID: RB
-    hasMessage: 0
+    hasMessage: 1
     unlocked: 1
     clientSprite: {fileID: 21300000, guid: 3ce0e464990dce04cbd6d4e83f542ee6, type: 3}
     levelTriggers: 05000000
@@ -61,14 +61,14 @@ MonoBehaviour:
   - clientName: Franklyn the Foreman
     UID: FF
     hasMessage: 0
-    unlocked: 1
+    unlocked: 0
     clientSprite: {fileID: 21300000, guid: f62bac3588963804b8521039ff064f8d, type: 3}
     levelTriggers: 06000000
     beats: 39000000
   - clientName: No Caller ID
     UID: NCI
-    hasMessage: 1
-    unlocked: 1
+    hasMessage: 0
+    unlocked: 0
     clientSprite: {fileID: 21300000, guid: 02ba304d8343c3c408e0704023cd7389, type: 3}
     levelTriggers: 08000000
     beats: 66000000

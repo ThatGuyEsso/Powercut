@@ -7,6 +7,8 @@ public class MainMenu : MonoBehaviour
 
     [SerializeField] private GameObject continueButtons;
     [SerializeField] private GameObject defaultButtons;
+
+    [SerializeField] private CreditsManager creditsManager;
     private void Awake()
     {
 
@@ -37,6 +39,7 @@ public class MainMenu : MonoBehaviour
     }
     public void Credits()
     {
+        creditsManager.ShowPhone();
         AudioManager.instance.PlayAtRandomPitch("ClickSFX");
 
     }

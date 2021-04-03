@@ -54,12 +54,8 @@ MonoBehaviour:
     - text: Thanks I will get on with it now.
       targetBeatID: 12
       resultName: Tutorial Keycode Received
-    text: 'URAQT42
-
-      P.S I also texted you the tasks I need you to do.
-
-      So
-      just check your phone if you forget! [ESC To Check]'
+    text: "URAQT42\nP.S I also texted you the tasks I need you to do.\nSo just check
+      your phone if you forget! \n[ESC To Check] "
     id: 4
     targetBeatID: 4
     targetScene: 0

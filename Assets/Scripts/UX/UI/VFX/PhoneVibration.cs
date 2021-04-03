@@ -62,6 +62,11 @@ public class PhoneVibration : MonoBehaviour
         if (!_shouldBob)
         {
             _bobTime = 0;
+            if ((Vector2)rt.position != _initialOffset)
+            {
+                //Lerp to target offset
+                rt.position = Vector2.Lerp(rt.position, _initialOffset, _bobSmoothing);
+            }
         }
         else
         {
@@ -104,6 +109,7 @@ public class PhoneVibration : MonoBehaviour
 
             newOffset = transform.right * horizOffset + transform.up * vertOffset;
         }
+    
         return newOffset;
     }
 }
