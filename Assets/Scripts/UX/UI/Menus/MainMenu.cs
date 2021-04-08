@@ -13,17 +13,31 @@ public class MainMenu : MonoBehaviour
     {
 
         PointerManager.instance.SwitchToPointer();
-        if (SaveData.current.lastSession.isNewSave == false)
+        if(SaveData.current!= null)
         {
-            defaultButtons.SetActive(false);
-            continueButtons.SetActive(true);
+            if (SaveData.current.lastSession.lastLevel == SceneIndex.Tutorial)
+            {
+                defaultButtons.SetActive(true);
+                continueButtons.SetActive(false);
+            }
+            else
+            {
+                defaultButtons.SetActive(false);
+                continueButtons.SetActive(true);
+            }
         }
+        else
+        {
+            defaultButtons.SetActive(true);
+            continueButtons.SetActive(false);
+        }
+
     }
     public void Play()
     {
         //SaveData.current = new SaveData();
         MusicManager.instance.BeginFadeOut();
-        TransitionManager.instance.StartLevel(SceneIndex.Tutorial);
+        TransitionManager.instance.StartLevel(SceneIndex.IceRink);
         AudioManager.instance.PlayAtRandomPitch("ClickSFX");
         SaveData.current.ClearSave();
         SaveData.current.lastSession.isNewSave = false;

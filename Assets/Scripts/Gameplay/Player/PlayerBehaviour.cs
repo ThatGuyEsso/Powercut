@@ -97,7 +97,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
             fieldOfView.SetOrigin(transform.position);
 
             //Update player rotation
-            if (!isDead)
+            if (!isDead&& InitStateManager.currGameMode == GameModes.Powercut)
             {
                 PlayerFacePointer();
 

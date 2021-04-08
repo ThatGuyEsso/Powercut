@@ -9,6 +9,7 @@ public enum GameModes
     Menu,
     Powercut,
     Dialogue,
+    Cutscene,
     Debug,
 };
 public enum InitStates

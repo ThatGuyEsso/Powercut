@@ -23,7 +23,7 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
     private BossStage currentStage;
     private float currHealth;
     private bool isHurt;
-    [SerializeField] private ProgressBar healthBar;
+    [SerializeField] private ScalingProgressBar healthBar;
 
     [Header("Boss Components")]
     [SerializeField] private List<BroodNestDelegate> broodDelegates = new List<BroodNestDelegate>();
@@ -35,7 +35,7 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
             if (!isHurt)
             {
                 currHealth -= damage;
-                healthBar.UpdateSlider(currHealth);
+                healthBar.UpdateValue(currHealth);
             }
         }
     }
@@ -46,7 +46,7 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
     public void Init()
     {
         currHealth = MaxHealth;
-        healthBar.InitSlider(MaxHealth);
+        healthBar.SetMaxValue(MaxHealth);
         healthBar.gameObject.SetActive(false);
     }
 
