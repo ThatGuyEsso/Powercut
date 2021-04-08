@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class BossAnimController : MonoBehaviour
+using System;
+public class BossHealthAnimController : MonoBehaviour
 {
     [SerializeField] private Animator animator;
 
-
+    public Action animEnded;
     public void Awake()
     {
         if (animator)
@@ -18,6 +18,12 @@ public class BossAnimController : MonoBehaviour
         animator.Play(animName);
     }
 
+    public void AnimEnded()
+    {
+        animator.enabled = false;
+
+        animEnded?.Invoke();
+    }
 
 
 

@@ -65,11 +65,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fcc35e66708a2743ab708f71e269386, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 1000
   percentNextStageTrigger: 0.25
   tickRate: 0.5
-  healthBar: {fileID: 0}
+  MaxHealth: 1000
+  hurtTime: 0
   broodDelegates: []
+  healthBar: {fileID: 0}
+  healthBarAnim: {fileID: 0}
+  hurtVFX: {fileID: 8700225724456264824}
 --- !u!58 &4287951392334403058
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -96,6 +99,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4287951392859531192}
   - component: {fileID: 4287951392859531193}
+  - component: {fileID: 8700225724456264824}
   m_Layer: 0
   m_Name: BroodNestGFX
   m_TagString: Untagged
@@ -168,3 +172,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8700225724456264824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4287951392859531191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f60a6f7c6b0eb94e96af1e68409b822, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  hurtMaterial: {fileID: 2100000, guid: 51d2b5e26ccca8a498ddef4281cc21a6, type: 2}
+  timeBeforeFlashShift: 0.2
+  spriteRenderer: {fileID: 4287951392859531193}

@@ -5,8 +5,8 @@ using UnityEngine;
 public class HurtFlash : MonoBehaviour
 {
     [Header("Materials and Shaders")]
-    private Material defaultMaterial;
-    public Material hurtMaterial;
+    [SerializeField] private Material defaultMaterial;
+    [SerializeField] private Material hurtMaterial;
 
     [Header("Effect settings ")]
     public float timeBeforeFlashShift;

@@ -40,7 +40,8 @@ public class CameraManager : MonoBehaviour
     }
     public void SwitchToPlayerCam()
     {
-        InitStateManager.currGameMode = GameModes.Cutscene;
+        InitStateManager.currGameMode = GameModes.Powercut;
+        GameStateManager.instance.BeginNewGameState(GameStates.MainPowerOff);
         cinematicCamera.gameObject.SetActive(false);
         CamShake.instance.gameObject.SetActive(true);
         director.Stop();

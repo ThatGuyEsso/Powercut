@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 8831508753396482040}
   - component: {fileID: 1326549495833742719}
   - component: {fileID: 5969458237692768076}
+  - component: {fileID: 8282030241486457618}
   m_Layer: 5
   m_Name: Boss Health
   m_TagString: Untagged
@@ -262,9 +263,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cece2e622643d784fa33e4b68e07f101, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fill: {fileID: 0}
+  frame: {fileID: 8831508752901360965}
+  fill: {fileID: 8831508751888147193}
   maxValue: 0
   value: 0
+  scaleRate: 0
 --- !u!114 &1326549495833742719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +300,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8282030241486457618
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8831508752139023762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f42ad5542fd8f447b08870398cdcfb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashTime: 0.25
 --- !u!1 &8831508752221233075
 GameObject:
   m_ObjectHideFlags: 0
