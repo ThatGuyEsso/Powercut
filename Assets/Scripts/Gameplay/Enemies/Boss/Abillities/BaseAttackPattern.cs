@@ -17,6 +17,9 @@ public abstract class BaseAttackPattern : MonoBehaviour
 
     //pattern Settings
     [SerializeField] protected float attackRange;
+    [SerializeField] protected float damage;
+    [SerializeField] protected float knockBack;
+
     [SerializeField] protected Transform playerTransform;
 
     public Action AttackEnded;
@@ -36,7 +39,7 @@ public abstract class BaseAttackPattern : MonoBehaviour
 
     public void SetStage(BossStage newStage) { stage = newStage; }
 
-    protected void BeginAttackPattern()
+    public void BeginAttackPattern()
     {
         isRunning = true;
         StartCoroutine(BeginAttackCycle());
@@ -63,7 +66,7 @@ public abstract class BaseAttackPattern : MonoBehaviour
 
         }
     }
-    protected abstract void ExecuteAttack();
+    public abstract void ExecuteAttack();
  
 
 

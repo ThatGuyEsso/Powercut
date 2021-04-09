@@ -33,8 +33,8 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
     [Header("Boss Components")]
     [SerializeField] private List<BroodNestDelegate> broodDelegates = new List<BroodNestDelegate>();
     [SerializeField] private ScalingProgressBar healthBar;
-    [SerializeField] private BossHealthAnimController healthBarAnim;
-    [SerializeField] private HurtFlash hurtVFX;
+    [SerializeField] private BossAnimController healthBarAnim;
+    [SerializeField] private SpriteFlash hurtVFX;
 
     [Header("Boss Abilities")]
     [SerializeField] private PheremoneBlast pheremoneBlast;
@@ -42,6 +42,11 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
     [SerializeField] private AttackDrones attackDrones;
     [SerializeField] private SendSoldiers sendSoldiers;
     private List<BaseAttackPattern> currentAttackCycle = new List<BaseAttackPattern>();
+    [SerializeField] protected AudioPlayer audioPlayerPrefab;
+
+    //VFX
+    [SerializeField] private GameObject hurtNumber;
+    [SerializeField] private GameObject deathVFX;
 
     //Boss references
     [SerializeField] private Transform playerTransform;
@@ -52,9 +57,19 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
             if (!isHurt)
             {
                 hurtVFX.BeginFlash();
+                ObjectPoolManager.Spawn(deathVFX, transform.position, transform.rotation);
+                IAudio player = ObjectPoolManager.Spawn(audioPlayerPrefab.gameObject, transform.position, transform.rotation).GetComponent<IAudio>();
+                player.SetUpAudioSource(AudioManager.instance.GetSound("BugsSplat"));
+                player.PlayAtRandomPitch();
                 isHurt = true;
                 currHealth -= damage;
-                if (damage < 0f) damage = 0f;
+                if (currHealth < 0f) currHealth = 0f;
+                DamageNumber dmgVFX = ObjectPoolManager.Spawn(hurtNumber, transform.position, Quaternion.identity).GetComponent<DamageNumber>();
+                if (dmgVFX != false)
+                {
+                    dmgVFX.Init();
+                    dmgVFX.SetTextValues(damage, MaxHealth, knockBackDir);
+                }
                 healthBar.UpdateValue(currHealth);
                 Invoke("ResetHurt", hurtTime);
 
@@ -91,6 +106,7 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
         healthBarAnim.animEnded += InitiaionComplete;
         healthBarAnim.PlayAnim("InitiateHealth");
         healthBar.ShowBar();
+        pheremoneBlast.ExecuteAttack();
     }
     public void StartBossBattle()
     {
@@ -105,7 +121,7 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
         {
             case BossStage.First:
                 BeginNewStage(currentStage);
-                    
+
                 break;
             case BossStage.Second:
                 BeginNewStage(currentStage);

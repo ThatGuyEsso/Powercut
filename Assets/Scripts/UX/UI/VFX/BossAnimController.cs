@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-public class BossHealthAnimController : MonoBehaviour
+public class BossAnimController : MonoBehaviour
 {
     [SerializeField] private Animator animator;
 

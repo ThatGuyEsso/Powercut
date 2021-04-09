@@ -43,6 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5034d42aea65d9d49a6c482235428eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRange: 0
+  damage: 0
+  knockBack: 0
+  playerTransform: {fileID: 0}
 --- !u!1 &1010824677
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,6 +90,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c5b67b254938624d8cac24f1417cdf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRange: 0
+  damage: 0
+  knockBack: 0
+  playerTransform: {fileID: 0}
 --- !u!1 &1156310947
 GameObject:
   m_ObjectHideFlags: 0
@@ -129,6 +137,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adc980e06b657e54fb6ffd7fb37c2ce9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRange: 0
+  damage: 0
+  knockBack: 0
+  playerTransform: {fileID: 0}
 --- !u!1 &1907008063
 GameObject:
   m_ObjectHideFlags: 0
@@ -174,6 +186,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe30a50e0fd47704d853208119aac72c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRange: 2
+  damage: 10
+  knockBack: 30
+  playerTransform: {fileID: 0}
+  vfx: {fileID: 8644515400462571651}
 --- !u!58 &8098292355242366346
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -184,7 +201,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -361,7 +378,15 @@ MonoBehaviour:
   - {fileID: 0}
   healthBar: {fileID: 0}
   healthBarAnim: {fileID: 0}
-  hurtVFX: {fileID: 8700225724456264824}
+  hurtVFX: {fileID: 5880225486162862540}
+  pheremoneBlast: {fileID: 1907008065}
+  splitAndProtect: {fileID: 1010824679}
+  attackDrones: {fileID: 1156310949}
+  sendSoldiers: {fileID: 236623191}
+  audioPlayerPrefab: {fileID: 3912195020010027158, guid: bd5d0c2d9dcef8b44bc27c081b8263e3, type: 3}
+  hurtNumber: {fileID: 7152689479093340677, guid: e2c021df58a3bbf4d9284bfcec171352, type: 3}
+  deathVFX: {fileID: 7808037342350693099, guid: 267ccae9eccc07342ab71b58a91e56a7, type: 3}
+  playerTransform: {fileID: 0}
 --- !u!58 &4287951392334403058
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -388,7 +413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4287951392859531192}
   - component: {fileID: 4287951392859531193}
-  - component: {fileID: 8700225724456264824}
+  - component: {fileID: 5880225486162862540}
   m_Layer: 0
   m_Name: BroodNestGFX
   m_TagString: Untagged
@@ -461,7 +486,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8700225724456264824
+--- !u!114 &5880225486162862540
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -470,11 +495,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4287951392859531191}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f60a6f7c6b0eb94e96af1e68409b822, type: 3}
+  m_Script: {fileID: 11500000, guid: 4acb90babcfb8d2468184564ac7eff3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  hurtMaterial: {fileID: 2100000, guid: 51d2b5e26ccca8a498ddef4281cc21a6, type: 2}
+  flashSprite: {fileID: 21300000, guid: a0f38e950ad351c4aa7bb80becbb0e6b, type: 3}
   timeBeforeFlashShift: 0.2
 --- !u!1001 &6947218602221997120
 PrefabInstance:
@@ -540,5 +564,10 @@ PrefabInstance:
 --- !u!4 &8644515400462571650 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1701804813095441602, guid: a7f6ad02a66d5ad48a305d883937eb48, type: 3}
+  m_PrefabInstance: {fileID: 6947218602221997120}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &8644515400462571651 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1701804813095441603, guid: a7f6ad02a66d5ad48a305d883937eb48, type: 3}
   m_PrefabInstance: {fileID: 6947218602221997120}
   m_PrefabAsset: {fileID: 0}

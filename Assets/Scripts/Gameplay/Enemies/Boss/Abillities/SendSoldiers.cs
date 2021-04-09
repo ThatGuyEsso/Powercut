@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SendSoldiers : BaseAttackPattern
 {
-    protected override void ExecuteAttack()
+    public override void ExecuteAttack()
     {
         throw new System.NotImplementedException();
     }
