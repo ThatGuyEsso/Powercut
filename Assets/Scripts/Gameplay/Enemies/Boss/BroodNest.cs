@@ -68,7 +68,7 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
                 if (dmgVFX != false)
                 {
                     dmgVFX.Init();
-                    dmgVFX.SetTextValues(damage, MaxHealth, knockBackDir);
+                    dmgVFX.SetTextValuesAtScale(damage, MaxHealth, knockBackDir,10);
                 }
                 healthBar.UpdateValue(currHealth);
                 Invoke("ResetHurt", hurtTime);
@@ -91,6 +91,9 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
         {
             nest.gameObject.SetActive(false);
         }
+      
+
+    
  
     }
 
@@ -106,13 +109,17 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
         healthBarAnim.animEnded += InitiaionComplete;
         healthBarAnim.PlayAnim("InitiateHealth");
         healthBar.ShowBar();
+        BindToGameManager();
         pheremoneBlast.ExecuteAttack();
+
+        playerTransform = GameStateManager.instance.GetPlayerTransform();
+        if (playerTransform) playerTransform = FindObjectOfType<PlayerBehaviour>().transform;
     }
     public void StartBossBattle()
     {
-        currentStage = BossStage.First;
-
-
+        currentStage = BossStage.Second;
+        BeginNewStage(currentStage);
+        sendSoldiers.BeginAttackPattern();
     }
 
     public void OnNewBossStage()
@@ -150,7 +157,7 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
     }
 
 
-    public void BindToInitManager()
+    public void BindToGameManager()
     {
         GameStateManager.instance.OnGameStateChange += EvaluateNewState;
     }
@@ -172,7 +179,8 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
 
             foreach(AttackPatternData attackData in stageData.AttackPatternData)
             {
-                if(attackData.AttackPattern as PheremoneBlast)
+                attackData.AttackPattern.playerTransform = playerTransform;
+                if (attackData.AttackPattern as PheremoneBlast)
                 {
                     pheremoneBlast.SetUpAbilityData(attackData);
                     
@@ -211,15 +219,15 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
     }
     private void StartNewCycleStage()
     {
-        currCycleIndex = 0;
-        currentAttackCycle[currCycleIndex].BeginAttackPattern();
+        //currCycleIndex = 0;
+        //currentAttackCycle[currCycleIndex].BeginAttackPattern();
     }
     private void StartNewStage()
     {
-        foreach (BaseAttackPattern attackPattern in currentAttackCycle)
-        {
-            attackPattern.BeginAttackPattern();
-        }
+        //foreach (BaseAttackPattern attackPattern in currentAttackCycle)
+        //{
+        //    attackPattern.BeginAttackPattern();
+        //}
     
     }
     private BossStageData GetStageData(BossStage stage)
@@ -243,4 +251,12 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
         }
     }
 
+    private void OnDestroy()
+    {
+        GameStateManager.instance.OnGameStateChange -= EvaluateNewState;
+    }
+    private void OnDisable()
+    {
+        GameStateManager.instance.OnGameStateChange -= EvaluateNewState;
+    }
 }

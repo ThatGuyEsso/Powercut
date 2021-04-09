@@ -126,4 +126,16 @@ public class DamageNumber : MonoBehaviour
         travelDir = dir;
         DisplayDamage(damageAmount);
     }
+    public void SetTextValuesAtScale(float damageAmount, float targetMaxHealth, Vector3 dir,float healthScale)
+    {
+        float percentageDmg = damageAmount / targetMaxHealth;
+        scale = percentageDmg* healthScale;
+
+        if (scale > maxSize) scale = maxSize;
+        float gradient = percentageDmg;
+        transform.localScale = new Vector3(scale, scale, scale);
+        text.color = colorGradient.Evaluate(gradient);
+        travelDir = dir;
+        DisplayDamage(damageAmount);
+    }
 }

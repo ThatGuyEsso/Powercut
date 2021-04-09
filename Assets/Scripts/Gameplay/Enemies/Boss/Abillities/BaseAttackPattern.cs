@@ -20,7 +20,7 @@ public abstract class BaseAttackPattern : MonoBehaviour
     [SerializeField] protected float damage;
     [SerializeField] protected float knockBack;
 
-    [SerializeField] protected Transform playerTransform;
+    [HideInInspector] public Transform playerTransform;
 
     public Action AttackEnded;
 
@@ -39,7 +39,7 @@ public abstract class BaseAttackPattern : MonoBehaviour
 
     public void SetStage(BossStage newStage) { stage = newStage; }
 
-    public void BeginAttackPattern()
+    virtual public void BeginAttackPattern()
     {
         isRunning = true;
         StartCoroutine(BeginAttackCycle());
@@ -53,7 +53,7 @@ public abstract class BaseAttackPattern : MonoBehaviour
     {
         StopAllCoroutines();
         isRunning = false;
-        AttackEnded.Invoke();
+        AttackEnded?.Invoke();
     }
 
     protected IEnumerator BeginAttackCycle()

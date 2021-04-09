@@ -200,4 +200,6 @@ public class GameStateManager : MonoBehaviour, IInitialisable
     }
 
     public Record GetRecord() { return record; }
+
+    public Transform GetPlayerTransform() { return playerTransform; }
 }

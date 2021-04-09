@@ -2,19 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Hurtflash : MonoBehaviour
+public class SpriteFlash : MonoBehaviour
 {
     [Header("Materials and Shaders")]
-    public Material defaultMaterial;
-    public Material hurtMaterial;
-    private Material currMat;
+    private Sprite defaultSprite;
+    [SerializeField] private Sprite flashSprite;
+
     [Header("Effect settings ")]
     public float timeBeforeFlashShift;
 
     private float currentFlashTime;
     private bool isFlashing;
-    public SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRenderer;
 
+    private void Awake()
+    {
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        currentFlashTime = timeBeforeFlashShift;
+        defaultSprite = spriteRenderer.sprite;
+    }
 
     private void Update()
     {
@@ -22,13 +28,13 @@ public class Hurtflash : MonoBehaviour
         {
             if (currentFlashTime <= 0)
             {
-                if (currMat == hurtMaterial)
+                if (spriteRenderer.sprite == flashSprite)
                 {
-                    spriteRenderer.material = defaultMaterial;
+                    spriteRenderer.sprite = defaultSprite;
                 }
                 else
                 {
-                    spriteRenderer.material = hurtMaterial;
+                    spriteRenderer.sprite = flashSprite;
                 }
                 currentFlashTime = timeBeforeFlashShift;
             }
@@ -43,11 +49,11 @@ public class Hurtflash : MonoBehaviour
     public void BeginFlash()
     {
         isFlashing = true;
-        spriteRenderer.material = hurtMaterial;
+        spriteRenderer.sprite = flashSprite;
     }
     public void EndFlash()
     {
         isFlashing = false;
-        spriteRenderer.material = defaultMaterial;
+        spriteRenderer.sprite = defaultSprite;
     }
 }

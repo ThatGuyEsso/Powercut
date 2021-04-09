@@ -21,7 +21,7 @@ public class AttackPatternData
     public float SetCooldown { set { attackCoolDown = value; } }
     public float Cooldown { get { return attackCoolDown; } }
     public int SetAttackCount { set { attackCount = value; } }
-    public int AttackCount { get { return AttackCount; } }
+    public int AttackCount { get { return attackCount; } }
 
     public int SetMaxAttackCount { set { maxAttackCount = value; } }
     public int MaxAttackCount { get { return maxAttackCount; } }

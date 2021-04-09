@@ -1,0 +1,102 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class SeekingDrones : MonoBehaviour
+{
+    private Rigidbody2D rb;
+    private Transform target;
+    [SerializeField] private float maxSpeed;
+    private float damage;
+    private float knockBack;
+    private bool isActive;
+    private AttackDrones owner;
+    [SerializeField] private float tickRate;
+    [SerializeField] private GameObject explosionVFX;
+    [SerializeField] private GameObject audioPlayerPrefab;
+
+
+    [SerializeField]  private LayerMask collisionLayers;
+
+    public void Awake()
+    {
+        rb = gameObject.GetComponent<Rigidbody2D>();
+    }
+    public void SetUpDrone(Transform target, float damage, float knockback, AttackDrones owner)
+    {
+        this.target = target;
+        isActive = true;
+        this.damage = damage;
+        knockBack = knockback;
+        this.owner = owner;
+        StartCoroutine(UpdateDirection());
+    }
+
+
+    public void CalculateSeekVelocity()
+    {
+        if (!target) return;
+        Vector2 desiredVel = ((Vector2)target.position - rb.position).normalized * Time.deltaTime * maxSpeed;
+        if (rb)
+            rb.velocity = desiredVel;
+    }
+
+
+    private IEnumerator UpdateDirection()
+    {
+        if (target&&isActive)
+        {
+            yield return new WaitForSeconds(tickRate);
+            CalculateSeekVelocity();
+            StartCoroutine(UpdateDirection());
+        }
+  
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (((1 << other.gameObject.layer) & collisionLayers) != 0)
+        {
+            IAudio audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position).GetComponent<IAudio>();
+            audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("BugsSplat"));
+            audioPlayer.PlayAtRandomPitch();
+
+            ObjectPoolManager.Spawn(explosionVFX, transform.position, transform.rotation);
+            if (owner)
+                owner.Dronekilled(this);
+            ObjectPoolManager.Recycle(gameObject);
+        }
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (other.GetComponent<IHurtable>() != null)
+            {
+                other.GetComponent<IHurtable>().Damage(damage, rb.velocity.normalized, knockBack);
+
+            }
+            IAudio audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position).GetComponent<IAudio>();
+            audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("BugsSplat"));
+            ObjectPoolManager.Spawn(explosionVFX, transform.position, transform.rotation);
+            if (owner)
+                owner.Dronekilled(this);
+            ObjectPoolManager.Recycle(gameObject);
+        }
+        if (other.gameObject.CompareTag("Swarm"))
+        {
+            Vector2 dir = other.transform.position - transform.position;
+            other.GetComponent<Rigidbody2D>().AddForce(dir.normalized * 2.0f, ForceMode2D.Impulse);
+        }
+    }
+
+    private void OnDisable()
+    {
+        StopAllCoroutines();
+        isActive = false;
+        target = null;
+    }
+
+
+
+
+
+}
