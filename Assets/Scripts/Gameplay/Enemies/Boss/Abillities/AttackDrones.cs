@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackDrones : MonoBehaviour
+public class AttackDrones : BaseAttackPattern
 {
     // Start is called before the first frame update
     void Start()

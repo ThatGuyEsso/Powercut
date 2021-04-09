@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SplitAndProtect : MonoBehaviour
+public class SplitAndProtect : BaseAttackPattern
 {
     // Start is called before the first frame update
     void Start()

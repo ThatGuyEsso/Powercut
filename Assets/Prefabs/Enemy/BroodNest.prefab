@@ -1,5 +1,177 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &236623189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 236623190}
+  - component: {fileID: 236623191}
+  m_Layer: 0
+  m_Name: SendOutSoldiers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &236623190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236623189}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4287951391848689200}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &236623191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236623189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5034d42aea65d9d49a6c482235428eb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1010824677
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1010824678}
+  - component: {fileID: 1010824679}
+  m_Layer: 0
+  m_Name: SplitAndProtect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1010824678
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010824677}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4287951391848689200}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1010824679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010824677}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c5b67b254938624d8cac24f1417cdf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1156310947
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1156310948}
+  - component: {fileID: 1156310949}
+  m_Layer: 0
+  m_Name: AttackDronesPattern
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1156310948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156310947}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4287951391848689200}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1156310949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1156310947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adc980e06b657e54fb6ffd7fb37c2ce9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1907008063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1907008064}
+  - component: {fileID: 1907008065}
+  m_Layer: 0
+  m_Name: Pheremone Blast
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1907008064
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907008063}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4287951391848689200}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1907008065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907008063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe30a50e0fd47704d853208119aac72c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4287951391848689231
 GameObject:
   m_ObjectHideFlags: 0
@@ -14,7 +186,7 @@ GameObject:
   - component: {fileID: 4287951392334403058}
   m_Layer: 0
   m_Name: BroodNest
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,6 +203,10 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 4287951392859531192}
+  - {fileID: 1156310948}
+  - {fileID: 236623190}
+  - {fileID: 1010824678}
+  - {fileID: 1907008064}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -68,8 +244,103 @@ MonoBehaviour:
   percentNextStageTrigger: 0.25
   tickRate: 0.5
   MaxHealth: 1000
-  hurtTime: 0
-  broodDelegates: []
+  hurtTime: 0.5
+  stageDatas:
+  - timeBtwnPatterns: 4
+    minCycleCooldownTime: 5
+    maxCycleCooldownTime: 8
+    stage: 0
+    attackPatterns:
+    - attackRate: 3
+      attackDuration: 6
+      attackCoolDown: 0
+      attackCount: 0
+      maxAttackCount: 0
+      pattern: {fileID: 1907008065}
+    - attackRate: 2
+      attackDuration: 8
+      attackCoolDown: 0
+      attackCount: 1
+      maxAttackCount: 2
+      pattern: {fileID: 1156310949}
+  - timeBtwnPatterns: 2
+    minCycleCooldownTime: 3
+    maxCycleCooldownTime: 6
+    stage: 1
+    attackPatterns:
+    - attackRate: 3
+      attackDuration: 6
+      attackCoolDown: 0
+      attackCount: 0
+      maxAttackCount: 0
+      pattern: {fileID: 1907008065}
+    - attackRate: 2
+      attackDuration: 8
+      attackCoolDown: 0
+      attackCount: 1
+      maxAttackCount: 2
+      pattern: {fileID: 1156310949}
+    - attackRate: 5
+      attackDuration: 10
+      attackCoolDown: 0
+      attackCount: 2
+      maxAttackCount: 4
+      pattern: {fileID: 236623191}
+  - timeBtwnPatterns: 2
+    minCycleCooldownTime: 5
+    maxCycleCooldownTime: 6
+    stage: 2
+    attackPatterns:
+    - attackRate: 2
+      attackDuration: 6
+      attackCoolDown: 0
+      attackCount: 0
+      maxAttackCount: 0
+      pattern: {fileID: 1907008065}
+    - attackRate: 2
+      attackDuration: 12
+      attackCoolDown: 0
+      attackCount: 3
+      maxAttackCount: 4
+      pattern: {fileID: 1156310949}
+    - attackRate: 2
+      attackDuration: 12
+      attackCoolDown: 0
+      attackCount: 3
+      maxAttackCount: 4
+      pattern: {fileID: 236623191}
+  - timeBtwnPatterns: 0
+    minCycleCooldownTime: 3
+    maxCycleCooldownTime: 5
+    stage: 3
+    attackPatterns:
+    - attackRate: 4
+      attackDuration: 6
+      attackCoolDown: 4
+      attackCount: 0
+      maxAttackCount: 0
+      pattern: {fileID: 1907008065}
+    - attackRate: 4
+      attackDuration: 12
+      attackCoolDown: 6
+      attackCount: 2
+      maxAttackCount: 4
+      pattern: {fileID: 1156310949}
+    - attackRate: 2
+      attackDuration: 10
+      attackCoolDown: 5
+      attackCount: 1
+      maxAttackCount: 4
+      pattern: {fileID: 236623191}
+  broodDelegates:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   healthBar: {fileID: 0}
   healthBarAnim: {fileID: 0}
   hurtVFX: {fileID: 8700225724456264824}
@@ -187,4 +458,3 @@ MonoBehaviour:
   defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   hurtMaterial: {fileID: 2100000, guid: 51d2b5e26ccca8a498ddef4281cc21a6, type: 2}
   timeBeforeFlashShift: 0.2
-  spriteRenderer: {fileID: 4287951392859531193}

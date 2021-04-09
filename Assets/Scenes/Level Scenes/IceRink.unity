@@ -20722,14 +20722,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 120327144792297498, guid: 8869b7cec3405654b9e1d0e1b4de45aa, type: 3}
-      propertyPath: broodDelegates.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 120327144792297498, guid: 8869b7cec3405654b9e1d0e1b4de45aa, type: 3}
-      propertyPath: healthBar
-      value: 
-      objectReference: {fileID: 8831508753396482042}
-    - target: {fileID: 120327144792297498, guid: 8869b7cec3405654b9e1d0e1b4de45aa, type: 3}
       propertyPath: broodDelegates.Array.data[0]
       value: 
       objectReference: {fileID: 1920745466}
@@ -20762,13 +20754,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1635498017}
     - target: {fileID: 120327144792297498, guid: 8869b7cec3405654b9e1d0e1b4de45aa, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 8831508753396482042}
+    - target: {fileID: 120327144792297498, guid: 8869b7cec3405654b9e1d0e1b4de45aa, type: 3}
       propertyPath: healthBarAnim
       value: 
       objectReference: {fileID: 8831508753396482039}
-    - target: {fileID: 120327144792297498, guid: 8869b7cec3405654b9e1d0e1b4de45aa, type: 3}
-      propertyPath: hurtTime
-      value: 0.5
-      objectReference: {fileID: 0}
     - target: {fileID: 4287951391848689200, guid: 8869b7cec3405654b9e1d0e1b4de45aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
@@ -20816,10 +20808,6 @@ PrefabInstance:
     - target: {fileID: 4287951391848689231, guid: 8869b7cec3405654b9e1d0e1b4de45aa, type: 3}
       propertyPath: m_Name
       value: BroodNest
-      objectReference: {fileID: 0}
-    - target: {fileID: 4287951391848689231, guid: 8869b7cec3405654b9e1d0e1b4de45aa, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8869b7cec3405654b9e1d0e1b4de45aa, type: 3}

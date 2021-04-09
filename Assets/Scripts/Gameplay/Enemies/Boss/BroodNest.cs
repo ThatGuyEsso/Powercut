@@ -12,6 +12,8 @@ public enum BossStage
     Inactive
 };
 
+
+
 public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
 {
     [Header("Boss AI Settings")]
@@ -27,7 +29,7 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
     private float currHealth;
     [SerializeField] private float hurtTime;
 
-
+    [SerializeField] private List<BossStageData> stageDatas;
     [Header("Boss Components")]
     [SerializeField] private List<BroodNestDelegate> broodDelegates = new List<BroodNestDelegate>();
     [SerializeField] private ScalingProgressBar healthBar;
