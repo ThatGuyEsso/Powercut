@@ -23,5 +23,13 @@ public class BossStageData
         }
     }
 
+    public BossStage Stage { get { return stage; } }
+    public List<AttackPatternData> AttackPatternData { get { return attackPatterns; } }
+    public float MinCycleTime { get { return minCycleCooldownTime; } }
+    public float MaxCycleTime { get { return maxCycleCooldownTime; } }
 
+    public float TimeBetweenPatterns { get { return timeBtwnPatterns; } }
+    public float RandomCycleCoolDown() { 
+        return UnityEngine.Random.Range(minCycleCooldownTime, maxCycleCooldownTime); 
+    }
 }

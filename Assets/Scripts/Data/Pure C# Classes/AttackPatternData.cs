@@ -18,7 +18,8 @@ public class AttackPatternData
     public float AttackRate { get { return attackRate ; } }
     public float SetAttackDuration { set { attackDuration = value; } }
     public float AttackDuration { get { return attackDuration; } }
-
+    public float SetCooldown { set { attackCoolDown = value; } }
+    public float Cooldown { get { return attackCoolDown; } }
     public int SetAttackCount { set { attackCount = value; } }
     public int AttackCount { get { return AttackCount; } }
 

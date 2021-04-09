@@ -139,6 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1907008064}
   - component: {fileID: 1907008065}
+  - component: {fileID: 8098292355242366346}
   m_Layer: 0
   m_Name: Pheremone Blast
   m_TagString: Untagged
@@ -156,7 +157,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 8644515400462571650}
   m_Father: {fileID: 4287951391848689200}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -172,6 +174,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe30a50e0fd47704d853208119aac72c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!58 &8098292355242366346
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907008063}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5
 --- !u!1 &4287951391848689231
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,3 +476,69 @@ MonoBehaviour:
   defaultMaterial: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   hurtMaterial: {fileID: 2100000, guid: 51d2b5e26ccca8a498ddef4281cc21a6, type: 2}
   timeBeforeFlashShift: 0.2
+--- !u!1001 &6947218602221997120
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1907008064}
+    m_Modifications:
+    - target: {fileID: 1701804813095441602, guid: a7f6ad02a66d5ad48a305d883937eb48, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701804813095441602, guid: a7f6ad02a66d5ad48a305d883937eb48, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701804813095441602, guid: a7f6ad02a66d5ad48a305d883937eb48, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701804813095441602, guid: a7f6ad02a66d5ad48a305d883937eb48, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701804813095441602, guid: a7f6ad02a66d5ad48a305d883937eb48, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701804813095441602, guid: a7f6ad02a66d5ad48a305d883937eb48, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701804813095441602, guid: a7f6ad02a66d5ad48a305d883937eb48, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701804813095441602, guid: a7f6ad02a66d5ad48a305d883937eb48, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701804813095441602, guid: a7f6ad02a66d5ad48a305d883937eb48, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701804813095441602, guid: a7f6ad02a66d5ad48a305d883937eb48, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701804813095441602, guid: a7f6ad02a66d5ad48a305d883937eb48, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701804813095441603, guid: a7f6ad02a66d5ad48a305d883937eb48, type: 3}
+      propertyPath: ClampVelocityModule.dampen
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1701804813095441613, guid: a7f6ad02a66d5ad48a305d883937eb48, type: 3}
+      propertyPath: m_Name
+      value: PhereMoneBurstEffect
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a7f6ad02a66d5ad48a305d883937eb48, type: 3}
+--- !u!4 &8644515400462571650 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1701804813095441602, guid: a7f6ad02a66d5ad48a305d883937eb48, type: 3}
+  m_PrefabInstance: {fileID: 6947218602221997120}
+  m_PrefabAsset: {fileID: 0}
