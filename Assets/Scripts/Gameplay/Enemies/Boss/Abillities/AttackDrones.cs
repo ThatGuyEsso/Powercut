@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class AttackDrones : BaseAttackPattern
 {
+    protected override void ExecuteAttack()
+    {
+        throw new System.NotImplementedException();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
