@@ -20911,6 +20911,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 116144831, guid: 8b22f3ba5408eb041a100d5c1d460f69, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831508751888147193, guid: 8b22f3ba5408eb041a100d5c1d460f69, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831508751888147195, guid: 8b22f3ba5408eb041a100d5c1d460f69, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8831508752221233075, guid: 8b22f3ba5408eb041a100d5c1d460f69, type: 3}
       propertyPath: m_Name
       value: Boss UI
@@ -20998,6 +21010,14 @@ PrefabInstance:
     - target: {fileID: 8831508752221233087, guid: 8b22f3ba5408eb041a100d5c1d460f69, type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831508752901360965, guid: 8b22f3ba5408eb041a100d5c1d460f69, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8831508752901360967, guid: 8b22f3ba5408eb041a100d5c1d460f69, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b22f3ba5408eb041a100d5c1d460f69, type: 3}
