@@ -75,10 +75,8 @@ public class BroodNestDelegate : MonoBehaviour, IHurtable
             {
                 DisableBroodDelegate();
             }
-            else
-            {
-                Invoke("ResetHurt", hurtTime);
-            }
+     
+            Invoke("ResetHurt", hurtTime);
 
         }
     }
@@ -108,7 +106,8 @@ public class BroodNestDelegate : MonoBehaviour, IHurtable
             float distance = Vector2.Distance(transform.position, playerTransform.position);
             if (distance <= attackRange && distance > closeRange)
             {
-                drones.ExecuteAttack();
+                if(drones)
+                    drones.ExecuteAttack();
             }
             else if (distance <= closeRange)
             {
@@ -126,14 +125,16 @@ public class BroodNestDelegate : MonoBehaviour, IHurtable
 
     public void DisableBroodDelegate()
     {
+        StopAllCoroutines();
         gfx.enabled = false;
         sphereCollider.enabled = false;
         EndTether();
+     
+        drones.DisableAttack();
+        pheremones.DisableAttack();
+    
+        hurtVFX.EndFlash();
         hive.DecrementBroodDelegateCount(this);
-        drones.StopRunning();
-        pheremones.StopRunning();
-        StopAllCoroutines();
-
     }
 public void EnableBroodDelegate()
     {

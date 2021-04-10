@@ -358,21 +358,24 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     virtual protected void SmoothDecelerate(float minSpeed)
     {
         Vector2 targetVelocity = Vector2.zero;
+        if (rb)
+        {
+            if (rb.velocity.magnitude <= 0.1f)
+            {
+                smoothAX = 0f;
+                smoothAY = 0f;
+                smoothDX = 0f;
+                smoothDY = 0f;
+            }
+            else
+            {
+                targetVelocity.x = Mathf.SmoothDamp(rb.velocity.x, minSpeed, ref smoothDX, settings.timeMaxToZero);
+                targetVelocity.y = Mathf.SmoothDamp(rb.velocity.y, minSpeed, ref smoothDY, settings.timeMaxToZero);
+            }
 
-        if (rb.velocity.magnitude <= 0.1f)
-        {
-            smoothAX = 0f;
-            smoothAY = 0f;
-            smoothDX = 0f;
-            smoothDY = 0f;
+            rb.velocity = targetVelocity * Time.deltaTime + knockBack;
         }
-        else
-        {
-            targetVelocity.x = Mathf.SmoothDamp(rb.velocity.x, minSpeed, ref smoothDX, settings.timeMaxToZero);
-            targetVelocity.y = Mathf.SmoothDamp(rb.velocity.y, minSpeed, ref smoothDY, settings.timeMaxToZero);
-        }
-  
-        rb.velocity = targetVelocity*Time.deltaTime + knockBack;
+     
     }
     public void SetMovementState(MovementStates newState)
     {

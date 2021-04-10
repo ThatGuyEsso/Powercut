@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PheremoneBlast : BaseAttackPattern
 {
-    protected Collider2D collider;
+    protected Collider2D attackCollider;
     [SerializeField]protected ParticleSystem vfx;
     private void Awake()
     {
-        collider = gameObject.GetComponent<Collider2D>();
-        if(collider)
-            collider.enabled = false;
+        attackCollider = gameObject.GetComponent<Collider2D>();
+        if(attackCollider)
+            attackCollider.enabled = false;
         vfx.Simulate(0.0f, true, true);
         vfx.gameObject.SetActive(false);
 
@@ -42,8 +42,8 @@ public class PheremoneBlast : BaseAttackPattern
     }
     public override void ExecuteAttack()
     {
-        
-        collider.enabled = true;
+
+        attackCollider.enabled = true;
         vfx.gameObject.SetActive(true);
         vfx.Simulate(0.0f, true, true);
         vfx.Play();
@@ -52,6 +52,7 @@ public class PheremoneBlast : BaseAttackPattern
     public override void StopRunning()
     {
         base.StopRunning();
+        attackCollider.enabled = false;
         StopAllCoroutines();
     }
 
@@ -62,6 +63,6 @@ public class PheremoneBlast : BaseAttackPattern
             yield return null;
         }
         vfx.gameObject.SetActive(false);
-        collider.enabled = false;
+        attackCollider.enabled = false;
     }
 }

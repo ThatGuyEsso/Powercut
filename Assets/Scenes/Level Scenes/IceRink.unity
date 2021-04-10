@@ -20836,6 +20836,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 236623191, guid: 8869b7cec3405654b9e1d0e1b4de45aa, type: 3}
+      propertyPath: ejectForce
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 120327144792297498, guid: 8869b7cec3405654b9e1d0e1b4de45aa, type: 3}
       propertyPath: broodDelegates.Array.data[0]
       value: 
@@ -20876,6 +20880,14 @@ PrefabInstance:
       propertyPath: healthBarAnim
       value: 
       objectReference: {fileID: 8831508753396482041}
+    - target: {fileID: 120327144792297498, guid: 8869b7cec3405654b9e1d0e1b4de45aa, type: 3}
+      propertyPath: stageDatas.Array.data[0].attackPatterns.Array.data[0].attackRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 120327144792297498, guid: 8869b7cec3405654b9e1d0e1b4de45aa, type: 3}
+      propertyPath: stageDatas.Array.data[0].attackPatterns.Array.data[1].attackRate
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4287951391848689200, guid: 8869b7cec3405654b9e1d0e1b4de45aa, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10

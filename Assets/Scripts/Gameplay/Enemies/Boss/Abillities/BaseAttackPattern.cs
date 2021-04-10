@@ -44,11 +44,15 @@ public abstract class BaseAttackPattern : MonoBehaviour
     virtual public void BeginAttackPattern()
     {
         isRunning = true;
-        StartCoroutine(BeginAttackCycle());
+
         if (attackDuration > 0f)
             Invoke("StopRunning", attackDuration);
 
 
+    }
+    private void OnDisable()
+    {
+        DisableAttack();
     }
 
     virtual public void StopRunning()
@@ -56,6 +60,13 @@ public abstract class BaseAttackPattern : MonoBehaviour
         StopAllCoroutines();
         isRunning = false;
         AttackEnded?.Invoke();
+    }
+
+    virtual public void DisableAttack()
+    {
+        StopAllCoroutines();
+        isRunning = false;
+   
     }
 
     protected IEnumerator BeginAttackCycle()
