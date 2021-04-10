@@ -124,10 +124,11 @@ public class FlashZone : FieldOfView,IHurtable
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy")|| collision.gameObject.CompareTag("Swarm"))
         {
             Vector3 dir = transform.position -collision.transform.position;
-            collision.gameObject.GetComponent<IHurtable>().Damage(200f, dir.normalized, 2000f);
+            if (collision.gameObject.GetComponent<IHurtable>() != null)
+                collision.gameObject.GetComponent<IHurtable>().Damage(200f, dir.normalized, 2000f);
         }
     }
 

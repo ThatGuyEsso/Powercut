@@ -1,40 +1,19 @@
 fileFormatVersion: 2
-guid: 6b3f875769bcd0942869dc369c4d6b14
+guid: 07480fe4d98cd524dbf7b06ae2bc57b6
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5117031726905539460
-    second: SpecialWalls_0
+      213: 1386283048442229954
+    second: BroodNesShieldSheet_0
   - first:
-      213: 8268420112732753502
-    second: SpecialWalls_1
+      213: -1158636366541095548
+    second: BroodNesShieldSheet_1
   - first:
-      213: -2035553661006531527
-    second: SpecialWalls_2
+      213: 5675846629089308245
+    second: BroodNesShieldSheet_2
   - first:
-      213: 5871883668497866336
-    second: SpecialWalls_3
-  - first:
-      213: -4126802765204141942
-    second: SpecialWalls_4
-  - first:
-      213: -2387870777288438289
-    second: SpecialWalls_0
-  - first:
-      213: 2937251170920265137
-    second: SpecialWalls_1
-  - first:
-      213: -6805425991270187768
-    second: SpecialWalls_2
-  - first:
-      213: 2717755386676981383
-    second: SpecialWalls_3
-  - first:
-      213: 3111953695911886580
-    second: SpecialWalls_4
-  - first:
-      213: -4467740165379140625
-    second: SpecialWalls_5
+      213: 3703644350316020257
+    second: BroodNesShieldSheet_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -134,154 +113,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SpecialWalls_0
+      name: BroodNesShieldSheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: -10}
-        - {x: -8, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: -10}
-        - {x: -5, y: -10}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fedcf26fd249cded0800000000000000
-      internalID: -2387870777288438289
+      spriteID: 2c47b8476111d3310800000000000000
+      internalID: 1386283048442229954
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpecialWalls_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: -10}
-        - {x: -15, y: -10}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1b57dc2b06633c820800000000000000
-      internalID: 2937251170920265137
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpecialWalls_2
+      name: BroodNesShieldSheet_1
       rect:
         serializedVersion: 2
         x: 64
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: -10}
-        - {x: -16, y: -10}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 80d312d1e154e81a0800000000000000
-      internalID: -6805425991270187768
+      spriteID: 48df7740d52bbefe0800000000000000
+      internalID: -1158636366541095548
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpecialWalls_3
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: 10, y: 16}
-        - {x: 10, y: -10}
-        - {x: -16, y: -10}
-        - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: 16}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 78e2949ff1867b520800000000000000
-      internalID: 2717755386676981383
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SpecialWalls_4
+      name: BroodNesShieldSheet_2
       rect:
         serializedVersion: 2
         x: 128
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: -12}
-        - {x: -16, y: -12}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4feba4a0661ef2b20800000000000000
-      internalID: 3111953695911886580
+      spriteID: 55e677eef68a4ce40800000000000000
+      internalID: 5675846629089308245
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SpecialWalls_5
+      name: BroodNesShieldSheet_3
       rect:
         serializedVersion: 2
-        x: 160
+        x: 192
         y: 0
-        width: 32
-        height: 32
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -16, y: -16}
-        - {x: 16, y: -16}
-        - {x: 16, y: -12}
-        - {x: -16, y: -12}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe3d4dd9df56ff1c0800000000000000
-      internalID: -4467740165379140625
+      spriteID: 12208f2f9ecf56330800000000000000
+      internalID: 3703644350316020257
       vertices: []
       indices: 
       edges: []

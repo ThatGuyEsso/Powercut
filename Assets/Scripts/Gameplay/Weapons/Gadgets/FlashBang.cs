@@ -34,6 +34,7 @@ public class FlashBang : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy")){
             rb.velocity = Vector2.zero;
         }
+      
         else if (((1 << other.gameObject.layer) & reflectionLayers) != 0)
         {
            ContactPoint2D contactPoint = other.GetContact(0);

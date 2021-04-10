@@ -37,6 +37,8 @@ public abstract class BaseAttackPattern : MonoBehaviour
         maxAttackCount = patternData.MaxAttackCount;
     }
 
+
+
     public void SetStage(BossStage newStage) { stage = newStage; }
 
     virtual public void BeginAttackPattern()
@@ -49,7 +51,7 @@ public abstract class BaseAttackPattern : MonoBehaviour
 
     }
 
-    virtual protected void StopRunning()
+    virtual public void StopRunning()
     {
         StopAllCoroutines();
         isRunning = false;

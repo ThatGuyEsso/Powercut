@@ -143,4 +143,9 @@ public class ChargingCable : MonoBehaviour
             cable.positionCount = 0;
         }
     }
+
+    public void SetOrigin(Transform newOrigin)
+    {
+        origin = newOrigin;
+    }
 }

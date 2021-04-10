@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4157752393891043650}
   m_Layer: 9
   m_Name: FlashBang
-  m_TagString: Untagged
+  m_TagString: PhysicsObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

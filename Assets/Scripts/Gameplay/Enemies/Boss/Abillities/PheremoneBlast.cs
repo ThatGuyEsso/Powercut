@@ -42,13 +42,18 @@ public class PheremoneBlast : BaseAttackPattern
     }
     public override void ExecuteAttack()
     {
+        
         collider.enabled = true;
         vfx.gameObject.SetActive(true);
         vfx.Simulate(0.0f, true, true);
         vfx.Play();
         StartCoroutine(ListenToEndOfVFX());
     }
-
+    public override void StopRunning()
+    {
+        base.StopRunning();
+        StopAllCoroutines();
+    }
 
     public IEnumerator ListenToEndOfVFX()
     {

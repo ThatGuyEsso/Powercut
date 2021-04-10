@@ -77,7 +77,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1931477399
   m_SortingLayer: 9
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &7152689479093340679
 MonoBehaviour:
@@ -169,7 +169,7 @@ MonoBehaviour:
   m_renderer: {fileID: 7152689479093340678}
   m_maskType: 0
   _SortingLayerID: -1931477399
-  _SortingOrder: 0
+  _SortingOrder: 1
 --- !u!114 &7152689479093340676
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,9 +190,9 @@ MonoBehaviour:
   maxTimeBeforeShrink: 1
   minTravelDistance: 0.1
   maxTravelDistance: 0.3
-  minSpeed: 0.003
+  minSpeed: 0.01
   maxSize: 1.2
-  maxSpeed: 0.03
+  maxSpeed: 0.1
   colorGradient:
     serializedVersion: 2
     key0: {r: 1, g: 0.9607547, b: 0.53207546, a: 1}

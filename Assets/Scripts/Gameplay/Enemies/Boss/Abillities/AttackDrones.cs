@@ -7,9 +7,14 @@ public class AttackDrones : BaseAttackPattern
 
     public SeekingDrones dronePrefab;
     private List<SeekingDrones> activeDrones = new List<SeekingDrones>();
+    [SerializeField] private float droneSize = 1f;
     public override void ExecuteAttack()
     {
         StartCoroutine(StaggeredDroneAttack());
+    }
+    public void OnDisable()
+    {
+        StopAllCoroutines();
     }
 
     private IEnumerator StaggeredDroneAttack()
@@ -28,6 +33,7 @@ public class AttackDrones : BaseAttackPattern
     private void SendOutDrone()
     {
         SeekingDrones drone = ObjectPoolManager.Spawn(dronePrefab, transform.position, Quaternion.identity);
+        drone.transform.localScale = new Vector3(droneSize, droneSize, droneSize);
         drone.SetUpDrone(playerTransform, damage, knockBack, this);
         activeDrones.Add(drone);
     }
@@ -36,4 +42,13 @@ public class AttackDrones : BaseAttackPattern
         activeDrones.Remove(drone);
     }
 
+    public override void StopRunning()
+    {
+        base.StopRunning();
+        StopAllCoroutines();
+        if (activeDrones.Count > 0)
+        {
+            activeDrones.Clear();
+        }
+    }
 }

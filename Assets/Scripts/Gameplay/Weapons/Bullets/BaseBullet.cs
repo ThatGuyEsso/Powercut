@@ -48,7 +48,18 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable,IAudio
             ObjectPoolManager.Recycle(gameObject);
         }
 
+        if (other.gameObject.CompareTag("Swarm"))
+        {
+            if (other.GetComponent<IHurtable>() != null)
+            {
+                other.GetComponent<IHurtable>().Damage(damage, rb.velocity.normalized, knockBack);
 
+            }
+
+            if (triggerEnemyPrefab)
+                ObjectPoolManager.Spawn(triggerEnemyPrefab, transform.position, Quaternion.identity);
+            ObjectPoolManager.Recycle(gameObject);
+        }
     }
 
     virtual public void SetUpBullet(float knockBack, float damage)
