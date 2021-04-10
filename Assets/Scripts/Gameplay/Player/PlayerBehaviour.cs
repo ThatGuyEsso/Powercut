@@ -148,18 +148,20 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
                 break;
 
             case MovementStates.Walking:
-
-                //If moving move player in movement direction unless knock back is applied
-                if (knockBack.magnitude > 0)
-                {
-                    //rb.velocity = knockBack;
-                    knockBack = Vector2.Lerp(knockBack, Vector2.zero, knockBackFallOff);
-                    if (knockBack.magnitude < 0.5f)
+              
+                    //If moving move player in movement direction unless knock back is applied
+                    if (knockBack.magnitude > 0)
                     {
-                        knockBack = Vector2.zero;
+                        //rb.velocity = knockBack;
+                        knockBack = Vector2.Lerp(knockBack, Vector2.zero, knockBackFallOff);
+                        if (knockBack.magnitude < 0.5f)
+                        {
+                            knockBack = Vector2.zero;
+                        }
                     }
-                }
-                Walk();
+                    Walk();
+                
+              
                
           
                 break;
@@ -338,14 +340,18 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
     }
     public void Walk()
     {
-        if (isInitialised)
+        if (isInitialised && InitStateManager.currGameMode == GameModes.Powercut)
         {
             Vector2 targetVel = Vector2.zero;
 
             targetVel.x = Mathf.SmoothDamp(rb.velocity.x, settings.maxSpeed * moveDir.normalized.x , ref smoothAX, settings.timeZeroToMax);
             targetVel.y = Mathf.SmoothDamp(rb.velocity.y, settings.maxSpeed * moveDir.normalized.y , ref smoothAY, settings.timeZeroToMax);
             rb.velocity = targetVel * Time.deltaTime  /*(moveDir.normalized * settings.maxSpeed * Time.deltaTime)*/+ knockBack;
-            
+
+        }
+        else
+        {
+            SetMovementState(MovementStates.Idle);
         }
     }
 

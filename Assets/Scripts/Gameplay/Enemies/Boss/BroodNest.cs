@@ -269,7 +269,7 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
     public void SpawnBroodDelegates()
     {
         int randCount = UnityEngine.Random.Range(2, 6);
-
+        activeBroodDelegateCount = 0;
         for (int i = 0; i < randCount; i++)
         {
             int randElement = UnityEngine.Random.Range(0, broodDelegates.Count);
