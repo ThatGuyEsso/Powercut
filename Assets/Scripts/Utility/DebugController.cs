@@ -12,6 +12,7 @@ public class DebugController : MonoBehaviour {
 
     public static DebugCommand CLEAR_LEVEL;
     public static DebugCommand Kill_PlAYER;
+    public static DebugCommand DEFEAT_BOSS;
     public List<object> commandList;
     private void Awake()
     {
@@ -23,10 +24,13 @@ public class DebugController : MonoBehaviour {
          GameStateManager.instance.ClearLevel());
 
         Kill_PlAYER = new DebugCommand("/Kill_Player", "Kills player if they exist","/Kill_Player",() => KillPlayer());
+
+        DEFEAT_BOSS = new DebugCommand("/Defeat_Boss", "Kills Boss if it exist", "/Kill_Player", () => KillBoss());
         commandList = new List<object>
         {
             CLEAR_LEVEL,
-            Kill_PlAYER
+            Kill_PlAYER,
+            DEFEAT_BOSS
         };
     }
 
@@ -93,9 +97,16 @@ public class DebugController : MonoBehaviour {
             player.PlayerDie();
         }
     }
+    private void KillBoss()
+    {
+        BroodNest boss = FindObjectOfType<BroodNest>();
+        if (boss)
+            boss.BossDefeated();
+    }
     private void OnDestroy()
     {
         inputAction.Console.ToggleConsole.performed -= ToggleConsole;
         inputAction.Console.Return.performed -= OnReturn;
     }
+
 }

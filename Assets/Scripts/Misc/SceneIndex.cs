@@ -11,5 +11,6 @@ public enum SceneIndex
     TheLab = 6,
     WareHouse =7,
     OfficeHQ = 8,
-    IceRink = 9
+    IceRink = 9,
+    CreditScene =10
 };

@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level Scenes/IceRink.unity
     guid: f71a260696d71f64b9675ea6e7693aab
+  - enabled: 1
+    path: Assets/Scenes/MenuScenes/CreditsMenu.unity
+    guid: 0fff7c868443fa348bde6601dee9cf46
   m_configObjects: {}

@@ -109,6 +109,7 @@ GameObject:
   - component: {fileID: 655189504230469073}
   - component: {fileID: 2920331540733406393}
   - component: {fileID: 2738836476376380943}
+  - component: {fileID: 2947865614832810565}
   m_Layer: 19
   m_Name: Brood Nest Delegate
   m_TagString: Enemy
@@ -213,6 +214,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!208 &2947865614832810565
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6653885012807825620}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.3, y: 0.165, z: 0.3}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &5687975773502584077
 PrefabInstance:
   m_ObjectHideFlags: 0

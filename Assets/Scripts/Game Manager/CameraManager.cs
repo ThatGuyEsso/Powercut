@@ -25,8 +25,13 @@ public class CameraManager : MonoBehaviour
     }
     public void SwitchToCutScene()
     {
+        cinematicCamera.gameObject.SetActive(true);
         InitStateManager.currGameMode = GameModes.Cutscene;
+        director.enabled = true;
         director.playableAsset = bossIntro;
+        director.time = 0f;
+    
+        
         director.Play();
         CamShake.instance.gameObject.SetActive(false);
         
@@ -35,7 +40,10 @@ public class CameraManager : MonoBehaviour
 
     public void ReturnCutScene()
     {
+        director.enabled = true;
         director.playableAsset = ReturnToPlayer;
+        director.time = 0f;
+  
         director.Play();
     }
     public void SwitchToPlayerCam()
@@ -44,7 +52,7 @@ public class CameraManager : MonoBehaviour
         GameStateManager.instance.BeginNewGameState(GameStates.MainPowerOff);
         cinematicCamera.gameObject.SetActive(false);
         CamShake.instance.gameObject.SetActive(true);
-        director.Stop();
+        //director.Stop();
         director.enabled = false;
     }
 }

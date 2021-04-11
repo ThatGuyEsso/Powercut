@@ -18,6 +18,15 @@ public class HiveShield : MonoBehaviour
         hive = GetComponentInParent<BroodNest>();
         shieldCollider.enabled = false;
     }
+
+    public void ResetShield()
+    {
+        if (animator)
+            animator.enabled = false;
+        if (hiveGFX)
+            hiveGFX.SetActive(false);
+        shieldCollider.enabled = false;
+    }
     public void ShieldBuilt()
     {
         animator.enabled = false;

@@ -16,7 +16,7 @@ public class PhoneButtons : MonoBehaviour
 
 
     [SerializeField] private PhoneButtonWidget playWidget, menuWidget;
-
+    private bool hasScene;
     [SerializeField] private bool isPlayButtonActive=true, isMenuButtonActive=true;
     private void Awake()
     {
@@ -50,7 +50,17 @@ public class PhoneButtons : MonoBehaviour
                         ClientManager.instance.GetActiveClient().ClearMessage();
                         break;
                     case GameModes.Dialogue:
-                        DialogueManager.instance.ToggleDialogueScreen(false, true);
+                        if (hasScene)
+                        {
+                            TransitionManager.instance.LoadLevel(targetScene);
+
+                        }
+                        else
+                        {
+                            DialogueManager.instance.ToggleDialogueScreen(false, true);
+                        }
+                   
+                    
                         break;
                 }
 
@@ -71,13 +81,13 @@ public class PhoneButtons : MonoBehaviour
         playWidget.ResetLabel();
         playButtonImage.color = activeColour;
         playButton.enabled = true;
-  
+        hasScene = true;
 
     }
 
     public void EnableStartButton()
     {
-    
+        hasScene = false;
         canStart = true;
         playWidget.ResetLabel();
         playButtonImage.color = activeColour;

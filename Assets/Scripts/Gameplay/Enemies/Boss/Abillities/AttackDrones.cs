@@ -10,21 +10,35 @@ public class AttackDrones : BaseAttackPattern
     [SerializeField] private float droneSize = 1f;
     public override void ExecuteAttack()
     {
-        StartCoroutine(StaggeredDroneAttack());
+        if (playerTransform)
+        {
+            StartCoroutine(StaggeredDroneAttack());
+        }
+       
     }
     public void OnDisable()
     {
         StopAllCoroutines();
     }
-
+    public override void BeginAttackPattern()
+    {
+        base.BeginAttackPattern();
+    }
     private IEnumerator StaggeredDroneAttack()
     {
+
+        float range = Vector2.Distance(playerTransform.position, transform.position); 
+        //if not in range wait till player is in range
+        while(range> attackRange)
+        {
+            yield return null;
+        }
         for (int i = 0; i < attackCount; i++)
         {
          
             if (activeDrones.Count < maxAttackCount)
             {
-
+             
                 SendOutDrone();
                 yield return new WaitForSeconds(1.0f);
             }
@@ -41,7 +55,14 @@ public class AttackDrones : BaseAttackPattern
     {
         activeDrones.Remove(drone);
     }
-
+    public override void DisableAttack()
+    {
+        base.DisableAttack();
+        if (activeDrones.Count > 0)
+        {
+            activeDrones.Clear();
+        }
+    }
     public override void StopRunning()
     {
         base.StopRunning();
@@ -51,4 +72,6 @@ public class AttackDrones : BaseAttackPattern
             activeDrones.Clear();
         }
     }
+
+   
 }

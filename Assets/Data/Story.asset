@@ -1501,7 +1501,7 @@ MonoBehaviour:
     endBeat: 0
     typeTime: 0
     isClientBeat: 0
-    isBeatChain: 0
+    isBeatChain: 1
   - dialogueChoices: []
     text: Never seen such a large and wild infestation.
     id: 126
@@ -1671,7 +1671,7 @@ MonoBehaviour:
   - dialogueChoices: []
     text: I think you got set up.
     id: 141
-    targetBeatID: 141
+    targetBeatID: 142
     targetScene: 9
     hasScene: 0
     endBeat: 0
@@ -1692,7 +1692,7 @@ MonoBehaviour:
     text: Might want you dead..
     id: 143
     targetBeatID: 143
-    targetScene: 3
+    targetScene: 10
     hasScene: 1
     endBeat: 1
     typeTime: 1

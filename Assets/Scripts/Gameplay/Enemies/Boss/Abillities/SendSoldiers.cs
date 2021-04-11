@@ -16,6 +16,7 @@ public class SendSoldiers : BaseAttackPattern
 
 
     [SerializeField] private float ejectForce;
+    private int enemyCount = 0;
     public override void ExecuteAttack()
     {
         StartCoroutine(StaggeredEggEjection());
@@ -64,11 +65,32 @@ public class SendSoldiers : BaseAttackPattern
     }
     public void EjectSpawnEgg()
     {
-        EggSpawner egg = ObjectPoolManager.Spawn(eggSpawnerPrefab, transform.position, Quaternion.identity);
-        Vector2 randDirection = EssoUtility.GetVectorFromAngle(Random.Range(0f, 360f));
-        egg.EjectEgg(ejectForce, randDirection);
-        egg.SetUpEgg(playerTransform, GetRandomEnemyFromList());
+        if(enemyCount < maxAttackCount)
+        {
+            EggSpawner egg = ObjectPoolManager.Spawn(eggSpawnerPrefab, transform.position, Quaternion.identity);
+            Vector2 randDirection = EssoUtility.GetVectorFromAngle(Random.Range(0f, 360f));
+            egg.EjectEgg(ejectForce, randDirection);
+            egg.SetUpEgg(playerTransform, GetRandomEnemyFromList(),this);
+        }
 
+        
+
+    }
+    
+    private void DecrementEnemyCount(BaseEnemy enemy)
+    {
+        enemyCount--;
+        enemy.Killed -= DecrementEnemyCount;
+        if (enemyCount < 0) enemyCount = 0;
+    }
+    public void BindToSpawnedEnemy(BaseEnemy enemy)
+    {
+        if (enemy)
+        {
+            enemy.Killed += DecrementEnemyCount;
+            enemyCount++;
+        }
+     
 
     }
 }

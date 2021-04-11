@@ -72,6 +72,7 @@ public class GameStateManager : MonoBehaviour, IInitialisable
                     BeginNewGameState(GameStates.MainPowerOff);
                 else
                     BeginNewGameState(GameStates.MainPowerOn);
+                    MusicManager.instance.StopCurrentSong();
                 break;
             case InitStates.PlayerSceneLoaded:
                 playerTransform = FindObjectOfType<PlayerBehaviour>().transform;

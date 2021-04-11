@@ -44,7 +44,8 @@ public abstract class BaseAttackPattern : MonoBehaviour
     virtual public void BeginAttackPattern()
     {
         isRunning = true;
-
+        if(gameObject.activeSelf)
+            StartCoroutine(BeginAttackCycle());
         if (attackDuration > 0f)
             Invoke("StopRunning", attackDuration);
 
@@ -69,7 +70,7 @@ public abstract class BaseAttackPattern : MonoBehaviour
    
     }
 
-    protected IEnumerator BeginAttackCycle()
+    virtual protected IEnumerator BeginAttackCycle()
     {
         yield return new WaitForSeconds(attackRate);
         ExecuteAttack();
@@ -80,7 +81,7 @@ public abstract class BaseAttackPattern : MonoBehaviour
         }
     }
     public abstract void ExecuteAttack();
- 
 
 
+    //public abstract void ResetAttack();
 }

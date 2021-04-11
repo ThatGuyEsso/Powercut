@@ -87,16 +87,7 @@ public class SeekingDrones : MonoBehaviour,IHurtable
             Vector2 dir = other.transform.position - transform.position;
             other.GetComponent<Rigidbody2D>().AddForce(dir.normalized * 2.0f, ForceMode2D.Impulse);
         }
-        if (other.gameObject.CompareTag("PhysicsObject"))
-        {
-            IAudio audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position).GetComponent<IAudio>();
-            audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("BugsSplat"));
-            audioPlayer.PlayAtRandomPitch();
-            ObjectPoolManager.Spawn(explosionVFX, transform.position, transform.rotation);
-            if (owner)
-                owner.Dronekilled(this);
-            ObjectPoolManager.Recycle(gameObject);
-        }
+   
     }
 
     private void OnTriggerStay2D(Collider2D other)

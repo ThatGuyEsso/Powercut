@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CreditsManager : MonoBehaviour
 {
+    [SerializeField] private bool playOneAwake;
     [SerializeField] private Credits credits;
     [SerializeField] private float creditWaitTime;
     [SerializeField] private float authorWaitTime;
@@ -31,6 +32,8 @@ public class CreditsManager : MonoBehaviour
     private SMSBubble previousBubble;
 
     DialogueState printState;
+
+ 
     public void BeginToDisplayCredits()
     {
         if(currentCredit< credits.credit.Count)
@@ -54,6 +57,11 @@ public class CreditsManager : MonoBehaviour
     public void Awake()
     {
         phone.SetActive(false);
+        if (playOneAwake)
+        {
+            InitStateManager.instance.OnStateChange += CreditsMenuOpened;
+        }
+
     }
     private void Init()
     {
@@ -125,6 +133,13 @@ public class CreditsManager : MonoBehaviour
         DisplayFirstCredit(credit.IsCredit, credit);
 
         currentCredit++;
+    }
+
+    private void CreditsMenuOpened(InitStates newState)
+    {
+        if (newState == InitStates.Credits)
+            Invoke("ShowPhone", 1f);
+          
     }
     private IEnumerator DoDisplayCredit(CreditData newCredit)
     {
@@ -408,6 +423,15 @@ public class CreditsManager : MonoBehaviour
         AudioManager.instance.PlayAtRandomPitch("PhonePullOutSFX");
         StopAllCoroutines();
 
+    }
+
+    public void ToTitle()
+    {
+      
+        AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
+
+        TransitionManager.instance.ReturnToTitleScreen();
+      
     }
 
     public void ShowPhone()

@@ -6,10 +6,11 @@ public class DialogueTrigger : MonoBehaviour {
     private Controls input;
     private bool inRange =false;
     private bool hasTriggered=false;
+  
     [SerializeField] private Sprite clientPortrait;
     [SerializeField] private int BeatID;
     [SerializeField] private Speaker speaker;
-
+    [SerializeField] private bool isActive = true;
     [SerializeField] private string prompt;
 
     public delegate void TriggerDelegate();
@@ -25,7 +26,7 @@ public class DialogueTrigger : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player")&& !hasTriggered)
+        if(other.CompareTag("Player")&& !hasTriggered&& isActive)
         {
             inRange = true;
             InGamePrompt.instance.ChangePrompt(prompt);
@@ -56,7 +57,10 @@ public class DialogueTrigger : MonoBehaviour {
         }
 
     }
-
+    public void EnableTrigger()
+    {
+        isActive = true;
+    }
     private void OnDestroy()
     {
         input.Interactions.Interact.performed -= TriggerDialogue;

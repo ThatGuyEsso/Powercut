@@ -62,8 +62,63 @@ public class TransitionManager : MonoBehaviour
 
     public void LoadLevel(SceneIndex newScene)
     {
+        if(newScene != SceneIndex.CreditScene)
+        {
+            StartCoroutine(LoadNewLevel(newScene));
 
-        StartCoroutine(LoadNewLevel(newScene));
+        }
+        else
+        {
+            StartCoroutine(LoadCredits());
+        }
+    }
+
+
+    private IEnumerator LoadCredits()
+    {
+        isLoading = true;
+        LoadingScreen.instance.BeginFade(true);
+        isFading = true;
+
+        //wait till fade end before initialising level
+
+        while (isFading)
+        {
+            yield return null;
+        }
+
+        //get all currently loaded scenes
+        Scene[] loadedScenes = GetAllActiveScenes();
+
+        //add and unload operations
+        foreach (Scene scene in loadedScenes)
+        {
+            if (scene.buildIndex != (int)SceneIndex.ManagerScene)
+                sceneLoading.Add(SceneManager.UnloadSceneAsync(scene));
+        }
+
+        //wait until every scene has unloaded
+        for (int i = 0; i < sceneLoading.Count; i++)
+        {
+            while (!sceneLoading[i].isDone)
+            {
+                yield return null;
+            }
+        }
+        //clear scens loading
+        sceneLoading.Clear();
+
+        //begin loading title screen
+        AsyncOperation credits = SceneManager.LoadSceneAsync((int)SceneIndex.CreditScene, LoadSceneMode.Additive);
+
+        while (!credits.isDone)
+        {
+            yield return null;
+
+        }
+        InitStateManager.instance.BeginNewState(InitStates.Credits);
+        currentLevel = SceneIndex.CreditScene;
+
     }
     private IEnumerator LoadNewLevel(SceneIndex newScene)
     {

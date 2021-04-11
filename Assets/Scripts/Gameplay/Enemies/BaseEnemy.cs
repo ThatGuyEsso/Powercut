@@ -62,7 +62,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     //VFx
     public GameObject deathVFX;
 
-
+    public Action<BaseEnemy> Killed;
     virtual protected void Awake()
     {
         //cache component references
@@ -392,7 +392,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         }
         aSource.Stop();
 
-
+        Killed?.Invoke(this);
         ObjectPoolManager.Recycle(gameObject);
     }
 

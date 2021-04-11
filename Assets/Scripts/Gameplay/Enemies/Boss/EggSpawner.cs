@@ -8,6 +8,7 @@ public class EggSpawner : MonoBehaviour
     private GameObject enemyToSpawn;
     [SerializeField] private GameObject hatchVFX;
     private Rigidbody2D rb;
+    private SendSoldiers sourceRef;
 
     [SerializeField] private float minHatchTime, maxHatchTime;
 
@@ -16,11 +17,11 @@ public class EggSpawner : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
-    public void SetUpEgg(Transform target, GameObject enemy)
+    public void SetUpEgg(Transform target, GameObject enemy, SendSoldiers source)
     {
         this.target = target;
         enemyToSpawn = enemy;
-
+        sourceRef = source;
         float rand = Random.Range(minHatchTime, maxHatchTime);
         Invoke("Hatch", rand);
     }
@@ -31,8 +32,9 @@ public class EggSpawner : MonoBehaviour
     public void Hatch()
     {
         ObjectPoolManager.Spawn(hatchVFX, transform.position, Quaternion.identity);
-       BaseEnemy enemy = ObjectPoolManager.Spawn(enemyToSpawn, transform.position, Quaternion.identity).GetComponent<BaseEnemy>();
-       enemy.SetTarget(target);
+        BaseEnemy enemy = ObjectPoolManager.Spawn(enemyToSpawn, transform.position, Quaternion.identity).GetComponent<BaseEnemy>();
+        enemy.SetTarget(target);
+        sourceRef.BindToSpawnedEnemy(enemy);
         ObjectPoolManager.Recycle(this);
 
     }

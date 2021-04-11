@@ -13,9 +13,15 @@ MonoBehaviour:
   m_Name: Credits
   m_EditorClassIdentifier: 
   credit:
+  - text: Thank you for playing
+    isCredit: 1
+    typingTime: 1
+  - text: Powercut
+    isCredit: 1
+    typingTime: 1.5
   - text: 'Game Created By:'
     isCredit: 1
-    typingTime: 0
+    typingTime: 2.5
   - text: Esewi Egheosa
     isCredit: 0
     typingTime: 1.5

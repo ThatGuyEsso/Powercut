@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 120327144792297498}
   - component: {fileID: 4287951392334403058}
   - component: {fileID: 4955545805061311898}
+  - component: {fileID: 4328092670836295440}
   m_Layer: 19
   m_Name: BroodNest
   m_TagString: Enemy
@@ -75,12 +76,12 @@ MonoBehaviour:
   MaxHealth: 1000
   hurtTime: 0.5
   stageDatas:
-  - timeBtwnPatterns: 4
+  - timeBtwnPatterns: 2
     minCycleCooldownTime: 5
     maxCycleCooldownTime: 8
     stage: 0
     attackPatterns:
-    - attackRate: 3
+    - attackRate: 1.5
       attackDuration: 6
       attackCoolDown: 0
       attackCount: 0
@@ -97,13 +98,13 @@ MonoBehaviour:
     maxCycleCooldownTime: 6
     stage: 1
     attackPatterns:
-    - attackRate: 3
+    - attackRate: 1
       attackDuration: 6
       attackCoolDown: 0
       attackCount: 0
       maxAttackCount: 0
       pattern: {fileID: 1907008065}
-    - attackRate: 2
+    - attackRate: 1
       attackDuration: 8
       attackCoolDown: 0
       attackCount: 1
@@ -120,13 +121,13 @@ MonoBehaviour:
     maxCycleCooldownTime: 6
     stage: 2
     attackPatterns:
-    - attackRate: 2
+    - attackRate: 1
       attackDuration: 6
       attackCoolDown: 0
       attackCount: 0
       maxAttackCount: 0
       pattern: {fileID: 1907008065}
-    - attackRate: 2
+    - attackRate: 0.5
       attackDuration: 12
       attackCoolDown: 0
       attackCount: 3
@@ -218,6 +219,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!208 &4328092670836295440
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4287951391848689231}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 0
+  m_Extents: {x: 0.9, y: 0.52, z: 0.9}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &4287951392859531191
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,6 +505,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4287951391848689200}
     m_Modifications:
+    - target: {fileID: 2424376989603288, guid: 5321ed05ee8fb7a4dad1b27d014d5c22, type: 3}
+      propertyPath: attackRange
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 2424376989603289, guid: 5321ed05ee8fb7a4dad1b27d014d5c22, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -605,6 +626,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1478476085334390435, guid: 7955f67a288b5524f9e2ee6ceaadcb9c, type: 3}
+      propertyPath: attackRange
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1478476085334390493, guid: 7955f67a288b5524f9e2ee6ceaadcb9c, type: 3}
       propertyPath: m_Name
       value: Pheremone Blast
@@ -681,6 +706,14 @@ PrefabInstance:
     - target: {fileID: 7016906884071435926, guid: 234f3a46c483f7f4fa69b813b65be7a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016906884071435927, guid: 234f3a46c483f7f4fa69b813b65be7a4, type: 3}
+      propertyPath: attackRange
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7016906884071435927, guid: 234f3a46c483f7f4fa69b813b65be7a4, type: 3}
+      propertyPath: ejectForce
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 234f3a46c483f7f4fa69b813b65be7a4, type: 3}

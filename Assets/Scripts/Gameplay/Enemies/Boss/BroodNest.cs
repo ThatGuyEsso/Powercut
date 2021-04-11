@@ -25,7 +25,7 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
     private BossStage currentStage;
     private bool isHurt;
     private int currCycleIndex;
-    private int activeBroodDelegateCount=0;
+    [SerializeField] private int activeBroodDelegateCount=0;
     [Header("Settings")]
     [SerializeField] private float MaxHealth;
     private float currHealth;
@@ -121,7 +121,8 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
         healthBarAnim.PlayAnim("InitiateHealth");
         healthBar.ShowBar();
         BindToGameManager();
-        pheremoneBlast.ExecuteAttack();
+        if (!pheremoneBlast.gameObject.activeSelf) pheremoneBlast.gameObject.SetActive(true);
+            pheremoneBlast.ExecuteAttack();
 
         playerTransform = GameStateManager.instance.GetPlayerTransform();
         if (playerTransform) playerTransform = FindObjectOfType<PlayerBehaviour>().transform;
@@ -145,10 +146,10 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
                 BeginNewStage(currentStage);
                 break;
             case BossStage.Third:
-                BeginNewStage(currentStage);
+                BeginStageThree();
                 break;
             case BossStage.Final:
-                BeginNewStage(currentStage);
+                BeginStageFinal();
                 break;
             case BossStage.Transition:
 
@@ -172,6 +173,7 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
     public void BindToGameManager()
     {
         GameStateManager.instance.OnGameStateChange += EvaluateNewState;
+        InitStateManager.instance.OnStateChange += EvaluateNewInitState;
     }
 
     private void NextAttackPattern()
@@ -190,7 +192,89 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
             StartCoroutine(CooldownTime(currentStageData.TimeBetweenPatterns));
         }
     }
+    public void BeginStageThree()
+    {
+        currentAttackCycle.Clear();
+        currentStageData = GetStageData(BossStage.Third);
 
+        if (currentStageData != null)
+        {
+            currentStageData.SetUpData();
+
+            foreach (AttackPatternData attackData in currentStageData.AttackPatternData)
+            {
+                attackData.AttackPattern.playerTransform = playerTransform;
+                if (attackData.AttackPattern as PheremoneBlast)
+                {
+                    if (!pheremoneBlast.gameObject.activeSelf) pheremoneBlast.gameObject.SetActive(true);
+                    pheremoneBlast.SetUpAbilityData(attackData);
+
+
+                    currentAttackCycle.Add(pheremoneBlast);
+                }
+                else if (attackData.AttackPattern as AttackDrones)
+                {
+                    if (!attackDrones.gameObject.activeSelf) attackDrones.gameObject.SetActive(true);
+                    attackDrones.SetUpAbilityData(attackData);
+                    currentAttackCycle.Add(attackDrones);
+
+                }
+                else if (attackData.AttackPattern as SendSoldiers)
+                {
+                    if (!sendSoldiers.gameObject.activeSelf) sendSoldiers.gameObject.SetActive(true);
+                    sendSoldiers.SetUpAbilityData(attackData);
+                    sendSoldiers.BeginAttackPattern();
+
+                }
+            }
+            foreach (BaseAttackPattern attackPattern in currentAttackCycle)
+            {
+                attackPattern.AttackEnded += NextAttackPattern;
+            }
+            StartNewCycleStage();
+        }
+
+    
+    }
+    public void BeginStageFinal()
+    {
+        currentAttackCycle.Clear();
+        currentStageData = GetStageData(BossStage.Final);
+
+        if (currentStageData != null)
+        {
+            currentStageData.SetUpData();
+
+            foreach (AttackPatternData attackData in currentStageData.AttackPatternData)
+            {
+                attackData.AttackPattern.playerTransform = playerTransform;
+                if (attackData.AttackPattern as PheremoneBlast)
+                {
+                    if (!pheremoneBlast.gameObject.activeSelf) pheremoneBlast.gameObject.SetActive(true);
+                    pheremoneBlast.SetUpAbilityData(attackData);
+                    currentAttackCycle.Add(pheremoneBlast);
+                }
+                else if (attackData.AttackPattern as SendSoldiers)
+                {
+                    if (!sendSoldiers.gameObject.activeSelf) sendSoldiers.gameObject.SetActive(true);
+                    sendSoldiers.SetUpAbilityData(attackData);
+                    currentAttackCycle.Add(sendSoldiers);
+
+                }
+                else if (attackData.AttackPattern as AttackDrones)
+                {
+                    if (!attackDrones.gameObject.activeSelf) attackDrones.gameObject.SetActive(true);
+                    attackDrones.SetUpAbilityData(attackData);
+
+                    currentAttackCycle.Add(attackDrones);
+
+                }
+            }
+
+            StartNewStage();
+
+        }
+    }
     public void BeginNewStage(BossStage stage)
     {
         currentAttackCycle.Clear();
@@ -205,6 +289,7 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
                 attackData.AttackPattern.playerTransform = playerTransform;
                 if (attackData.AttackPattern as PheremoneBlast)
                 {
+                    if (!pheremoneBlast.gameObject.activeSelf) pheremoneBlast.gameObject.SetActive(true);
                     pheremoneBlast.SetUpAbilityData(attackData);
                     
             
@@ -212,14 +297,16 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
                 }
                 else if(attackData.AttackPattern as SendSoldiers)
                 {
+                    if (!sendSoldiers.gameObject.activeSelf) sendSoldiers.gameObject.SetActive(true);
                     sendSoldiers.SetUpAbilityData(attackData);
                     currentAttackCycle.Add(sendSoldiers);
 
                 }
                 else if (attackData.AttackPattern as AttackDrones)
                 {
+                    if (!attackDrones.gameObject.activeSelf) attackDrones.gameObject.SetActive(true);
                     attackDrones.SetUpAbilityData(attackData);
-                    currentAttackCycle.Add(sendSoldiers);
+                    currentAttackCycle.Add(attackDrones);
 
                 }
             }
@@ -279,11 +366,11 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
 
     private void StartNewStage()
     {
-        //foreach (BaseAttackPattern attackPattern in currentAttackCycle)
-        //{
-        //    attackPattern.BeginAttackPattern();
-        //}
-    
+        foreach (BaseAttackPattern attackPattern in currentAttackCycle)
+        {
+            attackPattern.BeginAttackPattern();
+        }
+
     }
     private IEnumerator CooldownTime(float time)
     {
@@ -316,14 +403,56 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
     private void EnterTransition()
     {
         StopAllCoroutines();
-        currentStage = BossStage.Transition;
-        foreach (BaseAttackPattern baseAttack in currentAttackCycle)
+        switch (currentStage)
         {
-            baseAttack.DisableAttack();
-            baseAttack.gameObject.SetActive(false);
+            case BossStage.First:
+                currentStage = BossStage.Transition;
+                foreach (BaseAttackPattern baseAttack in currentAttackCycle)
+                {
+                    baseAttack.DisableAttack();
+                    baseAttack.AttackEnded -= NextAttackPattern;
+                    baseAttack.gameObject.SetActive(false);
+                }
+                currentAttackCycle.Clear();
+                hiveShield.PlayAnimation("BuildShield");
+                break;
+            case BossStage.Second:
+                currentStage = BossStage.Transition;
+                foreach (BaseAttackPattern baseAttack in currentAttackCycle)
+                {
+                    baseAttack.DisableAttack();
+                    baseAttack.AttackEnded -= NextAttackPattern;
+                    baseAttack.gameObject.SetActive(false);
+                }
+                currentAttackCycle.Clear();
+                hiveShield.PlayAnimation("BuildShield");
+                break;
+            case BossStage.Third:
+                currentStage = BossStage.Transition;
+                foreach (BaseAttackPattern baseAttack in currentAttackCycle)
+                {
+                    baseAttack.DisableAttack();
+                    baseAttack.AttackEnded -= NextAttackPattern;
+                    baseAttack.gameObject.SetActive(false);
+                }
+                sendSoldiers.DisableAttack();
+                sendSoldiers.gameObject.SetActive(false);
+                currentAttackCycle.Clear();
+                hiveShield.PlayAnimation("BuildShield");
+                break;
+            case BossStage.Final:
+                currentStage = BossStage.Transition;
+                foreach (BaseAttackPattern baseAttack in currentAttackCycle)
+                {
+                    baseAttack.DisableAttack();
+                    baseAttack.AttackEnded -= NextAttackPattern;
+                    baseAttack.gameObject.SetActive(false);
+                }
+                BossDefeated();
+                break;
         }
-        currentAttackCycle.Clear();
-        hiveShield.PlayAnimation("BuildShield");
+
+  
     }
     private void UpdatetageTrigger()
     {
@@ -343,6 +472,7 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
             {
                 current.gameObject.SetActive(true);
                 current.SetUpBroodNest(this);
+                current.Died += DecrementBroodDelegateCount;
                 activeBroodDelegateCount++;
             }
           
@@ -350,10 +480,65 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
      
     }
 
+    private void EvaluateNewInitState(InitStates newState)
+    {
+        switch (newState)
+        {
+            case InitStates.SpawnPlayer:
+              
+                break;
+            case InitStates.PlayerDead:
+                StopAllCoroutines();
+                
+                break;
+            case InitStates.RespawnPlayer:
+                ResetBoss();
+
+                break;
+            case InitStates.PlayerRespawned:
+               
+              
+                   
+                break;
+         
+        }
+    }
+
+    public void ResetBoss()
+    {
+        StopAllCoroutines();
+
+        foreach (BaseAttackPattern baseAttack in currentAttackCycle)
+        {
+            baseAttack.DisableAttack();
+            baseAttack.AttackEnded -= NextAttackPattern;
+            baseAttack.gameObject.SetActive(false);
+        }
+        currHealth = MaxHealth;
+        healthBar.SetMaxValue(MaxHealth);
+        healthBar.UpdateValue(currHealth);
+        healthBar.HideBar();
+        healthBar.gameObject.SetActive(false);
+        currentStageTrigger = 1 - percentNextStageTrigger;
+
+        hiveShield.ResetShield();
+        foreach (BroodNestDelegate nest in broodDelegates)
+        {
+            
+            if (nest.GetAlive())
+            {
+                nest.Died -= DecrementBroodDelegateCount;
+            }
+            nest.ResetBroodDelegate();
+        }
+    }
     public void DecrementBroodDelegateCount(BroodNestDelegate broodDelegate)
     {
+        
         activeBroodDelegateCount--;
+        broodDelegate.Died -= DecrementBroodDelegateCount;
         broodDelegate.gameObject.SetActive(false);
+
         if(activeBroodDelegateCount <= 0)
         {
             hiveShield.PlayAnimation("RemoveShield");
@@ -363,11 +548,48 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
     private void OnDestroy()
     {
         GameStateManager.instance.OnGameStateChange -= EvaluateNewState;
+        InitStateManager.instance.OnStateChange -= EvaluateNewInitState;
     }
     private void OnDisable()
     {
         GameStateManager.instance.OnGameStateChange -= EvaluateNewState;
     }
 
+    public void BossDefeated()
+    {
+        foreach (BaseAttackPattern baseAttack in currentAttackCycle)
+        {
+            baseAttack.DisableAttack();
+            baseAttack.AttackEnded -= NextAttackPattern;
+            baseAttack.gameObject.SetActive(false);
+        }
+        hiveShield.ResetShield();
+        foreach (BroodNestDelegate nest in broodDelegates)
+        {
 
+            if (nest.GetAlive())
+            {
+                nest.Died -= DecrementBroodDelegateCount;
+            }
+            nest.ResetBroodDelegate();
+        }
+        ObjectPoolManager.Spawn(deathVFX, transform.position, transform.rotation);
+        IAudio player = ObjectPoolManager.Spawn(audioPlayerPrefab.gameObject, transform.position, transform.rotation).GetComponent<IAudio>();
+        player.SetUpAudioSource(AudioManager.instance.GetSound("BugsSplat"));
+        player.PlayAtRandomPitch();
+
+        GameStateManager.instance.BeginNewGameState(GameStates.LevelClear);
+
+    }
+    public bool AreDelegatesAlive()
+    {
+        foreach (BroodNestDelegate nest in broodDelegates)
+        {
+            if (nest.GetAlive())
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

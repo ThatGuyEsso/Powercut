@@ -79,7 +79,7 @@ public class Car : MonoBehaviour, Controls.IInteractionsActions,IAudio
         }
     }
 
-
+    public void SetHasActivated(bool hasActivated) { this.hasActivated = hasActivated; }
     public Transform GetSpawn()
     {
         if (spawnPosition != false) return spawnPosition;

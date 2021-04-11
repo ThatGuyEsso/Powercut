@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class BroodNestDelegate : MonoBehaviour, IHurtable
 {
     [SerializeField] private ChargingCable teether;
@@ -32,12 +32,14 @@ public class BroodNestDelegate : MonoBehaviour, IHurtable
     [SerializeField] private AttackDrones drones;
 
     private Transform playerTransform = null;
+    private bool isAlive;
 
 
+    public Action<BroodNestDelegate> Died;
     public void SetUpBroodNest(BroodNest hiveRef)
     {
         hive = hiveRef;
-
+        isAlive = true;
         currHealth = maxHealth;
         EnableBroodDelegate();
         isHurt = false;
@@ -94,7 +96,7 @@ public class BroodNestDelegate : MonoBehaviour, IHurtable
 
     public IEnumerator AttackLoop()
     {
-        float randRate = Random.Range(minAttackRate, maxAttackRate);
+        float randRate = UnityEngine.Random.Range(minAttackRate, maxAttackRate);
         yield return new WaitForSeconds(randRate);
         ProcessAttack();
         StartCoroutine(AttackLoop());
@@ -122,21 +124,32 @@ public class BroodNestDelegate : MonoBehaviour, IHurtable
         throw new System.NotImplementedException();
     }
 
-
+    public void ResetBroodDelegate()
+    {
+        StopAllCoroutines();
+        gfx.enabled = false;
+        sphereCollider.enabled = false;
+        EndTether();
+        isAlive = false;
+        drones.DisableAttack();
+        pheremones.DisableAttack();
+        hurtVFX.EndFlash();
+    }
     public void DisableBroodDelegate()
     {
         StopAllCoroutines();
         gfx.enabled = false;
         sphereCollider.enabled = false;
         EndTether();
-     
+        isAlive = false;
         drones.DisableAttack();
         pheremones.DisableAttack();
-    
         hurtVFX.EndFlash();
-        hive.DecrementBroodDelegateCount(this);
+        Died?.Invoke(this);
+   
     }
-public void EnableBroodDelegate()
+    public bool GetAlive() { return isAlive; }
+    public void EnableBroodDelegate()
     {
         gfx.enabled = true;
         sphereCollider.enabled = true;

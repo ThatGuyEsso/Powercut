@@ -40,6 +40,22 @@ public class PheremoneBlast : BaseAttackPattern
             }
         }
     }
+    protected override IEnumerator BeginAttackCycle()
+    {
+        yield return new WaitForSeconds(attackRate);
+       
+        ExecuteAttack();
+
+   
+        if (isRunning)
+        {
+            StartCoroutine(BeginAttackCycle());
+
+        }
+    }
+   
+        //if not in range wait till player is in range
+    
     public override void ExecuteAttack()
     {
 

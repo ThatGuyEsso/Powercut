@@ -35,7 +35,7 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable,IAudio
 
             ObjectPoolManager.Recycle(gameObject);
         }
-        if (other.gameObject.CompareTag(targetTag) || other.gameObject.CompareTag("PhysicsObject"))
+        if (other.gameObject.CompareTag(targetTag) || other.gameObject.CompareTag("PhysicsObject")|| other.gameObject.CompareTag("Wall"))
         {
             if (other.GetComponent<IHurtable>() != null)
             {

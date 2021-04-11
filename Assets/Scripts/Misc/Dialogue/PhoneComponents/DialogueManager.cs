@@ -74,7 +74,11 @@ public class DialogueManager : MonoBehaviour
             {
                 FindObjectOfType<PhoneButtons>().EnableStartButton(beat.TargetScene);
             }
-            FindObjectOfType<PhoneButtons>().EnableStartButton();
+            else
+            {
+                FindObjectOfType<PhoneButtons>().EnableStartButton();
+            }
+     
         }
 
 

@@ -160,6 +160,7 @@ public class BroodSpitter : BaseEnemy
         aSource.Stop();
         SpawnFragments();
 
+        Killed?.Invoke(this);
         ObjectPoolManager.Recycle(gameObject);
     }
     override protected void OnStateChange(EnemyStates newState)

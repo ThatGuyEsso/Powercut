@@ -24111,7 +24111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resultData: {fileID: 11400000, guid: c453f33a849661645aad9ee8dec652ce, type: 2}
-  beatData: {fileID: 11400000, guid: 4a94eff66b835bf41946ae2581ad9f93, type: 2}
+  beatData: {fileID: 11400000, guid: 08e9e575dd11efe47bd055e6b98b4c17, type: 2}
   bubblePrefab: {fileID: 164829888630608337, guid: 7765c17fef65c104dae74205b4a5f05f, type: 3}
   dialogueMenu: {fileID: 881421167}
   phoneAnim: {fileID: 881421168}
