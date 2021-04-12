@@ -4,24 +4,23 @@ using UnityEngine;
 using TMPro;
 public class EventTemplate : MonoBehaviour
 {
-    private TextMeshProUGUI displayText;
+    [SerializeField] private TextMeshProUGUI displayText;
     private Color displayColor;
     private string eventMessage;
     public float height;
     public RectTransform rt;
-    public void Init()
-    {
-        displayText = gameObject.GetComponent<TextMeshProUGUI>();
-        rt = gameObject.GetComponent<RectTransform>();
-        height = rt.rect.height;
-    }
+    [SerializeField] private Vector2 padding;
+
 
     public void SetUpEventTemplate(string message, Color textColor)
     {
         eventMessage = message;
         displayColor = textColor;
         displayText.text = eventMessage;
+        displayText.ForceMeshUpdate();
+        Vector2 renderBounds = displayText.GetRenderedValues(false);
         displayText.color = displayColor;
+        rt.sizeDelta = renderBounds + padding;
     }
 
 

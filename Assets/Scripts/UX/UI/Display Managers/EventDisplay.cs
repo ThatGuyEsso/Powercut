@@ -5,12 +5,13 @@ using UnityEngine;
 public class EventDisplay : MonoBehaviour
 {
     public GameObject eventTemplatePrefab;
-    public Vector3 origin;
+    [SerializeField] private Transform origin;
     private int currNumEvents;
     public float timeBetweenClearing;
     public float maxTimeDelete;
     private float currentDeleteTime;
 
+    [SerializeField] private Vector3 offset;
     private List<EventTemplate> currEvents = new List<EventTemplate>();
 
     public void Update()
@@ -34,24 +35,26 @@ public class EventDisplay : MonoBehaviour
     {
         currentDeleteTime = maxTimeDelete;
         EventTemplate newEvent = Instantiate(eventTemplatePrefab, transform).GetComponent< EventTemplate>();
-        newEvent.Init();
+        
+
 
         currEvents.Add(newEvent);
         newEvent.SetUpEventTemplate(eventMessage, textColour);
         currNumEvents = currEvents.Count;
         StopCoroutine(ClearList());
-        newEvent.transform.localPosition =GetEventPosition(newEvent.height);
+        newEvent.transform.position =SetEventPosition(newEvent.rt.rect.height, newEvent.rt);
     }
 
-    private Vector3 GetEventPosition(float eventTextHeight)
+    private Vector3 SetEventPosition(float eventTextHeight, RectTransform rect)
     {
-        Vector3 offset = new Vector3(origin.x, origin.y - eventTextHeight * currNumEvents, origin.z);
+
+        Vector3 offset = new Vector3(origin.position.x+rect.rect.width/2, origin.position.y - eventTextHeight * currNumEvents, origin.position.z);
         return offset;
       
     }
-    private Vector3 GetEventRelativePosition(float eventTextHeight, float index)
+    private Vector3 GetEventPosition(float eventTextHeight, int index)
     {
-        Vector3 offset = new Vector3(origin.x, origin.y - eventTextHeight * index, origin.z);
+        Vector3 offset = new Vector3(origin.position.x+ currEvents[index].rt.rect.width/2, origin.position.y - eventTextHeight * (index+1), origin.position.z);
         return offset;
 
     }
@@ -60,7 +63,8 @@ public class EventDisplay : MonoBehaviour
     {
         for(int i = 0;i< currEvents.Count; i++)
         {
-            currEvents[i].transform.localPosition = GetEventRelativePosition(currEvents[i].height, i+1);
+            if(currEvents[i])
+                currEvents[i].transform.position = GetEventPosition(currEvents[i].rt.rect.height, i);
         }
     }
 
@@ -69,12 +73,18 @@ public class EventDisplay : MonoBehaviour
      
         while (currNumEvents > 0)
         {
-           
-            GameObject eventDisplay = currEvents[0].gameObject;
-            currEvents.Remove(currEvents[0]);
-            Destroy(eventDisplay);
-            RefreshPositions();
+            List<EventTemplate> eventsCopy = new List<EventTemplate>();
+            eventsCopy.AddRange(currEvents);
+            EventTemplate eventDisplay = eventsCopy[0];
+            eventsCopy.Remove(eventDisplay);
+            Destroy(eventDisplay.gameObject);
+            currEvents.Clear();
+            for ( int i = 0; i< eventsCopy.Count; i++){
+                if (eventsCopy[i])
+                    currEvents.Add(eventsCopy[i]);
+            }
             currNumEvents--;
+            RefreshPositions();
             yield return new WaitForSeconds(timeBetweenClearing);
         }
 
