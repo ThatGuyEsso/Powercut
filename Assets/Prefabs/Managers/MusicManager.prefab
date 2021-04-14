@@ -242,3 +242,4 @@ MonoBehaviour:
   secondarySource: {fileID: 4845965226160805302}
   crossFadeRate: 0.1
   fadeAmount: 0.05
+  musicAudioGroup: {fileID: 24300002, guid: a67ac9f29fa12da4a94527b1b13b7ef5, type: 2}

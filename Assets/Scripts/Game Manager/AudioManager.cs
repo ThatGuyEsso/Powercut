@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using System;
 
 public class AudioManager : MonoBehaviour
@@ -9,6 +10,8 @@ public class AudioManager : MonoBehaviour
     public SoundGroup[] soundGroups;
     public static AudioManager instance;
     public float pitchChange;
+
+    [SerializeField] private AudioMixerGroup uiGroup, soundEffectGroup;
     private void Awake()
     {
         //Initialise Singleton Instance
@@ -43,6 +46,7 @@ public class AudioManager : MonoBehaviour
             soundGroups[i].source.loop = soundGroups[i].loop;
             soundGroups[i].source.outputAudioMixerGroup = soundGroups[i].mixerGroup;
         }
+        UpdateSoundLevels();
     }
 
     public void PlayRandFromGroup(string groupName)
@@ -164,6 +168,17 @@ public class AudioManager : MonoBehaviour
             case InitStates.Init:
             
                 break;
+        }
+    }
+
+
+
+    private void UpdateSoundLevels()
+    {
+        if (SaveData.current != null)
+        {
+            uiGroup.audioMixer.SetFloat("Volume", SaveData.current.soundSettings.uiEffect);
+            soundEffectGroup.audioMixer.SetFloat("Volume", SaveData.current.soundSettings.soundEffect);
         }
     }
 }

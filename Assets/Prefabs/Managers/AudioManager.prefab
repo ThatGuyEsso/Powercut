@@ -283,3 +283,5 @@ MonoBehaviour:
     source: {fileID: 0}
     mixerGroup: {fileID: 24300002, guid: 268dcd6368b9ed84593da25e14ae3e08, type: 2}
   pitchChange: 0.25
+  uiGroup: {fileID: 24300002, guid: 268dcd6368b9ed84593da25e14ae3e08, type: 2}
+  soundEffectGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}

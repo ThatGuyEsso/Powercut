@@ -13,7 +13,7 @@ public class MusicManager : MonoBehaviour
 
     [SerializeField] private float crossFadeRate;
     [SerializeField] private float fadeAmount;
- 
+    [SerializeField] private AudioMixerGroup musicAudioGroup;
     private bool isAwake;
 
     public void Awake()
@@ -41,8 +41,12 @@ public class MusicManager : MonoBehaviour
         //Subscribe to intiation manager
         BindToInitManager();
         isAwake = true;
+        if (SaveData.current != null)
+        {
+            musicAudioGroup.audioMixer.SetFloat("Volume", SaveData.current.soundSettings.music);
+          
+        }
 
-    
 
     }
 

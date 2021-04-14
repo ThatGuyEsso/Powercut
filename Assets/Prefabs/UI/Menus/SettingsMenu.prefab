@@ -224,7 +224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8000616901919858869
 RectTransform:
   m_ObjectHideFlags: 0
@@ -279,8 +279,8 @@ RectTransform:
   m_Father: {fileID: 4526604391173745192}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -716,8 +716,8 @@ RectTransform:
   m_Father: {fileID: 6271647476354682792}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -817,6 +817,7 @@ MonoBehaviour:
   - {fileID: 4974669312569871644, guid: 7d4b09bebfb8e01489404775f039b638, type: 3}
   - {fileID: 1599282726505683023, guid: 7d4b09bebfb8e01489404775f039b638, type: 3}
   slider: {fileID: 2104853316782919438}
+  audioType: 0
 --- !u!1 &4216246414000743543
 GameObject:
   m_ObjectHideFlags: 0
@@ -925,7 +926,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1060,6 +1061,7 @@ MonoBehaviour:
   - {fileID: -1919948530310039358, guid: f9d13fd58f7977f4080393022c8e090b, type: 3}
   - {fileID: 4065546070201550178, guid: f9d13fd58f7977f4080393022c8e090b, type: 3}
   slider: {fileID: 5931052739680916443}
+  audioType: 2
 --- !u!1 &5520310066178624080
 GameObject:
   m_ObjectHideFlags: 0
@@ -1746,6 +1748,7 @@ MonoBehaviour:
   - {fileID: -5714057148894949321, guid: e77c4f145dbdccd4a9c19206493d171a, type: 3}
   - {fileID: -3987302141516894378, guid: e77c4f145dbdccd4a9c19206493d171a, type: 3}
   slider: {fileID: 8178221940319159416}
+  audioType: 1
 --- !u!1 &6347843798127108529
 GameObject:
   m_ObjectHideFlags: 0
@@ -2315,7 +2318,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

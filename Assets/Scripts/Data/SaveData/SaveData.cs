@@ -10,6 +10,7 @@ public class SaveData
     {
         clientsData = new List<ContactData>();
         lastSession = new SessionData();
+        soundSettings = new SoundSettingData();
     }
     public static SaveData _current;
     public static SaveData current
@@ -34,6 +35,8 @@ public class SaveData
  
     public List<ContactData> clientsData;
 
+    public SoundSettingData soundSettings;
+     
 
     public void SaveContactData( bool unlocked, string clientID)
     {
@@ -108,6 +111,7 @@ public class SaveData
         lastSession.Reset();
         if(clientsData!=null)
             clientsData.Clear();
+        soundSettings.Reset();
     }
 
 }

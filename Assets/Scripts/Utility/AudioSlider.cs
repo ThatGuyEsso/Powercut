@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
+
+public enum AudioSetting
+{
+    soundEffect,
+    UI,
+    Music
+};
 public class AudioSlider : MonoBehaviour
 {
     [SerializeField] protected AudioMixerGroup mixerGroup;
@@ -11,6 +18,8 @@ public class AudioSlider : MonoBehaviour
     [SerializeField] protected Image icon;
     [SerializeField] protected List<Sprite> stateSprites;
     [SerializeField] protected Slider slider;
+
+    [SerializeField] protected AudioSetting audioType;
 
     protected void OnEnable()
     {
@@ -27,6 +36,29 @@ public class AudioSlider : MonoBehaviour
         mixerGroup.audioMixer.SetFloat("Volume", newValue);
         currentDB = newValue;
         EvaluateIcon();
+
+        if(SaveData.current != null)
+        {
+            switch (audioType)
+            {
+                case AudioSetting.soundEffect:
+                    SaveData.current.soundSettings.soundEffect = currentDB;
+                    SerialisationManager.Save(InitStateManager.SaveName, SaveData.current);
+
+                    break;
+                case AudioSetting.Music:
+                    SaveData.current.soundSettings.music = currentDB;
+                    SerialisationManager.Save(InitStateManager.SaveName, SaveData.current);
+                    break;
+
+                case AudioSetting.UI:
+                    SaveData.current.soundSettings.uiEffect = currentDB;
+                    SerialisationManager.Save(InitStateManager.SaveName, SaveData.current);
+                    break;
+            }
+        }
+      
+
     }
 
     virtual protected void EvaluateIcon()
