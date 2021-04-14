@@ -1312,6 +1312,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8296264913084456671, guid: 13c507b9c6d60174d9737d223cd46034, type: 3}
+      propertyPath: storyData
+      value: 
+      objectReference: {fileID: 11400000, guid: 08e9e575dd11efe47bd055e6b98b4c17, type: 2}
     - target: {fileID: 8296264914331715601, guid: 13c507b9c6d60174d9737d223cd46034, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1357,7 +1361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resultData: {fileID: 11400000, guid: c453f33a849661645aad9ee8dec652ce, type: 2}
-  beatData: {fileID: 11400000, guid: 4a94eff66b835bf41946ae2581ad9f93, type: 2}
+  beatData: {fileID: 11400000, guid: 08e9e575dd11efe47bd055e6b98b4c17, type: 2}
   bubblePrefab: {fileID: 164829888630608337, guid: 7765c17fef65c104dae74205b4a5f05f, type: 3}
   dialogueMenu: {fileID: 731482150}
   phoneAnim: {fileID: 731482149}
@@ -1370,7 +1374,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457110895}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 835.5365, y: 576.3172, z: -1238.1742}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

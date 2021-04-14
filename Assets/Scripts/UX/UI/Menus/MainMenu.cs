@@ -36,10 +36,10 @@ public class MainMenu : MonoBehaviour
     public void Play()
     {
         //SaveData.current = new SaveData();
-        MusicManager.instance.BeginFadeOut();
-        TransitionManager.instance.StartLevel(SceneIndex.IceRink);
-        AudioManager.instance.PlayAtRandomPitch("ClickSFX");
         SaveData.current.ClearSave();
+        MusicManager.instance.BeginFadeOut();
+        TransitionManager.instance.StartLevel(SceneIndex.Tutorial);
+        AudioManager.instance.PlayAtRandomPitch("ClickSFX");
         SaveData.current.lastSession.isNewSave = false;
         SerialisationManager.Save(InitStateManager.SaveName, SaveData.current);
 

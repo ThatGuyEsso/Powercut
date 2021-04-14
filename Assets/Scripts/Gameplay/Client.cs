@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 [Serializable]
+
 public class Client
 {
     [SerializeField] private string clientName;
@@ -17,7 +19,7 @@ public class Client
     [SerializeField] private List<int> beats;
 
     [SerializeField] private Dictionary<SceneIndex, int> dialgoueDic = new Dictionary<SceneIndex, int>();
-
+    [SerializeField] private List<BeatData> currentConversation = new List<BeatData>();
     public int DialogueBeat { get { return nextDialogue; } }
     public string ClientID { get { return UID; } }
     public Sprite ClientImage { get { return clientSprite; } }
@@ -47,11 +49,27 @@ public class Client
             return false;
         }
     }
+
+    public void AddBeatToConversation(BeatData beatData)
+    {
+        currentConversation.Add(beatData);
+    }
+    public List<BeatData> GetConversation()
+    {
+        return currentConversation;
+    }
+
+
+    public bool HasConversation()
+    {
+        return currentConversation.Count > 0;
+    }
     public void ClearMessage()
     {
         hasMessage = false;
+        currentConversation.Clear();
 
-    
+
     }
     
 }

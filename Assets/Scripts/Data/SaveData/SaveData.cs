@@ -111,7 +111,7 @@ public class SaveData
         lastSession.Reset();
         if(clientsData!=null)
             clientsData.Clear();
-        soundSettings.Reset();
+   
     }
 
 }

@@ -16,6 +16,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private SMSDialogue dialogueMenu;
     [SerializeField] private Animator phoneAnim;
     [SerializeField] private PhoneAnimEventListener animEvents;
+
+    [SerializeField] private Client currentClient=null;
     //beat to send to
     public static int nextBeat;
     //beat to send to
@@ -65,7 +67,10 @@ public class DialogueManager : MonoBehaviour
 
     public void EvaluateBeat(BeatData beat)
     {
-     
+        if (currentClient != null&&!dialogueMenu.isResuming)
+        {
+            currentClient.AddBeatToConversation(beat);
+        }
         if (beat.IsEnd)
         {
             phoneAnim.enabled = true;
@@ -188,6 +193,11 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public void ResumeConversation(List<BeatData> data)
+    {
+        dialogueMenu.ClearSmsLog();
+        dialogueMenu.DisplayBeats(data);
+    }
 
     public void PhoneScreenHidden()
     {
@@ -200,6 +210,8 @@ public class DialogueManager : MonoBehaviour
         InitStateManager.currGameMode = GameModes.Powercut;
 
     }
+
+    public void SetClient(Client client ) { currentClient = client; }
 
  
    

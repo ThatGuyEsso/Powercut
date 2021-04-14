@@ -63,6 +63,7 @@ public class SMSDialogue : MonoBehaviour
 
     public delegate void BeatEvaluationDelegate(BeatData beat);
     public event BeatEvaluationDelegate OnBeatDisplayed;
+    public bool isResuming;
 
 
     private void Update()
@@ -195,8 +196,9 @@ public class SMSDialogue : MonoBehaviour
     private void DisplayTypingBubble()
     {
         Vector2 pos;
+        if(!typingBubble) typingBubble = Instantiate(typingBubblePrefab, smsArea);
+        if(!typingBubble.activeSelf) typingBubble.SetActive(true);
 
-        typingBubble.SetActive(true);
         if (previousBubble == false)
         {
             pos = (Vector2)smsClientStartPosition.position + typingOffset;
@@ -347,7 +349,25 @@ public class SMSDialogue : MonoBehaviour
         }
     }
 
-
+    public void DisplayBeats(List<BeatData> data)
+    {
+        isResuming = true;
+        for (int i =0; i<data.Count; i++)
+        {
+            if (data[i].IsClientBeat) currentSpeaker = Speaker.Client;
+            else currentSpeaker = Speaker.MainCharacter;
+            if (i == 0)
+            {
+                DisplayFirstBeat(data[i]);
+            }
+            else
+            {
+                DisplaySmsBubble(data[i]);
+            }
+        }
+        OnBeatDisplayed?.Invoke(data[data.Count-1]);
+        isResuming = false;
+    }
     public void ScrollText()
     {
         switch (scrollMode)
@@ -445,5 +465,20 @@ public class SMSDialogue : MonoBehaviour
     {
         if (!clientImage.gameObject.activeSelf) clientImage.gameObject.SetActive(true);
         clientImage.sprite = portrait;
+    }
+
+    public void ClearSmsLog()
+    {
+        StopAllCoroutines();
+        currentDialogueState = DialogueState.Idle;
+        if (typingBubble.activeSelf) typingBubble.SetActive(false);
+      
+        foreach (SMSBubble bubble in smsBubbles)
+        {
+            Destroy(bubble.gameObject);
+        }
+        smsBubbles.Clear();
+        
+        previousBubble = null;
     }
 }

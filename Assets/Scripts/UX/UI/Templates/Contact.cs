@@ -27,8 +27,18 @@ public class Contact : MonoBehaviour
         AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
         if (hasAlert)
         {
-            TabletMenuManager.instance.StartDialogue(beat, client.ClientImage);
-            ClientManager.instance.SetActiveClient(client);
+            if (client.HasConversation())
+            {
+                TabletMenuManager.instance.ResumeDialogue(client.GetConversation(), client.ClientImage);
+                ClientManager.instance.SetActiveClient(client);
+            }
+            else
+            {
+                DialogueManager.instance.SetClient(client);
+                ClientManager.instance.SetActiveClient(client);
+                TabletMenuManager.instance.StartDialogue(beat, client.ClientImage);
+            }
+       
         }
     }
 

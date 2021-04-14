@@ -98,6 +98,15 @@ public class TabletMenuManager : MonoBehaviour
         DialogueManager.instance.DisplayBeat();
     }
 
+
+    public void ResumeDialogue(List<BeatData> beat, Sprite image)
+    {
+        contactsMenu.SetActive(false);
+        smsMenu.SetActive(true);
+        DialogueManager.instance.SetUpPortrait(image);
+        DialogueManager.instance.ResumeConversation(beat);
+      
+    }
     public void Credits()
     {
         creditManager.ShowPhone();
