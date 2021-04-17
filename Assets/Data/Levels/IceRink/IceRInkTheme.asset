@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb7e9c87c5455064da8c1eaa9b250bcc, type: 3}
+  m_Name: IceRInkTheme
+  m_EditorClassIdentifier: 
+  records:
+  - minTimeBtwnTrack: 5
+    maxTimeBtwnTrack: 8
+    trackList:
+    - name: Boss Theme
+      clip: {fileID: 8300000, guid: 2900f68a0133e7b4bb97724db6b254f4, type: 3}
+      volume: 0.3
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+      mixerGroup: {fileID: 24300002, guid: a67ac9f29fa12da4a94527b1b13b7ef5, type: 2}
+    - name: IceRink Song
+      clip: {fileID: 8300000, guid: 5c50407bd0f2daf48be302a07005e503, type: 3}
+      volume: 0.3
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+      mixerGroup: {fileID: 24300002, guid: a67ac9f29fa12da4a94527b1b13b7ef5, type: 2}
+    - name: AggresiveFill
+      clip: {fileID: 8300000, guid: b01af0d46f82271429d3bf3af3dbf57d, type: 3}
+      volume: 0.3
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+      mixerGroup: {fileID: 24300002, guid: a67ac9f29fa12da4a94527b1b13b7ef5, type: 2}
+    - name: Mysterious Stress
+      clip: {fileID: 8300000, guid: c15d4129c95bd614c988a697eb66ba10, type: 3}
+      volume: 0.3
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+      mixerGroup: {fileID: 24300002, guid: a67ac9f29fa12da4a94527b1b13b7ef5, type: 2}

@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4287951392334403058}
   - component: {fileID: 4955545805061311898}
   - component: {fileID: 4328092670836295440}
+  - component: {fileID: 4264850505727404794}
   m_Layer: 19
   m_Name: BroodNest
   m_TagString: Enemy
@@ -182,6 +183,7 @@ MonoBehaviour:
   audioPlayerPrefab: {fileID: 3912195020010027158, guid: bd5d0c2d9dcef8b44bc27c081b8263e3, type: 3}
   hurtNumber: {fileID: 7152689479093340677, guid: e2c021df58a3bbf4d9284bfcec171352, type: 3}
   deathVFX: {fileID: 7808037342350693099, guid: 267ccae9eccc07342ab71b58a91e56a7, type: 3}
+  deathHandler: {fileID: 0}
   playerTransform: {fileID: 0}
 --- !u!58 &4287951392334403058
 CircleCollider2D:
@@ -236,6 +238,20 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &4264850505727404794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4287951391848689231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14bfd803909439c41bea45d32c85468d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossGFX: {fileID: 4287951392859531193}
+  deathSprite: {fileID: 21300000, guid: 567504f90f47f4940b1405e654ec2606, type: 3}
 --- !u!1 &4287951392859531191
 GameObject:
   m_ObjectHideFlags: 0

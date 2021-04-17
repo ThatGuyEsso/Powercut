@@ -198,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   stepSFX: CharacterStepsSFX
+  dustParticleEffects: {fileID: 8727362890146945477, guid: fc5c7319dcedb19448943ff863693ad9, type: 3}
 --- !u!1 &2107242147004753361
 GameObject:
   m_ObjectHideFlags: 0

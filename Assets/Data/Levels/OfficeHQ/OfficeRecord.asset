@@ -16,6 +16,13 @@ MonoBehaviour:
   - minTimeBtwnTrack: 5
     maxTimeBtwnTrack: 8
     trackList:
+    - name: OfficeHQ Theme
+      clip: {fileID: 8300000, guid: 6efc23ce07844234a83933ea296570e0, type: 3}
+      volume: 0.3
+      pitch: 1
+      loop: 0
+      source: {fileID: 0}
+      mixerGroup: {fileID: 24300002, guid: a67ac9f29fa12da4a94527b1b13b7ef5, type: 2}
     - name: Mysterious Stress
       clip: {fileID: 8300000, guid: c15d4129c95bd614c988a697eb66ba10, type: 3}
       volume: 0.3
@@ -30,6 +37,3 @@ MonoBehaviour:
       loop: 0
       source: {fileID: 0}
       mixerGroup: {fileID: 24300002, guid: a67ac9f29fa12da4a94527b1b13b7ef5, type: 2}
-  - minTimeBtwnTrack: 0
-    maxTimeBtwnTrack: 0
-    trackList: []

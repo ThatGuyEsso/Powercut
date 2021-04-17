@@ -51,6 +51,7 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
     //VFX
     [SerializeField] private GameObject hurtNumber;
     [SerializeField] private GameObject deathVFX;
+    [SerializeField] private BroodNestDeathHandler deathHandler;
 
     //Boss references
     [SerializeField] private Transform playerTransform;
@@ -579,6 +580,7 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
         player.PlayAtRandomPitch();
 
         GameStateManager.instance.BeginNewGameState(GameStates.LevelClear);
+        deathHandler.InitDeathState();
 
     }
     public bool AreDelegatesAlive()

@@ -48,6 +48,8 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     protected GameObject hurtNumber;
     protected MultiSpriteHurtFlash hurtVFX;
 
+    public GameObject deathVFX;
+
     //Pathfinding
     public Transform target;
     protected Vector3 moveDirection;
@@ -59,8 +61,6 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     private float smoothDX;
     private float smoothDY;
 
-    //VFx
-    public GameObject deathVFX;
 
     public Action<BaseEnemy> Killed;
     virtual protected void Awake()
