@@ -42,18 +42,28 @@ public class AudioSlider : MonoBehaviour
             switch (audioType)
             {
                 case AudioSetting.soundEffect:
-                    SaveData.current.soundSettings.soundEffect = currentDB;
-                    SerialisationManager.Save(InitStateManager.SaveName, SaveData.current);
-
+                    if (SaveData.current.soundSettings != null)
+                    {
+                        SaveData.current.soundSettings.soundEffect = currentDB;
+                        SerialisationManager.Save(InitStateManager.SaveName, SaveData.current);
+                    }
                     break;
                 case AudioSetting.Music:
-                    SaveData.current.soundSettings.music = currentDB;
-                    SerialisationManager.Save(InitStateManager.SaveName, SaveData.current);
+                    if (SaveData.current.soundSettings != null)
+                    {
+                        SaveData.current.soundSettings.music = currentDB;
+                        SerialisationManager.Save(InitStateManager.SaveName, SaveData.current);
+                    }
+
+              
                     break;
 
                 case AudioSetting.UI:
-                    SaveData.current.soundSettings.uiEffect = currentDB;
-                    SerialisationManager.Save(InitStateManager.SaveName, SaveData.current);
+                    if (SaveData.current.soundSettings != null)
+                    {
+                        SaveData.current.soundSettings.uiEffect = currentDB;
+                        SerialisationManager.Save(InitStateManager.SaveName, SaveData.current);
+                    }
                     break;
             }
         }

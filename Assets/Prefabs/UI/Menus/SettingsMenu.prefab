@@ -224,7 +224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8000616901919858869
 RectTransform:
   m_ObjectHideFlags: 0
@@ -279,8 +279,8 @@ RectTransform:
   m_Father: {fileID: 4526604391173745192}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -716,8 +716,8 @@ RectTransform:
   m_Father: {fileID: 6271647476354682792}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -926,7 +926,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1560,6 +1560,7 @@ GameObject:
   - component: {fileID: 4352591516543945574}
   - component: {fileID: 9213349544705919862}
   - component: {fileID: 983076666}
+  - component: {fileID: 4517675409867653242}
   m_Layer: 5
   m_Name: SettingsMenu
   m_TagString: Untagged
@@ -1691,6 +1692,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   phone: {fileID: 523051514326512813}
+--- !u!114 &4517675409867653242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5712185109879062223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b850caad8f6534e4fbeb9831e71e3136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPlayerPrefab: {fileID: 3912195020010027157, guid: 8df09cf6e8bf18b4d98a7f7c8fe4eca4, type: 3}
 --- !u!1 &5736100156470513106
 GameObject:
   m_ObjectHideFlags: 0
@@ -2318,7 +2332,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

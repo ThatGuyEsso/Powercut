@@ -146,6 +146,7 @@ GameObject:
   - component: {fileID: 954209849}
   - component: {fileID: 954209848}
   - component: {fileID: 954209847}
+  - component: {fileID: 3541934748212075966}
   m_Layer: 5
   m_Name: ContinueButton
   m_TagString: Untagged
@@ -266,6 +267,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3541934748212075966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 954209845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5168063867329143482}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &24109656822071326
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,6 +816,7 @@ GameObject:
   - component: {fileID: 5387557209083213109}
   - component: {fileID: 237628638021109032}
   - component: {fileID: 6056657259479568473}
+  - component: {fileID: 529007225962607357}
   m_Layer: 5
   m_Name: Credits
   m_TagString: Untagged
@@ -906,6 +937,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &529007225962607357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830068603117836680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5168063867329143482}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &849523820854461479
 GameObject:
   m_ObjectHideFlags: 0
@@ -1715,6 +1775,7 @@ GameObject:
   - component: {fileID: 1827608000194091015}
   - component: {fileID: 4599634143831159607}
   - component: {fileID: 4128735061785176743}
+  - component: {fileID: 2990903901759072880}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -1835,6 +1896,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &2990903901759072880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2430107419391648493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5168063867329143482}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &2551361300331029607
 GameObject:
   m_ObjectHideFlags: 0
@@ -3669,6 +3759,7 @@ GameObject:
   - component: {fileID: 1245617211399239453}
   - component: {fileID: 1643261526104672395}
   - component: {fileID: 795328991932265826}
+  - component: {fileID: 1341152782460156333}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -3789,6 +3880,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1341152782460156333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4981095137640690825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5168063867329143482}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &5703298719858950873
 GameObject:
   m_ObjectHideFlags: 0
@@ -4027,6 +4147,7 @@ GameObject:
   - component: {fileID: 6137239383385728192}
   - component: {fileID: 6137239383385728195}
   - component: {fileID: 6137239383385728194}
+  - component: {fileID: 8875714673944101924}
   m_Layer: 5
   m_Name: Settings
   m_TagString: Untagged
@@ -4147,6 +4268,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8875714673944101924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6137239383385728196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5168063867329143482}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &6137239383611071310
 GameObject:
   m_ObjectHideFlags: 0
@@ -4687,6 +4837,7 @@ GameObject:
   - component: {fileID: 5616167386250105379}
   - component: {fileID: 2175745128155549457}
   - component: {fileID: 6184574506974926444}
+  - component: {fileID: 5521807926596860547}
   m_Layer: 5
   m_Name: Quit Button
   m_TagString: Untagged
@@ -4807,6 +4958,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &5521807926596860547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7035714974948355784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5168063867329143482}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7123356020531917461
 GameObject:
   m_ObjectHideFlags: 0
@@ -5013,6 +5193,7 @@ GameObject:
   - component: {fileID: 7455128570428329346}
   - component: {fileID: 7455128570428329347}
   - component: {fileID: 7455128570428329344}
+  - component: {fileID: 8234276318342157493}
   m_Layer: 5
   m_Name: PlayButton
   m_TagString: Untagged
@@ -5133,6 +5314,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8234276318342157493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455128570428329342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5168063867329143482}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7455128570466002012
 GameObject:
   m_ObjectHideFlags: 0
@@ -5145,6 +5355,7 @@ GameObject:
   - component: {fileID: 7455128570466002016}
   - component: {fileID: 7455128570466002017}
   - component: {fileID: 7455128570466002014}
+  - component: {fileID: 6687898646088646897}
   m_Layer: 5
   m_Name: Quit Button
   m_TagString: Untagged
@@ -5265,6 +5476,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6687898646088646897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455128570466002012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5168063867329143482}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7455128570697080968
 GameObject:
   m_ObjectHideFlags: 0
@@ -5278,6 +5518,7 @@ GameObject:
   - component: {fileID: 7455128570697080970}
   - component: {fileID: 7455128570697080971}
   - component: {fileID: 7113168152778649598}
+  - component: {fileID: 5168063867329143482}
   m_Layer: 5
   m_Name: MainMenu_UI
   m_TagString: Untagged
@@ -5388,6 +5629,19 @@ MonoBehaviour:
   continueButtons: {fileID: 209737416773179067}
   defaultButtons: {fileID: 8874457364359564388}
   creditsManager: {fileID: 0}
+--- !u!114 &5168063867329143482
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455128570697080968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b850caad8f6534e4fbeb9831e71e3136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPlayerPrefab: {fileID: 3912195020010027157, guid: 8df09cf6e8bf18b4d98a7f7c8fe4eca4, type: 3}
 --- !u!1 &7455128570747996706
 GameObject:
   m_ObjectHideFlags: 0
@@ -5668,6 +5922,7 @@ GameObject:
   - component: {fileID: 7455128571728577820}
   - component: {fileID: 7455128571728577821}
   - component: {fileID: 7455128571728577818}
+  - component: {fileID: 63566794251644527}
   m_Layer: 5
   m_Name: Credits
   m_TagString: Untagged
@@ -5788,6 +6043,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &63566794251644527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7455128571728577816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5168063867329143482}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &7455128571769935267
 GameObject:
   m_ObjectHideFlags: 0

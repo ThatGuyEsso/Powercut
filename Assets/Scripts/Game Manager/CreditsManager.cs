@@ -420,6 +420,7 @@ public class CreditsManager : MonoBehaviour
         animController.enabled = true;
         animListener.phoneHidden += PhoneHidden;
         animController.Play("PhonePopDown");
+        AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
         AudioManager.instance.PlayAtRandomPitch("PhonePullOutSFX");
         StopAllCoroutines();
 
@@ -436,11 +437,15 @@ public class CreditsManager : MonoBehaviour
 
     public void ShowPhone()
     {
-        phone.SetActive(true);
-        animController.enabled = true;
-        animListener.phoneShown += PhoneVisible;
-        animController.Play("PhonePopUP");
-        AudioManager.instance.PlayAtRandomPitch("PhonePullOutSFX");
+        if (!phone.activeSelf)
+        {
+            phone.SetActive(true);
+            animController.enabled = true;
+            animListener.phoneShown += PhoneVisible;
+            animController.Play("PhonePopUP");
+            AudioManager.instance.PlayAtRandomPitch("PhonePullOutSFX");
+        }
+    
     }
 
     public void ClearBubbles()

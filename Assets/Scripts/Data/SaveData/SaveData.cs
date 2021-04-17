@@ -5,7 +5,11 @@ using UnityEngine;
 [System.Serializable]
 public class SaveData
 {
+    public SessionData lastSession;
 
+    public List<ContactData> clientsData;
+
+    public SoundSettingData soundSettings;
     public SaveData()
     {
         clientsData = new List<ContactData>();
@@ -31,11 +35,7 @@ public class SaveData
         }
     }
 
-    public SessionData lastSession;
- 
-    public List<ContactData> clientsData;
 
-    public SoundSettingData soundSettings;
      
 
     public void SaveContactData( bool unlocked, string clientID)

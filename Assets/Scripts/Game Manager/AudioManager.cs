@@ -175,10 +175,10 @@ public class AudioManager : MonoBehaviour
 
     private void UpdateSoundLevels()
     {
-        if (SaveData.current != null)
-        {
+        if (SaveData.current.soundSettings == null) SaveData.current.soundSettings = new SoundSettingData();
+   
             uiGroup.audioMixer.SetFloat("Volume", SaveData.current.soundSettings.uiEffect);
             soundEffectGroup.audioMixer.SetFloat("Volume", SaveData.current.soundSettings.soundEffect);
-        }
+ 
     }
 }

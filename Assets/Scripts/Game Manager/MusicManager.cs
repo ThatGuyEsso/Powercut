@@ -41,11 +41,10 @@ public class MusicManager : MonoBehaviour
         //Subscribe to intiation manager
         BindToInitManager();
         isAwake = true;
-        if (SaveData.current != null)
-        {
-            musicAudioGroup.audioMixer.SetFloat("Volume", SaveData.current.soundSettings.music);
+        if (SaveData.current.soundSettings == null) SaveData.current.soundSettings = new SoundSettingData();
+        musicAudioGroup.audioMixer.SetFloat("Volume", SaveData.current.soundSettings.music);
           
-        }
+   
 
 
     }

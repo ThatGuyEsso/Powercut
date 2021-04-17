@@ -388,6 +388,7 @@ GameObject:
   - component: {fileID: 8928729829509470688}
   - component: {fileID: 8928729829509470694}
   - component: {fileID: 8928729829509470695}
+  - component: {fileID: 5162269415241944000}
   m_Layer: 5
   m_Name: CreditsUI
   m_TagString: Untagged
@@ -487,6 +488,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 632eab15769f7724a94512efba768897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playOneAwake: 0
   credits: {fileID: 11400000, guid: 1c7c4f010b5bac54ab6a2dc492b8f0b8, type: 2}
   creditWaitTime: 3
   authorWaitTime: 1.5
@@ -538,6 +540,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5162269415241944000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8928729829509470702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b850caad8f6534e4fbeb9831e71e3136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPlayerPrefab: {fileID: 3912195020010027157, guid: 8df09cf6e8bf18b4d98a7f7c8fe4eca4, type: 3}
 --- !u!1 &8928729829522302019
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,6 +939,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 5162269415241944000}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -948,9 +975,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 8928729829636175349}
     m_Modifications:
     - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8928729829117324796}
+      objectReference: {fileID: 8928729830418161663}
     - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: StartScrolling
@@ -958,7 +989,7 @@ PrefabInstance:
     - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 8928729829117324796}
+      objectReference: {fileID: 8928729830418161663}
     - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: StopScrolling
@@ -970,6 +1001,30 @@ PrefabInstance:
     - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: CreditsMenuScroll, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 5162269415241944000}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ButtonHooverSFX, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayOnHooverSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 774216863, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
       propertyPath: dialogueMenu
@@ -1088,6 +1143,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 8928729829636175349}
     m_Modifications:
     - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 8928729830418161663}
@@ -1110,6 +1169,30 @@ PrefabInstance:
     - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
       propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: CreditsMenuScroll, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ButtonHooverSFX, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 5162269415241944000}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayOnHooverSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 774216863, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
       propertyPath: mode

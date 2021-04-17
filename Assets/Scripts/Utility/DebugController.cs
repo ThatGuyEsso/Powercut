@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
+using System.IO;
 public class DebugController : MonoBehaviour { 
     private bool showConsole;
     private Controls inputAction;
@@ -13,6 +13,7 @@ public class DebugController : MonoBehaviour {
     public static DebugCommand CLEAR_LEVEL;
     public static DebugCommand Kill_PlAYER;
     public static DebugCommand DEFEAT_BOSS;
+    public static DebugCommand DELETE_SAVE;
     public List<object> commandList;
     private void Awake()
     {
@@ -26,11 +27,13 @@ public class DebugController : MonoBehaviour {
         Kill_PlAYER = new DebugCommand("/Kill_Player", "Kills player if they exist","/Kill_Player",() => KillPlayer());
 
         DEFEAT_BOSS = new DebugCommand("/Defeat_Boss", "Kills Boss if it exist", "/Kill_Player", () => KillBoss());
+        DELETE_SAVE = new DebugCommand("/NewSave", "Deletes CurrentSave", "/Clear_Save", () => DeleteCurrentSave());
         commandList = new List<object>
         {
             CLEAR_LEVEL,
             Kill_PlAYER,
-            DEFEAT_BOSS
+            DEFEAT_BOSS,
+            DELETE_SAVE,
         };
     }
 
@@ -109,4 +112,11 @@ public class DebugController : MonoBehaviour {
         inputAction.Console.Return.performed -= OnReturn;
     }
 
+    private void DeleteCurrentSave()
+    {
+        string path = Application.persistentDataPath + "/Saves" + InitStateManager.SaveName + ".save";
+        //No file found return null
+        if (!File.Exists(path)) return;
+        File.Delete(path);
+    }
 }

@@ -317,6 +317,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 961482010}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -602,6 +614,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 961482010}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -708,6 +732,7 @@ GameObject:
   - component: {fileID: 961482006}
   - component: {fileID: 961482005}
   - component: {fileID: 961482009}
+  - component: {fileID: 961482010}
   m_Layer: 5
   m_Name: TabletMenu
   m_TagString: Untagged
@@ -811,6 +836,19 @@ MonoBehaviour:
   smsButton: {fileID: 1870324126}
   contactsMenu: {fileID: 764630307}
   creditManager: {fileID: 1272141816}
+--- !u!114 &961482010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961482004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b850caad8f6534e4fbeb9831e71e3136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPlayerPrefab: {fileID: 3912195020010027157, guid: 8df09cf6e8bf18b4d98a7f7c8fe4eca4, type: 3}
 --- !u!1001 &1272141815
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1366,6 +1404,15 @@ MonoBehaviour:
   dialogueMenu: {fileID: 731482150}
   phoneAnim: {fileID: 731482149}
   animEvents: {fileID: 764630308}
+  currentClient:
+    clientName: 
+    UID: 
+    hasMessage: 0
+    unlocked: 0
+    clientSprite: {fileID: 0}
+    levelTriggers: 
+    beats: 
+    currentConversation: []
 --- !u!4 &1457110897
 Transform:
   m_ObjectHideFlags: 0
@@ -1648,6 +1695,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 961482010}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -1833,6 +1892,18 @@ MonoBehaviour:
         - m_Target: {fileID: 1870324128}
           m_TargetAssemblyTypeName: ButtonHooverAnimations, Assembly-CSharp
           m_MethodName: OnHoover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 961482010}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2074,6 +2145,18 @@ MonoBehaviour:
         - m_Target: {fileID: 1970294327}
           m_TargetAssemblyTypeName: ButtonHooverAnimations, Assembly-CSharp
           m_MethodName: OnHoover
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 961482010}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

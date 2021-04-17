@@ -63,10 +63,14 @@ public class InitStateManager : MonoBehaviour
         }
         runTimeData.firstBoot = false;
         DontDestroyOnLoad(gameObject);
+        if ((SaveData)SerialisationManager.Load(Application.persistentDataPath + "/Saves" + SaveName + ".save") == null)
+            SaveData.current = new SaveData();
+        else
+            SaveData.current = (SaveData)SerialisationManager.Load(Application.persistentDataPath + "/Saves" + SaveName + ".save");
     }
     private void Start()
     {
-        SaveData.current = (SaveData)SerialisationManager.Load(Application.persistentDataPath + "/Saves" + SaveName + ".save");
+      
         Init();
     }
 

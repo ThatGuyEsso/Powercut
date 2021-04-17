@@ -434,6 +434,7 @@ GameObject:
   - component: {fileID: 8296264912612412156}
   - component: {fileID: 8296264912612412159}
   - component: {fileID: 8296264912612412158}
+  - component: {fileID: 6949938631398815722}
   m_Layer: 5
   m_Name: D_Options2
   m_TagString: Untagged
@@ -531,6 +532,35 @@ MonoBehaviour:
   padding: {x: 2, y: 30}
   offset: {x: 0, y: -5}
   prevBubble: {fileID: 8296264914552901922}
+--- !u!114 &6949938631398815722
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8296264912612412157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4460790447739251033}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8296264912732027925
 GameObject:
   m_ObjectHideFlags: 0
@@ -773,6 +803,7 @@ GameObject:
   - component: {fileID: 881421169}
   - component: {fileID: 4880748010780650337}
   - component: {fileID: 216242127223936755}
+  - component: {fileID: 4460790447739251033}
   m_Layer: 5
   m_Name: PhoneSMSMenu
   m_TagString: Untagged
@@ -874,7 +905,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clientImage: {fileID: 8296264912914453960}
   mcImage: {fileID: 8296264913099075563}
-  storyData: {fileID: 11400000, guid: 4a94eff66b835bf41946ae2581ad9f93, type: 2}
+  storyData: {fileID: 0}
   dialogueOptions:
   - {fileID: 8296264914552901922}
   - {fileID: 8296264912612412158}
@@ -893,6 +924,7 @@ MonoBehaviour:
   smsArea: {fileID: 8296264913735544716}
   smsBubbles: []
   scrollRate: 300
+  isResuming: 0
 --- !u!114 &8296264913084456670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -963,6 +995,19 @@ MonoBehaviour:
   _vertOffsetScalar: 1
   _vibrateTime: 0.3
   _bobSmoothing: 0.05
+--- !u!114 &4460790447739251033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8296264913084456664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b850caad8f6534e4fbeb9831e71e3136, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioPlayerPrefab: {fileID: 3912195020010027157, guid: 8df09cf6e8bf18b4d98a7f7c8fe4eca4, type: 3}
 --- !u!1 &8296264913099075561
 GameObject:
   m_ObjectHideFlags: 0
@@ -1532,6 +1577,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 4460790447739251033}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -2084,6 +2141,7 @@ GameObject:
   - component: {fileID: 8296264914144405749}
   - component: {fileID: 8296264914144405748}
   - component: {fileID: 8296264914144405751}
+  - component: {fileID: 5331494539578670075}
   m_Layer: 5
   m_Name: D_Options3
   m_TagString: Untagged
@@ -2181,6 +2239,35 @@ MonoBehaviour:
   padding: {x: 2, y: 30}
   offset: {x: 0, y: 5}
   prevBubble: {fileID: 8296264912612412158}
+--- !u!114 &5331494539578670075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8296264914144405746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4460790447739251033}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8296264914190592757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2516,6 +2603,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 4460790447739251033}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -2672,6 +2771,7 @@ GameObject:
   - component: {fileID: 8296264914552901920}
   - component: {fileID: 8296264914552901923}
   - component: {fileID: 8296264914552901922}
+  - component: {fileID: 7509968153005016193}
   m_Layer: 5
   m_Name: D_Options1
   m_TagString: Untagged
@@ -2769,6 +2869,35 @@ MonoBehaviour:
   padding: {x: 2, y: 30}
   offset: {x: 0, y: 0}
   prevBubble: {fileID: 0}
+--- !u!114 &7509968153005016193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8296264914552901921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4460790447739251033}
+          m_TargetAssemblyTypeName: ButtonHooverSFX, Assembly-CSharp
+          m_MethodName: PlayOnHooverSFX
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &8858477123746817164
 GameObject:
   m_ObjectHideFlags: 0
@@ -2852,6 +2981,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6007912139851366562}
     m_Modifications:
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ButtonHooverSFX, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 4460790447739251033}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayOnHooverSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 774216863, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
       propertyPath: mode
       value: 1
@@ -2962,6 +3119,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6007912139851366562}
     m_Modifications:
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ButtonHooverSFX, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 4460790447739251033}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PlayOnHooverSFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 774216862, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 774216863, guid: 46a60b5b44b722542afb39edf40c13aa, type: 3}
       propertyPath: dialogueMenu
       value: 
