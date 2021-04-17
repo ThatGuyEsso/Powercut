@@ -156,7 +156,8 @@ public class ShadowCrawler : BaseEnemy
                     animController.PlayAnim("Walk");
                     ResolveTargetType();
                     ChangeSFX("BugsCrawling");
-                    aSource.Play();
+                    if(aSource)
+                        aSource.Play();
                 }
                 else
                 {

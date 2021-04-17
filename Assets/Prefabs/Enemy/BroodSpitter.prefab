@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4288581607830251774}
   - component: {fileID: 8213299950118353362}
   - component: {fileID: 3021631573579540483}
+  - component: {fileID: 2811162031081716247}
   m_Layer: 11
   m_Name: BroodSpitter
   m_TagString: Enemy
@@ -172,10 +173,10 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 178
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -250,6 +251,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2811162031081716247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019876214155700689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6830125e4c7debe4d9803296e4547501, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targets: Enemy
+  pushForce: 2
 --- !u!1 &2394425076858405447
 GameObject:
   m_ObjectHideFlags: 0

@@ -258,7 +258,7 @@ MonoBehaviour:
   - {fileID: 1806427279521341351, guid: 607087a546434034bb2955094b1e299b, type: 3}
   - {fileID: 1806427279521341351, guid: 51741b60c7a514240ab3dba28a305c1f, type: 3}
   - {fileID: 1806427279521341351, guid: c7b1179063db0964e957414ff7293727, type: 3}
-  spread: 30
+  spread: 10
   spreadAngle: 90
   table: {fileID: 11400000, guid: 755ce341bbdb0f24e88b5b6e2b7dbda3, type: 2}
   maxhHalth: 20

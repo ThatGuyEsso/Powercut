@@ -43,6 +43,7 @@ public class AudioPlayer : MonoBehaviour, IAudio
         StartCoroutine(ListiningToFinish());
     }
 
+    public string GetName() { return currentName; }
 
     IEnumerator ListiningToFinish()
     {

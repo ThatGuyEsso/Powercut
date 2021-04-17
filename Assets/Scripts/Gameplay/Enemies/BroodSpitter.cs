@@ -193,7 +193,8 @@ public class BroodSpitter : BaseEnemy
                     animController.PlayAnim("Walking");
                     ResolveTargetType();
                     ChangeSFX("BugsCrawling");
-                    aSource.Play();
+                    if (aSource)
+                        aSource.Play();
                 }
                 else
                 {
@@ -261,7 +262,7 @@ public class BroodSpitter : BaseEnemy
         shot.SetUpBullet(kBack, dmg);
         shot.Shoot(firePoint.up, shootForce);
         canAttack = false;
-        Invoke("ResetShotTime", settings.attackRate);
+        Invoke("ResetShotTime", Random.Range(Mathf.Clamp(settings.attackRate-1.5f,0f, settings.attackRate), settings.attackRate+1.5f));
     }
 
     private void ResetShotTime()

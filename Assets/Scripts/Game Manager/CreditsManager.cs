@@ -146,11 +146,12 @@ public class CreditsManager : MonoBehaviour
 
         printState = DialogueState.Busy;
         DisplayTypingBubble(newCredit.IsCredit);
+        AudioManager.instance.Play("TypingSFX");
         //wait time should probably create a small texting bubble
         yield return new WaitForSeconds(newCredit.TypeTime);
         typingBubble.SetActive(false);
         DisplayCredit(newCredit.IsCredit, newCredit);
-
+        AudioManager.instance.Stop("TypingSFX");
 
 
 

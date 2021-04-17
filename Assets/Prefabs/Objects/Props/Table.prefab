@@ -90,12 +90,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brokenParts: []
-  spread: 360
-  spreadAngle: 180
+  spread: 10
+  spreadAngle: 90
+  table: {fileID: 0}
   maxhHalth: 20
   gfxs: []
   colliders: []
   pieces: []
+  smashSFX: ObjectSmash
+  smashVFX: {fileID: 0}
 --- !u!82 &-6050926414348337615
 AudioSource:
   m_ObjectHideFlags: 0

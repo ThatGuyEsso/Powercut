@@ -211,6 +211,9 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
         DamageTask(damage);
         if (damageVFX)
             SpawnDamgeVFX(interfacingEnemy.transform);
+        IAudio audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position).GetComponent<IAudio>();
+        audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("ApplianceAttacked"));
+        audioPlayer.Play();
         if (!isFixed)
         {
             interfacingEnemy.GetComponent<IBreakable>().ObjectIsBroken();

@@ -149,9 +149,11 @@ public class SMSDialogue : MonoBehaviour
         }
         currentDialogueState = DialogueState.Busy;
         DisplayTypingBubble();
+        AudioManager.instance.Play("TypingSFX");
         //wait time should probably create a small texting bubble
         yield return new WaitForSeconds(typingTime);
         typingBubble.SetActive(false);
+        AudioManager.instance.Stop("TypingSFX");
         //if there is no previous bubble assume this is the start of the conversation
         if (previousBubble == false)
         {

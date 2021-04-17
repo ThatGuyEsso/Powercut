@@ -14,6 +14,19 @@ public class PheremoneBlast : BaseAttackPattern
         vfx.Simulate(0.0f, true, true);
         vfx.gameObject.SetActive(false);
 
+        aSource = GetComponent<AudioSource>();
+
+        if (aSource)
+        {
+            Sound droneSFX = AudioManager.instance.GetSound(sfxName);
+
+            aSource.clip = droneSFX.clip;
+            aSource.volume = droneSFX.volume;
+            aSource.outputAudioMixerGroup = droneSFX.mixerGroup;
+            aSource.pitch = droneSFX.pitch;
+            aSource.loop = droneSFX.loop;
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -63,6 +76,7 @@ public class PheremoneBlast : BaseAttackPattern
         vfx.gameObject.SetActive(true);
         vfx.Simulate(0.0f, true, true);
         vfx.Play();
+        if (gameObject.activeInHierarchy && aSource) aSource.Play();
         StartCoroutine(ListenToEndOfVFX());
     }
     public override void StopRunning()

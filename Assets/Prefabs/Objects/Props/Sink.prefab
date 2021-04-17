@@ -172,13 +172,15 @@ MonoBehaviour:
   - {fileID: 1806427279521341351, guid: a8d4f73d3bee4924f950ffd928ce18c8, type: 3}
   - {fileID: 1806427279521341351, guid: d660769e48f7e894ab8d79a5a6f8470c, type: 3}
   - {fileID: 1806427279521341351, guid: 84f4f8101a94f5043833b98737c30eaf, type: 3}
-  spread: 50
-  spreadAngle: 120
+  spread: 10
+  spreadAngle: 90
   table: {fileID: 0}
   maxhHalth: 50
   gfxs: []
   colliders: []
   pieces: []
+  smashSFX: ObjectSmash
+  smashVFX: {fileID: 0}
 --- !u!1 &7796964826519965170
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,8 +6,10 @@ public class AttackDrones : BaseAttackPattern
 {
 
     public SeekingDrones dronePrefab;
+
     private List<SeekingDrones> activeDrones = new List<SeekingDrones>();
     [SerializeField] private float droneSize = 1f;
+ 
     public override void ExecuteAttack()
     {
         if (playerTransform)

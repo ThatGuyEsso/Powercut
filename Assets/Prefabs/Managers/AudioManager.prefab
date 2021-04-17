@@ -66,7 +66,7 @@ MonoBehaviour:
     source: {fileID: 0}
     mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
   - name: ClickSFX
-    clip: {fileID: 8300000, guid: 35cfd8b9aef54f04ab764eb643e04e40, type: 3}
+    clip: {fileID: 8300000, guid: 2d0b9d7c748af3848ba12688fe81b48d, type: 3}
     volume: 0.4
     pitch: 1
     loop: 0
@@ -227,22 +227,71 @@ MonoBehaviour:
     source: {fileID: 0}
     mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
   - name: ButtonHoover
-    clip: {fileID: 8300000, guid: c57331fce6f65cc4a90ef4966254cad0, type: 3}
+    clip: {fileID: 8300000, guid: cbc46b06f7a19b041986ba5fcd9d438f, type: 3}
     volume: 0.2
-    pitch: 1
+    pitch: 0.42
     loop: 0
     source: {fileID: 0}
     mixerGroup: {fileID: 24300002, guid: 268dcd6368b9ed84593da25e14ae3e08, type: 2}
   - name: SlimeProjectileHit
     clip: {fileID: 8300000, guid: c728cc5c4cf748349bd6170e73a59796, type: 3}
-    volume: 0.4
+    volume: 0.25
     pitch: 1
     loop: 0
     source: {fileID: 0}
     mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
   - name: SlimeFireProjectile
     clip: {fileID: 8300000, guid: 3a019795f1d6dc840a158694bd0078eb, type: 3}
-    volume: 0.6
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: ApplianceAttacked
+    clip: {fileID: 8300000, guid: 7789367fbfab0ce4fa1dc09ed26f3055, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: TypingSFX
+    clip: {fileID: 8300000, guid: 9489ab8c71b7e9745b13d6bc45f0c05e, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 268dcd6368b9ed84593da25e14ae3e08, type: 2}
+  - name: DronesSFX
+    clip: {fileID: 8300000, guid: df780da7fd5a9fd44a0b6e77be1e0d92, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: PheremoneBlastSFX
+    clip: {fileID: 8300000, guid: 30bf3262df125ca4983d7b17ca969118, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: CocoonBuildingSFX
+    clip: {fileID: 8300000, guid: 4a14cd1e583944748a59825743bd19c5, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: CoonFinishedSFX
+    clip: {fileID: 8300000, guid: 5db8d541a66241f4fbfdce0ae8e9e837, type: 3}
+    volume: 0.75
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+    mixerGroup: {fileID: 24300002, guid: 42c3a039e9da24c41bf59b0ceb38d8f8, type: 2}
+  - name: HiveUIScalingSFX
+    clip: {fileID: 8300000, guid: 8c8e91b4db6e7b042a1c2e15d8d9af95, type: 3}
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}

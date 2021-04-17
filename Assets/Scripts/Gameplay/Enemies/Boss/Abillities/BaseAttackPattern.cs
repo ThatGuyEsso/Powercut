@@ -13,7 +13,8 @@ public abstract class BaseAttackPattern : MonoBehaviour
     protected float attackCoolDown;
     protected int attackCount;
     protected int maxAttackCount;
-
+    protected AudioSource aSource;
+    [SerializeField] protected string sfxName;
 
     //pattern Settings
     [SerializeField] protected float attackRange;

@@ -3094,7 +3094,7 @@ PrefabInstance:
     - target: {fileID: 8296264913084456671, guid: 13c507b9c6d60174d9737d223cd46034, type: 3}
       propertyPath: storyData
       value: 
-      objectReference: {fileID: 11400000, guid: 4a94eff66b835bf41946ae2581ad9f93, type: 2}
+      objectReference: {fileID: 11400000, guid: 08e9e575dd11efe47bd055e6b98b4c17, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13c507b9c6d60174d9737d223cd46034, type: 3}
 --- !u!114 &881421167 stripped
@@ -22783,6 +22783,7 @@ MonoBehaviour:
   clientPortrait: {fileID: 21300000, guid: cbc1a3112212fcb4c80df27afa0a7904, type: 3}
   BeatID: 1
   speaker: 1
+  isActive: 1
   prompt: '[E] To Open Door'
 --- !u!114 &1297339347
 MonoBehaviour:
@@ -24116,6 +24117,15 @@ MonoBehaviour:
   dialogueMenu: {fileID: 881421167}
   phoneAnim: {fileID: 881421168}
   animEvents: {fileID: 881421169}
+  currentClient:
+    clientName: 
+    UID: 
+    hasMessage: 0
+    unlocked: 0
+    clientSprite: {fileID: 0}
+    levelTriggers: 
+    beats: 
+    currentConversation: []
 --- !u!4 &1596394079
 Transform:
   m_ObjectHideFlags: 0

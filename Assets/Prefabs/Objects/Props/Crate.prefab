@@ -130,13 +130,15 @@ MonoBehaviour:
   - {fileID: 1806427279521341351, guid: a9378f40f833b6041a26091249513d85, type: 3}
   - {fileID: 1806427279521341351, guid: 9abca015681da7446874050e89bc0f02, type: 3}
   - {fileID: 1806427279521341351, guid: 3ebe950852e410a4a9b8e6ea40d32fc2, type: 3}
-  spread: 80
-  spreadAngle: 180
+  spread: 10
+  spreadAngle: 90
   table: {fileID: 11400000, guid: 755ce341bbdb0f24e88b5b6e2b7dbda3, type: 2}
   maxhHalth: 20
   gfxs: []
   colliders: []
   pieces: []
+  smashSFX: ObjectSmash
+  smashVFX: {fileID: 0}
 --- !u!208 &1514910768081776506
 NavMeshObstacle:
   m_ObjectHideFlags: 0

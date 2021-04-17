@@ -15,12 +15,25 @@ public class SeekingDrones : MonoBehaviour,IHurtable
     [SerializeField] private GameObject explosionVFX;
     [SerializeField] private GameObject audioPlayerPrefab;
 
-
+    private AudioSource aSource;
+    [SerializeField] private string sfxName;
     [SerializeField]  private LayerMask collisionLayers;
 
     public void Awake()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
+        aSource = GetComponent<AudioSource>();
+
+        if (aSource)
+        {
+            Sound droneSFX = AudioManager.instance.GetSound(sfxName);
+
+            aSource.clip = droneSFX.clip;
+            aSource.volume = droneSFX.volume;
+            aSource.outputAudioMixerGroup = droneSFX.mixerGroup;
+            aSource.pitch = droneSFX.pitch;
+            aSource.loop = droneSFX.loop;
+        }
     }
     public void SetUpDrone(Transform target, float damage, float knockback, AttackDrones owner)
     {
@@ -29,6 +42,7 @@ public class SeekingDrones : MonoBehaviour,IHurtable
         this.damage = damage;
         knockBack = knockback;
         this.owner = owner;
+        if (aSource) aSource.Play();
         StartCoroutine(UpdateDirection());
     }
 
@@ -101,6 +115,7 @@ public class SeekingDrones : MonoBehaviour,IHurtable
 
     private void OnDisable()
     {
+        if (aSource&&aSource.isPlaying) aSource.Stop();
         StopAllCoroutines();
         isActive = false;
         target = null;

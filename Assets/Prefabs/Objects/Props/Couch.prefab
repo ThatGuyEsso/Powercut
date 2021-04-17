@@ -178,13 +178,15 @@ MonoBehaviour:
   - {fileID: 1806427279521341351, guid: 97791c2ba1497ca418d4540173f9e065, type: 3}
   - {fileID: 1806427279521341351, guid: 2006d6a8b43da664d991f8a9b05c865d, type: 3}
   - {fileID: 1806427279521341351, guid: c1b63a8acbc24ee4782aa0393650d0a3, type: 3}
-  spread: 0
-  spreadAngle: 0
+  spread: 10
+  spreadAngle: 90
   table: {fileID: 11400000, guid: 755ce341bbdb0f24e88b5b6e2b7dbda3, type: 2}
   maxhHalth: 20
   gfxs: []
   colliders: []
   pieces: []
+  smashSFX: ObjectSmash
+  smashVFX: {fileID: 0}
 --- !u!82 &-7720100636449555215
 AudioSource:
   m_ObjectHideFlags: 0

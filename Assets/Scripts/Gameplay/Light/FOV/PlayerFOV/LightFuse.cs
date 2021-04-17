@@ -172,6 +172,10 @@ public class LightFuse : MonoBehaviour, IBreakable, Controls.IInteractionsAction
         parentLamp.DamageLamp(damage);
         if (damageVFX)
             SpawnDamgeVFX(interfacingEnemy.transform);
+
+        IAudio audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position).GetComponent<IAudio>();
+        audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("ApplianceAttacked"));
+        audioPlayer.Play();
         if (!parentLamp.GetIsLampWorking())
         {
             interfacingEnemy.GetComponent<IBreakable>().ObjectIsBroken();

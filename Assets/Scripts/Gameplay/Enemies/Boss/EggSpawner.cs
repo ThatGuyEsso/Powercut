@@ -7,6 +7,8 @@ public class EggSpawner : MonoBehaviour
     private Transform target;
     private GameObject enemyToSpawn;
     [SerializeField] private GameObject hatchVFX;
+    [SerializeField] private GameObject audioPlayerPrefab;
+    [SerializeField] private string hatchSFX;
     private Rigidbody2D rb;
     private SendSoldiers sourceRef;
 
@@ -31,7 +33,11 @@ public class EggSpawner : MonoBehaviour
     }
     public void Hatch()
     {
+        IAudio audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position).GetComponent<IAudio>();
+        audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound(hatchSFX));
+        audioPlayer.PlayAtRandomPitch();
         ObjectPoolManager.Spawn(hatchVFX, transform.position, Quaternion.identity);
+
         BaseEnemy enemy = ObjectPoolManager.Spawn(enemyToSpawn, transform.position, Quaternion.identity).GetComponent<BaseEnemy>();
         enemy.SetTarget(target);
         sourceRef.BindToSpawnedEnemy(enemy);

@@ -84,6 +84,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hatchVFX: {fileID: 7105956176019873297, guid: 5958c81e0f6ae204d8bf2e523f1e3886, type: 3}
+  audioPlayerPrefab: {fileID: 3912195020010027157, guid: bd5d0c2d9dcef8b44bc27c081b8263e3, type: 3}
+  hatchSFX: SlimeFireProjectile
   minHatchTime: 1.5
   maxHatchTime: 3
 --- !u!1 &156527319000151231

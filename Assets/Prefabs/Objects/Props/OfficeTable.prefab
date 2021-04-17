@@ -126,13 +126,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brokenParts: []
-  spread: 360
-  spreadAngle: 180
+  spread: 10
+  spreadAngle: 90
   table: {fileID: 11400000, guid: 755ce341bbdb0f24e88b5b6e2b7dbda3, type: 2}
   maxhHalth: 20
   gfxs: []
   colliders: []
   pieces: []
+  smashSFX: ObjectSmash
+  smashVFX: {fileID: 0}
 --- !u!82 &5359470874242168561
 AudioSource:
   m_ObjectHideFlags: 0

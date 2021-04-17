@@ -48,3 +48,4 @@ MonoBehaviour:
   knockBack: 10
   playerTransform: {fileID: 0}
   dronePrefab: {fileID: 7824769163096393875, guid: 8e46bf9e33651734380989a749076662, type: 3}
+  droneSize: 1

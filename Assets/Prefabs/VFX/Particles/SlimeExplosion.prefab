@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7105956176019873388}
   - component: {fileID: 7105956176019873299}
   - component: {fileID: 7105956176019873298}
+  - component: {fileID: 1865578741159087601}
   m_Layer: 11
   m_Name: SlimeExplosion
   m_TagString: Untagged
@@ -4871,3 +4872,15 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
+--- !u!114 &1865578741159087601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7105956176019873297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a2d15b738153d4ca07b874e1d054c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
