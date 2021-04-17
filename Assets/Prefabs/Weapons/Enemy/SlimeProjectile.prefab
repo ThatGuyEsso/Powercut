@@ -416,6 +416,7 @@ MonoBehaviour:
     m_Bits: 35072
   sparkPrefab: {fileID: 7105956176019873297, guid: 5958c81e0f6ae204d8bf2e523f1e3886, type: 3}
   triggerEnemyPrefab: {fileID: 8802122154967875711, guid: 8c3a4e8232c10704bb2c293b373c52ed, type: 3}
+  collisionSFX: SlimeProjectileHit
   audioPlayerPrefab: {fileID: 3912195020010027157, guid: bd5d0c2d9dcef8b44bc27c081b8263e3, type: 3}
   targetTag: Player
   rotRate: 10

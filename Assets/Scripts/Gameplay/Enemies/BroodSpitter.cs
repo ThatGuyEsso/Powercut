@@ -252,6 +252,10 @@ public class BroodSpitter : BaseEnemy
     {
         GameObject bullet = ObjectPoolManager.Spawn(projectilePrefab, firePoint.position, firePoint.rotation);
         IShootable shot = bullet.GetComponent<IShootable>();
+    
+        IAudio player = ObjectPoolManager.Spawn(audioPlayerPrefab.gameObject, transform.position, transform.rotation).GetComponent<IAudio>();
+        player.SetUpAudioSource(AudioManager.instance.GetSound("SlimeFireProjectile"));
+        player.PlayAtRandomPitch();
         float dmg = Random.Range(settings.minDamage, settings.maxDamage);
         float kBack = Random.Range(settings.minKnockBack, settings.minKnockBack);
         shot.SetUpBullet(kBack, dmg);

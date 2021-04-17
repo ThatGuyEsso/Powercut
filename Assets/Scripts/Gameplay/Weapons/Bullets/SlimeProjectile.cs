@@ -21,7 +21,7 @@ public class SlimeProjectile : BaseBullet
             if (!other.CompareTag("Enemy"))
             {
                 IAudio audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position).GetComponent<IAudio>();
-                audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("BulletCollisionSFX"));
+                audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound(collisionSFX));
                 audioPlayer.PlayAtRandomPitch();
 
                 Vector2 backDir = rb.velocity.normalized * -1;
@@ -40,6 +40,10 @@ public class SlimeProjectile : BaseBullet
                 other.GetComponent<IHurtable>().Damage(damage, rb.velocity.normalized, knockBack);
 
             }
+            IAudio audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position).GetComponent<IAudio>();
+            audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound(collisionSFX));
+            audioPlayer.PlayAtRandomPitch();
+
             ObjectPoolManager.Spawn(sparkPrefab, transform.position, transform.rotation);
             ObjectPoolManager.Spawn(triggerEnemyPrefab, transform.position, Quaternion.identity);
 

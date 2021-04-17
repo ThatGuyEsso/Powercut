@@ -11,6 +11,7 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable,IAudio
     protected float damage;
     protected float knockBack;
     protected float shotForce;
+    [SerializeField] protected string collisionSFX = "BulletCollisionSFX";
     protected Rigidbody2D rb;
     protected AudioSource source;
     [SerializeField] protected GameObject audioPlayerPrefab;
@@ -25,7 +26,7 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable,IAudio
         if(((1 << other.gameObject.layer) & collisionLayers) != 0)
         {
             IAudio audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position).GetComponent<IAudio>();
-            audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("BulletCollisionSFX"));
+            audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound(collisionSFX));
             audioPlayer.PlayAtRandomPitch();
 
             Vector2 backDir = rb.velocity.normalized * -1;
@@ -42,6 +43,9 @@ public class BaseBullet : MonoBehaviour, IShootable, IHurtable,IAudio
                 other.GetComponent<IHurtable>().Damage(damage, rb.velocity.normalized, knockBack);
 
             }
+            IAudio audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position).GetComponent<IAudio>();
+            audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound(collisionSFX));
+            audioPlayer.PlayAtRandomPitch();
             ObjectPoolManager.Spawn(sparkPrefab, transform.position, transform.rotation);
             if(triggerEnemyPrefab)
                 ObjectPoolManager.Spawn(triggerEnemyPrefab, transform.position, Quaternion.identity);
