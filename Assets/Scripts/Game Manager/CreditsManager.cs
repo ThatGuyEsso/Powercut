@@ -63,12 +63,13 @@ public class CreditsManager : MonoBehaviour
         }
 
     }
+
     private void Init()
     {
         currentCredit = 0;
         if(!typingBubble)
             typingBubble = Instantiate(typingBubblePrefab, smsArea);
-        smsBubbles.Add(typingBubble.transform);
+    
         typingBubble.SetActive(false);
         InstantDisplay();
         BeginToDisplayCredits();
@@ -260,7 +261,7 @@ public class CreditsManager : MonoBehaviour
                 {
                     float vertDistance = screenEndPoint.position.y - pos.y;
                     ScrollUnitsUp(vertDistance + bubbleHeight / 2);
-                    typingBubble.transform.position = (Vector3)new Vector2(typingBubble.transform.position.x,
+                    typingBubble.transform.position = new Vector2(typingBubble.transform.position.x,
                         typingBubble.transform.position.y + vertDistance + bubbleHeight / 2);
                 }
             }
@@ -294,8 +295,8 @@ public class CreditsManager : MonoBehaviour
                 {
                     float vertDistance = screenEndPoint.position.y - pos.y;
                     ScrollUnitsUp(vertDistance + bubbleHeight / 2);
-                    typingBubble.transform.position = (Vector3)new Vector2(typingBubble.transform.position.x,
-                        typingBubble.transform.position.y + vertDistance + bubbleHeight / 2);
+                    typingBubble.transform.position = new Vector2(typingBubble.transform.position.x,
+                        typingBubble.transform.position.y + vertDistance + bubbleHeight / 2 );
                 }
             }
         }
@@ -314,7 +315,7 @@ public class CreditsManager : MonoBehaviour
     {
         foreach (Transform bubble in smsBubbles)
         {
-            bubble.position = (Vector3)new Vector2(bubble.transform.position.x, bubble.transform.position.y + scrollAmount);
+            bubble.position = new Vector2(bubble.transform.position.x, bubble.transform.position.y + scrollAmount);
         }
     }
     public void ScrollUnitsDown(float scrollAmount)
@@ -336,7 +337,7 @@ public class CreditsManager : MonoBehaviour
     public bool CanScrollUp()
     {
 
-        Vector2 position = (Vector2)smsBubbles[0].transform.position + new Vector2(0.0f,
+        Vector2 position = (Vector2)smsBubbles[0].position + new Vector2(0.0f,
             smsBubbles[0].GetComponent<RectTransform>().rect.height / 2);
         if (position.y > authorStartPos.position.y)
         {

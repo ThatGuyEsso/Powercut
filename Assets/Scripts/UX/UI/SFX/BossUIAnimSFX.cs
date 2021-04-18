@@ -9,7 +9,7 @@ public class BossUIAnimSFX : MonoBehaviour
     [SerializeField] protected string barScaleSFX;
     [SerializeField] protected string healthBarLoadSFX;
     [SerializeField] protected string healthFinishedSFX;
-
+    [SerializeField] private Animator anim;
     public void PlayUIScaleSFX()
     {
         AudioManager.instance.Play(barScaleSFX);
@@ -28,4 +28,9 @@ public class BossUIAnimSFX : MonoBehaviour
         audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound(healthFinishedSFX));
         audioPlayer.Play();
     }
+    public void EndAnimation()
+    {
+        anim.enabled = false;
+    }
+
 }

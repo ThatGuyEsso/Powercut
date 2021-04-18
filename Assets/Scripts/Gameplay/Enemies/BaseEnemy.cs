@@ -383,6 +383,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
         player.SetUpAudioSource(AudioManager.instance.GetSound("BugsSplat"));
         player.PlayAtRandomPitch();
         InitStateManager.instance.OnStateChange -= EvaluateNewState;
+        GameStateManager.instance.OnGameStateChange -= EvaluateGameState;
         if (GameIntensityManager.instance != false) GameIntensityManager.instance.DecrementNumberOfCrawlers();
 
         if (navComp.enabled)
@@ -412,6 +413,8 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     public void BindToInitManager()
     {
         InitStateManager.instance.OnStateChange += EvaluateNewState;
+   
+
     }
     virtual protected void EvaluateNewState(InitStates newState)
     {
@@ -435,6 +438,19 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
 
                     break;
                 
+        }
+    }
+
+    virtual protected void EvaluateGameState(GameStates newState)
+    {
+        switch (newState)
+        {
+         
+            case GameStates.LevelClear:
+         
+                KillEnemy();
+                break;
+
         }
     }
 
@@ -536,11 +552,15 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     {
   
         InitStateManager.instance.OnStateChange -= EvaluateNewState;
+        if (GameStateManager.instance)
+            GameStateManager.instance.OnGameStateChange -= EvaluateGameState;
     }
     virtual protected void OnEnable()
     {
 
         InitStateManager.instance.OnStateChange += EvaluateNewState;
+        if (GameStateManager.instance)
+            GameStateManager.instance.OnGameStateChange += EvaluateGameState;
     }
 
     protected void ChangeSFX(string sfxName)

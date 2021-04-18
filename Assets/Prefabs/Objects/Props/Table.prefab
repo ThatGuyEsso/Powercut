@@ -89,7 +89,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e41dd31ea0248f4db01ea24cf615044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokenParts: []
+  brokenParts:
+  - {fileID: 1806427279521341351, guid: ee811bca2ea720f41bbbaac138b3753b, type: 3}
+  - {fileID: 1806427279521341351, guid: 190b6ec9d3d65e74d8a70346889244a2, type: 3}
+  - {fileID: 1806427279521341351, guid: 2ea291925d8cd6c4a933aeda30d6fdb6, type: 3}
+  - {fileID: 1806427279521341351, guid: 9015af499e3599946ad79e7d7db1fd2f, type: 3}
+  - {fileID: 1806427279521341351, guid: 190b6ec9d3d65e74d8a70346889244a2, type: 3}
+  - {fileID: 1806427279521341351, guid: 9015af499e3599946ad79e7d7db1fd2f, type: 3}
+  - {fileID: 1806427279521341351, guid: 26f6a68f0da48f84d9482bd6109f74bf, type: 3}
+  - {fileID: 1806427279521341351, guid: e21611b893747ee40a1b08493478a1d7, type: 3}
+  - {fileID: 1806427279521341351, guid: e21611b893747ee40a1b08493478a1d7, type: 3}
+  - {fileID: 1806427279521341351, guid: ee811bca2ea720f41bbbaac138b3753b, type: 3}
   spread: 10
   spreadAngle: 90
   table: {fileID: 0}
@@ -120,7 +130,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0

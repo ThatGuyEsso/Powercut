@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2730902331751597271}
   - component: {fileID: 2216617913327535792}
+  - component: {fileID: -4427345986727589368}
   m_Layer: 0
   m_Name: RoundTable
   m_TagString: Untagged
@@ -54,7 +55,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 5
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -129,6 +130,33 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-4427345986727589368
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698261089812999110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e41dd31ea0248f4db01ea24cf615044, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brokenParts:
+  - {fileID: 1806427279521341351, guid: ee811bca2ea720f41bbbaac138b3753b, type: 3}
+  - {fileID: 1806427279521341351, guid: 190b6ec9d3d65e74d8a70346889244a2, type: 3}
+  - {fileID: 1806427279521341351, guid: 2ea291925d8cd6c4a933aeda30d6fdb6, type: 3}
+  - {fileID: 1806427279521341351, guid: 9015af499e3599946ad79e7d7db1fd2f, type: 3}
+  - {fileID: 1806427279521341351, guid: 190b6ec9d3d65e74d8a70346889244a2, type: 3}
+  spread: 10
+  spreadAngle: 90
+  table: {fileID: 0}
+  maxhHalth: 20
+  gfxs: []
+  colliders: []
+  pieces: []
+  smashSFX: ObjectSmash
+  smashVFX: {fileID: 0}
 --- !u!1 &3506698102976184975
 GameObject:
   m_ObjectHideFlags: 0

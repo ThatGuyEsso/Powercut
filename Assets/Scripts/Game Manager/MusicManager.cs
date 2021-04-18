@@ -7,6 +7,7 @@ public class MusicManager : MonoBehaviour
 {
     public static MusicManager instance;
     [SerializeField] private Record currentRecord;
+    [SerializeField] private Record creditRecord;
     private int currrentTrackList;
     [SerializeField] private AudioSource primarySource;
     [SerializeField] private AudioSource secondarySource;
@@ -146,6 +147,7 @@ public class MusicManager : MonoBehaviour
 
     public void BeginFadeOut()
     {
+    
         StartCoroutine(FadeOut());
     }
     public void BeginFadeIn()
@@ -173,8 +175,6 @@ public class MusicManager : MonoBehaviour
     private IEnumerator FadeOut()
     {
 
-        float maxVolume = primarySource.volume;
-        primarySource.volume = 0f;
 
 
         while (primarySource.volume > 0.0f)
@@ -264,7 +264,20 @@ public class MusicManager : MonoBehaviour
                     BindToGameState();
                 }
                 break;
-                
+
+            case InitStates.Credits:
+                if (isAwake)
+                {
+                    StopAllCoroutines();
+                    BeginFadeOut();
+                    foreach(TrackList tracklist in creditRecord.records)
+                    {
+                        tracklist.ResetRecord();
+                    }
+                    currentRecord = creditRecord;
+                    PlayFirstTrack();
+                }
+                break;
             case InitStates.PlayerDead:
                 if (isAwake)
                 {
@@ -295,6 +308,7 @@ public class MusicManager : MonoBehaviour
         {
             case GameStates.LevelClear:
                 StopAllCoroutines();
+              
                 GameStateManager.instance.OnGameStateChange -= OnNewGameState;
                 break;
 

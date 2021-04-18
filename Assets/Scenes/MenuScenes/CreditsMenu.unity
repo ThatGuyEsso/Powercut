@@ -319,6 +319,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6738714430104995683, guid: b9c81b476cfcd95489ebf4db0be0a740, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6738714430104995683, guid: b9c81b476cfcd95489ebf4db0be0a740, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8928729829509470688, guid: b9c81b476cfcd95489ebf4db0be0a740, type: 3}
       propertyPath: playOneAwake
       value: 1

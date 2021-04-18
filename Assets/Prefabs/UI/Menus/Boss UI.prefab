@@ -316,6 +316,7 @@ MonoBehaviour:
   barScaleSFX: HiveUIScalingSFX
   healthBarLoadSFX: SlimeProjectileHit
   healthFinishedSFX: SlimeFireProjectile
+  anim: {fileID: 5969458237692768076}
 --- !u!1 &8831508752221233075
 GameObject:
   m_ObjectHideFlags: 0

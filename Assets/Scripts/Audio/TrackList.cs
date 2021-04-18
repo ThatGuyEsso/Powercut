@@ -47,5 +47,6 @@ public class TrackList
         return trackList[trackIndex];
     }
 
+    public void ResetRecord() { trackIndex = 0; }
 
 }

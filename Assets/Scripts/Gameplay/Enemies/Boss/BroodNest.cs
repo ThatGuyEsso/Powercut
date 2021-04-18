@@ -38,7 +38,7 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
     [SerializeField] private ScalingProgressBar healthBar;
     [SerializeField] private BossAnimController healthBarAnim;
     [SerializeField] private SpriteFlash hurtVFX;
-
+    [SerializeField] private Animator anim;
     [Header("Boss Abilities")]
     [SerializeField] private PheremoneBlast pheremoneBlast;
     [SerializeField] private AttackDrones attackDrones;
@@ -55,11 +55,12 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
 
     //Boss references
     [SerializeField] private Transform playerTransform;
+    private bool isDead;
     public void Damage(float damage, Vector3 knockBackDir, float knockBack)
     {
         if(currentStage!= BossStage.Transition)
         {
-            if (!isHurt)
+            if (!isHurt&&!isDead)
             {
                 hurtVFX.BeginFlash();
                 ObjectPoolManager.Spawn(deathVFX, transform.position, transform.rotation);
@@ -112,10 +113,12 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
     private void ResetHurt()
     {
         isHurt = false;
-        hurtVFX.EndFlash();
+        if(!isDead)
+            hurtVFX.EndFlash();
     }
     public void InitBossBattle()
     {
+        isDead = false;
         healthBar.gameObject.SetActive(true);
     
         healthBarAnim.animEnded += InitiaionComplete;
@@ -580,8 +583,13 @@ public class BroodNest : MonoBehaviour, IInitialisable,IHurtable
         player.PlayAtRandomPitch();
 
         GameStateManager.instance.BeginNewGameState(GameStates.LevelClear);
+        hurtVFX.EndFlash();
+        anim.enabled = false;
+        healthBarAnim.PlayAnim("BossHealthColapse");
+       
+        MusicManager.instance.BeginFadeOut();
+        isDead = true;
         deathHandler.InitDeathState();
-
     }
     public bool AreDelegatesAlive()
     {

@@ -75,8 +75,8 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: d0a9a6d5b5fa0a84a8e5e40abe8c9dea, type: 2}
   audioPlayerPrefab: {fileID: 3912195020010027158, guid: bd5d0c2d9dcef8b44bc27c081b8263e3, type: 3}
   hurtNumber: {fileID: 7152689479093340677, guid: e2c021df58a3bbf4d9284bfcec171352, type: 3}
-  target: {fileID: 0}
   deathVFX: {fileID: 7808037342350693099, guid: 267ccae9eccc07342ab71b58a91e56a7, type: 3}
+  target: {fileID: 0}
   blockingLayers:
     serializedVersion: 2
     m_Bits: 33536

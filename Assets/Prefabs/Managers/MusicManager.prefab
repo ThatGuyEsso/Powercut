@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRecord: {fileID: 0}
+  creditRecord: {fileID: 11400000, guid: 8bce1addc83c9aa4794106118c56a066, type: 2}
   primarySource: {fileID: 4845965226160805300}
   secondarySource: {fileID: 4845965226160805302}
   crossFadeRate: 0.1

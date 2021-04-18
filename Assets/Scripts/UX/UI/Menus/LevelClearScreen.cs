@@ -97,7 +97,19 @@ public class LevelClearScreen : MonoBehaviour
         textFade.BeginTextFadeIn(fadeInRate, fadeInMag);
     }
 
+    public void ClearLevelOver()
+    {
+        textFade.OnTextFadeEnd += HideLevelOver;
+        textFade.BeginTextFadeOut(fadeOutRate, fadeOutMag);
+    }
 
+
+    private void HideLevelOver()
+    {
+        textFade.OnTextFadeEnd -= HideLevelOver;
+        jobCompletedScreen.SetActive(false);
+
+    }
 
     //Enables and disables button components
     public void ToggleButtons(bool isOn)

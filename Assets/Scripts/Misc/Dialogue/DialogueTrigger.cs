@@ -54,6 +54,12 @@ public class DialogueTrigger : MonoBehaviour {
             DialogueManager.instance.ToggleDialogueScreen(true, true);
             InGamePrompt.instance.SetColor(Color.white);
             InGamePrompt.instance.ChangePrompt(prompt);
+
+            if (LevelClearScreen.instance)
+            {
+                LevelClearScreen.instance.ClearLevelOver();
+            }
+         
         }
 
     }

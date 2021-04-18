@@ -42,6 +42,14 @@ public class GameStateManager : MonoBehaviour, IInitialisable
             Destroy(gameObject);
             return;
         }
+        if (record)
+        {
+            foreach(TrackList tracklist in record.records)
+            {
+                tracklist.ResetRecord();
+            }
+        }
+            
     }
 
 

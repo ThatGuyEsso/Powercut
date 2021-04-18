@@ -79,8 +79,8 @@ MonoBehaviour:
   hurtTime: 0.5
   stageDatas:
   - timeBtwnPatterns: 2
-    minCycleCooldownTime: 5
-    maxCycleCooldownTime: 8
+    minCycleCooldownTime: 2
+    maxCycleCooldownTime: 4
     stage: 0
     attackPatterns:
     - attackRate: 1.5
@@ -96,8 +96,8 @@ MonoBehaviour:
       maxAttackCount: 2
       pattern: {fileID: 1156310949}
   - timeBtwnPatterns: 2
-    minCycleCooldownTime: 3
-    maxCycleCooldownTime: 6
+    minCycleCooldownTime: 1
+    maxCycleCooldownTime: 3
     stage: 1
     attackPatterns:
     - attackRate: 1
@@ -119,8 +119,8 @@ MonoBehaviour:
       maxAttackCount: 4
       pattern: {fileID: 236623191}
   - timeBtwnPatterns: 2
-    minCycleCooldownTime: 5
-    maxCycleCooldownTime: 6
+    minCycleCooldownTime: 1
+    maxCycleCooldownTime: 3
     stage: 2
     attackPatterns:
     - attackRate: 1
@@ -129,40 +129,40 @@ MonoBehaviour:
       attackCount: 0
       maxAttackCount: 0
       pattern: {fileID: 1907008065}
-    - attackRate: 0.5
+    - attackRate: 1
       attackDuration: 12
       attackCoolDown: 0
-      attackCount: 3
+      attackCount: 2
       maxAttackCount: 4
       pattern: {fileID: 1156310949}
     - attackRate: 2
       attackDuration: 12
       attackCoolDown: 0
-      attackCount: 3
-      maxAttackCount: 4
+      attackCount: 2
+      maxAttackCount: 3
       pattern: {fileID: 236623191}
   - timeBtwnPatterns: 0
     minCycleCooldownTime: 3
     maxCycleCooldownTime: 5
     stage: 3
     attackPatterns:
-    - attackRate: 4
-      attackDuration: 6
+    - attackRate: 2
+      attackDuration: 0
       attackCoolDown: 4
       attackCount: 0
       maxAttackCount: 0
       pattern: {fileID: 1907008065}
-    - attackRate: 4
-      attackDuration: 12
+    - attackRate: 2
+      attackDuration: 0
       attackCoolDown: 6
-      attackCount: 2
-      maxAttackCount: 4
+      attackCount: 1
+      maxAttackCount: 3
       pattern: {fileID: 1156310949}
     - attackRate: 2
-      attackDuration: 10
+      attackDuration: 0
       attackCoolDown: 5
       attackCount: 1
-      maxAttackCount: 4
+      maxAttackCount: 3
       pattern: {fileID: 236623191}
   broodDelegates:
   - {fileID: 0}
@@ -176,6 +176,7 @@ MonoBehaviour:
   healthBar: {fileID: 0}
   healthBarAnim: {fileID: 0}
   hurtVFX: {fileID: 2306041337204082944}
+  anim: {fileID: 4287951392334403059}
   pheremoneBlast: {fileID: 1907008065}
   attackDrones: {fileID: 1156310949}
   sendSoldiers: {fileID: 236623191}
@@ -183,7 +184,7 @@ MonoBehaviour:
   audioPlayerPrefab: {fileID: 3912195020010027158, guid: bd5d0c2d9dcef8b44bc27c081b8263e3, type: 3}
   hurtNumber: {fileID: 7152689479093340677, guid: e2c021df58a3bbf4d9284bfcec171352, type: 3}
   deathVFX: {fileID: 7808037342350693099, guid: 267ccae9eccc07342ab71b58a91e56a7, type: 3}
-  deathHandler: {fileID: 0}
+  deathHandler: {fileID: 4264850505727404794}
   playerTransform: {fileID: 0}
 --- !u!58 &4287951392334403058
 CircleCollider2D:
@@ -744,7 +745,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1478476085334390435, guid: 7955f67a288b5524f9e2ee6ceaadcb9c, type: 3}
       propertyPath: attackRange
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1478476085334390493, guid: 7955f67a288b5524f9e2ee6ceaadcb9c, type: 3}
       propertyPath: m_Name
