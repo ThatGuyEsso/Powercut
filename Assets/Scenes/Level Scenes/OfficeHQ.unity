@@ -3862,16 +3862,16 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 14.009227, y: 3.975751}
-      - {x: 13.997753, y: 13.988193}
-      - {x: 13.013286, y: 13.995223}
+    - - {x: 16.009228, y: 6.225751}
+      - {x: 15.997753, y: 13.988193}
+      - {x: 15.763286, y: 22.995224}
       - {x: 13.019763, y: 23.025179}
-      - {x: 3.965815, y: 23.019062}
-      - {x: 4.001292, y: 26.219135}
-      - {x: -4.003086, y: 26.25383}
-      - {x: -4.0185347, y: 23.031424}
+      - {x: 5.965815, y: 22.769062}
+      - {x: 6.001292, y: 26.469135}
+      - {x: -7.253086, y: 26.50383}
+      - {x: -7.0185347, y: 22.781424}
       - {x: -15.258254, y: 23.056047}
-      - {x: -15.271602, y: 14.025253}
+      - {x: -20.021603, y: 23.025253}
       - {x: -20.004719, y: 14.028421}
       - {x: -20.00222, y: 3.9859805}
       - {x: -21.978552, y: 3.9729433}
@@ -3888,7 +3888,7 @@ Transform:
   m_GameObject: {fileID: 396721332}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 18
@@ -57602,7 +57602,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.06666667
+  m_VoxelSize: 0.07666667
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: dc82ebb9d5156334497631cd0bdb070c, type: 2}
 --- !u!4 &772770926
