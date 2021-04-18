@@ -193,7 +193,7 @@ public class BroodSpitter : BaseEnemy
                     animController.PlayAnim("Walking");
                     ResolveTargetType();
                     ChangeSFX("BugsCrawling");
-                    if (aSource)
+                    if (aSource.enabled)
                         aSource.Play();
                 }
                 else

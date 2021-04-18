@@ -557,7 +557,7 @@ public abstract class BaseEnemy : MonoBehaviour, IBreakable, IHurtable, ILightWe
     }
     virtual protected void OnEnable()
     {
-
+        currentHealth = settings.maxHealth;
         InitStateManager.instance.OnStateChange += EvaluateNewState;
         if (GameStateManager.instance)
             GameStateManager.instance.OnGameStateChange += EvaluateGameState;

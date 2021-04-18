@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TheWareHouse
   m_EditorClassIdentifier: 
   maxNumberCrawlers: 6
-  targetPercentBrokenLamps: 0.6
+  targetPercentBrokenLamps: 0.4
   minLampBreakTime: 2
-  maxLampBreakTime: 10
+  maxLampBreakTime: 6

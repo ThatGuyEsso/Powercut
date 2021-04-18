@@ -20,7 +20,7 @@ MonoBehaviour:
   - {fileID: 2019876214155700689, guid: 9870201f63f67904f8d179e40237bdcc, type: 3}
   - {fileID: 2019876214155700689, guid: 9870201f63f67904f8d179e40237bdcc, type: 3}
   maxTimeBeforeSpawn: 1
-  minTimeBeforeSpawn: 8
-  maxNumberSpawned: 3
-  minNumberSpawned: 2
+  minTimeBeforeSpawn: 5
+  maxNumberSpawned: 2
+  minNumberSpawned: 1
   spawnRadius: 1.5

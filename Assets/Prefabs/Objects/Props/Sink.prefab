@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7279653092570435289}
   m_Layer: 0
   m_Name: Sink
-  m_TagString: Untagged
+  m_TagString: PhysicsObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,8 +172,8 @@ MonoBehaviour:
   - {fileID: 1806427279521341351, guid: a8d4f73d3bee4924f950ffd928ce18c8, type: 3}
   - {fileID: 1806427279521341351, guid: d660769e48f7e894ab8d79a5a6f8470c, type: 3}
   - {fileID: 1806427279521341351, guid: 84f4f8101a94f5043833b98737c30eaf, type: 3}
-  spread: 10
-  spreadAngle: 90
+  spread: 30
+  spreadAngle: 120
   table: {fileID: 0}
   maxhHalth: 50
   gfxs: []

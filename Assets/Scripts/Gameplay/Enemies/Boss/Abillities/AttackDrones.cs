@@ -62,6 +62,10 @@ public class AttackDrones : BaseAttackPattern
         base.DisableAttack();
         if (activeDrones.Count > 0)
         {
+            foreach(SeekingDrones drone in activeDrones)
+            {
+                drone.KillDrone();
+            }
             activeDrones.Clear();
         }
     }
@@ -71,9 +75,14 @@ public class AttackDrones : BaseAttackPattern
         StopAllCoroutines();
         if (activeDrones.Count > 0)
         {
+            foreach (SeekingDrones drone in activeDrones)
+            {
+                drone.KillDrone();
+            }
             activeDrones.Clear();
         }
     }
+
 
    
 }

@@ -123,6 +123,11 @@ public class SeekingDrones : MonoBehaviour,IHurtable
 
     public void Damage(float damage, Vector3 knockBackDir, float knockBack)
     {
+        KillDrone();
+    }
+
+    public void KillDrone()
+    {
         IAudio audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position).GetComponent<IAudio>();
         audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("BugsSplat"));
         audioPlayer.PlayAtRandomPitch();
@@ -131,7 +136,6 @@ public class SeekingDrones : MonoBehaviour,IHurtable
             owner.Dronekilled(this);
         ObjectPoolManager.Recycle(gameObject);
     }
-
     public void Push(Vector3 knockBackDir, float knockBack)
     {
         throw new System.NotImplementedException();

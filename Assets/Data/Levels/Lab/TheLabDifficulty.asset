@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TheLabDifficulty
   m_EditorClassIdentifier: 
   maxNumberCrawlers: 8
-  targetPercentBrokenLamps: 0.3
+  targetPercentBrokenLamps: 0.5
   minLampBreakTime: 2
-  maxLampBreakTime: 10
+  maxLampBreakTime: 5

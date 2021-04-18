@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 5093163780361822020}
   m_Layer: 0
   m_Name: Toilet
-  m_TagString: Untagged
+  m_TagString: PhysicsObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -254,8 +254,8 @@ MonoBehaviour:
   - {fileID: 1806427279521341351, guid: cf509e1c282ae2d42b86e483d69e00d4, type: 3}
   - {fileID: 1806427279521341351, guid: 7ee7e6cb2445c7f42ac6a03a8c696ae2, type: 3}
   - {fileID: 1806427279521341351, guid: cae57a8ef2835bc49a0904c39983518e, type: 3}
-  spread: 10
-  spreadAngle: 90
+  spread: 30
+  spreadAngle: 120
   table: {fileID: 11400000, guid: 755ce341bbdb0f24e88b5b6e2b7dbda3, type: 2}
   maxhHalth: 50
   gfxs: []

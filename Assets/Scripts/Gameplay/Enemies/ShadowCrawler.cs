@@ -156,7 +156,7 @@ public class ShadowCrawler : BaseEnemy
                     animController.PlayAnim("Walk");
                     ResolveTargetType();
                     ChangeSFX("BugsCrawling");
-                    if(aSource)
+                    if (aSource.enabled)
                         aSource.Play();
                 }
                 else
@@ -202,7 +202,11 @@ public class ShadowCrawler : BaseEnemy
        
     }
 
-
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        RandomStatMutation();
+    }
     public void RandomStatMutation()
     {
         float mutationMultipler = Random.Range(1f, maxScaleMultiplier);//Get multplier in range of current scale to max scale
