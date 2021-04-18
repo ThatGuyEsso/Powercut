@@ -474,30 +474,10 @@ MonoBehaviour:
     text: I will send you the tasks
     id: 41
     targetBeatID: 42
-    targetScene: 5
-    hasScene: 0
-    endBeat: 0
-    typeTime: 1.25
-    isClientBeat: 1
-    isBeatChain: 1
-  - dialogueChoices: []
-    text: By the way your patent on your odd device has been approved.
-    id: 42
-    targetBeatID: 43
-    targetScene: 5
-    hasScene: 0
-    endBeat: 0
-    typeTime: 1.5
-    isClientBeat: 1
-    isBeatChain: 1
-  - dialogueChoices: []
-    text: The prototype should  arrive in 3-5 business days
-    id: 43
-    targetBeatID: 43
     targetScene: 6
     hasScene: 1
     endBeat: 1
-    typeTime: 0.8
+    typeTime: 1.25
     isClientBeat: 1
     isBeatChain: 1
   - dialogueChoices: []
@@ -1237,7 +1217,7 @@ MonoBehaviour:
     - text: Sorry buddy, I am going to need some more info before I can help you.
       targetBeatID: 106
       resultName: 
-    text: "I'm the owner of the local Roller Skate Rink. \nI need specialist help"
+    text: "I'm the owner of the local Ice Rink. \nI need specialist help"
     id: 104
     targetBeatID: 83
     targetScene: 7
@@ -1391,7 +1371,7 @@ MonoBehaviour:
     isClientBeat: 1
     isBeatChain: 0
   - dialogueChoices: []
-    text: Robin, whoever the Roller Skate Owner is blacklist him!
+    text: ROBIN! Whoever the Ice Rink owner is blacklist him!
     id: 117
     targetBeatID: 118
     targetScene: 9

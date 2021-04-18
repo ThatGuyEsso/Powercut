@@ -22,6 +22,7 @@ public class SessionData
 
     public void Reset()
     {
+        lastLevel = SceneIndex.Tutorial;
         isNewSave = true;
         tutorialCompleted = false;
     }

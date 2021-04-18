@@ -46,7 +46,7 @@ public class FieldOfView : MonoBehaviour, ILightWeakness
         SetUpLight();
    }
 
-    virtual protected void Update()
+    virtual protected void LateUpdate()
     {
         UpdateConeView();
     }

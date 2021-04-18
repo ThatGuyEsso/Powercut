@@ -22,10 +22,10 @@ public class FlashZone : FieldOfView,IHurtable
 
     }
 
-    override protected void Update()
+    override protected void LateUpdate()
     {
 
-        base.Update();
+        base.LateUpdate();
     }
 
 

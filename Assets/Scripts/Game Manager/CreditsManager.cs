@@ -63,7 +63,13 @@ public class CreditsManager : MonoBehaviour
         }
 
     }
-
+    private void OnDestroy()
+    {
+        if (playOneAwake)
+        {
+            InitStateManager.instance.OnStateChange -= CreditsMenuOpened;
+        }
+    }
     private void Init()
     {
         currentCredit = 0;
@@ -139,7 +145,14 @@ public class CreditsManager : MonoBehaviour
     private void CreditsMenuOpened(InitStates newState)
     {
         if (newState == InitStates.Credits)
+        {
             Invoke("ShowPhone", 1f);
+            if (InitStateManager.currInitState == InitStates.Credits)
+            {
+                SaveData.current.ClearSave();
+            }
+        }
+
           
     }
     private IEnumerator DoDisplayCredit(CreditData newCredit)
@@ -425,7 +438,7 @@ public class CreditsManager : MonoBehaviour
         AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
         AudioManager.instance.PlayAtRandomPitch("PhonePullOutSFX");
         StopAllCoroutines();
-
+ 
     }
 
     public void ToTitle()

@@ -19,7 +19,7 @@ public class BaseLampLight : FieldOfView
         InvokeRepeating("UpdateConeView", 0.0f, lampSettings.lightTickRate);
     }
 
-    protected override void Update()
+    protected override void LateUpdate()
     {
         
     }

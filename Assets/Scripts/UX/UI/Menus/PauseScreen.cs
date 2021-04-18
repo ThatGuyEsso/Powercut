@@ -29,6 +29,7 @@ public class PauseScreen : MonoBehaviour
        
         if (GameStateManager.instance != false)
         {
+            AudioManager.instance.PlayAtRandomPitch("ClickSFX");
             pauseScreen.SetActive(true);
             GameStateManager.instance.PauseGame();
             OnPause?.Invoke();
@@ -44,15 +45,21 @@ public class PauseScreen : MonoBehaviour
             AudioManager.instance.PlayAtRandomPitch("ClickSFX");
             pauseScreen.SetActive(false);
             GameStateManager.instance.ResumeGame();
+            if (SettingsMenu.instance.IsVisible())
+            {
+                SettingsMenu.instance.ToggleSettings(false, false);
+
+            }
             OnResume?.Invoke();
             InitStateManager.currGameMode = GameModes.Powercut;
-          
         }
     }
     public void ToggleSettings()
     {
+        AudioManager.instance.PlayAtRandomPitch("ClickSFX");
         if (SettingsMenu.instance.IsVisible())
         {
+
             SettingsMenu.instance.ToggleSettings(false, false);
             settingsText.text = "Settings";
             settingsText.color = Color.white;
