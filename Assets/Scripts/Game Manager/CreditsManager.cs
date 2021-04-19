@@ -434,6 +434,7 @@ public class CreditsManager : MonoBehaviour
     {
         animController.enabled = true;
         animListener.phoneHidden += PhoneHidden;
+        AudioManager.instance.Stop("TypingSFX");
         animController.Play("PhonePopDown");
         AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
         AudioManager.instance.PlayAtRandomPitch("PhonePullOutSFX");
