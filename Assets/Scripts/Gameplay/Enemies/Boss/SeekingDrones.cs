@@ -42,6 +42,7 @@ public class SeekingDrones : MonoBehaviour,IHurtable
         this.damage = damage;
         knockBack = knockback;
         this.owner = owner;
+        owner.Disabled += KillDrone;
         if (aSource) aSource.Play();
         StartCoroutine(UpdateDirection());
     }
@@ -115,6 +116,7 @@ public class SeekingDrones : MonoBehaviour,IHurtable
 
     private void OnDisable()
     {
+        owner.Disabled -= KillDrone;
         if (aSource&&aSource.isPlaying) aSource.Stop();
         StopAllCoroutines();
         isActive = false;
@@ -128,16 +130,26 @@ public class SeekingDrones : MonoBehaviour,IHurtable
 
     public void KillDrone()
     {
-        IAudio audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position).GetComponent<IAudio>();
-        audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("BugsSplat"));
-        audioPlayer.PlayAtRandomPitch();
-        ObjectPoolManager.Spawn(explosionVFX, transform.position, transform.rotation);
-        if (owner)
-            owner.Dronekilled(this);
-        ObjectPoolManager.Recycle(gameObject);
+        if (gameObject.activeSelf)
+        {
+            IAudio audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position).GetComponent<IAudio>();
+            audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound("BugsSplat"));
+            audioPlayer.PlayAtRandomPitch();
+            ObjectPoolManager.Spawn(explosionVFX, transform.position, transform.rotation);
+            if (owner)
+                owner.Dronekilled(this);
+            owner.Disabled -= KillDrone;
+            ObjectPoolManager.Recycle(gameObject);
+        }
+    
     }
     public void Push(Vector3 knockBackDir, float knockBack)
     {
         throw new System.NotImplementedException();
+    }
+
+    private void OnDestroy()
+    {
+        owner.Disabled -= KillDrone;
     }
 }

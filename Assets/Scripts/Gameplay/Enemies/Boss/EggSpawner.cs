@@ -33,16 +33,25 @@ public class EggSpawner : MonoBehaviour
     }
     public void Hatch()
     {
+
         IAudio audioPlayer = ObjectPoolManager.Spawn(audioPlayerPrefab, transform.position).GetComponent<IAudio>();
         audioPlayer.SetUpAudioSource(AudioManager.instance.GetSound(hatchSFX));
         audioPlayer.PlayAtRandomPitch();
         ObjectPoolManager.Spawn(hatchVFX, transform.position, Quaternion.identity);
 
-        BaseEnemy enemy = ObjectPoolManager.Spawn(enemyToSpawn, transform.position, Quaternion.identity).GetComponent<BaseEnemy>();
-        enemy.SetTarget(target);
-        sourceRef.BindToSpawnedEnemy(enemy);
+        if(GameStateManager.instance.GetCurrentGameState()!= GameStates.LevelClear)
+        {
+            BaseEnemy enemy = ObjectPoolManager.Spawn(enemyToSpawn, transform.position, Quaternion.identity).GetComponent<BaseEnemy>();
+            enemy.SetTarget(target);
+            sourceRef.BindToSpawnedEnemy(enemy);
+ 
+        }
+       
         ObjectPoolManager.Recycle(this);
+       
+      
+
 
     }
-    
+
 }

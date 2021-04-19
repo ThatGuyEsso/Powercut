@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6144a192abca0146abe310bcadca4ac, type: 3}
   m_Name: TheWareHouse
   m_EditorClassIdentifier: 
-  maxNumberCrawlers: 6
-  targetPercentBrokenLamps: 0.4
+  maxNumberCrawlers: 7
+  targetPercentBrokenLamps: 0.2
   minLampBreakTime: 2
-  maxLampBreakTime: 6
+  maxLampBreakTime: 4

@@ -78,7 +78,7 @@ public class TabletMenuManager : MonoBehaviour
         contactsMenu.SetActive(true);
         smsMenu.SetActive(false);
         AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
-
+        AudioManager.instance.Stop("TypingSFX");
     }
 
 

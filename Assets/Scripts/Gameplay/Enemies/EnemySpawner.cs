@@ -63,7 +63,8 @@ public class EnemySpawner : MonoBehaviour,IEnemySpawnable
                     BaseEnemy currEnemy = ObjectPoolManager.Spawn(settings.enemyTypes[rand],
                         (Random.insideUnitCircle*settings.spawnRadius+(Vector2)transform.position),Quaternion.identity).GetComponent<BaseEnemy>();
                     currEnemy.SetTarget(target);
-                    GameIntensityManager.instance.IncrementNumberOfCrawlers();
+                    if(currEnemy)
+                        GameIntensityManager.instance.IncrementNumberOfCrawlers();
 
                 }
                 else

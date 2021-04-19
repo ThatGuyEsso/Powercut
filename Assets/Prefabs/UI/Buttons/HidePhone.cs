@@ -16,6 +16,8 @@ public class HidePhone : MonoBehaviour
             phoneAnim.Play("PhonePopDown");
             AudioManager.instance.PlayAtRandomPitch("PhonePullOutSFX");
             AudioManager.instance.PlayRandFromGroup("PhoneButtonSFX");
+            AudioManager.instance.Stop("TypingSFX");
+
             if (bindToHiddenEvent)
             {
                 phoneAnim.gameObject.GetComponent<PhoneAnimEventListener>().phoneHidden += Hidden;

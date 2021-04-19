@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class AttackDrones : BaseAttackPattern
 {
 
@@ -9,7 +9,8 @@ public class AttackDrones : BaseAttackPattern
 
     private List<SeekingDrones> activeDrones = new List<SeekingDrones>();
     [SerializeField] private float droneSize = 1f;
- 
+
+    public Action Disabled;
     public override void ExecuteAttack()
     {
         if (playerTransform)
@@ -60,27 +61,16 @@ public class AttackDrones : BaseAttackPattern
     public override void DisableAttack()
     {
         base.DisableAttack();
-        if (activeDrones.Count > 0)
-        {
-            foreach(SeekingDrones drone in activeDrones)
-            {
-                drone.KillDrone();
-            }
-            activeDrones.Clear();
-        }
+        Disabled?.Invoke();
+        activeDrones.Clear();
+
     }
     public override void StopRunning()
     {
         base.StopRunning();
         StopAllCoroutines();
-        if (activeDrones.Count > 0)
-        {
-            foreach (SeekingDrones drone in activeDrones)
-            {
-                drone.KillDrone();
-            }
-            activeDrones.Clear();
-        }
+        Disabled?.Invoke();
+        activeDrones.Clear();
     }
 
 

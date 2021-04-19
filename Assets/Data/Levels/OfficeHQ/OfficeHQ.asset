@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: OfficeHQ
   m_EditorClassIdentifier: 
   maxNumberCrawlers: 8
-  targetPercentBrokenLamps: 0.5
+  targetPercentBrokenLamps: 0.2
   minLampBreakTime: 2
-  maxLampBreakTime: 8
+  maxLampBreakTime: 5
