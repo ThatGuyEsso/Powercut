@@ -131,7 +131,12 @@ public class WeaponManager : MonoBehaviour
         }
     }
 
+    public void ResetGadget()
+    {
+       
+        UIManager.instance.gadgetDisplay.ResetGadgets();
 
+    }
     public void UsePrimaryGadget(int newAmount, Vector2 dir,Vector3 origin)
     {
         //Checks primarily assign gadget and uses them

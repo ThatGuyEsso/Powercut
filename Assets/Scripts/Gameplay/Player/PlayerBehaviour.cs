@@ -432,7 +432,7 @@ public class PlayerBehaviour : MonoBehaviour,IHurtable, Controls.IPlayerControls
         currHealth = settings.maxHealth;
         currHurtTime = settings.maxHurtTime;
         numberOfPrimaryGadget = 3;
-        WeaponManager.instance.SetUpGadget(gadgetCarried, numberOfPrimaryGadget, numberOfSecondaryGadget);
+        WeaponManager.instance.ResetGadget();
         numberOfSecondaryGadget = 2;
         NotFixing();
         IPlayerComponents[] components = gameObject.GetComponentsInChildren<IPlayerComponents>();

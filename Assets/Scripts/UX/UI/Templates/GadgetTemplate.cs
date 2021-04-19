@@ -22,7 +22,10 @@ public class GadgetTemplate : MonoBehaviour
     }
 
 
-
+    public void ResetDisplay()
+    {
+        counter.ResetCounter();
+    }
     public void SetUpTemplate(Sprite icon, int amount,GadgetTypes typeOfGadget)
     {
         counter.SetUpCounter(amount);

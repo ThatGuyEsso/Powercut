@@ -59,6 +59,14 @@ public class GadgetDisplay : MonoBehaviour
         }
     }
 
+    public void ResetGadgets()
+    {
+        foreach(GadgetTemplate gadget in gadgets)
+        {
+            gadget.ResetDisplay();
+        }
+    }
+
     public void DecreaseRespectiveGadgetCounter(GadgetTypes type)
     {
         foreach(GadgetTemplate gadget in gadgets)

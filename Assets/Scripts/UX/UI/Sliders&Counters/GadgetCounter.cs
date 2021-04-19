@@ -54,6 +54,11 @@ public class GadgetCounter : MonoBehaviour
         }
     }
 
+    public void ResetCounter()
+    {
+        currCounter = maxCounter;
+        UpdateCounterDisplay();
+    }
     public void SetUpCounter(int count)
     {
         maxCounter = count;
