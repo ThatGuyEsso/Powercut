@@ -207,6 +207,10 @@ public class ShadowCrawler : BaseEnemy
     protected override void OnEnable()
     {
         base.OnEnable();
+        maxDamage = settings.maxDamage;
+        minDamage = settings.minDamage;
+        maxSpeed = settings.maxMovementSpeed;
+        maxNavSpeed = settings.maxNavSpeed;
         RandomStatMutation();
     }
     public void RandomStatMutation()
