@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ExitManager : MonoBehaviour
+public class ExitManager : MonoBehaviour,IInitialisable
 {
     [SerializeField] private Car car;
     [SerializeField] private DialogueTrigger dialogueTrigger;
 
-    private void Awake()
+    public void Init()
     {
         
         dialogueTrigger.enabled = false;

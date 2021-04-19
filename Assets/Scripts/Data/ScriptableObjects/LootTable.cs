@@ -8,7 +8,7 @@ public class LootTable : ScriptableObject
 
     public GameObject ReturnLoot()
     {
-        int randIndex = Random.Range(0, loot.Count-1);
+        int randIndex = Random.Range(0, loot.Count);
 
         return loot[randIndex];
     }

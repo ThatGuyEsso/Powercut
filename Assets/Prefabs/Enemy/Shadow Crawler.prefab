@@ -743,6 +743,7 @@ MonoBehaviour:
   deathVFX: {fileID: 7808037342350693099, guid: f43db82d1dae9a64bad3eaa90777b1c5, type: 3}
   target: {fileID: 0}
   chargeSpeed: 1000
+  defaultScale: 0.4
   maxScaleMultiplier: 1.5
 --- !u!50 &8721458964809571229
 Rigidbody2D:

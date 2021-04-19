@@ -25,6 +25,10 @@ public class MainPowerSwitch : MonoBehaviour, Controls.IInteractionsActions
             aSource.volume = sound.volume;
             aSource.pitch = sound.pitch;
         }
+        if (!respawnPoint)
+        {
+            respawnPoint = transform.Find("RespawnSpawnPoint");
+        }
     }
 
 

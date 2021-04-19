@@ -9,8 +9,10 @@ public class ShadowCrawler : BaseEnemy
     protected float maxNavSpeed;
     protected float maxSpeed;
   
+
     [SerializeField] private float chargeSpeed;
 
+    [SerializeField] private float defaultScale;
     public float maxScaleMultiplier;
   
  
@@ -210,9 +212,9 @@ public class ShadowCrawler : BaseEnemy
     public void RandomStatMutation()
     {
         float mutationMultipler = Random.Range(1f, maxScaleMultiplier);//Get multplier in range of current scale to max scale
-        transform.localScale = new Vector3(transform.localScale.x,
-        transform.localScale.y ,
-        transform.localScale.z)*mutationMultipler;//Increase scale by mutation
+        transform.localScale = new Vector3(defaultScale,
+       defaultScale,
+        defaultScale) *mutationMultipler;//Increase scale by mutation
        
 
         //scale base stats by mutation

@@ -96,10 +96,19 @@ public class GameStateManager : MonoBehaviour, IInitialisable
     private void RespawnPlayer()
     {
         if (!resetLevelOnRespawn)
-            if(playerTransform)
-                playerTransform.position = respawnPoint.position;
+        {
+            if (playerTransform)
+            {
+                if (respawnPoint)
+                    playerTransform.position = respawnPoint.position;
+                else
+                    playerTransform.position = FindObjectOfType<MainPowerSwitch>().GetRespawn().position;
+            }
+
+
             else
-                 FindObjectOfType<PlayerBehaviour>().transform.position = respawnPoint.position;
+                FindObjectOfType<PlayerBehaviour>().transform.position = respawnPoint.position;
+        }
         else
             if (playerTransform)
                 playerTransform.position = initSpawnPoint.position;
@@ -197,6 +206,7 @@ public class GameStateManager : MonoBehaviour, IInitialisable
     {
         initSpawnPoint = FindObjectOfType<Car>().GetSpawn();
         if(!resetLevelOnRespawn)
+           
             respawnPoint = FindObjectOfType<MainPowerSwitch>().GetRespawn();
     }
 
