@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 2730902331751597271}
   - component: {fileID: 2216617913327535792}
   - component: {fileID: -4427345986727589368}
-  m_Layer: 0
+  - component: {fileID: 638180299733191008}
+  m_Layer: 11
   m_Name: RoundTable
-  m_TagString: Untagged
+  m_TagString: PhysicsObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,6 +158,22 @@ MonoBehaviour:
   pieces: []
   smashSFX: ObjectSmash
   smashVFX: {fileID: 0}
+--- !u!58 &638180299733191008
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698261089812999110}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &3506698102976184975
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8191849422311190359}
   - component: {fileID: 6109839123695933603}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: RoundTableGFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -249,7 +266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6679717233063807379}
   - component: {fileID: 8209313325170189005}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DropShadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}

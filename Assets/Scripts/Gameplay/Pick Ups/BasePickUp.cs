@@ -18,8 +18,10 @@ public abstract class BasePickUp : MonoBehaviour, IBreakVFX
     {
         switch (newState)
         {
-        
 
+            case InitStates.PlayerRespawned:
+                ObjectPoolManager.Recycle(gameObject);
+                break;
             case InitStates.PlayerDead:
                 ObjectPoolManager.Recycle(gameObject);
                 break;
@@ -51,11 +53,11 @@ public abstract class BasePickUp : MonoBehaviour, IBreakVFX
         //Can't break;
     }
 
-    private void OnEnable()
+    protected void OnEnable()
     {
-        InitStateManager.instance.OnStateChange -= EvaluateNewState;
+        InitStateManager.instance.OnStateChange += EvaluateNewState;
     }
-    private void OnDisable()
+    protected void OnDisable()
     {
         InitStateManager.instance.OnStateChange -= EvaluateNewState;
     }

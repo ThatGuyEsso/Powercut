@@ -74202,10 +74202,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: RoundTable
       objectReference: {fileID: 0}
-    - target: {fileID: 1698261089812999110, guid: f6ed863cebccc274387e38c69031eefa, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 2730902331751597271, guid: f6ed863cebccc274387e38c69031eefa, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.56
@@ -74249,14 +74245,6 @@ PrefabInstance:
     - target: {fileID: 2730902331751597271, guid: f6ed863cebccc274387e38c69031eefa, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3506698102976184975, guid: f6ed863cebccc274387e38c69031eefa, type: 3}
-      propertyPath: m_Layer
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 3756323648221842669, guid: f6ed863cebccc274387e38c69031eefa, type: 3}
-      propertyPath: m_Layer
-      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6ed863cebccc274387e38c69031eefa, type: 3}

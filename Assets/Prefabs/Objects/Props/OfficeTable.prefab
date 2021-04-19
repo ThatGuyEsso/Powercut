@@ -125,9 +125,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e41dd31ea0248f4db01ea24cf615044, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  brokenParts: []
-  spread: 10
-  spreadAngle: 90
+  brokenParts:
+  - {fileID: 1806427279521341351, guid: ee811bca2ea720f41bbbaac138b3753b, type: 3}
+  - {fileID: 1806427279521341351, guid: cd1ac890c54f240468193edbccd0295c, type: 3}
+  - {fileID: 1806427279521341351, guid: 189aa28750798f249ae6e5012ed17501, type: 3}
+  - {fileID: 1806427279521341351, guid: db7de87337b35404db6a0f69f1799ce7, type: 3}
+  - {fileID: 1806427279521341351, guid: 97df3f4e8e4f1ee4ea50d442dd8db5c9, type: 3}
+  - {fileID: 1806427279521341351, guid: fd99fad3dee01f2498e6c8a1a73844e5, type: 3}
+  spread: 59
+  spreadAngle: 120
   table: {fileID: 11400000, guid: 755ce341bbdb0f24e88b5b6e2b7dbda3, type: 2}
   maxhHalth: 20
   gfxs: []

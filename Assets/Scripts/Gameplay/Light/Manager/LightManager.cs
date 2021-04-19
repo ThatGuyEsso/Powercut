@@ -73,6 +73,7 @@ public class LightManager : MonoBehaviour
                     break;
             }
         }
+    
       
     }
     //Increase decrease current charge
@@ -205,6 +206,7 @@ public class LightManager : MonoBehaviour
                 break;
             case GameStates.MainPowerOff:
                 fieldViewCone.ToggleLight(true);
+                
                 break;
 
         }

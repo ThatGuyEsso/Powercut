@@ -179,6 +179,8 @@ public class GameStateManager : MonoBehaviour, IInitialisable
             case GameStates.MainPowerOff:
          
                 currentGameState = newGameState;
+                if (LightManager.instance&&TransitionManager.instance.GetCurrentLevel()!=SceneIndex.IceRink)
+                    LightManager.instance.SetChargeState(ChargeStates.Discharging);
                 OnGameStateChange?.Invoke(newGameState);
              
                 break;

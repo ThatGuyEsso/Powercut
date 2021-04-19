@@ -118,10 +118,10 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
         if (other.gameObject.CompareTag("Player") && !isFixed)
         {
          
-                inRange = true;
                 InGamePrompt.instance.SetColor(inRangePromptColour);
                 InGamePrompt.instance.ChangePrompt(playerPrompt);
                 InGamePrompt.instance.ShowPrompt();
+                inRange = true;
                 player = other.gameObject;
                 fixingCable.ChangeColour(fixingColor);
                 playerTransform = other.transform;
@@ -134,9 +134,10 @@ public abstract class BaseTask : MonoBehaviour, Controls.IInteractionsActions, I
 
     virtual protected void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("Player") && fixingCable.isDrawing) fixingCable.StopDrawingRope();
+        if (other.gameObject.CompareTag("Player")) 
         {
-       
+            if (  fixingCable.isDrawing)
+                fixingCable.StopDrawingRope();
             inRange = false;
             isFixing = false;
             playerTransform = null;
